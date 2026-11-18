@@ -1,0 +1,148 @@
+{
+ "model": "t5-small",
+ "args": {
+  "model": "t5-small",
+  "data": "CL_Benchmark",
+  "train": 400,
+  "test": 50,
+  "epochs": 5,
+  "lr": 0.005,
+  "seed": 0,
+  "out": "demo_results",
+  "tag": ""
+ },
+ "instruction": "removed from every input",
+ "alpha": 0.05,
+ "m_cal": 100,
+ "knn": 10,
+ "rules": {
+  "all": {
+   "learned": 64.35218882152836,
+   "AP": 9.6,
+   "FT": 68.44023602691045,
+   "changed": 200,
+   "compared": 200,
+   "score_after_learning_per_task": [
+    98.13333333333334,
+    48.0,
+    53.62761077430849,
+    74.0,
+    48.0
+   ],
+   "score_final_per_task": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    48.0
+   ]
+  },
+  "zones": {
+   "learned": 24.136475612450848,
+   "AP": 24.136475612450848,
+   "FT": 0.0,
+   "changed": 0,
+   "compared": 200,
+   "score_after_learning_per_task": [
+    98.13333333333334,
+    4.0,
+    18.04904472892089,
+    0.0,
+    0.5
+   ],
+   "score_final_per_task": [
+    98.13333333333334,
+    4.0,
+    18.04904472892089,
+    0.0,
+    0.5
+   ],
+   "inside_own_zone_first4": 182,
+   "changed_inside_own_zone": 0,
+   "routed_to_own_task_after_each_task": [
+    [
+     1.0
+    ],
+    [
+     1.0,
+     0.03999999910593033
+    ],
+    [
+     1.0,
+     0.03999999910593033,
+     0.0
+    ],
+    [
+     1.0,
+     0.03999999910593033,
+     0.0,
+     0.0
+    ],
+    [
+     1.0,
+     0.03999999910593033,
+     0.0,
+     0.0,
+     0.0
+    ]
+   ],
+   "routed_to_own_task_final_per_task": [
+    1.0,
+    0.03999999910593033,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "routed_to_own_task_final_mean": 0.20799999982118605
+  }
+ },
+ "per_task": [
+  {
+   "task": "task1510",
+   "q": 43.96109971289547,
+   "blocked_train": 0,
+   "blocked_test": 0,
+   "coverage_test": 47,
+   "n_train": 400,
+   "n_test": 50
+  },
+  {
+   "task": "task363",
+   "q": 39.28884075561307,
+   "blocked_train": 377,
+   "blocked_test": 48,
+   "coverage_test": 49,
+   "n_train": 400,
+   "n_test": 50
+  },
+  {
+   "task": "task748",
+   "q": 25.30551952145993,
+   "blocked_train": 400,
+   "blocked_test": 50,
+   "coverage_test": 45,
+   "n_train": 400,
+   "n_test": 50
+  },
+  {
+   "task": "task1687",
+   "q": 35.66844829736107,
+   "blocked_train": 388,
+   "blocked_test": 47,
+   "coverage_test": 41,
+   "n_train": 400,
+   "n_test": 50
+  },
+  {
+   "task": "task875",
+   "q": 35.23316459693941,
+   "blocked_train": 393,
+   "blocked_test": 50,
+   "coverage_test": 49,
+   "n_train": 400,
+   "n_test": 50
+  }
+ ],
+ "verdict": "works",
+ "minutes": 13.369071300824483
+}

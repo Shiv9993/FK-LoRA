@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+*.aux
+*.blg
+*.out
+*.toc
+paper_certified/*.log
+paper_certified/figures_src/*.log

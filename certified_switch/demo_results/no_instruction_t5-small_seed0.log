@@ -1,0 +1,14 @@
+t5-small: no instruction, settings {'model': 't5-small', 'data': 'CL_Benchmark', 'train': 400, 'test': 50, 'epochs': 5, 'lr': 0.005, 'seed': 0, 'out': 'demo_results', 'tag': ''}
+task 1 learned (task1510): q=43.961, train inside older zone 0/400, test inside older zone 0/50, coverage 47/50, routed to own task [1.0]; 1.4 min
+task 2 learned (task363): q=39.289, train inside older zone 377/400, test inside older zone 48/50, coverage 49/50, routed to own task [1.0, 0.04]; 3.3 min
+task 3 learned (task748): q=25.306, train inside older zone 400/400, test inside older zone 50/50, coverage 45/50, routed to own task [1.0, 0.04, 0.0]; 7.8 min
+task 4 learned (task1687): q=35.668, train inside older zone 388/400, test inside older zone 47/50, coverage 41/50, routed to own task [1.0, 0.04, 0.0, 0.0]; 10.4 min
+task 5 learned (task875): q=35.233, train inside older zone 393/400, test inside older zone 50/50, coverage 49/50, routed to own task [1.0, 0.04, 0.0, 0.0, 0.0]; 13.0 min
+all    learned  64.35  at the end   9.60  forgetting  68.44  answers changed 200 of 200
+       per task after learning [98.1, 48.0, 53.6, 74.0, 48.0]  at the end [0.0, 0.0, 0.0, 0.0, 48.0]
+zones  learned  24.14  at the end  24.14  forgetting   0.00  answers changed 0 of 200
+       per task after learning [98.1, 4.0, 18.0, 0.0, 0.5]  at the end [98.1, 4.0, 18.0, 0.0, 0.5]
+zones: inside own zone (tasks 1-4) 182 of 200, changed among them 0; routed to own task at end [1.0, 0.04, 0.0, 0.0, 0.0]
+per task stats: [{"task": "task1510", "q": 43.96109971289547, "blocked_train": 0, "blocked_test": 0, "coverage_test": 47, "n_train": 400, "n_test": 50}, {"task": "task363", "q": 39.28884075561307, "blocked_train": 377, "blocked_test": 48, "coverage_test": 49, "n_train": 400, "n_test": 50}, {"task": "task748", "q": 25.30551952145993, "blocked_train": 400, "blocked_test": 50, "coverage_test": 45, "n_train": 400, "n_test": 50}, {"task": "task1687", "q": 35.66844829736107, "blocked_train": 388, "blocked_test": 47, "coverage_test": 41, "n_train": 400, "n_test": 50}, {"task": "task875", "q": 35.23316459693941, "blocked_train": 393, "blocked_test": 50, "coverage_test": 49, "n_train": 400, "n_test": 50}]
+verdict: works
+done in 13.4 min

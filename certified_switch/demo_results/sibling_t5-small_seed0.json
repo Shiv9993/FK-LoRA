@@ -1,0 +1,89 @@
+{
+ "model": "t5-small",
+ "args": {
+  "model": "t5-small",
+  "data": "/scratch/ext_gainlora/repo/CL_Benchmark",
+  "train": 400,
+  "test": 50,
+  "epochs": 5,
+  "lr": 0.005,
+  "seed": 0,
+  "out": "demo_results"
+ },
+ "sibling_definition": "In this task, you are given a sentence from a movie review. Your task is to classify the sentence as \"POS\" if its sentiment is positive or as \"NEG\" if its sentiment is negative.",
+ "rules": {
+  "certified": {
+   "blocked": 400,
+   "train": 400,
+   "sibling_right": 0,
+   "sibling_inputs": 50,
+   "sibling_answered_with_old_words": 50,
+   "sibling_routes": [
+    2
+   ],
+   "changed": {
+    "original": {
+     "changed": 0,
+     "inputs": 250,
+     "task2_changed": 0,
+     "task2_inputs": 50
+    },
+    "light": {
+     "changed": 0,
+     "inputs": 250,
+     "task2_changed": 0,
+     "task2_inputs": 50
+    },
+    "medium": {
+     "changed": 0,
+     "inputs": 250,
+     "task2_changed": 0,
+     "task2_inputs": 50
+    },
+    "heavy": {
+     "changed": 0,
+     "inputs": 250,
+     "task2_changed": 0,
+     "task2_inputs": 50
+    }
+   }
+  },
+  "exact_first": {
+   "blocked": 400,
+   "train": 400,
+   "sibling_right": 31,
+   "sibling_inputs": 50,
+   "sibling_answered_with_old_words": 0,
+   "sibling_routes": [
+    6
+   ],
+   "changed": {
+    "original": {
+     "changed": 0,
+     "inputs": 250,
+     "task2_changed": 0,
+     "task2_inputs": 50
+    },
+    "light": {
+     "changed": 50,
+     "inputs": 250,
+     "task2_changed": 50,
+     "task2_inputs": 50
+    },
+    "medium": {
+     "changed": 0,
+     "inputs": 250,
+     "task2_changed": 0,
+     "task2_inputs": 50
+    },
+    "heavy": {
+     "changed": 0,
+     "inputs": 250,
+     "task2_changed": 0,
+     "task2_inputs": 50
+    }
+   }
+  }
+ },
+ "minutes": 26.205105626583098
+}

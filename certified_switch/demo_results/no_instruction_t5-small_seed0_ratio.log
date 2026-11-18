@@ -1,0 +1,16 @@
+device: cpu
+t5-small: no instruction, settings {'model': 't5-small', 'data': 'CL_Benchmark', 'train': 400, 'test': 50, 'epochs': 5, 'lr': 0.005, 'seed': 0, 'out': 'demo_results', 'tag': '', 'score': 'ratio', 'pool': '/scratch/ni/ni_tasks.json', 'device': 'auto'}
+pool of 5219 unrelated inputs
+task 1 learned (task1510): q=1.187, train inside older zone 0/400, test inside older zone 0/50, coverage 42/50, routed to own task [1.0]; 1.1 min
+task 2 learned (task363): q=1.262, train inside older zone 8/400, test inside older zone 0/50, coverage 48/50, routed to own task [0.84, 1.0]; 2.8 min
+task 3 learned (task748): q=1.168, train inside older zone 196/400, test inside older zone 23/50, coverage 49/50, routed to own task [0.84, 1.0, 0.54]; 6.8 min
+task 4 learned (task1687): q=1.220, train inside older zone 390/400, test inside older zone 48/50, coverage 49/50, routed to own task [0.84, 1.0, 0.54, 0.02]; 8.3 min
+task 5 learned (task875): q=1.202, train inside older zone 364/400, test inside older zone 45/50, coverage 48/50, routed to own task [0.84, 1.0, 0.54, 0.02, 0.08]; 10.2 min
+all    learned  64.35  at the end   9.60  forgetting  68.44  answers changed 200 of 200
+       per task after learning [98.1, 48.0, 53.6, 74.0, 48.0]  at the end [0.0, 0.0, 0.0, 0.0, 48.0]
+zones  learned  36.67  at the end  33.61  forgetting   3.83  answers changed 8 of 200
+       per task after learning [98.1, 48.0, 29.2, 2.0, 6.0]  at the end [82.8, 48.0, 29.2, 2.0, 6.0]
+zones: inside own zone (tasks 1-4) 188 of 200, changed among them 0; routed to own task at end [0.84, 1.0, 0.54, 0.02, 0.08]
+per task stats: [{"task": "task1510", "q": 1.186644472549321, "blocked_train": 0, "blocked_test": 0, "coverage_test": 42, "n_train": 400, "n_test": 50}, {"task": "task363", "q": 1.2622224328795972, "blocked_train": 8, "blocked_test": 0, "coverage_test": 48, "n_train": 400, "n_test": 50}, {"task": "task748", "q": 1.1682790128182956, "blocked_train": 196, "blocked_test": 23, "coverage_test": 49, "n_train": 400, "n_test": 50}, {"task": "task1687", "q": 1.2196510395230373, "blocked_train": 390, "blocked_test": 48, "coverage_test": 49, "n_train": 400, "n_test": 50}, {"task": "task875", "q": 1.2015228081645013, "blocked_train": 364, "blocked_test": 45, "coverage_test": 48, "n_train": 400, "n_test": 50}]
+verdict: partial
+done in 10.4 min

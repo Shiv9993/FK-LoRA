@@ -1,0 +1,21 @@
+device: cpu
+t5-small: no instruction, settings {'model': 't5-small', 'data': 'CL_Benchmark', 'train': 400, 'test': 50, 'epochs': 5, 'lr': 0.005, 'seed': 0, 'out': 'demo_results', 'tag': '', 'score': 'ridge', 'pool': '/scratch/ni/ni_tasks.json', 'device': 'auto'}
+ridge: pool of 5219 unrelated inputs, 2000 used, feature dim 512
+task 1 learned (task1510): fit 200, held-out 200, routed to own task [1.0]; 6.6 min
+task 2 learned (task363): fit 200, held-out 200, routed to own task [1.0, 1.0]; 17.3 min
+task 3 learned (task748): fit 200, held-out 200, routed to own task [1.0, 1.0, 1.0]; 42.3 min
+task 4 learned (task1687): fit 200, held-out 200, routed to own task [1.0, 0.96, 1.0, 0.96]; 54.8 min
+task 5 learned (task875): fit 200, held-out 200, routed to own task [1.0, 0.96, 1.0, 0.9, 1.0]; 66.4 min
+all    learned  64.35  at the end   9.60  forgetting  68.44  answers changed 200 of 200
+       per task after learning [98.1, 48.0, 53.6, 74.0, 48.0]  at the end [0.0, 0.0, 0.0, 0.0, 48.0]
+ridge  learned  63.95  at the end  62.75  forgetting   1.50  answers changed 6 of 200
+       per task after learning [98.1, 48.0, 53.6, 72.0, 48.0]  at the end [98.1, 48.0, 53.6, 66.0, 48.0]
+ridge: routed to own task at end [1.0, 0.96, 1.0, 0.9, 1.0] mean 0.972; routes changed between arrival and end 6
+certificate: {"task": "task1510", "c": 0, "m": 200, "certificate": 0.004975124378109453, "test_routes_changed": 0, "test_routes_changed_share": 0.0, "test_answers_changed": 0, "test_answers_changed_share": 0.0, "answers_compared": true}
+certificate: {"task": "task363", "c": 1, "m": 200, "certificate": 0.009950248756218905, "test_routes_changed": 2, "test_routes_changed_share": 0.04, "test_answers_changed": 2, "test_answers_changed_share": 0.04, "answers_compared": true}
+certificate: {"task": "task748", "c": 0, "m": 200, "certificate": 0.004975124378109453, "test_routes_changed": 0, "test_routes_changed_share": 0.0, "test_answers_changed": 0, "test_answers_changed_share": 0.0, "answers_compared": true}
+certificate: {"task": "task1687", "c": 6, "m": 200, "certificate": 0.03482587064676617, "test_routes_changed": 4, "test_routes_changed_share": 0.08, "test_answers_changed": 4, "test_answers_changed_share": 0.08, "answers_compared": true}
+certificate: {"task": "task875", "c": 0, "m": 200, "certificate": 0.004975124378109453, "test_routes_changed": 0, "test_routes_changed_share": 0.0, "test_answers_changed": 0, "test_answers_changed_share": 0.0, "answers_compared": false}
+verdict parts: (a) True (b) True
+verdict: works
+done in 67.9 min

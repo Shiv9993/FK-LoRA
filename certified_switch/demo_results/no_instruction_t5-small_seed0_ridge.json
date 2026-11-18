@@ -1,0 +1,165 @@
+{
+ "model": "t5-small",
+ "args": {
+  "model": "t5-small",
+  "data": "CL_Benchmark",
+  "train": 400,
+  "test": 50,
+  "epochs": 5,
+  "lr": 0.005,
+  "seed": 0,
+  "out": "demo_results",
+  "tag": "",
+  "score": "ridge",
+  "pool": "/scratch/ni/ni_tasks.json",
+  "device": "auto"
+ },
+ "instruction": "removed from every input",
+ "alpha": 0.05,
+ "m_cal": 100,
+ "knn": 10,
+ "rules": {
+  "all": {
+   "learned": 64.35218882152836,
+   "AP": 9.6,
+   "FT": 68.44023602691045,
+   "changed": 200,
+   "compared": 200,
+   "score_after_learning_per_task": [
+    98.13333333333334,
+    48.0,
+    53.62761077430849,
+    74.0,
+    48.0
+   ],
+   "score_final_per_task": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    48.0
+   ]
+  },
+  "ridge": {
+   "learned": 63.95218882152837,
+   "AP": 62.75218882152837,
+   "FT": 1.5,
+   "changed": 6,
+   "compared": 200,
+   "score_after_learning_per_task": [
+    98.13333333333334,
+    48.0,
+    53.62761077430849,
+    72.0,
+    48.0
+   ],
+   "score_final_per_task": [
+    98.13333333333334,
+    48.0,
+    53.62761077430849,
+    66.0,
+    48.0
+   ],
+   "routed_to_own_task_after_each_task": [
+    [
+     1.0
+    ],
+    [
+     1.0,
+     1.0
+    ],
+    [
+     1.0,
+     1.0,
+     1.0
+    ],
+    [
+     1.0,
+     0.9599999785423279,
+     1.0,
+     0.9599999785423279
+    ],
+    [
+     1.0,
+     0.9599999785423279,
+     1.0,
+     0.8999999761581421,
+     1.0
+    ]
+   ],
+   "routed_to_own_task_final_per_task": [
+    1.0,
+    0.9599999785423279,
+    1.0,
+    0.8999999761581421,
+    1.0
+   ],
+   "routed_to_own_task_final_mean": 0.971999990940094,
+   "routes_changed_total": 6,
+   "routes_changed_tasks1to4": 6,
+   "total_test_inputs": 250,
+   "certificates": [
+    {
+     "task": "task1510",
+     "c": 0,
+     "m": 200,
+     "certificate": 0.004975124378109453,
+     "test_routes_changed": 0,
+     "test_routes_changed_share": 0.0,
+     "test_answers_changed": 0,
+     "test_answers_changed_share": 0.0,
+     "answers_compared": true
+    },
+    {
+     "task": "task363",
+     "c": 1,
+     "m": 200,
+     "certificate": 0.009950248756218905,
+     "test_routes_changed": 2,
+     "test_routes_changed_share": 0.04,
+     "test_answers_changed": 2,
+     "test_answers_changed_share": 0.04,
+     "answers_compared": true
+    },
+    {
+     "task": "task748",
+     "c": 0,
+     "m": 200,
+     "certificate": 0.004975124378109453,
+     "test_routes_changed": 0,
+     "test_routes_changed_share": 0.0,
+     "test_answers_changed": 0,
+     "test_answers_changed_share": 0.0,
+     "answers_compared": true
+    },
+    {
+     "task": "task1687",
+     "c": 6,
+     "m": 200,
+     "certificate": 0.03482587064676617,
+     "test_routes_changed": 4,
+     "test_routes_changed_share": 0.08,
+     "test_answers_changed": 4,
+     "test_answers_changed_share": 0.08,
+     "answers_compared": true
+    },
+    {
+     "task": "task875",
+     "c": 0,
+     "m": 200,
+     "certificate": 0.004975124378109453,
+     "test_routes_changed": 0,
+     "test_routes_changed_share": 0.0,
+     "test_answers_changed": 0,
+     "test_answers_changed_share": 0.0,
+     "answers_compared": false
+    }
+   ],
+   "verdict_part_a": true,
+   "verdict_part_b": true
+  }
+ },
+ "per_task": [],
+ "verdict": "works",
+ "minutes": 67.91062970161438
+}

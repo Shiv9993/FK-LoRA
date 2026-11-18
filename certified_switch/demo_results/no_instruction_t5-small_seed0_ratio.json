@@ -1,0 +1,151 @@
+{
+ "model": "t5-small",
+ "args": {
+  "model": "t5-small",
+  "data": "CL_Benchmark",
+  "train": 400,
+  "test": 50,
+  "epochs": 5,
+  "lr": 0.005,
+  "seed": 0,
+  "out": "demo_results",
+  "tag": "",
+  "score": "ratio",
+  "pool": "/scratch/ni/ni_tasks.json",
+  "device": "auto"
+ },
+ "instruction": "removed from every input",
+ "alpha": 0.05,
+ "m_cal": 100,
+ "knn": 10,
+ "rules": {
+  "all": {
+   "learned": 64.35218882152836,
+   "AP": 9.6,
+   "FT": 68.44023602691045,
+   "changed": 200,
+   "compared": 200,
+   "score_after_learning_per_task": [
+    98.13333333333334,
+    48.0,
+    53.62761077430849,
+    74.0,
+    48.0
+   ],
+   "score_final_per_task": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    48.0
+   ]
+  },
+  "zones": {
+   "learned": 36.67408585260186,
+   "AP": 33.60741918593519,
+   "FT": 3.8333333333333357,
+   "changed": 8,
+   "compared": 200,
+   "score_after_learning_per_task": [
+    98.13333333333334,
+    48.0,
+    29.237095929675988,
+    2.0,
+    6.0
+   ],
+   "score_final_per_task": [
+    82.8,
+    48.0,
+    29.237095929675988,
+    2.0,
+    6.0
+   ],
+   "inside_own_zone_first4": 188,
+   "changed_inside_own_zone": 0,
+   "routed_to_own_task_after_each_task": [
+    [
+     1.0
+    ],
+    [
+     0.8399999737739563,
+     1.0
+    ],
+    [
+     0.8399999737739563,
+     1.0,
+     0.5400000214576721
+    ],
+    [
+     0.8399999737739563,
+     1.0,
+     0.5400000214576721,
+     0.019999999552965164
+    ],
+    [
+     0.8399999737739563,
+     1.0,
+     0.5400000214576721,
+     0.019999999552965164,
+     0.07999999821186066
+    ]
+   ],
+   "routed_to_own_task_final_per_task": [
+    0.8399999737739563,
+    1.0,
+    0.5400000214576721,
+    0.019999999552965164,
+    0.07999999821186066
+   ],
+   "routed_to_own_task_final_mean": 0.49599999859929084
+  }
+ },
+ "per_task": [
+  {
+   "task": "task1510",
+   "q": 1.186644472549321,
+   "blocked_train": 0,
+   "blocked_test": 0,
+   "coverage_test": 42,
+   "n_train": 400,
+   "n_test": 50
+  },
+  {
+   "task": "task363",
+   "q": 1.2622224328795972,
+   "blocked_train": 8,
+   "blocked_test": 0,
+   "coverage_test": 48,
+   "n_train": 400,
+   "n_test": 50
+  },
+  {
+   "task": "task748",
+   "q": 1.1682790128182956,
+   "blocked_train": 196,
+   "blocked_test": 23,
+   "coverage_test": 49,
+   "n_train": 400,
+   "n_test": 50
+  },
+  {
+   "task": "task1687",
+   "q": 1.2196510395230373,
+   "blocked_train": 390,
+   "blocked_test": 48,
+   "coverage_test": 49,
+   "n_train": 400,
+   "n_test": 50
+  },
+  {
+   "task": "task875",
+   "q": 1.2015228081645013,
+   "blocked_train": 364,
+   "blocked_test": 45,
+   "coverage_test": 48,
+   "n_train": 400,
+   "n_test": 50
+  }
+ ],
+ "verdict": "partial",
+ "minutes": 10.436943674087525
+}
