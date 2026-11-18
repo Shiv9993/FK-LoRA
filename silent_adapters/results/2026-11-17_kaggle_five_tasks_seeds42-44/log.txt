@@ -1,0 +1,509 @@
+0.00s - Debugger warning: It seems that frozen modules are being used, which may
+0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off
+0.00s - to python to disable frozen modules.
+0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.
+0.00s - Debugger warning: It seems that frozen modules are being used, which may
+0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off
+0.00s - to python to disable frozen modules.
+0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.
+results are saved in: /kaggle/working/silent_adapters/superni_short5_t5base_e10
+GPU: Tesla T4, 15360 MiB | Tesla T4, 15360 MiB
+$ git clone https://github.com/liangyanshuo/gainlora /tmp/silent_adapters_work/gainlora
+$ git -C /tmp/silent_adapters_work/gainlora checkout e9d0d700538c8d12892f7fd52b216291f7e42acc
+$ /usr/bin/python3 -m pip install -q uv
+$ uv venv --python 3.10.12 /tmp/silent_adapters_work/env
+$ uv pip install -q --python /tmp/silent_adapters_work/env/bin/python torch==2.1.0 --index-url https://download.pytorch.org/whl/cu121
+$ uv pip install -q --python /tmp/silent_adapters_work/env/bin/python transformers==4.30.2 datasets==2.14.6 accelerate==0.24.1 numpy==1.22.4 fsspec==2023.10.0 ...
+$ uv pip install -q --python /tmp/silent_adapters_work/env/bin/python cupy-cuda12x==12.1.0 numpy==1.22.4
+torch 2.1.0+cu121 | transformers 4.30.2 | datasets 2.14.6 | numpy 1.22.4 | GPU seen by PyTorch: Tesla T4
+CuPy does not work here. Reason:
+    Check the Installation Guide for details:
+      https://docs.cupy.dev/en/latest/install.html
+    
+    Original error:
+      ImportError: libcudart.so.12: cannot open shared object file: No such file or directory
+    ================================================================
+SVD step done with: pytorch (stand-in for cupy)
+silent_run.py written: 659 lines
+2 GPUs: 2 runs are trained at the same time, one per GPU. Lines are marked with the GPU and the run.
+[GPU 1, gainlora_inflora, seed 43] === gainlora_inflora, seed 43: 5 tasks ===
+[GPU 0, gainlora_inflora, seed 42] === gainlora_inflora, seed 42: 5 tasks ===
+[GPU 0, gainlora_inflora, seed 42] [1/5] 1-task1510_evalution_relation_extraction: running ...[GPU 1, gainlora_inflora, seed 43] [1/5] 1-task1510_evalution_relation_extraction: running ...
+
+[GPU 1, gainlora_inflora, seed 43]       ... 2 min (latest progress bar: 109/250)
+[GPU 0, gainlora_inflora, seed 42]       ... 2 min (latest progress bar: 103/250)
+[GPU 1, gainlora_inflora, seed 43]       ... 4 min (latest progress bar: 231/250)
+[GPU 0, gainlora_inflora, seed 42]       ... 4 min (latest progress bar: 224/250)
+[GPU 0, gainlora_inflora, seed 42]       1-task1510_evalution_relation_extraction done in 6.0 min, saved
+[GPU 0, gainlora_inflora, seed 42] [2/5] 2-task363_sst2_polarity_classification: running ...
+[GPU 1, gainlora_inflora, seed 43]       1-task1510_evalution_relation_extraction done in 6.0 min, saved
+[GPU 1, gainlora_inflora, seed 43] [2/5] 2-task363_sst2_polarity_classification: running ...
+[GPU 0, gainlora_inflora, seed 42]       ... 2 min (latest progress bar: 13/13)
+[GPU 1, gainlora_inflora, seed 43]       ... 2 min (latest progress bar: 127/250)
+[GPU 0, gainlora_inflora, seed 42]       ... 4 min (latest progress bar: 250/250)
+[GPU 1, gainlora_inflora, seed 43]       ... 4 min (latest progress bar: 7/13)
+[GPU 0, gainlora_inflora, seed 42]       2-task363_sst2_polarity_classification done in 6.0 min, saved
+[GPU 0, gainlora_inflora, seed 42] [3/5] 3-task748_glucose_reverse_cause_event_detection: running ...
+[GPU 1, gainlora_inflora, seed 43]       2-task363_sst2_polarity_classification done in 6.0 min, saved
+[GPU 1, gainlora_inflora, seed 43] [3/5] 3-task748_glucose_reverse_cause_event_detection: running ...
+[GPU 0, gainlora_inflora, seed 42]       ... 2 min (latest progress bar: 58/250)
+[GPU 1, gainlora_inflora, seed 43]       ... 2 min (latest progress bar: 59/250)
+[GPU 0, gainlora_inflora, seed 42]       ... 4 min (latest progress bar: 8/13)
+[GPU 1, gainlora_inflora, seed 43]       ... 4 min (latest progress bar: 8/13)
+[GPU 0, gainlora_inflora, seed 42]       ... 6 min (latest progress bar: 196/250)
+[GPU 1, gainlora_inflora, seed 43]       ... 6 min (latest progress bar: 194/250)
+[GPU 0, gainlora_inflora, seed 42]       ... 8 min (latest progress bar: 250/250)
+[GPU 1, gainlora_inflora, seed 43]       ... 8 min (latest progress bar: 250/250)
+[GPU 0, gainlora_inflora, seed 42]       ... 10 min (latest progress bar: 19/19)
+[GPU 1, gainlora_inflora, seed 43]       ... 10 min (latest progress bar: 19/19)
+[GPU 0, gainlora_inflora, seed 42]       3-task748_glucose_reverse_cause_event_detection done in 12.0 min, saved
+[GPU 0, gainlora_inflora, seed 42] [4/5] 4-task1687_sentiment140_classification: running ...
+[GPU 1, gainlora_inflora, seed 43]       3-task748_glucose_reverse_cause_event_detection done in 12.0 min, saved
+[GPU 1, gainlora_inflora, seed 43] [4/5] 4-task1687_sentiment140_classification: running ...
+[GPU 0, gainlora_inflora, seed 42]       ... 2 min (latest progress bar: 144/250)
+[GPU 1, gainlora_inflora, seed 43]       ... 2 min (latest progress bar: 144/250)
+[GPU 0, gainlora_inflora, seed 42]       ... 4 min (latest progress bar: 18/25)
+[GPU 1, gainlora_inflora, seed 43]       ... 4 min (latest progress bar: 17/25)
+[GPU 0, gainlora_inflora, seed 42]       4-task1687_sentiment140_classification done in 6.0 min, saved
+[GPU 0, gainlora_inflora, seed 42] [5/5] 5-task875_emotion_classification: running ...
+[GPU 1, gainlora_inflora, seed 43]       4-task1687_sentiment140_classification done in 6.0 min, saved
+[GPU 1, gainlora_inflora, seed 43] [5/5] 5-task875_emotion_classification: running ...
+[GPU 0, gainlora_inflora, seed 42]       ... 2 min (latest progress bar: 109/250)
+[GPU 1, gainlora_inflora, seed 43]       ... 2 min (latest progress bar: 107/250)
+[GPU 0, gainlora_inflora, seed 42]       ... 4 min (latest progress bar: 232/250)
+[GPU 1, gainlora_inflora, seed 43]       ... 4 min (latest progress bar: 231/250)
+[GPU 0, gainlora_inflora, seed 42]       ... 6 min (latest progress bar: 32/32)
+[GPU 1, gainlora_inflora, seed 43]       ... 6 min (latest progress bar: 32/32)
+[GPU 0, gainlora_inflora, seed 42]       5-task875_emotion_classification done in 8.0 min, saved
+[GPU 0, gainlora_inflora, seed 44] === gainlora_inflora, seed 44: 5 tasks ===
+[GPU 0, gainlora_inflora, seed 44] [1/5] 1-task1510_evalution_relation_extraction: running ...
+[GPU 1, gainlora_inflora, seed 43]       5-task875_emotion_classification done in 8.0 min, saved
+[GPU 1, inflora, seed 42] === inflora, seed 42: 5 tasks ===
+[GPU 1, inflora, seed 42] [1/5] 1-task1510_evalution_relation_extraction: running ...
+[GPU 0, gainlora_inflora, seed 44]       ... 2 min (latest progress bar: 110/250)
+[GPU 1, inflora, seed 42]       ... 2 min (latest progress bar: 122/250)
+[GPU 0, gainlora_inflora, seed 44]       ... 4 min (latest progress bar: 232/250)
+[GPU 1, inflora, seed 42]       ... 4 min (latest progress bar: 245/250)
+[GPU 0, gainlora_inflora, seed 44]       1-task1510_evalution_relation_extraction done in 6.0 min, saved
+[GPU 0, gainlora_inflora, seed 44] [2/5] 2-task363_sst2_polarity_classification: running ...
+[GPU 1, inflora, seed 42]       1-task1510_evalution_relation_extraction done in 6.0 min, saved
+[GPU 1, inflora, seed 42] [2/5] 2-task363_sst2_polarity_classification: running ...
+[GPU 0, gainlora_inflora, seed 44]       ... 2 min (latest progress bar: 13/13)
+[GPU 1, inflora, seed 42]       ... 2 min (latest progress bar: 143/250)
+[GPU 0, gainlora_inflora, seed 44]       ... 4 min (latest progress bar: 250/250)
+[GPU 1, inflora, seed 42]       ... 4 min (latest progress bar: 13/13)
+[GPU 0, gainlora_inflora, seed 44]       2-task363_sst2_polarity_classification done in 6.0 min, saved
+[GPU 0, gainlora_inflora, seed 44] [3/5] 3-task748_glucose_reverse_cause_event_detection: running ...
+[GPU 1, inflora, seed 42]       2-task363_sst2_polarity_classification done in 6.0 min, saved
+[GPU 1, inflora, seed 42] [3/5] 3-task748_glucose_reverse_cause_event_detection: running ...
+[GPU 0, gainlora_inflora, seed 44]       ... 2 min (latest progress bar: 58/250)
+[GPU 1, inflora, seed 42]       ... 2 min (latest progress bar: 75/250)
+[GPU 0, gainlora_inflora, seed 44]       ... 4 min (latest progress bar: 7/13)
+[GPU 1, inflora, seed 42]       ... 4 min (latest progress bar: 134/250)
+[GPU 0, gainlora_inflora, seed 44]       ... 6 min (latest progress bar: 194/250)
+[GPU 1, inflora, seed 42]       ... 6 min (latest progress bar: 212/250)
+[GPU 0, gainlora_inflora, seed 44]       ... 8 min (latest progress bar: 250/250)
+[GPU 1, inflora, seed 42]       ... 8 min (latest progress bar: 3/13)
+[GPU 0, gainlora_inflora, seed 44]       ... 10 min (latest progress bar: 19/19)
+[GPU 1, inflora, seed 42]       3-task748_glucose_reverse_cause_event_detection done in 10.0 min, saved
+[GPU 1, inflora, seed 42] [4/5] 4-task1687_sentiment140_classification: running ...
+[GPU 0, gainlora_inflora, seed 44]       3-task748_glucose_reverse_cause_event_detection done in 12.0 min, saved
+[GPU 0, gainlora_inflora, seed 44] [4/5] 4-task1687_sentiment140_classification: running ...
+[GPU 1, inflora, seed 42]       ... 2 min (latest progress bar: 159/250)
+[GPU 0, gainlora_inflora, seed 44]       ... 2 min (latest progress bar: 158/250)
+[GPU 1, inflora, seed 42]       ... 4 min (latest progress bar: 25/25)
+[GPU 0, gainlora_inflora, seed 44]       ... 4 min (latest progress bar: 25/25)
+[GPU 1, inflora, seed 42]       4-task1687_sentiment140_classification done in 6.0 min, saved
+[GPU 1, inflora, seed 42] [5/5] 5-task875_emotion_classification: running ...
+[GPU 0, gainlora_inflora, seed 44]       4-task1687_sentiment140_classification done in 6.0 min, saved
+[GPU 0, gainlora_inflora, seed 44] [5/5] 5-task875_emotion_classification: running ...
+[GPU 1, inflora, seed 42]       ... 2 min (latest progress bar: 7/13)
+[GPU 0, gainlora_inflora, seed 44]       ... 2 min (latest progress bar: 116/250)
+[GPU 1, inflora, seed 42]       ... 4 min (latest progress bar: 10/13)
+[GPU 0, gainlora_inflora, seed 44]       ... 4 min (latest progress bar: 242/250)
+[GPU 1, inflora, seed 42]       ... 6 min (latest progress bar: 32/32)
+[GPU 0, gainlora_inflora, seed 44]       ... 6 min (latest progress bar: 32/32)
+[GPU 1, inflora, seed 42]       5-task875_emotion_classification done in 8.0 min, saved
+[GPU 1, inflora, seed 43] === inflora, seed 43: 5 tasks ===
+[GPU 1, inflora, seed 43] [1/5] 1-task1510_evalution_relation_extraction: running ...
+[GPU 0, gainlora_inflora, seed 44]       5-task875_emotion_classification done in 8.0 min, saved
+[GPU 0, inflora, seed 44] === inflora, seed 44: 5 tasks ===
+[GPU 0, inflora, seed 44] [1/5] 1-task1510_evalution_relation_extraction: running ...
+[GPU 1, inflora, seed 43]       ... 2 min (latest progress bar: 9/13)
+[GPU 0, inflora, seed 44]       ... 2 min (latest progress bar: 8/13)
+[GPU 1, inflora, seed 43]       ... 4 min (latest progress bar: 7/13)
+[GPU 0, inflora, seed 44]       ... 4 min (latest progress bar: 7/13)
+[GPU 1, inflora, seed 43]       1-task1510_evalution_relation_extraction done in 6.0 min, saved
+[GPU 1, inflora, seed 43] [2/5] 2-task363_sst2_polarity_classification: running ...
+[GPU 0, inflora, seed 44]       1-task1510_evalution_relation_extraction done in 6.0 min, saved
+[GPU 0, inflora, seed 44] [2/5] 2-task363_sst2_polarity_classification: running ...
+[GPU 1, inflora, seed 43]       ... 2 min (latest progress bar: 148/250)
+[GPU 0, inflora, seed 44]       ... 2 min (latest progress bar: 150/250)
+[GPU 1, inflora, seed 43]       ... 4 min (latest progress bar: 13/13)
+[GPU 0, inflora, seed 44]       ... 4 min (latest progress bar: 13/13)
+[GPU 1, inflora, seed 43]       2-task363_sst2_polarity_classification done in 6.0 min, saved
+[GPU 1, inflora, seed 43] [3/5] 3-task748_glucose_reverse_cause_event_detection: running ...
+[GPU 0, inflora, seed 44]       2-task363_sst2_polarity_classification done in 6.0 min, saved
+[GPU 0, inflora, seed 44] [3/5] 3-task748_glucose_reverse_cause_event_detection: running ...
+[GPU 1, inflora, seed 43]       ... 2 min (latest progress bar: 76/250)
+[GPU 0, inflora, seed 44]       ... 2 min (latest progress bar: 79/250)
+[GPU 1, inflora, seed 43]       ... 4 min (latest progress bar: 134/250)
+[GPU 0, inflora, seed 44]       ... 4 min (latest progress bar: 143/250)
+[GPU 1, inflora, seed 43]       ... 6 min (latest progress bar: 213/250)
+[GPU 0, inflora, seed 44]       ... 6 min (latest progress bar: 223/250)
+[GPU 1, inflora, seed 43]       ... 8 min (latest progress bar: 2/13)
+[GPU 0, inflora, seed 44]       ... 8 min (latest progress bar: 12/13)
+[GPU 1, inflora, seed 43]       3-task748_glucose_reverse_cause_event_detection done in 10.0 min, saved
+[GPU 1, inflora, seed 43] [4/5] 4-task1687_sentiment140_classification: running ...
+[GPU 0, inflora, seed 44]       3-task748_glucose_reverse_cause_event_detection done in 10.0 min, saved
+[GPU 0, inflora, seed 44] [4/5] 4-task1687_sentiment140_classification: running ...
+[GPU 1, inflora, seed 43]       ... 2 min (latest progress bar: 161/250)
+[GPU 0, inflora, seed 44]       ... 2 min (latest progress bar: 167/250)
+[GPU 1, inflora, seed 43]       ... 4 min (latest progress bar: 25/25)
+[GPU 0, inflora, seed 44]       ... 4 min (latest progress bar: 25/25)
+[GPU 1, inflora, seed 43]       4-task1687_sentiment140_classification done in 6.0 min, saved
+[GPU 1, inflora, seed 43] [5/5] 5-task875_emotion_classification: running ...
+[GPU 0, inflora, seed 44]       4-task1687_sentiment140_classification done in 6.0 min, saved
+[GPU 0, inflora, seed 44] [5/5] 5-task875_emotion_classification: running ...
+[GPU 1, inflora, seed 43]       ... 2 min (latest progress bar: 4/13)
+[GPU 0, inflora, seed 44]       ... 2 min (latest progress bar: 13/13)
+[GPU 1, inflora, seed 43]       ... 4 min (latest progress bar: 8/13)
+[GPU 0, inflora, seed 44]       ... 4 min (latest progress bar: 250/250)
+[GPU 1, inflora, seed 43]       ... 6 min (latest progress bar: 32/32)
+[GPU 0, inflora, seed 44]       ... 6 min (latest progress bar: 32/32)
+[GPU 1, inflora, seed 43]       5-task875_emotion_classification done in 8.0 min, saved
+[GPU 1, plain, seed 42] === plain: no finished copy in the results folder; it is only shown, never trained here (`only_if_finished`), skipped ===
+[GPU 1, locked, seed 42] === locked: no finished copy in the results folder; it is only shown, never trained here (`only_if_finished`), skipped ===
+[GPU 1, certified, seed 42] === certified: no finished copy in the results folder; it is only shown, never trained here (`only_if_finished`), skipped ===
+[GPU 1, certified2, seed 42] === certified2, seed 42: 5 tasks ===
+[GPU 1, certified2, seed 42] [1/5] 1-task1510_evalution_relation_extraction: running ...
+[GPU 0, inflora, seed 44]       5-task875_emotion_classification done in 8.0 min, saved
+[GPU 0, plain, seed 43] === plain: no finished copy in the results folder; it is only shown, never trained here (`only_if_finished`), skipped ===
+[GPU 0, locked, seed 43] === locked: no finished copy in the results folder; it is only shown, never trained here (`only_if_finished`), skipped ===
+[GPU 0, certified, seed 43] === certified: no finished copy in the results folder; it is only shown, never trained here (`only_if_finished`), skipped ===
+[GPU 0, certified2, seed 43] === certified2, seed 43: 5 tasks ===
+[GPU 0, certified2, seed 43] [1/5] 1-task1510_evalution_relation_extraction: running ...
+[GPU 1, certified2, seed 42]       ... 2 min (latest progress bar: 121/250)
+[GPU 0, certified2, seed 43]       ... 2 min (latest progress bar: 124/250)
+[GPU 1, certified2, seed 42]       ... 4 min (latest progress bar: 242/250)
+[GPU 0, certified2, seed 43]       ... 4 min (latest progress bar: 246/250)
+[GPU 1, certified2, seed 42]       1-task1510_evalution_relation_extraction done in 6.0 min, saved
+[GPU 1, certified2, seed 42] [2/5] 2-task363_sst2_polarity_classification: running ...
+[GPU 0, certified2, seed 43]       1-task1510_evalution_relation_extraction done in 6.0 min, saved
+[GPU 0, certified2, seed 43] [2/5] 2-task363_sst2_polarity_classification: running ...
+[GPU 1, certified2, seed 42]       ... 2 min (latest progress bar: 140/250)
+[GPU 0, certified2, seed 43]       ... 2 min (latest progress bar: 144/250)
+[GPU 1, certified2, seed 42]       ... 4 min (latest progress bar: 13/13)
+[GPU 0, certified2, seed 43]       ... 4 min (latest progress bar: 13/13)
+[GPU 1, certified2, seed 42]       2-task363_sst2_polarity_classification done in 6.0 min, saved
+[GPU 1, certified2, seed 42] [3/5] 3-task748_glucose_reverse_cause_event_detection: running ...
+[GPU 0, certified2, seed 43]       2-task363_sst2_polarity_classification done in 6.0 min, saved
+[GPU 0, certified2, seed 43] [3/5] 3-task748_glucose_reverse_cause_event_detection: running ...
+[GPU 1, certified2, seed 42]       ... 2 min (latest progress bar: 73/250)
+[GPU 0, certified2, seed 43]       ... 2 min (latest progress bar: 76/250)
+[GPU 1, certified2, seed 42]       ... 4 min (latest progress bar: 134/250)
+[GPU 0, certified2, seed 43]       ... 4 min (latest progress bar: 139/250)
+[GPU 1, certified2, seed 42]       ... 6 min (latest progress bar: 210/250)
+[GPU 0, certified2, seed 43]       ... 6 min (latest progress bar: 217/250)
+[GPU 1, certified2, seed 42]       ... 8 min (latest progress bar: 12/19)
+[GPU 0, certified2, seed 43]       ... 8 min (latest progress bar: 17/19)
+[GPU 1, certified2, seed 42]       3-task748_glucose_reverse_cause_event_detection done in 10.0 min, saved
+[GPU 1, certified2, seed 42] [4/5] 4-task1687_sentiment140_classification: running ...
+[GPU 1, certified2, seed 42]       ... 2 min (latest progress bar: 140/250)
+[GPU 0, certified2, seed 43]       3-task748_glucose_reverse_cause_event_detection done in 10.0 min, saved
+[GPU 0, certified2, seed 43] [4/5] 4-task1687_sentiment140_classification: running ...
+[GPU 1, certified2, seed 42]       ... 4 min (latest progress bar: 23/25)
+[GPU 0, certified2, seed 43]       ... 2 min (latest progress bar: 138/250)
+[GPU 1, certified2, seed 42]       ... 6 min (latest progress bar: 25/25)
+[GPU 0, certified2, seed 43]       ... 4 min (latest progress bar: 22/25)
+[GPU 0, certified2, seed 43]       ... 6 min (latest progress bar: 25/25)
+[GPU 1, certified2, seed 42]       4-task1687_sentiment140_classification done in 8.0 min, saved
+[GPU 1, certified2, seed 42] [5/5] 5-task875_emotion_classification: running ...
+[GPU 1, certified2, seed 42]       ... 2 min (latest progress bar: 114/250)
+[GPU 0, certified2, seed 43]       4-task1687_sentiment140_classification done in 8.0 min, saved
+[GPU 0, certified2, seed 43] [5/5] 5-task875_emotion_classification: running ...
+[GPU 1, certified2, seed 42]       ... 4 min (latest progress bar: 226/250)
+[GPU 0, certified2, seed 43]       ... 2 min (latest progress bar: 115/250)
+[GPU 1, certified2, seed 42]       ... 6 min (latest progress bar: 32/32)
+[GPU 0, certified2, seed 43]       ... 4 min (latest progress bar: 230/250)
+[GPU 0, certified2, seed 43]       ... 6 min (latest progress bar: 32/32)
+[GPU 1, certified2, seed 42]       5-task875_emotion_classification done in 8.0 min, saved
+[GPU 1, plain, seed 44] === plain: no finished copy in the results folder; it is only shown, never trained here (`only_if_finished`), skipped ===
+[GPU 1, locked, seed 44] === locked: no finished copy in the results folder; it is only shown, never trained here (`only_if_finished`), skipped ===
+[GPU 1, certified, seed 44] === certified: no finished copy in the results folder; it is only shown, never trained here (`only_if_finished`), skipped ===
+[GPU 1, certified2, seed 44] === certified2, seed 44: 5 tasks ===
+[GPU 1, certified2, seed 44] [1/5] 1-task1510_evalution_relation_extraction: running ...
+[GPU 1, certified2, seed 44]       ... 2 min (latest progress bar: 120/250)
+[GPU 0, certified2, seed 43]       5-task875_emotion_classification done in 8.0 min, saved
+[GPU 1, certified2, seed 44]       ... 4 min (latest progress bar: 241/250)
+[GPU 1, certified2, seed 44]       1-task1510_evalution_relation_extraction done in 6.0 min, saved
+[GPU 1, certified2, seed 44] [2/5] 2-task363_sst2_polarity_classification: running ...
+[GPU 1, certified2, seed 44]       ... 2 min (latest progress bar: 136/250)
+[GPU 1, certified2, seed 44]       ... 4 min (latest progress bar: 13/13)
+[GPU 1, certified2, seed 44]       2-task363_sst2_polarity_classification done in 6.0 min, saved
+[GPU 1, certified2, seed 44] [3/5] 3-task748_glucose_reverse_cause_event_detection: running ...
+[GPU 1, certified2, seed 44]       ... 2 min (latest progress bar: 71/250)
+[GPU 1, certified2, seed 44]       ... 4 min (latest progress bar: 133/250)
+[GPU 1, certified2, seed 44]       ... 6 min (latest progress bar: 209/250)
+[GPU 1, certified2, seed 44]       ... 8 min (latest progress bar: 12/19)
+[GPU 1, certified2, seed 44]       3-task748_glucose_reverse_cause_event_detection done in 10.0 min, saved
+[GPU 1, certified2, seed 44] [4/5] 4-task1687_sentiment140_classification: running ...
+[GPU 1, certified2, seed 44]       ... 2 min (latest progress bar: 136/250)
+[GPU 1, certified2, seed 44]       ... 4 min (latest progress bar: 23/25)
+[GPU 1, certified2, seed 44]       ... 6 min (latest progress bar: 25/25)
+[GPU 1, certified2, seed 44]       4-task1687_sentiment140_classification done in 8.0 min, saved
+[GPU 1, certified2, seed 44] [5/5] 5-task875_emotion_classification: running ...
+[GPU 1, certified2, seed 44]       ... 2 min (latest progress bar: 112/250)
+[GPU 1, certified2, seed 44]       ... 4 min (latest progress bar: 225/250)
+[GPU 1, certified2, seed 44]       ... 6 min (latest progress bar: 32/32)
+[GPU 1, certified2, seed 44]       5-task875_emotion_classification done in 8.0 min, saved
+
+======================================== seed 42 ========================================
+method               tasks   learned      AP      FT   minutes
+certified2               5     78.65   78.75    0.00        38
+inflora                  5     56.29   58.43   -1.43        36
+gainlora_inflora         5     60.43   60.42    0.51        38
+
+each task: score right after it was learned -> score at the end
+task                                                certified2               inflora      gainlora_inflora
+task1510_evalution_relation_extraction           99.2 ->  99.2         99.0 ->  98.2         98.9 ->  98.9
+task363_sst2_polarity_classification             86.0 ->  86.0         55.0 ->  64.0         54.0 ->  54.0
+task748_glucose_reverse_cause_event_de           60.1 ->  60.6         50.4 ->  46.0         51.3 ->  50.2
+task1687_sentiment140_classification             78.0 ->  78.0         40.0 ->  47.0         57.0 ->  58.0
+task875_emotion_classification                   70.0 ->  70.0         37.0 ->  37.0         41.0 ->  41.0
+
+certified2: the protected zone of each task
+   [certified] task 1: opening of 129 tokens; zone radius 13.49 (0.5 x 26.97, the distance to the nearest known signature); 0 earlier zones loaded; training inputs already inside an older zone: 0 of 800
+   [certified] task 2: opening of 61 tokens; zone radius 15.48 (0.5 x 30.96, the distance to the nearest known signature); 1 earlier zones loaded; training inputs already inside an older zone: 0 of 800
+   [certified] task 3: opening of 105 tokens; zone radius 10.09 (0.5 x 20.18, the distance to the nearest known signature); 2 earlier zones loaded; training inputs already inside an older zone: 0 of 800
+   [certified] task 4: opening of 51 tokens; zone radius 16.56 (0.5 x 33.12, the distance to the nearest known signature); 3 earlier zones loaded; training inputs already inside an older zone: 0 of 800
+   [certified] task 5: opening of 74 tokens; zone radius 13.96 (0.5 x 27.92, the distance to the nearest known signature); 4 earlier zones loaded; training inputs already inside an older zone: 0 of 800
+
+certified2 run, re-test after 5 tasks. Scores here use every reference answer (the official score
+picks one at random), so they can differ a little from the table above. `tasks`: how many tasks have this wording.
+wording   rule                   tasks  learned      AP      FT   answers changed  right task     certified
+original  certified (ours)           5    79.23   79.23    0.00          0 of 400       1.000    500 of 500
+original  nearest only               5    79.23   79.23    0.00          0 of 400       1.000              
+original  nearest centre             5    79.23   79.23    0.00          0 of 400       1.000              
+original  exact key (= locked)       5    79.23   79.23    0.00          0 of 400       1.000              
+original  all on (= plain)           5    79.23   32.35   58.60        332 of 400                          
+light     certified (ours)           5    78.62   78.62    0.00          0 of 400       1.000    500 of 500
+light     nearest only               5    78.62   78.62    0.00          0 of 400       1.000              
+light     nearest centre             5    78.62   78.62    0.00          0 of 400       1.000              
+light     exact key (= locked)       5    78.62   32.34   57.85        330 of 400       0.200              
+light     all on (= plain)           5    78.62   32.34   57.85        330 of 400                          
+medium    certified (ours)           5    77.06   77.06    0.00          0 of 400       1.000    100 of 500
+medium    nearest only               5    77.06   77.06    0.00          0 of 400       1.000              
+medium    nearest centre             5    76.46   76.46    0.00          0 of 400       0.992              
+medium    exact key (= locked)       5    77.06   32.28   55.98        335 of 400       0.200              
+medium    all on (= plain)           5    77.06   32.28   55.98        335 of 400                          
+heavy     certified (ours)           5    71.45   71.45    0.00          0 of 400       0.938     98 of 500
+heavy     nearest only               5    71.45   71.45    0.00          0 of 400       0.938              
+heavy     nearest centre             5    64.58   57.75    8.53         58 of 400       0.722              
+heavy     exact key (= locked)       5    76.05   27.62   60.54        339 of 400       0.200              
+heavy     all on (= plain)           5    76.05   27.62   60.54        339 of 400                          
+re-test equals the official test (same answers, of inputs), per task: [[100, 100], [200, 200], [300, 300], [400, 400], [500, 500]]
+
+inflora run, re-test after 5 tasks. Scores here use every reference answer (the official score
+picks one at random), so they can differ a little from the table above. `tasks`: how many tasks have this wording.
+wording   rule                   tasks  learned      AP      FT   answers changed  right task     certified
+original  as published               5    56.59   58.98   -1.74        100 of 400                          
+light     as published               5    57.39   59.05   -2.08         83 of 400                          
+medium    as published               5    60.84   59.26    2.01         89 of 400                          
+heavy     as published               5    56.69   55.98    2.43        146 of 400                          
+re-test equals the official test (same answers, of inputs), per task: [[100, 100], [200, 200], [300, 300], [400, 400], [500, 500]]
+
+gainlora_inflora run, re-test after 5 tasks. Scores here use every reference answer (the official score
+picks one at random), so they can differ a little from the table above. `tasks`: how many tasks have this wording.
+wording   rule                   tasks  learned      AP      FT   answers changed  right task     certified
+original  as published               5    60.76   60.86    0.37         20 of 400                          
+light     as published               5    60.48   60.24    0.34         21 of 400                          
+medium    as published               5    59.44   58.60    1.16         35 of 400                          
+heavy     as published               5    52.00   51.04    1.20         51 of 400                          
+re-test equals the official test (same answers, of inputs), per task: [[100, 100], [200, 200], [300, 300], [400, 400], [500, 500]]
+
+answers changed: answers to a task's test inputs that differ between right after learning it and the end.
+right task: share of test inputs at the end that were given to their own task. certified: inputs inside a protected zone.
+
+======================================== seed 43 ========================================
+method               tasks   learned      AP      FT   minutes
+certified2               5     80.21   80.35    0.00        38
+inflora                  5     59.70   64.06   -5.45        36
+gainlora_inflora         5     58.68   60.78   -2.63        38
+
+each task: score right after it was learned -> score at the end
+task                                                certified2               inflora      gainlora_inflora
+task1510_evalution_relation_extraction           99.2 ->  99.2         99.3 ->  99.0         98.5 ->  98.5
+task363_sst2_polarity_classification             88.0 ->  88.0         52.0 ->  57.0         55.0 ->  57.0
+task748_glucose_reverse_cause_event_de           61.9 ->  62.6         52.2 ->  46.3         48.8 ->  48.3
+task1687_sentiment140_classification             77.0 ->  77.0         41.0 ->  64.0         40.0 ->  49.0
+task875_emotion_classification                   75.0 ->  75.0         54.0 ->  54.0         51.0 ->  51.0
+
+certified2: the protected zone of each task
+   [certified] task 1: opening of 129 tokens; zone radius 13.49 (0.5 x 26.97, the distance to the nearest known signature); 0 earlier zones loaded; training inputs already inside an older zone: 0 of 800
+   [certified] task 2: opening of 61 tokens; zone radius 15.48 (0.5 x 30.96, the distance to the nearest known signature); 1 earlier zones loaded; training inputs already inside an older zone: 0 of 800
+   [certified] task 3: opening of 105 tokens; zone radius 10.09 (0.5 x 20.18, the distance to the nearest known signature); 2 earlier zones loaded; training inputs already inside an older zone: 0 of 800
+   [certified] task 4: opening of 51 tokens; zone radius 16.56 (0.5 x 33.12, the distance to the nearest known signature); 3 earlier zones loaded; training inputs already inside an older zone: 0 of 800
+   [certified] task 5: opening of 74 tokens; zone radius 13.96 (0.5 x 27.92, the distance to the nearest known signature); 4 earlier zones loaded; training inputs already inside an older zone: 0 of 800
+
+certified2 run, re-test after 5 tasks. Scores here use every reference answer (the official score
+picks one at random), so they can differ a little from the table above. `tasks`: how many tasks have this wording.
+wording   rule                   tasks  learned      AP      FT   answers changed  right task     certified
+original  certified (ours)           5    80.80   80.80    0.00          0 of 400       1.000    500 of 500
+original  nearest only               5    80.80   80.80    0.00          0 of 400       1.000              
+original  nearest centre             5    80.80   80.80    0.00          0 of 400       1.000              
+original  exact key (= locked)       5    80.80   80.80    0.00          0 of 400       1.000              
+original  all on (= plain)           5    80.80   39.53   51.58        338 of 400                          
+light     certified (ours)           5    80.39   80.39    0.00          0 of 400       1.000    500 of 500
+light     nearest only               5    80.39   80.39    0.00          0 of 400       1.000              
+light     nearest centre             5    80.39   80.39    0.00          0 of 400       1.000              
+light     exact key (= locked)       5    80.39   39.48   51.13        332 of 400       0.200              
+light     all on (= plain)           5    80.39   39.48   51.13        332 of 400                          
+medium    certified (ours)           5    79.85   79.85    0.00          0 of 400       1.000    100 of 500
+medium    nearest only               5    79.85   79.85    0.00          0 of 400       1.000              
+medium    nearest centre             5    79.25   79.25    0.00          0 of 400       0.992              
+medium    exact key (= locked)       5    79.85   39.69   50.20        336 of 400       0.200              
+medium    all on (= plain)           5    79.85   39.69   50.20        336 of 400                          
+heavy     certified (ours)           5    75.72   75.72    0.00          0 of 400       0.938     98 of 500
+heavy     nearest only               5    75.72   75.72    0.00          0 of 400       0.938              
+heavy     nearest centre             5    69.84   60.68   11.45         58 of 400       0.722              
+heavy     exact key (= locked)       5    79.72   40.91   48.51        304 of 400       0.200              
+heavy     all on (= plain)           5    79.72   40.91   48.51        304 of 400                          
+re-test equals the official test (same answers, of inputs), per task: [[100, 100], [200, 200], [300, 300], [400, 400], [500, 500]]
+
+inflora run, re-test after 5 tasks. Scores here use every reference answer (the official score
+picks one at random), so they can differ a little from the table above. `tasks`: how many tasks have this wording.
+wording   rule                   tasks  learned      AP      FT   answers changed  right task     certified
+original  as published               5    60.19   64.40   -5.26        137 of 400                          
+light     as published               5    67.10   66.64    0.66        115 of 400                          
+medium    as published               5    56.24   56.52   -0.24        114 of 400                          
+heavy     as published               5    49.00   50.89   -0.60        192 of 400                          
+re-test equals the official test (same answers, of inputs), per task: [[100, 100], [200, 200], [300, 300], [400, 400], [500, 500]]
+
+gainlora_inflora run, re-test after 5 tasks. Scores here use every reference answer (the official score
+picks one at random), so they can differ a little from the table above. `tasks`: how many tasks have this wording.
+wording   rule                   tasks  learned      AP      FT   answers changed  right task     certified
+original  as published               5    59.05   61.17   -2.64         20 of 400                          
+light     as published               5    64.90   65.42   -0.15         20 of 400                          
+medium    as published               5    61.11   58.85    2.94         32 of 400                          
+heavy     as published               5    51.69   53.74   -1.64         63 of 400                          
+re-test equals the official test (same answers, of inputs), per task: [[100, 100], [200, 200], [300, 300], [400, 400], [500, 500]]
+
+answers changed: answers to a task's test inputs that differ between right after learning it and the end.
+right task: share of test inputs at the end that were given to their own task. certified: inputs inside a protected zone.
+
+======================================== seed 44 ========================================
+method               tasks   learned      AP      FT   minutes
+certified2               5     78.54   78.75    0.00        38
+inflora                  5     62.73   64.99   -2.58        36
+gainlora_inflora         5     63.96   63.46    0.71        38
+
+each task: score right after it was learned -> score at the end
+task                                                certified2               inflora      gainlora_inflora
+task1510_evalution_relation_extraction           99.7 ->  99.7         99.0 ->  97.7         99.3 ->  99.3
+task363_sst2_polarity_classification             85.0 ->  85.0         59.0 ->  66.0         64.0 ->  58.0
+task748_glucose_reverse_cause_event_de           61.0 ->  62.1         51.6 ->  47.3         51.5 ->  51.9
+task1687_sentiment140_classification             73.0 ->  73.0         50.0 ->  60.0         55.0 ->  58.0
+task875_emotion_classification                   74.0 ->  74.0         54.0 ->  54.0         50.0 ->  50.0
+
+certified2: the protected zone of each task
+   [certified] task 1: opening of 129 tokens; zone radius 13.49 (0.5 x 26.97, the distance to the nearest known signature); 0 earlier zones loaded; training inputs already inside an older zone: 0 of 800
+   [certified] task 2: opening of 61 tokens; zone radius 15.48 (0.5 x 30.96, the distance to the nearest known signature); 1 earlier zones loaded; training inputs already inside an older zone: 0 of 800
+   [certified] task 3: opening of 105 tokens; zone radius 10.09 (0.5 x 20.18, the distance to the nearest known signature); 2 earlier zones loaded; training inputs already inside an older zone: 0 of 800
+   [certified] task 4: opening of 51 tokens; zone radius 16.56 (0.5 x 33.12, the distance to the nearest known signature); 3 earlier zones loaded; training inputs already inside an older zone: 0 of 800
+   [certified] task 5: opening of 74 tokens; zone radius 13.96 (0.5 x 27.92, the distance to the nearest known signature); 4 earlier zones loaded; training inputs already inside an older zone: 0 of 800
+
+certified2 run, re-test after 5 tasks. Scores here use every reference answer (the official score
+picks one at random), so they can differ a little from the table above. `tasks`: how many tasks have this wording.
+wording   rule                   tasks  learned      AP      FT   answers changed  right task     certified
+original  certified (ours)           5    79.20   79.20    0.00          0 of 400       1.000    500 of 500
+original  nearest only               5    79.20   79.20    0.00          0 of 400       1.000              
+original  nearest centre             5    79.20   79.20    0.00          0 of 400       1.000              
+original  exact key (= locked)       5    79.20   79.20    0.00          0 of 400       1.000              
+original  all on (= plain)           5    79.20   36.36   53.56        324 of 400                          
+light     certified (ours)           5    79.75   79.75    0.00          0 of 400       1.000    500 of 500
+light     nearest only               5    79.75   79.75    0.00          0 of 400       1.000              
+light     nearest centre             5    79.75   79.75    0.00          0 of 400       1.000              
+light     exact key (= locked)       5    79.75   37.25   53.13        323 of 400       0.200              
+light     all on (= plain)           5    79.75   37.25   53.13        323 of 400                          
+medium    certified (ours)           5    80.04   80.04    0.00          0 of 400       1.000    100 of 500
+medium    nearest only               5    80.04   80.04    0.00          0 of 400       1.000              
+medium    nearest centre             5    79.64   79.64    0.00          0 of 400       0.992              
+medium    exact key (= locked)       5    80.04   35.97   55.08        330 of 400       0.200              
+medium    all on (= plain)           5    80.04   35.97   55.08        330 of 400                          
+heavy     certified (ours)           5    75.03   75.03    0.00          0 of 400       0.938     98 of 500
+heavy     nearest only               5    75.03   75.03    0.00          0 of 400       0.938              
+heavy     nearest centre             5    69.01   59.71   11.63         55 of 400       0.722              
+heavy     exact key (= locked)       5    79.43   36.92   53.13        296 of 400       0.200              
+heavy     all on (= plain)           5    79.43   36.92   53.13        296 of 400                          
+re-test equals the official test (same answers, of inputs), per task: [[100, 100], [200, 200], [300, 300], [400, 400], [500, 500]]
+
+inflora run, re-test after 5 tasks. Scores here use every reference answer (the official score
+picks one at random), so they can differ a little from the table above. `tasks`: how many tasks have this wording.
+wording   rule                   tasks  learned      AP      FT   answers changed  right task     certified
+original  as published               5    63.27   65.42   -2.44        133 of 400                          
+light     as published               5    66.44   67.27   -0.28         98 of 400                          
+medium    as published               5    58.47   57.54    1.22        117 of 400                          
+heavy     as published               5    54.04   56.10   -2.58        132 of 400                          
+re-test equals the official test (same answers, of inputs), per task: [[100, 100], [200, 200], [300, 300], [400, 400], [500, 500]]
+
+gainlora_inflora run, re-test after 5 tasks. Scores here use every reference answer (the official score
+picks one at random), so they can differ a little from the table above. `tasks`: how many tasks have this wording.
+wording   rule                   tasks  learned      AP      FT   answers changed  right task     certified
+original  as published               5    64.43   63.85    0.73         25 of 400                          
+light     as published               5    68.24   68.28    0.20         17 of 400                          
+medium    as published               5    59.33   58.80    0.84         55 of 400                          
+heavy     as published               5    49.16   50.11   -1.13         64 of 400                          
+re-test equals the official test (same answers, of inputs), per task: [[100, 100], [200, 200], [300, 300], [400, 400], [500, 500]]
+
+answers changed: answers to a task's test inputs that differ between right after learning it and the end.
+right task: share of test inputs at the end that were given to their own task. certified: inputs inside a protected zone.
+
+======================================== all seeds together ========================================
+Mean over the seeds, with the lowest and the highest seed in brackets. Only seeds in which the method finished every task.
+method               seeds                   learned                        AP                        FT
+certified2               3    79.13 (78.54 to 80.21)    79.28 (78.75 to 80.35)       0.00 (0.00 to 0.00)
+inflora                  3    59.57 (56.29 to 62.73)    62.49 (58.43 to 64.99)    -3.15 (-5.45 to -1.43)
+gainlora_inflora         3    61.02 (58.68 to 63.96)    61.55 (60.42 to 63.46)     -0.47 (-2.63 to 0.71)
+
+re-test (every reference answer): mean over the seeds; answers changed are added up
+method              wording   rule                   seeds  learned      AP      FT     answers changed
+certified2          original  certified (ours)           3    79.74   79.74    0.00           0 of 1200
+certified2          original  nearest only               3    79.74   79.74    0.00           0 of 1200
+certified2          original  nearest centre             3    79.74   79.74    0.00           0 of 1200
+certified2          original  exact key (= locked)       3    79.74   79.74    0.00           0 of 1200
+certified2          original  all on (= plain)           3    79.74   36.08   54.58         994 of 1200
+certified2          light     certified (ours)           3    79.59   79.59    0.00           0 of 1200
+certified2          light     nearest only               3    79.59   79.59    0.00           0 of 1200
+certified2          light     nearest centre             3    79.59   79.59    0.00           0 of 1200
+certified2          light     exact key (= locked)       3    79.59   36.36   54.04         985 of 1200
+certified2          light     all on (= plain)           3    79.59   36.36   54.04         985 of 1200
+certified2          medium    certified (ours)           3    78.98   78.98    0.00           0 of 1200
+certified2          medium    nearest only               3    78.98   78.98    0.00           0 of 1200
+certified2          medium    nearest centre             3    78.45   78.45    0.00           0 of 1200
+certified2          medium    exact key (= locked)       3    78.98   35.98   53.76        1001 of 1200
+certified2          medium    all on (= plain)           3    78.98   35.98   53.76        1001 of 1200
+certified2          heavy     certified (ours)           3    74.07   74.07    0.00           0 of 1200
+certified2          heavy     nearest only               3    74.07   74.07    0.00           0 of 1200
+certified2          heavy     nearest centre             3    67.81   59.38   10.54         171 of 1200
+certified2          heavy     exact key (= locked)       3    78.40   35.15   54.06         939 of 1200
+certified2          heavy     all on (= plain)           3    78.40   35.15   54.06         939 of 1200
+inflora             original  as published               3    60.02   62.93   -3.14         370 of 1200
+inflora             light     as published               3    63.64   64.32   -0.57         296 of 1200
+inflora             medium    as published               3    58.52   57.77    1.00         320 of 1200
+inflora             heavy     as published               3    53.24   54.33   -0.25         470 of 1200
+gainlora_inflora    original  as published               3    61.42   61.96   -0.51          65 of 1200
+gainlora_inflora    light     as published               3    64.54   64.65    0.13          58 of 1200
+gainlora_inflora    medium    as published               3    59.96   58.75    1.65         122 of 1200
+gainlora_inflora    heavy     as published               3    50.95   51.63   -0.52         178 of 1200
+
+saved: /kaggle/working/silent_adapters/superni_short5_t5base_e10/results.json | scores, answers and logs in one file: /kaggle/working/silent_adapters/superni_short5_t5base_e10_small_files.zip
+3 seed(s), 5 tasks, reduced setting: an early look, not a result. Copy everything above into the chat.
+/usr/local/lib/python3.13/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\|'
+  cells[i][c] = re.sub('\\\\\|', '|', cell)
+/usr/local/lib/python3.13/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\_'
+  text = re.sub(r'_', '\_', text) # Escape underscores in display text
+[NbConvertApp] Converting notebook __notebook__.ipynb to notebook
+[NbConvertApp] Writing 145532 bytes to __notebook__.ipynb
+[NbConvertApp] Converting notebook __notebook__.ipynb to html
+[NbConvertApp] Writing 563963 bytes to __results__.html

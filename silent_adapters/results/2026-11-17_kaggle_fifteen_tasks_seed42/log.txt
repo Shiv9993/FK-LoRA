@@ -1,0 +1,470 @@
+0.00s - Debugger warning: It seems that frozen modules are being used, which may
+0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off
+0.00s - to python to disable frozen modules.
+0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.
+0.00s - Debugger warning: It seems that frozen modules are being used, which may
+0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off
+0.00s - to python to disable frozen modules.
+0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.
+results are saved in: /kaggle/working/silent_adapters/superni_o1_t5base_e10_ours
+GPU: Tesla T4, 15360 MiB | Tesla T4, 15360 MiB
+$ git clone https://github.com/liangyanshuo/gainlora /tmp/silent_adapters_work/gainlora
+$ git -C /tmp/silent_adapters_work/gainlora checkout e9d0d700538c8d12892f7fd52b216291f7e42acc
+$ /usr/bin/python3 -m pip install -q uv
+$ uv venv --python 3.10.12 /tmp/silent_adapters_work/env
+$ uv pip install -q --python /tmp/silent_adapters_work/env/bin/python torch==2.1.0 --index-url https://download.pytorch.org/whl/cu121
+$ uv pip install -q --python /tmp/silent_adapters_work/env/bin/python transformers==4.30.2 datasets==2.14.6 accelerate==0.24.1 numpy==1.22.4 fsspec==2023.10.0 ...
+$ uv pip install -q --python /tmp/silent_adapters_work/env/bin/python cupy-cuda12x==12.1.0 numpy==1.22.4
+torch 2.1.0+cu121 | transformers 4.30.2 | datasets 2.14.6 | numpy 1.22.4 | GPU seen by PyTorch: Tesla T4
+CuPy does not work here. Reason:
+    Check the Installation Guide for details:
+      https://docs.cupy.dev/en/latest/install.html
+    
+    Original error:
+      ImportError: libcudart.so.12: cannot open shared object file: No such file or directory
+    ================================================================
+SVD step done with: pytorch (stand-in for cupy)
+silent_run.py written: 659 lines
+2 GPUs: 2 runs are trained at the same time, one per GPU. Lines are marked with the GPU and the run.
+[GPU 1, inflora] === inflora: 15 tasks ===
+[GPU 1, inflora] [1/15] 1-task1572_samsum_summary: running ...
+[GPU 0, gainlora_inflora] === gainlora_inflora: 15 tasks ===
+[GPU 0, gainlora_inflora] [1/15] 1-task1572_samsum_summary: running ...
+[GPU 1, inflora]       ... 2 min (latest progress bar: 32/40)
+[GPU 0, gainlora_inflora]       ... 2 min (latest progress bar: 31/40)
+[GPU 1, inflora]       1-task1572_samsum_summary done in 4.0 min, saved
+[GPU 1, inflora] [2/15] 2-task363_sst2_polarity_classification: running ...
+[GPU 0, gainlora_inflora]       1-task1572_samsum_summary done in 4.0 min, saved
+[GPU 0, gainlora_inflora] [2/15] 2-task363_sst2_polarity_classification: running ...
+[GPU 1, inflora]       ... 2 min (latest progress bar: 148/250)
+[GPU 0, gainlora_inflora]       ... 2 min (latest progress bar: 138/250)
+[GPU 0, gainlora_inflora]       ... 4 min (latest progress bar: 8/8)
+[GPU 1, inflora]       2-task363_sst2_polarity_classification done in 4.0 min, saved
+[GPU 1, inflora] [3/15] 3-task1290_xsum_summarization: running ...
+[GPU 1, inflora]       ... 2 min (latest progress bar: 29/250)
+[GPU 0, gainlora_inflora]       2-task363_sst2_polarity_classification done in 6.0 min, saved
+[GPU 0, gainlora_inflora] [3/15] 3-task1290_xsum_summarization: running ...
+[GPU 1, inflora]       ... 4 min (latest progress bar: 61/250)
+[GPU 0, gainlora_inflora]       the GPU ran out of memory with batch 16; trying again with batch 8 (the effective batch size does not change)
+[GPU 1, inflora]       ... 6 min (latest progress bar: 93/250)
+[GPU 0, gainlora_inflora]       ... 4 min (latest progress bar: 19/250)
+[GPU 1, inflora]       ... 8 min (latest progress bar: 125/250)
+[GPU 0, gainlora_inflora]       ... 6 min (latest progress bar: 52/250)
+[GPU 1, inflora]       ... 10 min (latest progress bar: 145/250)
+[GPU 0, gainlora_inflora]       ... 8 min (latest progress bar: 85/250)
+[GPU 1, inflora]       ... 12 min (latest progress bar: 177/250)
+[GPU 0, gainlora_inflora]       ... 10 min (latest progress bar: 117/250)
+[GPU 1, inflora]       ... 14 min (latest progress bar: 209/250)
+[GPU 0, gainlora_inflora]       ... 12 min (latest progress bar: 137/250)
+[GPU 1, inflora]       ... 16 min (latest progress bar: 241/250)
+[GPU 0, gainlora_inflora]       ... 14 min (latest progress bar: 170/250)
+[GPU 1, inflora]       ... 18 min (latest progress bar: 250/250)
+[GPU 0, gainlora_inflora]       ... 16 min (latest progress bar: 202/250)
+[GPU 0, gainlora_inflora]       ... 18 min (latest progress bar: 234/250)
+[GPU 1, inflora]       3-task1290_xsum_summarization done in 20.0 min, saved
+[GPU 1, inflora] [4/15] 4-task181_outcome_extraction: running ...
+[GPU 0, gainlora_inflora]       ... 20 min (latest progress bar: 250/250)
+[GPU 1, inflora]       ... 2 min (latest progress bar: 56/80)
+[GPU 0, gainlora_inflora]       ... 22 min (latest progress bar: 14/14)
+[GPU 1, inflora]       ... 4 min (latest progress bar: 17/17)
+[GPU 0, gainlora_inflora]       3-task1290_xsum_summarization done in 24.0 min, saved
+[GPU 0, gainlora_inflora] [4/15] 4-task181_outcome_extraction: running ...
+[GPU 1, inflora]       4-task181_outcome_extraction done in 6.0 min, saved
+[GPU 1, inflora] [5/15] 5-task002_quoref_answer_generation: running ...
+[GPU 0, gainlora_inflora]       ... 2 min (latest progress bar: 55/80)
+[GPU 1, inflora]       ... 2 min (latest progress bar: 29/250)
+[GPU 0, gainlora_inflora]       ... 4 min (latest progress bar: 17/17)
+[GPU 1, inflora]       ... 4 min (latest progress bar: 60/250)
+[GPU 1, inflora]       ... 6 min (latest progress bar: 92/250)
+[GPU 0, gainlora_inflora]       4-task181_outcome_extraction done in 6.0 min, saved
+[GPU 0, gainlora_inflora] [5/15] 5-task002_quoref_answer_generation: running ...
+[GPU 1, inflora]       ... 8 min (latest progress bar: 123/250)
+[GPU 0, gainlora_inflora]       ... 2 min (latest progress bar: 18/250)
+[GPU 1, inflora]       ... 10 min (latest progress bar: 146/250)
+[GPU 0, gainlora_inflora]       ... 4 min (latest progress bar: 51/250)
+[GPU 1, inflora]       ... 12 min (latest progress bar: 177/250)
+[GPU 0, gainlora_inflora]       ... 6 min (latest progress bar: 83/250)
+[GPU 1, inflora]       ... 14 min (latest progress bar: 208/250)
+[GPU 0, gainlora_inflora]       ... 8 min (latest progress bar: 115/250)
+[GPU 1, inflora]       ... 16 min (latest progress bar: 239/250)
+[GPU 0, gainlora_inflora]       ... 10 min (latest progress bar: 138/250)
+[GPU 1, inflora]       ... 18 min (latest progress bar: 250/250)
+[GPU 0, gainlora_inflora]       ... 12 min (latest progress bar: 170/250)
+[GPU 1, inflora]       ... 20 min (latest progress bar: 23/23)
+[GPU 0, gainlora_inflora]       ... 14 min (latest progress bar: 202/250)
+[GPU 0, gainlora_inflora]       ... 16 min (latest progress bar: 233/250)
+[GPU 1, inflora]       5-task002_quoref_answer_generation done in 22.0 min, saved
+[GPU 1, inflora] [6/15] 6-task1510_evalution_relation_extraction: running ...
+[GPU 0, gainlora_inflora]       ... 18 min (latest progress bar: 250/250)
+[GPU 1, inflora]       ... 2 min (latest progress bar: 119/250)
+[GPU 0, gainlora_inflora]       ... 20 min (latest progress bar: 23/23)
+[GPU 1, inflora]       ... 4 min (latest progress bar: 229/250)
+[GPU 1, inflora]       ... 6 min (latest progress bar: 22/29)
+[GPU 0, gainlora_inflora]       5-task002_quoref_answer_generation done in 22.0 min, saved
+[GPU 0, gainlora_inflora] [6/15] 6-task1510_evalution_relation_extraction: running ...
+[GPU 0, gainlora_inflora]       ... 2 min (latest progress bar: 98/250)
+[GPU 1, inflora]       6-task1510_evalution_relation_extraction done in 8.0 min, saved
+[GPU 1, inflora] [7/15] 7-task639_multi_woz_user_utterance_generation: running ...
+[GPU 0, gainlora_inflora]       ... 4 min (latest progress bar: 198/250)
+[GPU 1, inflora]       ... 2 min (latest progress bar: 26/31)
+[GPU 0, gainlora_inflora]       ... 6 min (latest progress bar: 8/29)
+[GPU 1, inflora]       7-task639_multi_woz_user_utterance_generation done in 4.0 min, saved
+[GPU 1, inflora] [8/15] 8-task1729_personachat_generate_next: running ...
+[GPU 0, gainlora_inflora]       6-task1510_evalution_relation_extraction done in 8.0 min, saved
+[GPU 0, gainlora_inflora] [7/15] 7-task639_multi_woz_user_utterance_generation: running ...
+[GPU 1, inflora]       ... 2 min (latest progress bar: 40/250)
+[GPU 0, gainlora_inflora]       ... 2 min (latest progress bar: 31/31)
+[GPU 1, inflora]       ... 4 min (latest progress bar: 83/250)
+[GPU 1, inflora]       ... 6 min (latest progress bar: 125/250)
+[GPU 0, gainlora_inflora]       7-task639_multi_woz_user_utterance_generation done in 4.0 min, saved
+[GPU 0, gainlora_inflora] [8/15] 8-task1729_personachat_generate_next: running ...
+[GPU 1, inflora]       ... 8 min (latest progress bar: 154/250)
+[GPU 0, gainlora_inflora]       ... 2 min (latest progress bar: 29/250)
+[GPU 1, inflora]       ... 10 min (latest progress bar: 196/250)
+[GPU 0, gainlora_inflora]       ... 4 min (latest progress bar: 75/250)
+[GPU 1, inflora]       ... 12 min (latest progress bar: 239/250)
+[GPU 0, gainlora_inflora]       ... 6 min (latest progress bar: 119/250)
+[GPU 1, inflora]       ... 14 min (latest progress bar: 0/13)
+[GPU 0, gainlora_inflora]       ... 8 min (latest progress bar: 151/250)
+[GPU 1, inflora]       ... 16 min (latest progress bar: 37/37)
+[GPU 0, gainlora_inflora]       ... 10 min (latest progress bar: 195/250)
+[GPU 0, gainlora_inflora]       ... 12 min (latest progress bar: 240/250)
+[GPU 1, inflora]       8-task1729_personachat_generate_next done in 18.0 min, saved
+[GPU 1, inflora] [9/15] 9-task073_commonsenseqa_answer_generation: running ...
+[GPU 0, gainlora_inflora]       ... 14 min (latest progress bar: 3/13)
+[GPU 1, inflora]       ... 2 min (latest progress bar: 85/240)
+[GPU 0, gainlora_inflora]       ... 16 min (latest progress bar: 37/37)
+[GPU 1, inflora]       ... 4 min (latest progress bar: 166/240)
+[GPU 1, inflora]       ... 6 min (latest progress bar: 240/240)
+[GPU 0, gainlora_inflora]       8-task1729_personachat_generate_next done in 18.0 min, saved
+[GPU 0, gainlora_inflora] [9/15] 9-task073_commonsenseqa_answer_generation: running ...
+[GPU 1, inflora]       ... 8 min (latest progress bar: 43/43)
+[GPU 0, gainlora_inflora]       ... 2 min (latest progress bar: 71/240)
+[GPU 0, gainlora_inflora]       ... 4 min (latest progress bar: 151/240)
+[GPU 1, inflora]       9-task073_commonsenseqa_answer_generation done in 10.0 min, saved
+[GPU 1, inflora] [10/15] 10-task1590_diplomacy_text_generation: running ...
+[GPU 0, gainlora_inflora]       ... 6 min (latest progress bar: 236/240)
+[GPU 1, inflora]       ... 2 min (latest progress bar: 29/30)
+[GPU 0, gainlora_inflora]       ... 8 min (latest progress bar: 31/43)
+[GPU 1, inflora]       ... 4 min (latest progress bar: 38/44)
+[GPU 0, gainlora_inflora]       9-task073_commonsenseqa_answer_generation done in 10.0 min, saved
+[GPU 0, gainlora_inflora] [10/15] 10-task1590_diplomacy_text_generation: running ...
+[GPU 1, inflora]       10-task1590_diplomacy_text_generation done in 6.0 min, saved
+[GPU 1, inflora] [11/15] 11-task748_glucose_reverse_cause_event_detection: running ...
+[GPU 0, gainlora_inflora]       ... 2 min (latest progress bar: 25/30)
+[GPU 1, inflora]       ... 2 min (latest progress bar: 59/250)
+[GPU 0, gainlora_inflora]       ... 4 min (latest progress bar: 32/44)
+[GPU 1, inflora]       ... 4 min (latest progress bar: 125/250)
+[GPU 1, inflora]       ... 6 min (latest progress bar: 177/250)
+[GPU 0, gainlora_inflora]       10-task1590_diplomacy_text_generation done in 6.0 min, saved
+[GPU 0, gainlora_inflora] [11/15] 11-task748_glucose_reverse_cause_event_detection: running ...
+[GPU 1, inflora]       ... 8 min (latest progress bar: 242/250)
+[GPU 0, gainlora_inflora]       ... 2 min (latest progress bar: 47/250)
+[GPU 1, inflora]       ... 10 min (latest progress bar: 7/13)
+[GPU 0, gainlora_inflora]       ... 4 min (latest progress bar: 113/250)
+[GPU 1, inflora]       ... 12 min (latest progress bar: 36/50)
+[GPU 0, gainlora_inflora]       ... 6 min (latest progress bar: 163/250)
+[GPU 1, inflora]       ... 14 min (latest progress bar: 50/50)
+[GPU 0, gainlora_inflora]       ... 8 min (latest progress bar: 228/250)
+[GPU 0, gainlora_inflora]       ... 10 min (latest progress bar: 0/13)
+[GPU 1, inflora]       11-task748_glucose_reverse_cause_event_detection done in 16.0 min, saved
+[GPU 1, inflora] [12/15] 12-task511_reddit_tifu_long_text_summarization: running ...
+[GPU 0, gainlora_inflora]       ... 12 min (latest progress bar: 32/50)
+[GPU 1, inflora]       ... 2 min (latest progress bar: 23/250)
+[GPU 0, gainlora_inflora]       ... 14 min (latest progress bar: 50/50)
+[GPU 1, inflora]       ... 4 min (latest progress bar: 49/250)
+[GPU 1, inflora]       ... 6 min (latest progress bar: 74/250)
+[GPU 0, gainlora_inflora]       11-task748_glucose_reverse_cause_event_detection done in 16.0 min, saved
+[GPU 0, gainlora_inflora] [12/15] 12-task511_reddit_tifu_long_text_summarization: running ...
+[GPU 1, inflora]       ... 8 min (latest progress bar: 99/250)
+[GPU 0, gainlora_inflora]       ... 2 min (latest progress bar: 9/250)
+[GPU 1, inflora]       ... 10 min (latest progress bar: 124/250)
+[GPU 0, gainlora_inflora]       ... 4 min (latest progress bar: 35/250)
+[GPU 1, inflora]       ... 12 min (latest progress bar: 136/250)
+[GPU 0, gainlora_inflora]       ... 6 min (latest progress bar: 60/250)
+[GPU 1, inflora]       ... 14 min (latest progress bar: 161/250)
+[GPU 0, gainlora_inflora]       ... 8 min (latest progress bar: 86/250)
+[GPU 1, inflora]       ... 16 min (latest progress bar: 187/250)
+[GPU 0, gainlora_inflora]       ... 10 min (latest progress bar: 111/250)
+[GPU 1, inflora]       ... 18 min (latest progress bar: 212/250)
+[GPU 0, gainlora_inflora]       ... 12 min (latest progress bar: 10/13)
+[GPU 1, inflora]       ... 20 min (latest progress bar: 237/250)
+[GPU 0, gainlora_inflora]       ... 14 min (latest progress bar: 147/250)
+[GPU 1, inflora]       ... 22 min (latest progress bar: 11/13)
+[GPU 0, gainlora_inflora]       ... 16 min (latest progress bar: 173/250)
+[GPU 1, inflora]       ... 24 min (latest progress bar: 6/13)
+[GPU 0, gainlora_inflora]       ... 18 min (latest progress bar: 198/250)
+[GPU 1, inflora]       ... 26 min (latest progress bar: 31/57)
+[GPU 0, gainlora_inflora]       ... 20 min (latest progress bar: 223/250)
+[GPU 1, inflora]       ... 28 min (latest progress bar: 57/57)
+[GPU 0, gainlora_inflora]       ... 22 min (latest progress bar: 248/250)
+[GPU 1, inflora]       ... 30 min
+[GPU 0, gainlora_inflora]       ... 24 min (latest progress bar: 250/250)
+[GPU 0, gainlora_inflora]       ... 26 min (latest progress bar: 7/57)
+[GPU 1, inflora]       12-task511_reddit_tifu_long_text_summarization done in 32.0 min, saved
+[GPU 1, inflora] [13/15] 13-task591_sciq_answer_generation: running ...
+[GPU 0, gainlora_inflora]       ... 28 min (latest progress bar: 49/57)
+[GPU 1, inflora]       ... 2 min (latest progress bar: 169/250)
+[GPU 0, gainlora_inflora]       ... 30 min (latest progress bar: 57/57)
+[GPU 1, inflora]       ... 4 min (latest progress bar: 9/63)
+[GPU 1, inflora]       ... 6 min (latest progress bar: 50/63)
+[GPU 0, gainlora_inflora]       12-task511_reddit_tifu_long_text_summarization done in 32.0 min, saved
+[GPU 0, gainlora_inflora] [13/15] 13-task591_sciq_answer_generation: running ...
+[GPU 1, inflora]       ... 8 min (latest progress bar: 63/63)
+[GPU 0, gainlora_inflora]       ... 2 min (latest progress bar: 110/250)
+[GPU 1, inflora]       ... 10 min
+[GPU 0, gainlora_inflora]       ... 4 min (latest progress bar: 235/250)
+[GPU 0, gainlora_inflora]       ... 6 min (latest progress bar: 19/63)
+[GPU 1, inflora]       13-task591_sciq_answer_generation done in 12.0 min, saved
+[GPU 1, inflora] [14/15] 14-task1687_sentiment140_classification: running ...
+[GPU 0, gainlora_inflora]       ... 8 min (latest progress bar: 63/63)
+[GPU 1, inflora]       ... 2 min (latest progress bar: 13/13)
+[GPU 0, gainlora_inflora]       ... 10 min (latest progress bar: 63/63)
+[GPU 1, inflora]       ... 4 min (latest progress bar: 250/250)
+[GPU 1, inflora]       ... 6 min (latest progress bar: 32/69)
+[GPU 0, gainlora_inflora]       13-task591_sciq_answer_generation done in 12.0 min, saved
+[GPU 0, gainlora_inflora] [14/15] 14-task1687_sentiment140_classification: running ...
+[GPU 1, inflora]       ... 8 min (latest progress bar: 69/69)
+[GPU 0, gainlora_inflora]       ... 2 min (latest progress bar: 97/250)
+[GPU 1, inflora]       ... 10 min
+[GPU 0, gainlora_inflora]       ... 4 min (latest progress bar: 210/250)
+[GPU 0, gainlora_inflora]       ... 6 min (latest progress bar: 11/69)
+[GPU 1, inflora]       14-task1687_sentiment140_classification done in 12.0 min, saved
+[GPU 1, inflora] [15/15] 15-task875_emotion_classification: running ...
+[GPU 0, gainlora_inflora]       ... 8 min (latest progress bar: 52/69)
+[GPU 1, inflora]       ... 2 min (latest progress bar: 99/250)
+[GPU 0, gainlora_inflora]       ... 10 min (latest progress bar: 69/69)
+[GPU 1, inflora]       ... 4 min (latest progress bar: 196/250)
+[GPU 0, gainlora_inflora]       ... 12 min
+[GPU 1, inflora]       ... 6 min (latest progress bar: 4/75)
+[GPU 1, inflora]       ... 8 min (latest progress bar: 46/75)
+[GPU 0, gainlora_inflora]       14-task1687_sentiment140_classification done in 14.0 min, saved
+[GPU 0, gainlora_inflora] [15/15] 15-task875_emotion_classification: running ...
+[GPU 1, inflora]       ... 10 min (latest progress bar: 75/75)
+[GPU 0, gainlora_inflora]       ... 2 min (latest progress bar: 77/250)
+[GPU 1, inflora]       ... 12 min
+[GPU 0, gainlora_inflora]       ... 4 min (latest progress bar: 168/250)
+[GPU 0, gainlora_inflora]       ... 6 min (latest progress bar: 250/250)
+[GPU 1, inflora]       15-task875_emotion_classification done in 14.0 min, saved
+[GPU 1, certified2] === certified2: 15 tasks ===
+[GPU 1, certified2] [1/15] 1-task1572_samsum_summary: running ...
+[GPU 0, gainlora_inflora]       ... 8 min (latest progress bar: 28/75)
+[GPU 1, certified2]       ... 2 min (latest progress bar: 34/40)
+[GPU 0, gainlora_inflora]       ... 10 min (latest progress bar: 75/75)
+[GPU 1, certified2]       1-task1572_samsum_summary done in 4.0 min, saved
+[GPU 1, certified2] [2/15] 2-task363_sst2_polarity_classification: running ...
+[GPU 0, gainlora_inflora]       ... 12 min (latest progress bar: 75/75)
+[GPU 1, certified2]       ... 2 min (latest progress bar: 151/250)
+[GPU 0, gainlora_inflora]       ... 14 min
+[GPU 1, certified2]       2-task363_sst2_polarity_classification done in 4.0 min, saved
+[GPU 1, certified2] [3/15] 3-task1290_xsum_summarization: running ...
+[GPU 0, gainlora_inflora]       15-task875_emotion_classification done in 16.0 min, saved
+[GPU 1, certified2]       ... 2 min (latest progress bar: 28/250)
+[GPU 1, certified2]       ... 4 min (latest progress bar: 60/250)
+[GPU 1, certified2]       ... 6 min (latest progress bar: 91/250)
+[GPU 1, certified2]       ... 8 min (latest progress bar: 123/250)
+[GPU 1, certified2]       ... 10 min (latest progress bar: 144/250)
+[GPU 1, certified2]       ... 12 min (latest progress bar: 176/250)
+[GPU 1, certified2]       ... 14 min (latest progress bar: 207/250)
+[GPU 1, certified2]       ... 16 min (latest progress bar: 239/250)
+[GPU 1, certified2]       ... 18 min (latest progress bar: 0/14)
+[GPU 1, certified2]       3-task1290_xsum_summarization done in 20.0 min, saved
+[GPU 1, certified2] [4/15] 4-task181_outcome_extraction: running ...
+[GPU 1, certified2]       ... 2 min (latest progress bar: 55/80)
+[GPU 1, certified2]       ... 4 min (latest progress bar: 17/17)
+[GPU 1, certified2]       4-task181_outcome_extraction done in 6.0 min, saved
+[GPU 1, certified2] [5/15] 5-task002_quoref_answer_generation: running ...
+[GPU 1, certified2]       ... 2 min (latest progress bar: 28/250)
+[GPU 1, certified2]       ... 4 min (latest progress bar: 59/250)
+[GPU 1, certified2]       ... 6 min (latest progress bar: 89/250)
+[GPU 1, certified2]       ... 8 min (latest progress bar: 120/250)
+[GPU 1, certified2]       ... 10 min (latest progress bar: 143/250)
+[GPU 1, certified2]       ... 12 min (latest progress bar: 174/250)
+[GPU 1, certified2]       ... 14 min (latest progress bar: 204/250)
+[GPU 1, certified2]       ... 16 min (latest progress bar: 235/250)
+[GPU 1, certified2]       ... 18 min (latest progress bar: 13/13)
+[GPU 1, certified2]       5-task002_quoref_answer_generation done in 20.0 min, saved
+[GPU 1, certified2] [6/15] 6-task1510_evalution_relation_extraction: running ...
+[GPU 1, certified2]       ... 2 min (latest progress bar: 99/250)
+[GPU 1, certified2]       ... 4 min (latest progress bar: 197/250)
+[GPU 1, certified2]       ... 6 min (latest progress bar: 17/29)
+[GPU 1, certified2]       ... 8 min (latest progress bar: 29/29)
+[GPU 1, certified2]       6-task1510_evalution_relation_extraction done in 10.0 min, saved
+[GPU 1, certified2] [7/15] 7-task639_multi_woz_user_utterance_generation: running ...
+[GPU 1, certified2]       ... 2 min (latest progress bar: 31/31)
+[GPU 1, certified2]       ... 4 min (latest progress bar: 31/31)
+[GPU 1, certified2]       7-task639_multi_woz_user_utterance_generation done in 6.0 min, saved
+[GPU 1, certified2] [8/15] 8-task1729_personachat_generate_next: running ...
+[GPU 1, certified2]       ... 2 min (latest progress bar: 37/250)
+[GPU 1, certified2]       ... 4 min (latest progress bar: 77/250)
+[GPU 1, certified2]       ... 6 min (latest progress bar: 118/250)
+[GPU 1, certified2]       ... 8 min (latest progress bar: 148/250)
+[GPU 1, certified2]       ... 10 min (latest progress bar: 189/250)
+[GPU 1, certified2]       ... 12 min (latest progress bar: 229/250)
+[GPU 1, certified2]       ... 14 min (latest progress bar: 12/13)
+[GPU 1, certified2]       ... 16 min (latest progress bar: 37/37)
+[GPU 1, certified2]       ... 18 min (latest progress bar: 37/37)
+[GPU 1, certified2]       8-task1729_personachat_generate_next done in 20.0 min, saved
+[GPU 1, certified2] [9/15] 9-task073_commonsenseqa_answer_generation: running ...
+[GPU 1, certified2]       ... 2 min (latest progress bar: 74/240)
+[GPU 1, certified2]       ... 4 min (latest progress bar: 146/240)
+[GPU 1, certified2]       ... 6 min (latest progress bar: 225/240)
+[GPU 1, certified2]       ... 8 min (latest progress bar: 41/43)
+[GPU 1, certified2]       ... 10 min (latest progress bar: 43/43)
+[GPU 1, certified2]       9-task073_commonsenseqa_answer_generation done in 12.0 min, saved
+[GPU 1, certified2] [10/15] 10-task1590_diplomacy_text_generation: running ...
+[GPU 1, certified2]       ... 2 min (latest progress bar: 26/30)
+[GPU 1, certified2]       ... 4 min (latest progress bar: 44/44)
+[GPU 1, certified2]       ... 6 min (latest progress bar: 44/44)
+[GPU 1, certified2]       10-task1590_diplomacy_text_generation done in 8.0 min, saved
+[GPU 1, certified2] [11/15] 11-task748_glucose_reverse_cause_event_detection: running ...
+[GPU 1, certified2]       ... 2 min (latest progress bar: 54/250)
+[GPU 1, certified2]       ... 4 min (latest progress bar: 113/250)
+[GPU 1, certified2]       ... 6 min (latest progress bar: 155/250)
+[GPU 1, certified2]       ... 8 min (latest progress bar: 214/250)
+[GPU 1, certified2]       ... 10 min (latest progress bar: 4/13)
+[GPU 1, certified2]       ... 12 min (latest progress bar: 42/50)
+[GPU 1, certified2]       ... 14 min
+[GPU 1, certified2]       ... 16 min
+[GPU 1, certified2]       11-task748_glucose_reverse_cause_event_detection done in 18.0 min, saved
+[GPU 1, certified2] [12/15] 12-task511_reddit_tifu_long_text_summarization: running ...
+[GPU 1, certified2]       ... 2 min (latest progress bar: 21/250)
+[GPU 1, certified2]       ... 4 min (latest progress bar: 45/250)
+[GPU 1, certified2]       ... 6 min (latest progress bar: 69/250)
+[GPU 1, certified2]       ... 8 min (latest progress bar: 94/250)
+[GPU 1, certified2]       ... 10 min (latest progress bar: 118/250)
+[GPU 1, certified2]       ... 12 min (latest progress bar: 128/250)
+[GPU 1, certified2]       ... 14 min (latest progress bar: 152/250)
+[GPU 1, certified2]       ... 16 min (latest progress bar: 176/250)
+[GPU 1, certified2]       ... 18 min (latest progress bar: 200/250)
+[GPU 1, certified2]       ... 20 min (latest progress bar: 224/250)
+[GPU 1, certified2]       ... 22 min (latest progress bar: 248/250)
+[GPU 1, certified2]       ... 24 min (latest progress bar: 8/13)
+[GPU 1, certified2]       ... 26 min (latest progress bar: 38/57)
+[GPU 1, certified2]       ... 28 min
+[GPU 1, certified2]       ... 30 min
+[GPU 1, certified2]       ... 32 min
+[GPU 1, certified2]       12-task511_reddit_tifu_long_text_summarization done in 34.0 min, saved
+[GPU 1, certified2] [13/15] 13-task591_sciq_answer_generation: running ...
+[GPU 1, certified2]       ... 2 min (latest progress bar: 121/250)
+[GPU 1, certified2]       ... 4 min (latest progress bar: 243/250)
+[GPU 1, certified2]       ... 6 min (latest progress bar: 34/63)
+[GPU 1, certified2]       ... 8 min
+[GPU 1, certified2]       ... 10 min
+[GPU 1, certified2]       ... 12 min
+[GPU 1, certified2]       13-task591_sciq_answer_generation done in 14.0 min, saved
+[GPU 1, certified2] [14/15] 14-task1687_sentiment140_classification: running ...
+[GPU 1, certified2]       ... 2 min (latest progress bar: 94/250)
+[GPU 1, certified2]       ... 4 min (latest progress bar: 189/250)
+[GPU 1, certified2]       ... 6 min (latest progress bar: 10/69)
+[GPU 1, certified2]       ... 8 min (latest progress bar: 52/69)
+[GPU 1, certified2]       ... 10 min
+[GPU 1, certified2]       ... 12 min
+[GPU 1, certified2]       ... 14 min
+[GPU 1, certified2]       14-task1687_sentiment140_classification done in 16.0 min, saved
+[GPU 1, certified2] [15/15] 15-task875_emotion_classification: running ...
+[GPU 1, certified2]       ... 2 min (latest progress bar: 75/250)
+[GPU 1, certified2]       ... 4 min (latest progress bar: 151/250)
+[GPU 1, certified2]       ... 6 min (latest progress bar: 235/250)
+[GPU 1, certified2]       ... 8 min (latest progress bar: 22/75)
+[GPU 1, certified2]       ... 10 min (latest progress bar: 73/75)
+[GPU 1, certified2]       ... 12 min
+[GPU 1, certified2]       ... 14 min
+[GPU 1, certified2]       ... 16 min
+[GPU 1, certified2]       15-task875_emotion_classification done in 18.0 min, saved
+method               tasks   learned      AP      FT   minutes
+certified2              15     42.28   42.26    0.19       210
+inflora                 15     30.21   25.85    5.66       188
+gainlora_inflora        15     28.73   28.21    1.11       198
+
+each task: score right after it was learned -> score at the end
+task                                                certified2               inflora      gainlora_inflora
+task1572_samsum_summary                          32.3 ->  32.3         23.3 ->   9.1         24.2 ->  17.3
+task363_sst2_polarity_classification             88.0 ->  88.0         61.0 ->  50.0         52.0 ->  49.0
+task1290_xsum_summarization                      23.5 ->  23.5         17.9 ->  17.1         19.0 ->  19.1
+task181_outcome_extraction                       52.7 ->  52.7         51.2 ->  51.2         51.2 ->  51.2
+task002_quoref_answer_generation                 33.5 ->  32.7         33.2 ->  24.3         34.4 ->  34.6
+task1510_evalution_relation_extraction           99.7 ->  99.7         87.1 ->  68.2         71.6 ->  71.4
+task639_multi_woz_user_utterance_gener           14.5 ->  14.5          3.8 ->   2.6          3.4 ->   4.4
+task1729_personachat_generate_next               16.2 ->  16.2         12.6 ->   9.1         13.7 ->  13.4
+task073_commonsenseqa_answer_generatio           23.0 ->  23.0         15.0 ->  20.0         19.0 ->  20.0
+task1590_diplomacy_text_generation               11.1 ->  11.1          3.9 ->   5.0          4.2 ->   5.3
+task748_glucose_reverse_cause_event_de           61.2 ->  61.7         42.6 ->  31.3         42.5 ->  41.6
+task511_reddit_tifu_long_text_summariz           18.2 ->  18.2         13.9 ->  13.5         15.3 ->  15.5
+task591_sciq_answer_generation                   14.3 ->  14.3         11.7 ->  10.6         10.5 ->  10.5
+task1687_sentiment140_classification             73.0 ->  73.0         37.0 ->  37.0         37.0 ->  37.0
+task875_emotion_classification                   73.0 ->  73.0         39.0 ->  39.0         33.0 ->  33.0
+
+certified2: the protected zone of each task
+   [certified] task 1: opening of 71 tokens; zone radius 16.34 (0.5 x 32.68, the distance to the nearest known signature); 0 earlier zones loaded; training inputs already inside an older zone: 0 of 128
+   [certified] task 2: opening of 61 tokens; zone radius 15.48 (0.5 x 30.96, the distance to the nearest known signature); 1 earlier zones loaded; training inputs already inside an older zone: 0 of 800
+   [certified] task 3: opening of 34 tokens; zone radius 21.32 (0.5 x 42.65, the distance to the nearest known signature); 2 earlier zones loaded; training inputs already inside an older zone: 0 of 800
+   [certified] task 4: opening of 192 tokens; zone radius 10.87 (0.5 x 21.75, the distance to the nearest known signature); 3 earlier zones loaded; training inputs already inside an older zone: 0 of 270
+   [certified] task 5: opening of 61 tokens; zone radius 13.03 (0.5 x 26.06, the distance to the nearest known signature); 4 earlier zones loaded; training inputs already inside an older zone: 0 of 800
+   [certified] task 6: opening of 129 tokens; zone radius 13.49 (0.5 x 26.97, the distance to the nearest known signature); 5 earlier zones loaded; training inputs already inside an older zone: 0 of 800
+   [certified] task 7: opening of 43 tokens; zone radius 15.57 (0.5 x 31.14, the distance to the nearest known signature); 6 earlier zones loaded; training inputs already inside an older zone: 0 of 113
+   [certified] task 8: opening of 76 tokens; zone radius 14.02 (0.5 x 28.04, the distance to the nearest known signature); 7 earlier zones loaded; training inputs already inside an older zone: 0 of 800
+   [certified] task 9: opening of 119 tokens; zone radius 11.18 (0.5 x 22.36, the distance to the nearest known signature); 8 earlier zones loaded; training inputs already inside an older zone: 0 of 780
+   [certified] task 10: opening of 91 tokens; zone radius 11.92 (0.5 x 23.83, the distance to the nearest known signature); 9 earlier zones loaded; training inputs already inside an older zone: 0 of 100
+   [certified] task 11: opening of 105 tokens; zone radius 10.09 (0.5 x 20.18, the distance to the nearest known signature); 10 earlier zones loaded; training inputs already inside an older zone: 0 of 800
+   [certified] task 12: opening of 64 tokens; zone radius 14.18 (0.5 x 28.36, the distance to the nearest known signature); 11 earlier zones loaded; training inputs already inside an older zone: 0 of 800
+   [certified] task 13: opening of 26 tokens; zone radius 20.48 (0.5 x 40.97, the distance to the nearest known signature); 12 earlier zones loaded; training inputs already inside an older zone: 0 of 800
+   [certified] task 14: opening of 51 tokens; zone radius 16.56 (0.5 x 33.12, the distance to the nearest known signature); 13 earlier zones loaded; training inputs already inside an older zone: 0 of 800
+   [certified] task 15: opening of 74 tokens; zone radius 13.96 (0.5 x 27.92, the distance to the nearest known signature); 14 earlier zones loaded; training inputs already inside an older zone: 0 of 800
+
+certified2 run, re-test after 15 tasks. Scores here use every reference answer (the official score
+picks one at random), so they can differ a little from the table above. `tasks`: how many tasks have this wording.
+wording   rule                   tasks  learned      AP      FT   answers changed  right task     certified
+original  certified (ours)          15    42.77   42.77    0.00         0 of 1097       1.000  1197 of 1197
+original  nearest only              15    42.77   42.77    0.00         0 of 1097       1.000              
+original  nearest centre            15    42.77   42.63    0.15         2 of 1097       0.995              
+original  exact key (= locked)      15    42.77   42.77    0.00         0 of 1097       1.000              
+original  all on (= plain)          15    42.77   14.88   30.67       973 of 1097                          
+light     certified (ours)           5    80.71   80.71    0.00          0 of 400       1.000    500 of 500
+light     nearest only               5    80.71   80.71    0.00          0 of 400       1.000              
+light     nearest centre             5    80.71   80.71    0.00          0 of 400       1.000              
+light     exact key (= locked)       5    80.71   39.61   51.38        316 of 400       0.200              
+light     all on (= plain)           5    80.71   39.61   51.38        316 of 400                          
+medium    certified (ours)           5    80.20   80.20    0.00          0 of 400       1.000    100 of 500
+medium    nearest only               5    80.20   80.20    0.00          0 of 400       1.000              
+medium    nearest centre             5    73.78   71.98    2.25         29 of 400       0.852              
+medium    exact key (= locked)       5    80.20   40.39   49.76        313 of 400       0.200              
+medium    all on (= plain)           5    80.20   40.39   49.76        313 of 400                          
+heavy     certified (ours)           5    76.00   76.00    0.00          0 of 400       0.938     98 of 500
+heavy     nearest only               5    76.00   76.00    0.00          0 of 400       0.938              
+heavy     nearest centre             5    53.71   57.54    0.00        100 of 400       0.592              
+heavy     exact key (= locked)       5    80.40   36.11   55.36        310 of 400       0.200              
+heavy     all on (= plain)           5    80.40   36.11   55.36        310 of 400                          
+re-test equals the official test (same answers, of inputs), per task: [[20, 20], [120, 120], [220, 220], [263, 263], [363, 363], [463, 463], [481, 481], [581, 581], [681, 681], [697, 697], [797, 797], [897, 897], [997, 997], [1097, 1097], [1197, 1197]]
+
+inflora run, re-test after 15 tasks. Scores here use every reference answer (the official score
+picks one at random), so they can differ a little from the table above. `tasks`: how many tasks have this wording.
+wording   rule                   tasks  learned      AP      FT   answers changed  right task     certified
+original  as published              15    30.46   26.13    5.69       661 of 1097                          
+light     as published               5    57.77   51.60   10.48        257 of 400                          
+medium    as published               5    49.66   44.71    7.72        272 of 400                          
+heavy     as published               5    41.66   32.57   12.56        270 of 400                          
+re-test equals the official test (same answers, of inputs), per task: [[20, 20], [120, 120], [220, 220], [263, 263], [363, 363], [463, 463], [481, 481], [581, 581], [681, 681], [697, 697], [797, 797], [897, 897], [997, 997], [1097, 1097], [1197, 1197]]
+
+gainlora_inflora run, re-test after 15 tasks. Scores here use every reference answer (the official score
+picks one at random), so they can differ a little from the table above. `tasks`: how many tasks have this wording.
+wording   rule                   tasks  learned      AP      FT   answers changed  right task     certified
+original  as published              15    29.08   28.62    1.09       215 of 1097                          
+light     as published               5    50.85   51.05    0.85         69 of 400                          
+medium    as published               5    49.08   47.11    3.26         85 of 400                          
+heavy     as published               5    39.22   37.03    3.35        109 of 400                          
+re-test equals the official test (same answers, of inputs), per task: [[20, 20], [120, 120], [220, 220], [263, 263], [363, 363], [463, 463], [481, 481], [581, 581], [681, 681], [697, 697], [797, 797], [897, 897], [997, 997], [1097, 1097], [1197, 1197]]
+
+answers changed: answers to a task's test inputs that differ between right after learning it and the end.
+right task: share of test inputs at the end that were given to their own task. certified: inputs inside a protected zone.
+
+saved: /kaggle/working/silent_adapters/superni_o1_t5base_e10_ours/results.json | scores, answers and logs in one file: /kaggle/working/silent_adapters/superni_o1_t5base_e10_ours_small_files.zip
+1 seed(s), 15 tasks, reduced setting: an early look, not a result. Copy everything above into the chat.
+/usr/local/lib/python3.13/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\|'
+  cells[i][c] = re.sub('\\\\\|', '|', cell)
+/usr/local/lib/python3.13/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\_'
+  text = re.sub(r'_', '\_', text) # Escape underscores in display text
+[NbConvertApp] Converting notebook __notebook__.ipynb to notebook
+[NbConvertApp] Writing 136092 bytes to __notebook__.ipynb
+[NbConvertApp] Converting notebook __notebook__.ipynb to html
+[NbConvertApp] Writing 554908 bytes to __results__.html

@@ -1,0 +1,121 @@
+/usr/local/lib/python3.13/dist-packages/nbformat/validator.py:434: MissingIDFieldWarning: Cell is missing an id field, this will become a hard error in future nbformat versions. You may want to use `normalize()` on your notebooks before validations (available since nbformat 5.1.4). Previous versions of nbformat are fixing this issue transparently, and will stop doing so in the future.
+  _validate(nbdict, ref, version, version_minor, relax_add_props)
+0.00s - Debugger warning: It seems that frozen modules are being used, which may
+0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off
+0.00s - to python to disable frozen modules.
+0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.
+0.00s - Debugger warning: It seems that frozen modules are being used, which may
+0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off
+0.00s - to python to disable frozen modules.
+0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.
+results are written to: /kaggle/working/latent_lora_five
+written to /kaggle/working/latent_lora_five/code : certified_switch.py (295 lines), latent_lora.py (352 lines), run_five.py (333 lines), rewordings.json (35 lines)
+GPUs seen: 2 -> Tesla T4, 15360 MiB | Tesla T4, 15360 MiB
+2 job(s) at a time, one per GPU
+data: /tmp/latent_lora_work/gainlora/CL_Benchmark
+torch 2.11.0+cu130 | transformers 5.20.2 | cuda True
+6 jobs (2 methods x 3 seeds), 2 at a time, about 45 min each: estimated total about 2.2 hours (estimate, not measured).
+starting 6 jobs on 2 worker(s); the first thing every job does is a self-test on its GPU
+  ... GPU 0, ours seed 42, 3 min:       step 150: loss 0.018
+  ... GPU 1, latent_lora seed 42, 3 min:       step 550: loss 0.927
+  ... GPU 0, ours seed 42, 6 min:       step 100: loss 0.285
+  ... GPU 1, latent_lora seed 42, 6 min:       step 250: loss 0.443, orthogonal term 0.2576
+  ... GPU 0, ours seed 42, 9 min: 20:30:10 ours seed 42: task 2/5 (task363) learned; train 3.2 min, answers done, 7.9 min so far; loss 0.164; original wording, certified: learned 89.7, now 89.7, changed 0 of 100
+  ... GPU 1, latent_lora seed 42, 9 min:       step 1000: loss 0.593, orthogonal term 0.4669
+  ... GPU 0, ours seed 42, 12 min:       step 125: loss 0.653
+  ... GPU 1, latent_lora seed 42, 12 min:       step 450: loss 2.383, orthogonal term 0.3693
+  ... GPU 0, ours seed 42, 15 min:       step 225: loss 0.698
+  ... GPU 1, latent_lora seed 42, 15 min:       step 925: loss 2.392, orthogonal term 0.5779
+  ... GPU 0, ours seed 42, 18 min: 20:39:33 ours seed 42: task 3/5 (task748) learned; train 6.7 min, answers done, 17.3 min so far; loss 0.613; original wording, certified: learned 79.9, now 79.9, changed 0 of 200
+  ... GPU 1, latent_lora seed 42, 18 min:       step 425: loss 0.891, orthogonal term 0.6293
+  ... GPU 0, ours seed 42, 21 min:       step 225: loss 0.204
+  ... GPU 1, latent_lora seed 42, 21 min:       step 1000: loss 0.911, orthogonal term 0.8071
+  ... GPU 0, ours seed 42, 24 min: 20:45:19 ours seed 42: task 4/5 (task1687) learned; train 3.2 min, answers done, 23.1 min so far; loss 0.231; original wording, certified: learned 78.2, now 78.2, changed 0 of 300
+  ... GPU 1, latent_lora seed 42, 24 min:       step 575: loss 2.559, orthogonal term 0.9404
+  ... GPU 0, ours seed 42, 27 min:       step 175: loss 0.334
+  ... GPU 1, latent_lora seed 42, 27 min:       step 1000: loss 1.759, orthogonal term 1.099
+[GPU 1] latent_lora seed 42: finished after 27.2 min
+  ... GPU 0, ours seed 42, 30 min:       step 250: loss 0.374
+  ... GPU 1, ours seed 43, 3 min:       step 150: loss 0.041
+[GPU 0] ours seed 42: finished after 30.9 min
+  ... GPU 1, ours seed 43, 6 min:       step 100: loss 0.238
+  ... GPU 0, latent_lora seed 43, 2 min:       step 275: loss 2.499
+  ... GPU 1, ours seed 43, 9 min:       step 25: loss 1.654
+  ... GPU 0, latent_lora seed 43, 5 min:       step 975: loss 0.472
+  ... GPU 1, ours seed 43, 12 min:       step 150: loss 0.813
+  ... GPU 0, latent_lora seed 43, 8 min:       step 700: loss 0.457, orthogonal term 0.3732
+  ... GPU 1, ours seed 43, 15 min:       step 250: loss 0.594
+  ... GPU 0, latent_lora seed 43, 11 min:       step 200: loss 3.100, orthogonal term 0.2536
+  ... GPU 1, ours seed 43, 18 min:       step 75: loss 0.312
+  ... GPU 0, latent_lora seed 43, 14 min:       step 650: loss 2.194, orthogonal term 0.3387
+  ... GPU 1, ours seed 43, 21 min:       step 250: loss 0.149
+  ... GPU 0, latent_lora seed 43, 17 min:       step 1000: loss 1.955, orthogonal term 0.6823
+  ... GPU 1, ours seed 43, 24 min:       step 75: loss 0.729
+  ... GPU 0, latent_lora seed 43, 20 min:       step 700: loss 0.713, orthogonal term 0.6332
+  ... GPU 1, ours seed 43, 27 min:       step 250: loss 0.250
+  ... GPU 0, latent_lora seed 43, 23 min:       step 150: loss 2.500, orthogonal term 0.8132
+[GPU 1] ours seed 43: finished after 29.1 min
+  ... GPU 0, latent_lora seed 43, 26 min:       step 750: loss 3.145, orthogonal term 1.082
+  ... GPU 1, ours seed 44, 1 min: 21:18:27 ours seed 44: t5-base (223M frozen numbers), 72 adapted layers, device cuda
+[GPU 0] latent_lora seed 43: finished after 28.6 min
+  ... GPU 1, ours seed 44, 4 min:       step 225: loss 0.046
+  ... GPU 0, latent_lora seed 44, 1 min: 21:21:09 self-test on cuda (t5-base) ...
+  ... GPU 1, ours seed 44, 7 min:       step 175: loss 0.251
+  ... GPU 0, latent_lora seed 44, 4 min:       step 600: loss 0.880
+  ... GPU 1, ours seed 44, 10 min:       step 50: loss 0.906
+  ... GPU 0, latent_lora seed 44, 7 min:       step 250: loss 0.696, orthogonal term 0.2519
+  ... GPU 1, ours seed 44, 13 min:       step 175: loss 0.529
+  ... GPU 0, latent_lora seed 44, 10 min:       step 1000: loss 0.612, orthogonal term 0.3298
+  ... GPU 1, ours seed 44, 16 min:       step 250: loss 0.509
+  ... GPU 0, latent_lora seed 44, 13 min:       step 400: loss 2.149, orthogonal term 0.3129
+  ... GPU 1, ours seed 44, 19 min:       step 125: loss 0.431
+  ... GPU 0, latent_lora seed 44, 16 min:       step 850: loss 2.164, orthogonal term 0.7152
+  ... GPU 1, ours seed 44, 22 min:       step 250: loss 0.255
+  ... GPU 0, latent_lora seed 44, 19 min:       step 275: loss 0.759, orthogonal term 0.6239
+  ... GPU 1, ours seed 44, 25 min:       step 125: loss 0.392
+  ... GPU 0, latent_lora seed 44, 22 min:       step 1000: loss 0.522, orthogonal term 0.9475
+  ... GPU 1, ours seed 44, 28 min:       step 250: loss 0.331
+  ... GPU 0, latent_lora seed 44, 25 min:       step 400: loss 1.413, orthogonal term 0.988
+[GPU 1] ours seed 44: finished after 29.8 min
+  ... GPU 0, latent_lora seed 44, 28 min:       step 975: loss 1.676, orthogonal term 1.247
+[GPU 0] latent_lora seed 44: finished after 28.9 min
+
+method       rule               wording    seeds tasks  Learned      AP      FT   answers changed  right task
+ours         certified (ours)   original       3     5    76.49   76.49    0.00         0 of 1200       1.000
+ours         certified (ours)   light          3     5    75.87   75.87    0.00         0 of 1200       1.000
+ours         certified (ours)   medium         3     5    75.91   75.91    0.00         0 of 1200       1.000
+ours         certified (ours)   heavy          3     5    71.74   71.74    0.00         0 of 1200       0.940
+ours         nearest zone       original       3     5    76.49   76.49    0.00         0 of 1200       1.000
+ours         nearest zone       light          3     5    75.87   75.87    0.00         0 of 1200       1.000
+ours         nearest zone       medium         3     5    75.91   75.91    0.00         0 of 1200       1.000
+ours         nearest zone       heavy          3     5    71.74   71.74    0.00         0 of 1200       0.940
+ours         all adapters on    original       3     5    76.49   36.04   50.56       970 of 1200       0.200
+ours         all adapters on    light          3     5    75.87   36.21   49.57       965 of 1200       0.200
+ours         all adapters on    medium         3     5    75.91   34.26   52.06       966 of 1200       0.200
+ours         all adapters on    heavy          3     5    75.54   37.37   48.21       955 of 1200       0.200
+latent_lora  soft blend (paper) original       3     5    42.55   42.55    0.00         0 of 1200       1.000
+latent_lora  soft blend (paper) light          3     5    48.71   48.71    0.00         0 of 1200       1.000
+latent_lora  soft blend (paper) medium         3     5    32.53   32.53    0.00         0 of 1200       1.000
+latent_lora  soft blend (paper) heavy          3     5    27.75   27.75    0.00         0 of 1200       1.000
+latent_lora  sum of adapters    original       3     5    48.71   47.66    1.31       429 of 1200       1.000
+latent_lora  sum of adapters    light          3     5    49.16   47.51    2.06       450 of 1200       1.000
+latent_lora  sum of adapters    medium         3     5    32.60   27.68    6.15       490 of 1200       1.000
+latent_lora  sum of adapters    heavy          3     5    26.12   23.51    3.82       577 of 1200       1.000
+
+Learned: mean score of each task right after it was learned. AP: mean score after the last task. FT: mean over tasks 1..T-1 of
+(best score after learning it, before the last task) minus (score at the end). Answers changed: test inputs of tasks 1..T-1 whose
+answer at the end differs from the answer right after their task was learned (summed over seeds). Right task: share of test
+inputs at the end that were given to their own task (Latent-LoRA: most probable task). Scores: Rouge-L, mean over seeds.
+summary written to /kaggle/working/latent_lora_five/summary.json
+
+zip with all .json and .log files: /kaggle/working/latent_lora_five_small_files.zip (0.2 MB)
+
+all jobs finished
+/usr/local/lib/python3.13/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\|'
+  cells[i][c] = re.sub('\\\\\|', '|', cell)
+/usr/local/lib/python3.13/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\_'
+  text = re.sub(r'_', '\_', text) # Escape underscores in display text
+[NbConvertApp] Converting notebook __notebook__.ipynb to notebook
+[NbConvertApp] Writing 104098 bytes to __notebook__.ipynb
+[NbConvertApp] Converting notebook __notebook__.ipynb to html
+[NbConvertApp] Writing 430625 bytes to __results__.html

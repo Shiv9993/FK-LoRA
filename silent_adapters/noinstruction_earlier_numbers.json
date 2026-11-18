@@ -1,0 +1,110 @@
+{
+ "_source": "silent_adapters/results/2026-11-17_kaggle_five_tasks_seed42/small_files.zip, seed 42, five tasks, with task definitions, original wording; made with the notebook functions scores_of and retest_table of quick_test.py",
+ "certified2": {
+  "official": {
+   "tasks_done": 5,
+   "learned": 78.69865999999999,
+   "AP": 78.87912,
+   "FT": 0.0,
+   "minutes_per_task": [
+    6.0,
+    6.0,
+    10.0,
+    6.0,
+    8.0
+   ]
+  },
+  "retest": {
+   "certified": {
+    "tasks": 5,
+    "learned": 79.32603975124638,
+    "AP": 79.32603975124638,
+    "FT": 0.0,
+    "changed": 0,
+    "compared": 400
+   },
+   "nearest": {
+    "tasks": 5,
+    "learned": 79.32603975124638,
+    "AP": 79.32603975124638,
+    "FT": 0.0,
+    "changed": 0,
+    "compared": 400
+   },
+   "centre": {
+    "tasks": 5,
+    "learned": 79.32603975124638,
+    "AP": 79.32603975124638,
+    "FT": 0.0,
+    "changed": 0,
+    "compared": 400
+   },
+   "key": {
+    "tasks": 5,
+    "learned": 79.32603975124638,
+    "AP": 79.32603975124638,
+    "FT": 0.0,
+    "changed": 0,
+    "compared": 400
+   },
+   "all": {
+    "tasks": 5,
+    "learned": 79.32603975124638,
+    "AP": 33.5435830182889,
+    "FT": 57.22807091619686,
+    "changed": 331,
+    "compared": 400
+   }
+  }
+ },
+ "inflora": {
+  "official": {
+   "tasks_done": 5,
+   "learned": 56.689519999999995,
+   "AP": 58.372800000000005,
+   "FT": -1.1041000000000025,
+   "minutes_per_task": [
+    6.0,
+    6.0,
+    10.0,
+    6.0,
+    8.0
+   ]
+  },
+  "retest": {
+   "official": {
+    "tasks": 5,
+    "learned": 56.96046595529524,
+    "AP": 58.88896381310951,
+    "FT": -1.410622322267848,
+    "changed": 98,
+    "compared": 400
+   }
+  }
+ },
+ "gainlora_inflora": {
+  "official": {
+   "tasks_done": 5,
+   "learned": 60.30426,
+   "AP": 61.0536,
+   "FT": -0.686675000000001,
+   "minutes_per_task": [
+    6.0,
+    6.0,
+    10.0,
+    6.0,
+    8.0
+   ]
+  },
+  "retest": {
+   "official": {
+    "tasks": 5,
+    "learned": 60.851867946540246,
+    "AP": 61.311313690834666,
+    "FT": -0.3243071803680184,
+    "changed": 17,
+    "compared": 400
+   }
+  }
+ }
+}

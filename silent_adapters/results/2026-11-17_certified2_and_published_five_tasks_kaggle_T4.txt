@@ -1,0 +1,89 @@
+Log of quick_test_colab.ipynb run on Kaggle (one Tesla T4 used, "Save & Run All"), pasted by the user
+on 2026-11-17. Five tasks, t5-base, 10 epochs, seed 42. Trained in this run: `certified2` (final rule),
+`inflora` and `gainlora_inflora` (official code, unchanged, with the re-test added). Code version:
+commit 3312e70 (one method after another). The Kaggle time stamps and line numbers were removed;
+the debugger and nbconvert warnings at the start and end were left out.
+
+results are saved in: /kaggle/working/silent_adapters/superni_short5_t5base_e10
+GPU: Tesla T4, 15360 MiB
+Tesla T4, 15360 MiB
+torch 2.1.0+cu121 | transformers 4.30.2 | datasets 2.14.6 | numpy 1.22.4 | GPU seen by PyTorch: Tesla T4
+CuPy does not work here. Reason: ImportError: libcudart.so.12: cannot open shared object file
+SVD step done with: pytorch (stand-in for cupy)
+silent_run.py written: 657 lines
+
+=== plain: no finished copy in the results folder; it is only shown, never trained here (`only_if_finished`), skipped ===
+=== locked: no finished copy in the results folder; it is only shown, never trained here (`only_if_finished`), skipped ===
+=== certified: no finished copy in the results folder; it is only shown, never trained here (`only_if_finished`), skipped ===
+
+=== certified2: 5 tasks ===   (6.0, 6.0, 10.0, 6.0, 8.0 minutes)
+=== inflora: 5 tasks ===      (6.0, 6.0, 10.0, 6.0, 8.0 minutes)
+=== gainlora_inflora: 5 tasks === (6.0, 6.0, 10.0, 6.0, 8.0 minutes)
+
+method               tasks   learned      AP      FT   minutes
+certified2               5     78.70   78.88    0.00        36
+inflora                  5     56.69   58.37   -1.10        36
+gainlora_inflora         5     60.30   61.05   -0.69        36
+
+each task: score right after it was learned -> score at the end
+task                                                certified2               inflora      gainlora_inflora
+task1510_evalution_relation_extraction           99.2 ->  99.2         99.0 ->  98.2         98.9 ->  98.9
+task363_sst2_polarity_classification             86.0 ->  86.0         55.0 ->  61.0         54.0 ->  55.0
+task748_glucose_reverse_cause_event_de           61.3 ->  62.2         50.4 ->  46.7         50.7 ->  49.4
+task1687_sentiment140_classification             74.0 ->  74.0         40.0 ->  47.0         57.0 ->  61.0
+task875_emotion_classification                   73.0 ->  73.0         39.0 ->  39.0         41.0 ->  41.0
+
+certified2: the protected zone of each task
+   [certified] task 1: opening of 129 tokens; zone radius 13.49 (0.5 x 26.97, the distance to the nearest known signature); 0 earlier zones loaded; training inputs already inside an older zone: 0 of 800
+   [certified] task 2: opening of 61 tokens; zone radius 15.48 (0.5 x 30.96, the distance to the nearest known signature); 1 earlier zones loaded; training inputs already inside an older zone: 0 of 800
+   [certified] task 3: opening of 105 tokens; zone radius 10.09 (0.5 x 20.18, the distance to the nearest known signature); 2 earlier zones loaded; training inputs already inside an older zone: 0 of 800
+   [certified] task 4: opening of 51 tokens; zone radius 16.56 (0.5 x 33.12, the distance to the nearest known signature); 3 earlier zones loaded; training inputs already inside an older zone: 0 of 800
+   [certified] task 5: opening of 74 tokens; zone radius 13.96 (0.5 x 27.92, the distance to the nearest known signature); 4 earlier zones loaded; training inputs already inside an older zone: 0 of 800
+
+certified2 run, re-test after 5 tasks. Scores here use every reference answer (the official score
+picks one at random), so they can differ a little from the table above. `tasks`: how many tasks have this wording.
+wording   rule                   tasks  learned      AP      FT   answers changed  right task     certified
+original  certified (ours)           5    79.33   79.33    0.00          0 of 400       1.000    500 of 500
+original  nearest only               5    79.33   79.33    0.00          0 of 400       1.000
+original  nearest centre             5    79.33   79.33    0.00          0 of 400       1.000
+original  exact key (= locked)       5    79.33   79.33    0.00          0 of 400       1.000
+original  all on (= plain)           5    79.33   33.54   57.23        331 of 400
+light     certified (ours)           5    79.15   79.15    0.00          0 of 400       1.000    500 of 500
+light     nearest only               5    79.15   79.15    0.00          0 of 400       1.000
+light     nearest centre             5    79.15   79.15    0.00          0 of 400       1.000
+light     exact key (= locked)       5    79.15   32.83   57.90        332 of 400       0.200
+light     all on (= plain)           5    79.15   32.83   57.90        332 of 400
+medium    certified (ours)           5    77.61   77.61    0.00          0 of 400       1.000    100 of 500
+medium    nearest only               5    77.61   77.61    0.00          0 of 400       1.000
+medium    nearest centre             5    77.21   77.21    0.00          0 of 400       0.992
+medium    exact key (= locked)       5    77.61   32.72   56.11        334 of 400       0.200
+medium    all on (= plain)           5    77.61   32.72   56.11        334 of 400
+heavy     certified (ours)           5    72.12   72.12    0.00          0 of 400       0.938     98 of 500
+heavy     nearest only               5    72.12   72.12    0.00          0 of 400       0.938
+heavy     nearest centre             5    65.32   58.91    8.02         58 of 400       0.722
+heavy     exact key (= locked)       5    76.72   32.23   55.61        335 of 400       0.200
+heavy     all on (= plain)           5    76.72   32.23   55.61        335 of 400
+re-test equals the official test (same answers, of inputs), per task: [[100, 100], [200, 200], [300, 300], [400, 400], [500, 500]]
+
+inflora run, re-test after 5 tasks.
+wording   rule                   tasks  learned      AP      FT   answers changed  right task     certified
+original  as published               5    56.96   58.89   -1.41         98 of 400
+light     as published               5    57.18   59.87   -3.09         85 of 400
+medium    as published               5    61.49   60.45    1.37         91 of 400
+heavy     as published               5    55.87   56.37    1.31        151 of 400
+re-test equals the official test (same answers, of inputs), per task: [[100, 100], [200, 200], [300, 300], [400, 400], [500, 500]]
+
+gainlora_inflora run, re-test after 5 tasks.
+wording   rule                   tasks  learned      AP      FT   answers changed  right task     certified
+original  as published               5    60.85   61.31   -0.32         17 of 400
+light     as published               5    59.67   59.49    0.27         15 of 400
+medium    as published               5    58.77   58.61    0.31         32 of 400
+heavy     as published               5    51.93   52.01    0.15         49 of 400
+re-test equals the official test (same answers, of inputs), per task: [[100, 100], [199, 200], [297, 300], [400, 400], [498, 500]]
+
+answers changed: answers to a task's test inputs that differ between right after learning it and the end.
+right task: share of test inputs at the end that were given to their own task. certified: inputs inside a protected zone.
+
+saved: /kaggle/working/silent_adapters/superni_short5_t5base_e10/results.json
+One seed, 5 tasks, reduced setting: an early look, not a result.
+Total run time: 6,551 seconds (1.8 hours).

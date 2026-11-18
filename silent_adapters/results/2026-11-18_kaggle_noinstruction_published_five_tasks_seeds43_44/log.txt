@@ -1,0 +1,222 @@
+/usr/local/lib/python3.13/dist-packages/nbformat/validator.py:434: MissingIDFieldWarning: Cell is missing an id field, this will become a hard error in future nbformat versions. You may want to use `normalize()` on your notebooks before validations (available since nbformat 5.1.4). Previous versions of nbformat are fixing this issue transparently, and will stop doing so in the future.
+  _validate(nbdict, ref, version, version_minor, relax_add_props)
+0.00s - Debugger warning: It seems that frozen modules are being used, which may
+0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off
+0.00s - to python to disable frozen modules.
+0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.
+0.00s - Debugger warning: It seems that frozen modules are being used, which may
+0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off
+0.00s - to python to disable frozen modules.
+0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.
+results are saved in: /kaggle/working/silent_adapters/superni_noinstruction5_published_seeds43_44_t5base_e10
+GPU: Tesla T4, 15360 MiB | Tesla T4, 15360 MiB
+$ git clone https://github.com/liangyanshuo/gainlora /tmp/silent_adapters_work/gainlora
+$ git -C /tmp/silent_adapters_work/gainlora checkout e9d0d700538c8d12892f7fd52b216291f7e42acc
+$ /usr/bin/python3 -m pip install -q uv
+$ uv venv --python 3.10.12 /tmp/silent_adapters_work/env
+$ uv pip install -q --python /tmp/silent_adapters_work/env/bin/python torch==2.1.0 --index-url https://download.pytorch.org/whl/cu121
+$ uv pip install -q --python /tmp/silent_adapters_work/env/bin/python transformers==4.30.2 datasets==2.14.6 accelerate==0.24.1 numpy==1.22.4 fsspec==2023.10.0 ...
+$ uv pip install -q --python /tmp/silent_adapters_work/env/bin/python cupy-cuda12x==12.1.0 numpy==1.22.4
+torch 2.1.0+cu121 | transformers 4.30.2 | datasets 2.14.6 | numpy 1.22.4 | GPU seen by PyTorch: Tesla T4
+CuPy does not work here. Reason:
+    Check the Installation Guide for details:
+      https://docs.cupy.dev/en/latest/install.html
+    
+    Original error:
+      ImportError: libcudart.so.12: cannot open shared object file: No such file or directory
+    ================================================================
+SVD step done with: pytorch (stand-in for cupy)
+silent_run.py written: 659 lines
+definitions removed in 15 files; every one of the 15 train/dev/test files of the 5 tasks now has Definition == [""]
+official input builder: the text before the example is identical for all 15 task/split pairs
+input of the first test example of the first task, as the official code builds it:
+------------------------------
+Definition: 
+
+Now complete the following example -
+Input: person can have or can contain offspring
+Output: 
+------------------------------
+2 GPUs: 2 runs are trained at the same time, one per GPU. Lines are marked with the GPU and the run.
+[GPU 1, gainlora_inflora, seed 44] === gainlora_inflora, seed 44: 5 tasks ===
+[GPU 1, gainlora_inflora, seed 44] [1/5] 1-task1510_evalution_relation_extraction: running ...
+[GPU 0, gainlora_inflora, seed 43] === gainlora_inflora, seed 43: 5 tasks ===
+[GPU 0, gainlora_inflora, seed 43] [1/5] 1-task1510_evalution_relation_extraction: running ...
+[GPU 1, gainlora_inflora, seed 44]       1-task1510_evalution_relation_extraction done in 2.0 min, saved
+[GPU 1, gainlora_inflora, seed 44] [2/5] 2-task363_sst2_polarity_classification: running ...
+[GPU 0, gainlora_inflora, seed 43]       1-task1510_evalution_relation_extraction done in 2.0 min, saved
+[GPU 0, gainlora_inflora, seed 43] [2/5] 2-task363_sst2_polarity_classification: running ...
+[GPU 1, gainlora_inflora, seed 44]       ... 2 min (latest progress bar: 224/250)
+[GPU 0, gainlora_inflora, seed 43]       ... 2 min (latest progress bar: 206/250)
+[GPU 1, gainlora_inflora, seed 44]       2-task363_sst2_polarity_classification done in 4.0 min, saved
+[GPU 1, gainlora_inflora, seed 44] [3/5] 3-task748_glucose_reverse_cause_event_detection: running ...
+[GPU 0, gainlora_inflora, seed 43]       2-task363_sst2_polarity_classification done in 4.0 min, saved
+[GPU 0, gainlora_inflora, seed 43] [3/5] 3-task748_glucose_reverse_cause_event_detection: running ...
+[GPU 1, gainlora_inflora, seed 44]       ... 2 min (latest progress bar: 116/250)
+[GPU 0, gainlora_inflora, seed 43]       ... 2 min (latest progress bar: 107/250)
+[GPU 1, gainlora_inflora, seed 44]       ... 4 min (latest progress bar: 242/250)
+[GPU 0, gainlora_inflora, seed 43]       ... 4 min (latest progress bar: 224/250)
+[GPU 1, gainlora_inflora, seed 44]       3-task748_glucose_reverse_cause_event_detection done in 6.0 min, saved
+[GPU 1, gainlora_inflora, seed 44] [4/5] 4-task1687_sentiment140_classification: running ...
+[GPU 0, gainlora_inflora, seed 43]       3-task748_glucose_reverse_cause_event_detection done in 6.0 min, saved
+[GPU 0, gainlora_inflora, seed 43] [4/5] 4-task1687_sentiment140_classification: running ...
+[GPU 1, gainlora_inflora, seed 44]       ... 2 min (latest progress bar: 242/250)
+[GPU 0, gainlora_inflora, seed 43]       ... 2 min (latest progress bar: 226/250)
+[GPU 1, gainlora_inflora, seed 44]       4-task1687_sentiment140_classification done in 4.0 min, saved
+[GPU 1, gainlora_inflora, seed 44] [5/5] 5-task875_emotion_classification: running ...
+[GPU 0, gainlora_inflora, seed 43]       4-task1687_sentiment140_classification done in 4.0 min, saved
+[GPU 0, gainlora_inflora, seed 43] [5/5] 5-task875_emotion_classification: running ...
+[GPU 1, gainlora_inflora, seed 44]       ... 2 min (latest progress bar: 206/250)
+[GPU 0, gainlora_inflora, seed 43]       ... 2 min (latest progress bar: 195/250)
+[GPU 1, gainlora_inflora, seed 44]       5-task875_emotion_classification done in 4.0 min, saved
+[GPU 1, inflora, seed 43] === inflora, seed 43: 5 tasks ===
+[GPU 1, inflora, seed 43] [1/5] 1-task1510_evalution_relation_extraction: running ...
+[GPU 0, gainlora_inflora, seed 43]       5-task875_emotion_classification done in 4.0 min, saved
+[GPU 0, inflora, seed 44] === inflora, seed 44: 5 tasks ===
+[GPU 0, inflora, seed 44] [1/5] 1-task1510_evalution_relation_extraction: running ...
+[GPU 1, inflora, seed 43]       1-task1510_evalution_relation_extraction done in 2.0 min, saved
+[GPU 1, inflora, seed 43] [2/5] 2-task363_sst2_polarity_classification: running ...
+[GPU 0, inflora, seed 44]       1-task1510_evalution_relation_extraction done in 2.0 min, saved
+[GPU 0, inflora, seed 44] [2/5] 2-task363_sst2_polarity_classification: running ...
+[GPU 1, inflora, seed 43]       ... 2 min (latest progress bar: 239/250)
+[GPU 0, inflora, seed 44]       ... 2 min (latest progress bar: 231/250)
+[GPU 1, inflora, seed 43]       2-task363_sst2_polarity_classification done in 4.0 min, saved
+[GPU 1, inflora, seed 43] [3/5] 3-task748_glucose_reverse_cause_event_detection: running ...
+[GPU 0, inflora, seed 44]       2-task363_sst2_polarity_classification done in 4.0 min, saved
+[GPU 0, inflora, seed 44] [3/5] 3-task748_glucose_reverse_cause_event_detection: running ...
+[GPU 1, inflora, seed 43]       ... 2 min (latest progress bar: 5/13)
+[GPU 0, inflora, seed 44]       ... 2 min (latest progress bar: 124/250)
+[GPU 1, inflora, seed 43]       ... 4 min (latest progress bar: 6/13)
+[GPU 0, inflora, seed 44]       ... 4 min (latest progress bar: 242/250)
+[GPU 1, inflora, seed 43]       3-task748_glucose_reverse_cause_event_detection done in 6.0 min, saved
+[GPU 1, inflora, seed 43] [4/5] 4-task1687_sentiment140_classification: running ...
+[GPU 0, inflora, seed 44]       3-task748_glucose_reverse_cause_event_detection done in 6.0 min, saved
+[GPU 0, inflora, seed 44] [4/5] 4-task1687_sentiment140_classification: running ...
+[GPU 1, inflora, seed 43]       ... 2 min (latest progress bar: 250/250)
+[GPU 0, inflora, seed 44]       ... 2 min (latest progress bar: 250/250)
+[GPU 1, inflora, seed 43]       4-task1687_sentiment140_classification done in 4.0 min, saved
+[GPU 1, inflora, seed 43] [5/5] 5-task875_emotion_classification: running ...
+[GPU 0, inflora, seed 44]       4-task1687_sentiment140_classification done in 4.0 min, saved
+[GPU 0, inflora, seed 44] [5/5] 5-task875_emotion_classification: running ...
+[GPU 1, inflora, seed 43]       ... 2 min (latest progress bar: 221/250)
+[GPU 0, inflora, seed 44]       ... 2 min (latest progress bar: 218/250)
+[GPU 1, inflora, seed 43]       5-task875_emotion_classification done in 4.0 min, saved
+[GPU 0, inflora, seed 44]       5-task875_emotion_classification done in 4.0 min, saved
+
+======================================== seed 43 ========================================
+method               tasks   learned      AP      FT   minutes
+inflora                  5     48.65   35.82   16.29        20
+gainlora_inflora         5     50.67   48.41    4.33        20
+
+each task: score right after it was learned -> score at the end
+task                                                   inflora      gainlora_inflora
+task1510_evalution_relation_extraction           90.0 ->  70.0         89.8 ->  87.6
+task363_sst2_polarity_classification             48.0 ->  36.0         43.0 ->  55.0
+task748_glucose_reverse_cause_event_de           30.3 ->  24.1         32.5 ->  28.4
+task1687_sentiment140_classification             67.0 ->  41.0         63.0 ->  46.0
+task875_emotion_classification                    8.0 ->   8.0         25.0 ->  25.0
+
+inflora run, re-test after 5 tasks. Scores here use every reference answer (the official score
+picks one at random), so they can differ a little from the table above. `tasks`: how many tasks have this wording.
+wording   rule                   tasks  learned      AP      FT   answers changed  right task     certified
+original  as published               5    48.89   36.07   16.27        278 of 400                          
+re-test equals the official test (same answers, of inputs), per task: [[100, 100], [200, 200], [300, 300], [400, 400], [500, 500]]
+
+gainlora_inflora run, re-test after 5 tasks. Scores here use every reference answer (the official score
+picks one at random), so they can differ a little from the table above. `tasks`: how many tasks have this wording.
+wording   rule                   tasks  learned      AP      FT   answers changed  right task     certified
+original  as published               5    50.88   48.67    4.27        147 of 400                          
+re-test equals the official test (same answers, of inputs), per task: [[100, 100], [200, 200], [300, 300], [400, 400], [500, 500]]
+
+answers changed: answers to a task's test inputs that differ between right after learning it and the end.
+right task: share of test inputs at the end that were given to their own task. certified: inputs inside a protected zone.
+
+======================================== seed 44 ========================================
+method               tasks   learned      AP      FT   minutes
+inflora                  5     54.12   42.81   14.89        20
+gainlora_inflora         5     56.38   52.09    6.36        20
+
+each task: score right after it was learned -> score at the end
+task                                                   inflora      gainlora_inflora
+task1510_evalution_relation_extraction           92.9 ->  78.0         92.1 ->  90.5
+task363_sst2_polarity_classification             45.0 ->  34.0         58.0 ->  51.0
+task748_glucose_reverse_cause_event_de           36.7 ->  30.0         33.8 ->  30.9
+task1687_sentiment140_classification             70.0 ->  46.0         74.0 ->  64.0
+task875_emotion_classification                   26.0 ->  26.0         24.0 ->  24.0
+
+inflora run, re-test after 5 tasks. Scores here use every reference answer (the official score
+picks one at random), so they can differ a little from the table above. `tasks`: how many tasks have this wording.
+wording   rule                   tasks  learned      AP      FT   answers changed  right task     certified
+original  as published               5    54.34   43.23   14.63        251 of 400                          
+re-test equals the official test (same answers, of inputs), per task: [[100, 100], [200, 200], [300, 300], [400, 400], [500, 500]]
+
+gainlora_inflora run, re-test after 5 tasks. Scores here use every reference answer (the official score
+picks one at random), so they can differ a little from the table above. `tasks`: how many tasks have this wording.
+wording   rule                   tasks  learned      AP      FT   answers changed  right task     certified
+original  as published               5    56.53   52.45    6.10        138 of 400                          
+re-test equals the official test (same answers, of inputs), per task: [[100, 100], [200, 200], [300, 300], [400, 400], [500, 500]]
+
+answers changed: answers to a task's test inputs that differ between right after learning it and the end.
+right task: share of test inputs at the end that were given to their own task. certified: inputs inside a protected zone.
+
+======================================== all seeds together ========================================
+Mean over the seeds, with the lowest and the highest seed in brackets. Only seeds in which the method finished every task.
+method               seeds                   learned                        AP                        FT
+inflora                  2    51.39 (48.65 to 54.12)    39.31 (35.82 to 42.81)    15.59 (14.89 to 16.29)
+gainlora_inflora         2    53.52 (50.67 to 56.38)    50.25 (48.41 to 52.09)       5.34 (4.33 to 6.36)
+
+re-test (every reference answer): mean over the seeds; answers changed are added up
+method              wording   rule                   seeds  learned      AP      FT     answers changed
+inflora             original  as published               2    51.61   39.65   15.45          529 of 800
+gainlora_inflora    original  as published               2    53.71   50.56    5.19          285 of 800
+
+############ seed 43: against the numbers of the earlier runs (those are seed 42) ############
+
+============================== this run (NO task definition) against the earlier run WITH definitions ==============================
+earlier numbers: silent_adapters/results/2026-11-17_kaggle_five_tasks_seed42/small_files.zip (seed 42, with definitions)
+learned: average score right after learning each task | AP: average score at the end | FT: forgetting (lower is better)
+changed: answers to the compared test inputs that differ between right after learning and the end
+
+method / rule                     run                 learned      AP      FT   answers changed
+inflora / official                no definition         48.89   36.07   16.27        278 of 400
+                                  with definitions      56.96   58.89   -1.41         98 of 400
+gainlora_inflora / official       no definition         50.88   48.67    4.27        147 of 400
+                                  with definitions      60.85   61.31   -0.32         17 of 400
+
+official test (one random reference answer per example, as in the main table above):
+method                            run                 learned      AP      FT
+inflora                           no definition         48.65   35.82   16.29
+                                  with definitions      56.69   58.37   -1.10
+gainlora_inflora                  no definition         50.67   48.41    4.33
+                                  with definitions      60.30   61.05   -0.69
+
+############ seed 44: against the numbers of the earlier runs (those are seed 42) ############
+
+============================== this run (NO task definition) against the earlier run WITH definitions ==============================
+earlier numbers: silent_adapters/results/2026-11-17_kaggle_five_tasks_seed42/small_files.zip (seed 42, with definitions)
+learned: average score right after learning each task | AP: average score at the end | FT: forgetting (lower is better)
+changed: answers to the compared test inputs that differ between right after learning and the end
+
+method / rule                     run                 learned      AP      FT   answers changed
+inflora / official                no definition         54.34   43.23   14.63        251 of 400
+                                  with definitions      56.96   58.89   -1.41         98 of 400
+gainlora_inflora / official       no definition         56.53   52.45    6.10        138 of 400
+                                  with definitions      60.85   61.31   -0.32         17 of 400
+
+official test (one random reference answer per example, as in the main table above):
+method                            run                 learned      AP      FT
+inflora                           no definition         54.12   42.81   14.89
+                                  with definitions      56.69   58.37   -1.10
+gainlora_inflora                  no definition         56.38   52.09    6.36
+                                  with definitions      60.30   61.05   -0.69
+
+saved: /kaggle/working/silent_adapters/superni_noinstruction5_published_seeds43_44_t5base_e10/results.json | scores, answers and logs in one file: /kaggle/working/silent_adapters/superni_noinstruction5_published_seeds43_44_t5base_e10_small_files.zip
+2 seed(s), 5 tasks, reduced setting: an early look, not a result. Copy everything above into the chat.
+/usr/local/lib/python3.13/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\|'
+  cells[i][c] = re.sub('\\\\\|', '|', cell)
+/usr/local/lib/python3.13/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\_'
+  text = re.sub(r'_', '\_', text) # Escape underscores in display text
+[NbConvertApp] Converting notebook __notebook__.ipynb to notebook
+[NbConvertApp] Writing 125609 bytes to __notebook__.ipynb
+[NbConvertApp] Converting notebook __notebook__.ipynb to html
+[NbConvertApp] Writing 584557 bytes to __results__.html

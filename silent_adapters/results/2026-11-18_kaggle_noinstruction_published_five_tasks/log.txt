@@ -1,0 +1,128 @@
+/usr/local/lib/python3.13/dist-packages/nbformat/validator.py:434: MissingIDFieldWarning: Cell is missing an id field, this will become a hard error in future nbformat versions. You may want to use `normalize()` on your notebooks before validations (available since nbformat 5.1.4). Previous versions of nbformat are fixing this issue transparently, and will stop doing so in the future.
+  _validate(nbdict, ref, version, version_minor, relax_add_props)
+0.00s - Debugger warning: It seems that frozen modules are being used, which may
+0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off
+0.00s - to python to disable frozen modules.
+0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.
+0.00s - Debugger warning: It seems that frozen modules are being used, which may
+0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off
+0.00s - to python to disable frozen modules.
+0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.
+results are saved in: /kaggle/working/silent_adapters/superni_noinstruction5_published_t5base_e10
+GPU: Tesla T4, 15360 MiB | Tesla T4, 15360 MiB
+$ git clone https://github.com/liangyanshuo/gainlora /tmp/silent_adapters_work/gainlora
+$ git -C /tmp/silent_adapters_work/gainlora checkout e9d0d700538c8d12892f7fd52b216291f7e42acc
+$ /usr/bin/python3 -m pip install -q uv
+$ uv venv --python 3.10.12 /tmp/silent_adapters_work/env
+$ uv pip install -q --python /tmp/silent_adapters_work/env/bin/python torch==2.1.0 --index-url https://download.pytorch.org/whl/cu121
+$ uv pip install -q --python /tmp/silent_adapters_work/env/bin/python transformers==4.30.2 datasets==2.14.6 accelerate==0.24.1 numpy==1.22.4 fsspec==2023.10.0 ...
+$ uv pip install -q --python /tmp/silent_adapters_work/env/bin/python cupy-cuda12x==12.1.0 numpy==1.22.4
+torch 2.1.0+cu121 | transformers 4.30.2 | datasets 2.14.6 | numpy 1.22.4 | GPU seen by PyTorch: Tesla T4
+CuPy does not work here. Reason:
+    Check the Installation Guide for details:
+      https://docs.cupy.dev/en/latest/install.html
+    
+    Original error:
+      ImportError: libcudart.so.12: cannot open shared object file: No such file or directory
+    ================================================================
+SVD step done with: pytorch (stand-in for cupy)
+silent_run.py written: 659 lines
+definitions removed in 15 files; every one of the 15 train/dev/test files of the 5 tasks now has Definition == [""]
+official input builder: the text before the example is identical for all 15 task/split pairs
+input of the first test example of the first task, as the official code builds it:
+------------------------------
+Definition: 
+
+Now complete the following example -
+Input: person can have or can contain offspring
+Output: 
+------------------------------
+2 GPUs: 2 runs are trained at the same time, one per GPU. Lines are marked with the GPU and the run.
+[GPU 1, inflora] === inflora: 5 tasks ===
+[GPU 1, inflora] [1/5] 1-task1510_evalution_relation_extraction: running ...
+[GPU 0, gainlora_inflora] === gainlora_inflora: 5 tasks ===
+[GPU 0, gainlora_inflora] [1/5] 1-task1510_evalution_relation_extraction: running ...
+[GPU 0, gainlora_inflora]       ... 2 min (latest progress bar: 7/7)
+[GPU 1, inflora]       1-task1510_evalution_relation_extraction done in 2.0 min, saved
+[GPU 1, inflora] [2/5] 2-task363_sst2_polarity_classification: running ...
+[GPU 1, inflora]       ... 2 min (latest progress bar: 235/250)
+[GPU 0, gainlora_inflora]       1-task1510_evalution_relation_extraction done in 4.0 min, saved
+[GPU 0, gainlora_inflora] [2/5] 2-task363_sst2_polarity_classification: running ...
+[GPU 0, gainlora_inflora]       ... 2 min (latest progress bar: 223/250)
+[GPU 1, inflora]       2-task363_sst2_polarity_classification done in 4.0 min, saved
+[GPU 1, inflora] [3/5] 3-task748_glucose_reverse_cause_event_detection: running ...
+[GPU 1, inflora]       ... 2 min (latest progress bar: 3/13)
+[GPU 0, gainlora_inflora]       2-task363_sst2_polarity_classification done in 4.0 min, saved
+[GPU 0, gainlora_inflora] [3/5] 3-task748_glucose_reverse_cause_event_detection: running ...
+[GPU 1, inflora]       ... 4 min (latest progress bar: 2/13)
+[GPU 0, gainlora_inflora]       ... 2 min (latest progress bar: 116/250)
+[GPU 0, gainlora_inflora]       ... 4 min (latest progress bar: 230/250)
+[GPU 1, inflora]       3-task748_glucose_reverse_cause_event_detection done in 6.0 min, saved
+[GPU 1, inflora] [4/5] 4-task1687_sentiment140_classification: running ...
+[GPU 1, inflora]       ... 2 min (latest progress bar: 249/250)
+[GPU 0, gainlora_inflora]       3-task748_glucose_reverse_cause_event_detection done in 6.0 min, saved
+[GPU 0, gainlora_inflora] [4/5] 4-task1687_sentiment140_classification: running ...
+[GPU 0, gainlora_inflora]       ... 2 min (latest progress bar: 218/250)
+[GPU 1, inflora]       4-task1687_sentiment140_classification done in 4.0 min, saved
+[GPU 1, inflora] [5/5] 5-task875_emotion_classification: running ...
+[GPU 1, inflora]       ... 2 min (latest progress bar: 203/250)
+[GPU 0, gainlora_inflora]       4-task1687_sentiment140_classification done in 4.0 min, saved
+[GPU 0, gainlora_inflora] [5/5] 5-task875_emotion_classification: running ...
+[GPU 0, gainlora_inflora]       ... 2 min (latest progress bar: 189/250)
+[GPU 1, inflora]       5-task875_emotion_classification done in 4.0 min, saved
+[GPU 0, gainlora_inflora]       5-task875_emotion_classification done in 4.0 min, saved
+method               tasks   learned      AP      FT   minutes
+inflora                  5     51.08   37.28   17.75        20
+gainlora_inflora         5     55.82   51.64    6.55        22
+
+each task: score right after it was learned -> score at the end
+task                                                   inflora      gainlora_inflora
+task1510_evalution_relation_extraction           95.1 ->  57.1         94.7 ->  86.7
+task363_sst2_polarity_classification             43.0 ->  41.0         48.0 ->  52.0
+task748_glucose_reverse_cause_event_de           30.3 ->  16.3         33.4 ->  27.5
+task1687_sentiment140_classification             75.0 ->  60.0         75.0 ->  64.0
+task875_emotion_classification                   12.0 ->  12.0         28.0 ->  28.0
+
+inflora run, re-test after 5 tasks. Scores here use every reference answer (the official score
+picks one at random), so they can differ a little from the table above. `tasks`: how many tasks have this wording.
+wording   rule                   tasks  learned      AP      FT   answers changed  right task     certified
+original  as published               5    51.46   37.45   18.01        217 of 400                          
+re-test equals the official test (same answers, of inputs), per task: [[100, 100], [200, 200], [300, 300], [400, 400], [500, 500]]
+
+gainlora_inflora run, re-test after 5 tasks. Scores here use every reference answer (the official score
+picks one at random), so they can differ a little from the table above. `tasks`: how many tasks have this wording.
+wording   rule                   tasks  learned      AP      FT   answers changed  right task     certified
+original  as published               5    56.08   51.94    6.51        129 of 400                          
+re-test equals the official test (same answers, of inputs), per task: [[100, 100], [200, 200], [300, 300], [400, 400], [500, 500]]
+
+answers changed: answers to a task's test inputs that differ between right after learning it and the end.
+right task: share of test inputs at the end that were given to their own task. certified: inputs inside a protected zone.
+
+============================== this run (NO task definition) against the earlier run WITH definitions ==============================
+earlier numbers: silent_adapters/results/2026-11-17_kaggle_five_tasks_seed42/small_files.zip (seed 42, with definitions)
+learned: average score right after learning each task | AP: average score at the end | FT: forgetting (lower is better)
+changed: answers to the compared test inputs that differ between right after learning and the end
+
+method / rule                     run                 learned      AP      FT   answers changed
+inflora / official                no definition         51.46   37.45   18.01        217 of 400
+                                  with definitions      56.96   58.89   -1.41         98 of 400
+gainlora_inflora / official       no definition         56.08   51.94    6.51        129 of 400
+                                  with definitions      60.85   61.31   -0.32         17 of 400
+
+official test (one random reference answer per example, as in the main table above):
+method                            run                 learned      AP      FT
+inflora                           no definition         51.08   37.28   17.75
+                                  with definitions      56.69   58.37   -1.10
+gainlora_inflora                  no definition         55.82   51.64    6.55
+                                  with definitions      60.30   61.05   -0.69
+
+saved: /kaggle/working/silent_adapters/superni_noinstruction5_published_t5base_e10/results.json | scores, answers and logs in one file: /kaggle/working/silent_adapters/superni_noinstruction5_published_t5base_e10_small_files.zip
+1 seed(s), 5 tasks, reduced setting: an early look, not a result. Copy everything above into the chat.
+/usr/local/lib/python3.13/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\|'
+  cells[i][c] = re.sub('\\\\\|', '|', cell)
+/usr/local/lib/python3.13/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\_'
+  text = re.sub(r'_', '\_', text) # Escape underscores in display text
+[NbConvertApp] Converting notebook __notebook__.ipynb to notebook
+[NbConvertApp] Writing 115808 bytes to __notebook__.ipynb
+[NbConvertApp] Converting notebook __notebook__.ipynb to html
+[NbConvertApp] Writing 574772 bytes to __results__.html

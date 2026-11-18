@@ -1,0 +1,217 @@
+/usr/local/lib/python3.13/dist-packages/nbformat/validator.py:434: MissingIDFieldWarning: Cell is missing an id field, this will become a hard error in future nbformat versions. You may want to use `normalize()` on your notebooks before validations (available since nbformat 5.1.4). Previous versions of nbformat are fixing this issue transparently, and will stop doing so in the future.
+  _validate(nbdict, ref, version, version_minor, relax_add_props)
+0.00s - Debugger warning: It seems that frozen modules are being used, which may
+0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off
+0.00s - to python to disable frozen modules.
+0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.
+0.00s - Debugger warning: It seems that frozen modules are being used, which may
+0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off
+0.00s - to python to disable frozen modules.
+0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.
+results are saved in: /kaggle/working/silent_adapters/superni_noinstruction5_ours_seeds43_44_t5base_e10
+GPU: Tesla T4, 15360 MiB | Tesla T4, 15360 MiB
+$ git clone https://github.com/liangyanshuo/gainlora /tmp/silent_adapters_work/gainlora
+$ git -C /tmp/silent_adapters_work/gainlora checkout e9d0d700538c8d12892f7fd52b216291f7e42acc
+$ /usr/bin/python3 -m pip install -q uv
+$ uv venv --python 3.10.12 /tmp/silent_adapters_work/env
+$ uv pip install -q --python /tmp/silent_adapters_work/env/bin/python torch==2.1.0 --index-url https://download.pytorch.org/whl/cu121
+$ uv pip install -q --python /tmp/silent_adapters_work/env/bin/python transformers==4.30.2 datasets==2.14.6 accelerate==0.24.1 numpy==1.22.4 fsspec==2023.10.0 ...
+$ uv pip install -q --python /tmp/silent_adapters_work/env/bin/python cupy-cuda12x==12.1.0 numpy==1.22.4
+torch 2.1.0+cu121 | transformers 4.30.2 | datasets 2.14.6 | numpy 1.22.4 | GPU seen by PyTorch: Tesla T4
+CuPy does not work here. Reason:
+    Check the Installation Guide for details:
+      https://docs.cupy.dev/en/latest/install.html
+    
+    Original error:
+      ImportError: libcudart.so.12: cannot open shared object file: No such file or directory
+    ================================================================
+SVD step done with: pytorch (stand-in for cupy)
+silent_run.py written: 727 lines
+definitions removed in 15 files; every one of the 15 train/dev/test files of the 5 tasks now has Definition == [""]
+official input builder: the text before the example is identical for all 15 task/split pairs
+input of the first test example of the first task, as the official code builds it:
+------------------------------
+Definition: 
+
+Now complete the following example -
+Input: person can have or can contain offspring
+Output: 
+------------------------------
+route tables written and checked: table:ridge, table:joint, table:claims, table:handicap, table:own -> /tmp/silent_adapters_work/route_table.json
+2 GPUs: 2 runs are trained at the same time, one per GPU. Lines are marked with the GPU and the run.
+[GPU 0, certified2, seed 43] === certified2, seed 43: 5 tasks ===
+[GPU 1, certified2, seed 44] === certified2, seed 44: 5 tasks ===
+[GPU 1, certified2, seed 44] [1/5] 1-task1510_evalution_relation_extraction: running ...
+[GPU 0, certified2, seed 43] [1/5] 1-task1510_evalution_relation_extraction: running ...
+[GPU 1, certified2, seed 44]       1-task1510_evalution_relation_extraction done in 2.0 min, saved
+[GPU 1, certified2, seed 44] [2/5] 2-task363_sst2_polarity_classification: running ...
+[GPU 0, certified2, seed 43]       1-task1510_evalution_relation_extraction done in 2.0 min, saved
+[GPU 0, certified2, seed 43] [2/5] 2-task363_sst2_polarity_classification: running ...
+[GPU 1, certified2, seed 44]       ... 2 min (latest progress bar: 221/250)
+[GPU 0, certified2, seed 43]       ... 2 min (latest progress bar: 226/250)
+[GPU 1, certified2, seed 44]       2-task363_sst2_polarity_classification done in 4.0 min, saved
+[GPU 1, certified2, seed 44] [3/5] 3-task748_glucose_reverse_cause_event_detection: running ...
+[GPU 0, certified2, seed 43]       2-task363_sst2_polarity_classification done in 4.0 min, saved
+[GPU 0, certified2, seed 43] [3/5] 3-task748_glucose_reverse_cause_event_detection: running ...
+[GPU 1, certified2, seed 44]       ... 2 min (latest progress bar: 125/250)
+[GPU 0, certified2, seed 43]       ... 2 min (latest progress bar: 3/13)
+[GPU 1, certified2, seed 44]       ... 4 min (latest progress bar: 232/250)
+[GPU 0, certified2, seed 43]       ... 4 min (latest progress bar: 246/250)
+[GPU 1, certified2, seed 44]       3-task748_glucose_reverse_cause_event_detection done in 6.0 min, saved
+[GPU 1, certified2, seed 44] [4/5] 4-task1687_sentiment140_classification: running ...
+[GPU 0, certified2, seed 43]       3-task748_glucose_reverse_cause_event_detection done in 6.0 min, saved
+[GPU 0, certified2, seed 43] [4/5] 4-task1687_sentiment140_classification: running ...
+[GPU 1, certified2, seed 44]       ... 2 min (latest progress bar: 205/250)
+[GPU 0, certified2, seed 43]       ... 2 min (latest progress bar: 216/250)
+[GPU 1, certified2, seed 44]       4-task1687_sentiment140_classification done in 4.0 min, saved
+[GPU 1, certified2, seed 44] [5/5] 5-task875_emotion_classification: running ...
+[GPU 0, certified2, seed 43]       4-task1687_sentiment140_classification done in 4.0 min, saved
+[GPU 0, certified2, seed 43] [5/5] 5-task875_emotion_classification: running ...
+[GPU 1, certified2, seed 44]       ... 2 min (latest progress bar: 176/250)
+[GPU 0, certified2, seed 43]       ... 2 min (latest progress bar: 186/250)
+[GPU 1, certified2, seed 44]       5-task875_emotion_classification done in 4.0 min, saved
+[GPU 0, certified2, seed 43]       5-task875_emotion_classification done in 4.0 min, saved
+
+======================================== seed 43 ========================================
+method               tasks   learned      AP      FT   minutes
+certified2               5     77.09   15.35   77.18        20
+
+each task: score right after it was learned -> score at the end
+task                                                certified2
+task1510_evalution_relation_extraction           99.7 ->   0.0
+task363_sst2_polarity_classification             81.0 ->   0.0
+task748_glucose_reverse_cause_event_de           59.8 ->   0.7
+task1687_sentiment140_classification             69.0 ->   0.0
+task875_emotion_classification                   76.0 ->  76.0
+
+certified2: the protected zone of each task
+   [certified] task 1: opening of 12 tokens; zone radius 19.71 (0.5 x 39.41, the distance to the nearest known signature); 0 earlier zones loaded; training inputs already inside an older zone: 0 of 800 (not blocked: SA_NO_BLOCK is on, adapters 1..t are on for all of them)
+   [certified] task 2: opening of 12 tokens; zone radius 0.00 (0.5 x 0.00, the distance to the nearest known signature); 1 earlier zones loaded; training inputs already inside an older zone: 800 of 800 (not blocked: SA_NO_BLOCK is on, adapters 1..t are on for all of them)
+   [certified] task 3: opening of 12 tokens; zone radius 0.00 (0.5 x 0.00, the distance to the nearest known signature); 2 earlier zones loaded; training inputs already inside an older zone: 800 of 800 (not blocked: SA_NO_BLOCK is on, adapters 1..t are on for all of them)
+   [certified] task 4: opening of 12 tokens; zone radius 0.00 (0.5 x 0.00, the distance to the nearest known signature); 3 earlier zones loaded; training inputs already inside an older zone: 800 of 800 (not blocked: SA_NO_BLOCK is on, adapters 1..t are on for all of them)
+   [certified] task 5: opening of 12 tokens; zone radius 0.00 (0.5 x 0.00, the distance to the nearest known signature); 4 earlier zones loaded; training inputs already inside an older zone: 800 of 800 (not blocked: SA_NO_BLOCK is on, adapters 1..t are on for all of them)
+
+certified2 run, re-test after 5 tasks. Scores here use every reference answer (the official score
+picks one at random), so they can differ a little from the table above. `tasks`: how many tasks have this wording.
+wording   rule                   tasks  learned      AP      FT   answers changed  right task     certified
+original  all on (= plain)           5    77.83   15.35   78.10        400 of 400                          
+original  nearest centre             5    75.63   73.88    2.18         11 of 400       0.928              
+original  table:ridge                5    77.43   76.83    0.75          6 of 400       0.984              
+original  table:joint                5    77.43   76.83    0.75          6 of 400       0.986              
+original  table:claims               5    76.83   76.23    0.75          5 of 400       0.976              
+original  table:handicap             5    77.43   77.43    0.00          1 of 400       0.994              
+original  table:own                  5    77.83   77.83    0.00          0 of 400       1.000              
+re-test equals the official test (same answers, of inputs), per task: [[100, 100], [200, 200], [300, 300], [400, 400], [500, 500]]
+
+answers changed: answers to a task's test inputs that differ between right after learning it and the end.
+right task: share of test inputs at the end that were given to their own task. certified: inputs inside a protected zone.
+
+======================================== seed 44 ========================================
+method               tasks   learned      AP      FT   minutes
+certified2               5     77.61   14.78   78.53        20
+
+each task: score right after it was learned -> score at the end
+task                                                certified2
+task1510_evalution_relation_extraction           99.7 ->   0.0
+task363_sst2_polarity_classification             85.0 ->   0.0
+task748_glucose_reverse_cause_event_de           60.4 ->   0.9
+task1687_sentiment140_classification             70.0 ->   0.0
+task875_emotion_classification                   73.0 ->  73.0
+
+certified2: the protected zone of each task
+   [certified] task 1: opening of 12 tokens; zone radius 19.71 (0.5 x 39.41, the distance to the nearest known signature); 0 earlier zones loaded; training inputs already inside an older zone: 0 of 800 (not blocked: SA_NO_BLOCK is on, adapters 1..t are on for all of them)
+   [certified] task 2: opening of 12 tokens; zone radius 0.00 (0.5 x 0.00, the distance to the nearest known signature); 1 earlier zones loaded; training inputs already inside an older zone: 800 of 800 (not blocked: SA_NO_BLOCK is on, adapters 1..t are on for all of them)
+   [certified] task 3: opening of 12 tokens; zone radius 0.00 (0.5 x 0.00, the distance to the nearest known signature); 2 earlier zones loaded; training inputs already inside an older zone: 800 of 800 (not blocked: SA_NO_BLOCK is on, adapters 1..t are on for all of them)
+   [certified] task 4: opening of 12 tokens; zone radius 0.00 (0.5 x 0.00, the distance to the nearest known signature); 3 earlier zones loaded; training inputs already inside an older zone: 800 of 800 (not blocked: SA_NO_BLOCK is on, adapters 1..t are on for all of them)
+   [certified] task 5: opening of 12 tokens; zone radius 0.00 (0.5 x 0.00, the distance to the nearest known signature); 4 earlier zones loaded; training inputs already inside an older zone: 800 of 800 (not blocked: SA_NO_BLOCK is on, adapters 1..t are on for all of them)
+
+certified2 run, re-test after 5 tasks. Scores here use every reference answer (the official score
+picks one at random), so they can differ a little from the table above. `tasks`: how many tasks have this wording.
+wording   rule                   tasks  learned      AP      FT   answers changed  right task     certified
+original  all on (= plain)           5    78.13   14.78   79.19        400 of 400                          
+original  nearest centre             5    76.53   74.99    1.93         11 of 400       0.928              
+original  table:ridge                5    77.73   77.33    0.50          6 of 400       0.984              
+original  table:joint                5    77.73   77.33    0.50          6 of 400       0.986              
+original  table:claims               5    77.13   76.53    0.75          5 of 400       0.976              
+original  table:handicap             5    77.73   77.73    0.00          1 of 400       0.994              
+original  table:own                  5    78.13   78.13    0.00          0 of 400       1.000              
+re-test equals the official test (same answers, of inputs), per task: [[100, 100], [200, 200], [300, 300], [400, 400], [500, 500]]
+
+answers changed: answers to a task's test inputs that differ between right after learning it and the end.
+right task: share of test inputs at the end that were given to their own task. certified: inputs inside a protected zone.
+
+======================================== all seeds together ========================================
+Mean over the seeds, with the lowest and the highest seed in brackets. Only seeds in which the method finished every task.
+method               seeds                   learned                        AP                        FT
+certified2               2    77.35 (77.09 to 77.61)    15.06 (14.78 to 15.35)    77.86 (77.18 to 78.53)
+
+re-test (every reference answer): mean over the seeds; answers changed are added up
+method              wording   rule                   seeds  learned      AP      FT     answers changed
+certified2          original  all on (= plain)           2    77.98   15.06   78.64          800 of 800
+certified2          original  nearest centre             2    76.08   74.43    2.06           22 of 800
+certified2          original  table:ridge                2    77.58   77.08    0.62           12 of 800
+certified2          original  table:joint                2    77.58   77.08    0.62           12 of 800
+certified2          original  table:claims               2    76.98   76.38    0.75           10 of 800
+certified2          original  table:handicap             2    77.58   77.58    0.00            2 of 800
+certified2          original  table:own                  2    77.98   77.98    0.00            0 of 800
+
+############ seed 43: against the numbers of the earlier runs (those are seed 42) ############
+
+======================== all rules, and the published methods without definitions ========================
+learned: average score right after learning each task (route at the task's own arrival) | AP: average score after all tasks
+FT: forgetting (lower is better) | answers changed: answers to the inputs of the first four tasks (400) that differ between
+right after learning the task and the end. Re-test numbers use every reference answer; the official-test row uses one.
+
+run                                           learned      AP      FT   answers changed
+ours, table:ridge                               77.43   76.83    0.75          6 of 400
+ours, table:handicap                            77.43   77.43    0.00          1 of 400
+ours, all                                       77.83   15.35   78.10        400 of 400
+ours, centre                                    75.63   73.88    2.18         11 of 400
+ours, table:joint                               77.43   76.83    0.75          6 of 400
+ours, table:claims                              76.83   76.23    0.75          5 of 400
+ours, table:own                                 77.83   77.83    0.00          0 of 400
+ours, official test (= all)                     77.09   15.35   77.18
+---------------------------------------------------------------------------------------
+InfLoRA, no definitions, re-test                51.46   37.45   18.01        217 of 400
+InfLoRA, no definitions, official test          51.08   37.28   17.75
+GainLoRA, no definitions, re-test               56.08   51.94    6.51        129 of 400
+GainLoRA, no definitions, official test         55.82   51.64    6.55
+---------------------------------------------------------------------------------------
+ours WITH definitions (earlier), all            79.33   33.54   57.23        331 of 400
+ours WITH definitions (earlier), centre         79.33   79.33    0.00          0 of 400
+
+############ seed 44: against the numbers of the earlier runs (those are seed 42) ############
+
+======================== all rules, and the published methods without definitions ========================
+learned: average score right after learning each task (route at the task's own arrival) | AP: average score after all tasks
+FT: forgetting (lower is better) | answers changed: answers to the inputs of the first four tasks (400) that differ between
+right after learning the task and the end. Re-test numbers use every reference answer; the official-test row uses one.
+
+run                                           learned      AP      FT   answers changed
+ours, table:ridge                               77.73   77.33    0.50          6 of 400
+ours, table:handicap                            77.73   77.73    0.00          1 of 400
+ours, all                                       78.13   14.78   79.19        400 of 400
+ours, centre                                    76.53   74.99    1.93         11 of 400
+ours, table:joint                               77.73   77.33    0.50          6 of 400
+ours, table:claims                              77.13   76.53    0.75          5 of 400
+ours, table:own                                 78.13   78.13    0.00          0 of 400
+ours, official test (= all)                     77.61   14.78   78.53
+---------------------------------------------------------------------------------------
+InfLoRA, no definitions, re-test                51.46   37.45   18.01        217 of 400
+InfLoRA, no definitions, official test          51.08   37.28   17.75
+GainLoRA, no definitions, re-test               56.08   51.94    6.51        129 of 400
+GainLoRA, no definitions, official test         55.82   51.64    6.55
+---------------------------------------------------------------------------------------
+ours WITH definitions (earlier), all            79.33   33.54   57.23        331 of 400
+ours WITH definitions (earlier), centre         79.33   79.33    0.00          0 of 400
+
+saved: /kaggle/working/silent_adapters/superni_noinstruction5_ours_seeds43_44_t5base_e10/results.json | scores, answers and logs in one file: /kaggle/working/silent_adapters/superni_noinstruction5_ours_seeds43_44_t5base_e10_small_files.zip
+2 seed(s), 5 tasks, reduced setting: an early look, not a result. Copy everything above into the chat.
+/usr/local/lib/python3.13/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\|'
+  cells[i][c] = re.sub('\\\\\|', '|', cell)
+/usr/local/lib/python3.13/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\_'
+  text = re.sub(r'_', '\_', text) # Escape underscores in display text
+[NbConvertApp] Converting notebook __notebook__.ipynb to notebook
+[NbConvertApp] Writing 204403 bytes to __notebook__.ipynb
+[NbConvertApp] Converting notebook __notebook__.ipynb to html
+[NbConvertApp] Writing 1446496 bytes to __results__.html

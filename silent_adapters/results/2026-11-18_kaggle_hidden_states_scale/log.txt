@@ -1,0 +1,239 @@
+/usr/local/lib/python3.13/dist-packages/nbformat/validator.py:434: MissingIDFieldWarning: Cell is missing an id field, this will become a hard error in future nbformat versions. You may want to use `normalize()` on your notebooks before validations (available since nbformat 5.1.4). Previous versions of nbformat are fixing this issue transparently, and will stop doing so in the future.
+  _validate(nbdict, ref, version, version_minor, relax_add_props)
+0.00s - Debugger warning: It seems that frozen modules are being used, which may
+0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off
+0.00s - to python to disable frozen modules.
+0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.
+0.00s - Debugger warning: It seems that frozen modules are being used, which may
+0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off
+0.00s - to python to disable frozen modules.
+0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.
+[     0s] QUICK = False | output /kaggle/working/hidden_states_scale | work /tmp/hidden_states_scale
+[     0s] pool sha1 86afd1e85d51cf6733db68381d70fea63a496742 | fresh tasks 90
+[     4s] official repository at /tmp/hidden_states_scale/gainlora | commit e9d0d700538c8d12892f7fd52b216291f7e42acc
+[     4s] Long Sequence order 4: mnli,cb,wic,copa,qqp,boolq,rte,imdb,yelp,amazon,sst2,dbpedia,agnews,multirc,yahoo
+[     8s] fresh tasks 10/90 read; fingerprints matching so far 10
+[    12s] fresh tasks 20/90 read; fingerprints matching so far 20
+[    17s] fresh tasks 30/90 read; fingerprints matching so far 30
+[    20s] fresh tasks 40/90 read; fingerprints matching so far 40
+[    23s] fresh tasks 50/90 read; fingerprints matching so far 50
+[    26s] fresh tasks 60/90 read; fingerprints matching so far 60
+[    29s] fresh tasks 70/90 read; fingerprints matching so far 70
+[    32s] fresh tasks 80/90 read; fingerprints matching so far 80
+[    36s] fresh tasks 90/90 read; fingerprints matching so far 90
+[    36s] FINGERPRINT CHECK: 90 of 90 fresh tasks identical to the CPU files; data_differs = 0; download_failed = 0
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[    66s] encoder t5-base on cuda | fp32
+[    69s] features SuperNI/task1572_samsum_summary {'cal': (64, 768), 'fit': (64, 768), 'test': (20, 768)}
+[    70s] features SuperNI/task363_sst2_polarity_classification {'cal': (200, 768), 'fit': (200, 768), 'test': (100, 768)}
+[    77s] features SuperNI/task1290_xsum_summarization {'cal': (200, 768), 'fit': (200, 768), 'test': (100, 768)}
+[    78s] features SuperNI/task181_outcome_extraction {'cal': (135, 768), 'fit': (135, 768), 'test': (43, 768)}
+[    84s] features SuperNI/task002_quoref_answer_generation {'cal': (200, 768), 'fit': (200, 768), 'test': (100, 768)}
+[    85s] features SuperNI/task1510_evalution_relation_extraction {'cal': (200, 768), 'fit': (200, 768), 'test': (100, 768)}
+[    85s] features SuperNI/task639_multi_woz_user_utterance_generation {'cal': (56, 768), 'fit': (57, 768), 'test': (18, 768)}
+[    90s] features SuperNI/task1729_personachat_generate_next {'cal': (200, 768), 'fit': (200, 768), 'test': (100, 768)}
+[    91s] features SuperNI/task073_commonsenseqa_answer_generation {'cal': (200, 768), 'fit': (200, 768), 'test': (100, 768)}
+[    93s] features SuperNI/task1590_diplomacy_text_generation {'cal': (50, 768), 'fit': (50, 768), 'test': (16, 768)}
+[    95s] features SuperNI/task748_glucose_reverse_cause_event_detection {'cal': (200, 768), 'fit': (200, 768), 'test': (100, 768)}
+[   102s] features SuperNI/task511_reddit_tifu_long_text_summarization {'cal': (200, 768), 'fit': (200, 768), 'test': (100, 768)}
+[   102s] features SuperNI/task591_sciq_answer_generation {'cal': (200, 768), 'fit': (200, 768), 'test': (100, 768)}
+[   103s] features SuperNI/task1687_sentiment140_classification {'cal': (200, 768), 'fit': (200, 768), 'test': (100, 768)}
+[   104s] features SuperNI/task875_emotion_classification {'cal': (200, 768), 'fit': (200, 768), 'test': (100, 768)}
+[   181s] features Long_Sequence/yelp {'cal': (200, 768), 'fit': (200, 768), 'test': (7600, 768)}
+[   249s] features Long_Sequence/amazon {'cal': (200, 768), 'fit': (200, 768), 'test': (7600, 768)}
+[   276s] features Long_Sequence/mnli {'cal': (200, 768), 'fit': (200, 768), 'test': (7600, 768)}
+[   278s] features Long_Sequence/cb {'cal': (100, 768), 'fit': (100, 768), 'test': (56, 768)}
+[   279s] features Long_Sequence/copa {'cal': (160, 768), 'fit': (160, 768), 'test': (100, 768)}
+[   302s] features Long_Sequence/qqp {'cal': (200, 768), 'fit': (200, 768), 'test': (7600, 768)}
+[   306s] features Long_Sequence/rte {'cal': (200, 768), 'fit': (200, 768), 'test': (277, 768)}
+[   413s] features Long_Sequence/imdb {'cal': (200, 768), 'fit': (200, 768), 'test': (7600, 768)}
+[   416s] features Long_Sequence/sst2 {'cal': (200, 768), 'fit': (200, 768), 'test': (872, 768)}
+[   468s] features Long_Sequence/dbpedia {'cal': (200, 768), 'fit': (200, 768), 'test': (7600, 768)}
+[   506s] features Long_Sequence/agnews {'cal': (200, 768), 'fit': (200, 768), 'test': (7600, 768)}
+[   579s] features Long_Sequence/yahoo {'cal': (200, 768), 'fit': (200, 768), 'test': (7600, 768)}
+[   652s] features Long_Sequence/multirc {'cal': (200, 768), 'fit': (200, 768), 'test': (4848, 768)}
+[   691s] features Long_Sequence/boolq {'cal': (200, 768), 'fit': (200, 768), 'test': (3270, 768)}
+[   693s] features Long_Sequence/wic {'cal': (200, 768), 'fit': (200, 768), 'test': (638, 768)}
+[   736s] features of fresh tasks up to 10
+[   796s] features of fresh tasks up to 20
+[   844s] features of fresh tasks up to 30
+[   877s] features of fresh tasks up to 40
+[   911s] features of fresh tasks up to 50
+[   941s] features of fresh tasks up to 60
+[   966s] features of fresh tasks up to 70
+[   996s] features of fresh tasks up to 80
+[  1027s] features of fresh tasks up to 90
+[  1027s] features done: 120 tasks; 90058 test inputs; 46731 fit+held-out inputs
+[  1028s] superni_order1 L and H' done 1 s
+[  1029s] superni_order2 L and H' done 1 s
+[  1035s] long_order3 L and H' done 6 s
+[  1040s] long_order4 L and H' done 5 s
+[  1043s] fresh30 L and H' done 3 s
+[  1046s] fresh30_random L and H' done 3 s
+[  1054s] fresh60 L and H' done 9 s
+[  1063s] fresh60_random L and H' done 9 s
+[  1082s] fresh90 L and H' done 19 s
+[  1101s] fresh90_random L and H' done 19 s
+[  1194s] all120 L and H' done 93 s
+[  1287s] all120_random L and H' done 93 s
+[  1292s] superni_order1 J done 4 s
+[  1297s] superni_order2 J done 5 s
+[  1327s] long_order3 J done 30 s
+[  1356s] long_order4 J done 29 s
+[  1403s] fresh30 J done 46 s
+[  1441s] fresh30_random J done 39 s
+
+== superni_order1: 15 tasks (mean +- standard error over tasks)
+          own_at_arrival      own_at_end         changed    changed_ever     certificate         upper95     prior_bound   (H': handicap_bound, takes_of_own_heldout)
+  L      0.9987+-0.0013 0.9903+-0.0062 0.0084+-0.0052 0.0090+-0.0053 0.0154+-0.0052 0.0339+-0.0077 0.0110+-0.0074
+  H'     0.9973+-0.0018 0.9923+-0.0041 0.0050+-0.0037 0.0050+-0.0037 0.0105+-0.0022 0.0275+-0.0052 0.0104+-0.0052 0.1736+-0.0449 0.9960+-0.0025
+  J      0.9973+-0.0021 0.9903+-0.0052 0.0070+-0.0042 0.0070+-0.0042 0.0117+-0.0027 0.0290+-0.0054 0.0124+-0.0068
+
+== superni_order2: 15 tasks (mean +- standard error over tasks)
+          own_at_arrival      own_at_end         changed    changed_ever     certificate         upper95     prior_bound   (H': handicap_bound, takes_of_own_heldout)
+  L      0.9967+-0.0019 0.9903+-0.0062 0.0090+-0.0052 0.0097+-0.0057 0.0148+-0.0054 0.0328+-0.0080 0.0130+-0.0074
+  H'     0.9953+-0.0022 0.9940+-0.0031 0.0013+-0.0013 0.0013+-0.0013 0.0096+-0.0020 0.0258+-0.0043 0.0107+-0.0051 0.1900+-0.0558 0.9950+-0.0027
+  J      0.9944+-0.0023 0.9903+-0.0052 0.0086+-0.0045 0.0086+-0.0045 0.0120+-0.0033 0.0292+-0.0059 0.0153+-0.0064
+
+== long_order3: 15 tasks (mean +- standard error over tasks)
+          own_at_arrival      own_at_end         changed    changed_ever     certificate         upper95     prior_bound   (H': handicap_bound, takes_of_own_heldout)
+  L      0.9927+-0.0055 0.9777+-0.0121 0.0164+-0.0107 0.0203+-0.0126 0.0269+-0.0126 0.0444+-0.0153 0.0296+-0.0153
+  H'     0.9706+-0.0273 0.9667+-0.0271 0.0040+-0.0024 0.0040+-0.0024 0.0087+-0.0018 0.0212+-0.0028 0.0627+-0.0544 0.1178+-0.0229 0.9763+-0.0202
+  J      0.9900+-0.0079 0.9802+-0.0105 0.0116+-0.0082 0.0134+-0.0091 0.0226+-0.0096 0.0395+-0.0123 0.0298+-0.0165
+  reading of rule L: works on the second benchmark | audit met | own_at_end 0.9777
+
+== long_order4: 15 tasks (mean +- standard error over tasks)
+          own_at_arrival      own_at_end         changed    changed_ever     certificate         upper95     prior_bound   (H': handicap_bound, takes_of_own_heldout)
+  L      0.9902+-0.0061 0.9777+-0.0121 0.0161+-0.0108 0.0185+-0.0124 0.0256+-0.0125 0.0427+-0.0151 0.0321+-0.0158
+  H'     0.9651+-0.0308 0.9626+-0.0307 0.0026+-0.0015 0.0026+-0.0015 0.0077+-0.0014 0.0198+-0.0023 0.0722+-0.0615 0.1200+-0.0255 0.9687+-0.0251
+  J      0.9888+-0.0078 0.9802+-0.0105 0.0111+-0.0082 0.0137+-0.0093 0.0216+-0.0095 0.0382+-0.0121 0.0310+-0.0165
+  reading of rule L: works on the second benchmark | audit met | own_at_end 0.9777
+
+== fresh30: 30 tasks (mean +- standard error over tasks)
+          own_at_arrival      own_at_end         changed    changed_ever     certificate         upper95     prior_bound   (H': handicap_bound, takes_of_own_heldout)
+  L      0.9918+-0.0045 0.9820+-0.0085 0.0135+-0.0077 0.0143+-0.0079 0.0176+-0.0062 0.0316+-0.0077 0.0262+-0.0114
+  H'     0.9793+-0.0117 0.9753+-0.0118 0.0050+-0.0027 0.0050+-0.0027 0.0088+-0.0019 0.0206+-0.0027 0.0453+-0.0233 0.2164+-0.0240 0.9795+-0.0136
+  J      0.9913+-0.0043 0.9880+-0.0045 0.0065+-0.0026 0.0095+-0.0033 0.0126+-0.0026 0.0262+-0.0036 0.0207+-0.0084
+
+== fresh30_random: 30 tasks (mean +- standard error over tasks)
+          own_at_arrival      own_at_end         changed    changed_ever     certificate         upper95     prior_bound   (H': handicap_bound, takes_of_own_heldout)
+  L      0.9895+-0.0054 0.9795+-0.0093 0.0143+-0.0079 0.0160+-0.0084 0.0186+-0.0075 0.0326+-0.0090 0.0310+-0.0131
+  H'     0.9782+-0.0127 0.9765+-0.0127 0.0022+-0.0011 0.0022+-0.0011 0.0086+-0.0018 0.0204+-0.0025 0.0453+-0.0254 0.2164+-0.0240 0.9787+-0.0127
+  J      0.9918+-0.0035 0.9890+-0.0036 0.0062+-0.0020 0.0107+-0.0033 0.0114+-0.0021 0.0246+-0.0030 0.0192+-0.0069
+
+== fresh60: 60 tasks (mean +- standard error over tasks)
+          own_at_arrival      own_at_end         changed    changed_ever     certificate         upper95     prior_bound   (H': handicap_bound, takes_of_own_heldout)
+  L      0.9752+-0.0090 0.9371+-0.0156 0.0458+-0.0131 0.0505+-0.0140 0.0517+-0.0130 0.0708+-0.0148 0.0877+-0.0222
+  H'     0.9237+-0.0248 0.9180+-0.0248 0.0074+-0.0029 0.0074+-0.0029 0.0114+-0.0021 0.0241+-0.0028 0.1583+-0.0495 0.4403+-0.0337 0.9197+-0.0259
+  J      skipped: 60 tasks (rule J is run only for sequences of at most 30 tasks)
+
+== fresh60_random: 60 tasks (mean +- standard error over tasks)
+          own_at_arrival      own_at_end         changed    changed_ever     certificate         upper95     prior_bound   (H': handicap_bound, takes_of_own_heldout)
+  L      0.9753+-0.0082 0.9361+-0.0152 0.0450+-0.0128 0.0498+-0.0136 0.0509+-0.0137 0.0697+-0.0154 0.0886+-0.0211
+  H'     0.9191+-0.0264 0.9139+-0.0264 0.0070+-0.0022 0.0070+-0.0022 0.0116+-0.0021 0.0244+-0.0028 0.1670+-0.0527 0.4403+-0.0337 0.9210+-0.0263
+  J      skipped: 60 tasks (rule J is run only for sequences of at most 30 tasks)
+
+== fresh90: 90 tasks (mean +- standard error over tasks)
+          own_at_arrival      own_at_end         changed    changed_ever     certificate         upper95     prior_bound   (H': handicap_bound, takes_of_own_heldout)
+  L      0.9636+-0.0090 0.9174+-0.0147 0.0543+-0.0123 0.0611+-0.0133 0.0621+-0.0126 0.0827+-0.0141 0.1190+-0.0214
+  H'     0.8981+-0.0236 0.8925+-0.0235 0.0087+-0.0026 0.0087+-0.0026 0.0129+-0.0021 0.0262+-0.0028 0.2094+-0.0471 0.6642+-0.0411 0.8972+-0.0239
+  J      skipped: 90 tasks (rule J is run only for sequences of at most 30 tasks)
+
+== fresh90_random: 90 tasks (mean +- standard error over tasks)
+          own_at_arrival      own_at_end         changed    changed_ever     certificate         upper95     prior_bound   (H': handicap_bound, takes_of_own_heldout)
+  L      0.9620+-0.0096 0.9151+-0.0150 0.0542+-0.0118 0.0612+-0.0127 0.0626+-0.0125 0.0835+-0.0139 0.1229+-0.0225
+  H'     0.9001+-0.0235 0.8941+-0.0234 0.0096+-0.0023 0.0096+-0.0023 0.0140+-0.0023 0.0277+-0.0030 0.2059+-0.0469 0.6642+-0.0411 0.9002+-0.0233
+  J      skipped: 90 tasks (rule J is run only for sequences of at most 30 tasks)
+
+== all120: 120 tasks (mean +- standard error over tasks)
+          own_at_arrival      own_at_end         changed    changed_ever     certificate         upper95     prior_bound   (H': handicap_bound, takes_of_own_heldout)
+  L      0.9560+-0.0095 0.9055+-0.0143 0.0597+-0.0112 0.0680+-0.0121 0.0674+-0.0112 0.0900+-0.0125 0.1385+-0.0219
+  H'     0.8889+-0.0212 0.8817+-0.0211 0.0106+-0.0023 0.0106+-0.0023 0.0142+-0.0018 0.0288+-0.0026 0.2295+-0.0423 1.0172+-0.0889 0.8880+-0.0215
+  J      skipped: 120 tasks (rule J is run only for sequences of at most 30 tasks)
+
+== all120_random: 120 tasks (mean +- standard error over tasks)
+          own_at_arrival      own_at_end         changed    changed_ever     certificate         upper95     prior_bound   (H': handicap_bound, takes_of_own_heldout)
+  L      0.9526+-0.0100 0.9031+-0.0142 0.0580+-0.0105 0.0657+-0.0113 0.0686+-0.0110 0.0917+-0.0124 0.1444+-0.0225
+  H'     0.8930+-0.0206 0.8856+-0.0205 0.0099+-0.0020 0.0099+-0.0020 0.0144+-0.0019 0.0291+-0.0027 0.2215+-0.0410 1.0172+-0.0889 0.8947+-0.0204
+  J      skipped: 120 tasks (rule J is run only for sequences of at most 30 tasks)
+
+Share given to the own task after the last task, against the number of tasks (rule L / H' / J):
+  superni_order1    15 tasks  L 0.9903  H' 0.9923  J 0.9903
+  long_order3       15 tasks  L 0.9777  H' 0.9667  J 0.9802
+  fresh30           30 tasks  L 0.9820  H' 0.9753  J 0.9880
+  fresh30_random    30 tasks  L 0.9795  H' 0.9765  J 0.9890
+  fresh60           60 tasks  L 0.9371  H' 0.9180  J -
+  fresh60_random    60 tasks  L 0.9361  H' 0.9139  J -
+  fresh90           90 tasks  L 0.9174  H' 0.8925  J -
+  fresh90_random    90 tasks  L 0.9151  H' 0.8941  J -
+  all120           120 tasks  L 0.9055  H' 0.8817  J -
+  all120_random    120 tasks  L 0.9031  H' 0.8856  J -
+
+Random split minus fresh_split (rule L):
+  fresh30_random - fresh30: changed +0.0008  changed_ever +0.0017  own_at_end -0.0025
+  fresh60_random - fresh60: changed -0.0008  changed_ever -0.0007  own_at_end -0.0010
+  fresh90_random - fresh90: changed -0.0001  changed_ever +0.0001  own_at_end -0.0023
+  all120_random - all120: changed -0.0017  changed_ever -0.0023  own_at_end -0.0024
+
+Per task, long_order3, rule L / H' (arrival, end, changed, certificate (c/m), top wrong destination):
+  Long_Sequence/yelp                 L 1.000 0.988 0.012 0.025 (4/200) -> Long_Sequence/sst2     | H' 1.000 0.992 0.008 0.020
+  Long_Sequence/amazon               L 0.997 0.965 0.033 0.060 (11/200) -> Long_Sequence/imdb     | H' 0.997 0.984 0.013 0.020
+  Long_Sequence/mnli                 L 1.000 0.838 0.162 0.194 (38/200) -> Long_Sequence/rte      | H' 1.000 0.965 0.035 0.025
+  Long_Sequence/cb                   L 1.000 1.000 0.000 0.030 (2/100) ->                        | H' 1.000 1.000 0.000 0.010
+  Long_Sequence/copa                 L 1.000 1.000 0.000 0.006 (0/160) ->                        | H' 1.000 1.000 0.000 0.006
+  Long_Sequence/qqp                  L 1.000 1.000 0.000 0.005 (0/200) ->                        | H' 1.000 1.000 0.000 0.005
+  Long_Sequence/rte                  L 0.917 0.899 0.025 0.035 (6/200) -> Long_Sequence/mnli     | H' 0.588 0.588 0.000 0.005
+  Long_Sequence/imdb                 L 0.999 0.999 0.001 0.005 (0/200) -> Long_Sequence/amazon   | H' 0.998 0.998 0.000 0.005
+  Long_Sequence/sst2                 L 0.999 0.999 0.000 0.005 (0/200) -> Long_Sequence/imdb     | H' 0.998 0.998 0.000 0.005
+  Long_Sequence/dbpedia              L 0.999 0.999 0.001 0.010 (1/200) -> Long_Sequence/amazon   | H' 0.999 0.998 0.000 0.005
+  Long_Sequence/agnews               L 0.987 0.990 0.004 0.010 (1/200) -> Long_Sequence/amazon   | H' 0.987 0.987 0.001 0.005
+  Long_Sequence/yahoo                L 0.994 0.991 0.006 0.005 (0/200) -> Long_Sequence/imdb     | H' 0.994 0.991 0.003 0.005
+  Long_Sequence/multirc              L 1.000 1.000 0.000 0.005 (0/200) ->                        | H' 1.000 1.000 0.000 0.005
+  Long_Sequence/boolq                L 1.000 1.000 0.000 0.005 (0/200) ->                        | H' 1.000 1.000 0.000 0.005
+  Long_Sequence/wic                  L 0.998 0.998 0.000 0.005 (0/200) -> Long_Sequence/yelp     | H' 0.998 0.998 0.000 0.005
+
+Per task, long_order4, rule L / H' (arrival, end, changed, certificate (c/m), top wrong destination):
+  Long_Sequence/mnli                 L 1.000 0.838 0.162 0.194 (38/200) -> Long_Sequence/rte      | H' 1.000 0.979 0.021 0.025
+  Long_Sequence/cb                   L 1.000 1.000 0.000 0.030 (2/100) ->                        | H' 1.000 1.000 0.000 0.010
+  Long_Sequence/wic                  L 1.000 0.998 0.002 0.005 (0/200) -> Long_Sequence/yelp     | H' 1.000 0.998 0.002 0.005
+  Long_Sequence/copa                 L 1.000 1.000 0.000 0.006 (0/160) ->                        | H' 1.000 1.000 0.000 0.006
+  Long_Sequence/qqp                  L 1.000 1.000 0.000 0.005 (0/200) ->                        | H' 1.000 1.000 0.000 0.005
+  Long_Sequence/boolq                L 1.000 1.000 0.000 0.005 (0/200) ->                        | H' 1.000 1.000 0.000 0.005
+  Long_Sequence/rte                  L 0.910 0.899 0.040 0.040 (7/200) -> Long_Sequence/mnli     | H' 0.534 0.534 0.000 0.005
+  Long_Sequence/imdb                 L 1.000 0.999 0.001 0.005 (0/200) -> Long_Sequence/amazon   | H' 1.000 0.999 0.001 0.005
+  Long_Sequence/yelp                 L 0.997 0.988 0.011 0.020 (3/200) -> Long_Sequence/sst2     | H' 0.997 0.990 0.008 0.015
+  Long_Sequence/amazon               L 0.971 0.965 0.021 0.040 (7/200) -> Long_Sequence/imdb     | H' 0.971 0.963 0.007 0.010
+  Long_Sequence/sst2                 L 0.999 0.999 0.000 0.005 (0/200) -> Long_Sequence/imdb     | H' 0.998 0.998 0.000 0.005
+  Long_Sequence/dbpedia              L 0.999 0.999 0.001 0.010 (1/200) -> Long_Sequence/amazon   | H' 0.999 0.998 0.001 0.005
+  Long_Sequence/agnews               L 0.988 0.990 0.004 0.010 (1/200) -> Long_Sequence/amazon   | H' 0.988 0.988 0.000 0.005
+  Long_Sequence/multirc              L 1.000 1.000 0.000 0.005 (0/200) ->                        | H' 1.000 1.000 0.000 0.005
+  Long_Sequence/yahoo                L 0.991 0.991 0.000 0.005 (0/200) -> Long_Sequence/imdb     | H' 0.991 0.991 0.000 0.005
+
+Per task, superni_order1, rule L / H' (arrival, end, changed, certificate (c/m), top wrong destination):
+  SuperNI/task1572_samsum_summary    L 1.000 1.000 0.000 0.015 (0/64) ->                        | H' 1.000 1.000 0.000 0.015
+  SuperNI/task363_sst2_polarity_clas L 1.000 0.990 0.010 0.010 (1/200) -> SuperNI/task639_multi_ | H' 1.000 0.990 0.010 0.010
+  SuperNI/task1290_xsum_summarizatio L 1.000 1.000 0.000 0.025 (4/200) ->                        | H' 1.000 1.000 0.000 0.015
+  SuperNI/task181_outcome_extraction L 1.000 1.000 0.000 0.007 (0/135) ->                        | H' 1.000 1.000 0.000 0.007
+  SuperNI/task002_quoref_answer_gene L 1.000 1.000 0.000 0.005 (0/200) ->                        | H' 1.000 1.000 0.000 0.005
+  SuperNI/task1510_evalution_relatio L 1.000 1.000 0.000 0.005 (0/200) ->                        | H' 1.000 1.000 0.000 0.005
+  SuperNI/task639_multi_woz_user_utt L 1.000 0.944 0.056 0.035 (1/56) -> SuperNI/task1687_senti | H' 1.000 0.944 0.056 0.035
+  SuperNI/task1729_personachat_gener L 1.000 1.000 0.000 0.005 (0/200) ->                        | H' 1.000 1.000 0.000 0.005
+  SuperNI/task073_commonsenseqa_answ L 1.000 1.000 0.000 0.005 (0/200) ->                        | H' 1.000 1.000 0.000 0.005
+  SuperNI/task1590_diplomacy_text_ge L 1.000 1.000 0.000 0.020 (0/50) ->                        | H' 1.000 1.000 0.000 0.020
+  SuperNI/task748_glucose_reverse_ca L 1.000 1.000 0.000 0.005 (0/200) ->                        | H' 1.000 1.000 0.000 0.005
+  SuperNI/task511_reddit_tifu_long_t L 1.000 1.000 0.000 0.005 (0/200) ->                        | H' 1.000 1.000 0.000 0.005
+  SuperNI/task591_sciq_answer_genera L 1.000 1.000 0.000 0.005 (0/200) ->                        | H' 1.000 1.000 0.000 0.005
+  SuperNI/task1687_sentiment140_clas L 0.980 0.920 0.060 0.080 (15/200) -> SuperNI/task875_emotio | H' 0.980 0.970 0.010 0.015
+  SuperNI/task875_emotion_classifica L 1.000 1.000 0.000 0.005 (0/200) ->                        | H' 0.980 0.980 0.000 0.005
+
+results written to /kaggle/working/hidden_states_scale/results.json | total 1442 s
+/usr/local/lib/python3.13/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\|'
+  cells[i][c] = re.sub('\\\\\|', '|', cell)
+/usr/local/lib/python3.13/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\_'
+  text = re.sub(r'_', '\_', text) # Escape underscores in display text
+[NbConvertApp] Converting notebook __notebook__.ipynb to notebook
+[NbConvertApp] Writing 177647 bytes to __notebook__.ipynb
+[NbConvertApp] Converting notebook __notebook__.ipynb to html
+[NbConvertApp] Writing 673758 bytes to __results__.html

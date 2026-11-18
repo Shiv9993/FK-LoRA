@@ -1,0 +1,49 @@
+Output of quick_test_colab.ipynb on a Colab T4, pasted by the user on 2026-11-17.
+Five tasks, t5-base, 10 epochs, seed 42. `plain` and `locked` were finished earlier and skipped;
+`certified` was trained in this run. Code version: commit 7892ef6.
+
+method               tasks   learned      AP      FT   minutes
+plain                    5     78.70   33.46   56.55        30
+locked                   5     78.70   78.88    0.00        32
+certified                5     78.70   78.88    0.00        38
+
+each task: score right after it was learned -> score at the end
+task                                                     plain                locked             certified
+task1510_evalution_relation_extraction           99.2 ->  14.5         99.2 ->  99.2         99.2 ->  99.2
+task363_sst2_polarity_classification             86.0 ->  18.0         86.0 ->  86.0         86.0 ->  86.0
+task748_glucose_reverse_cause_event_de           61.3 ->   6.8         61.3 ->  62.2         61.3 ->  62.2
+task1687_sentiment140_classification             74.0 ->  55.0         74.0 ->  74.0         74.0 ->  74.0
+task875_emotion_classification                   73.0 ->  73.0         73.0 ->  73.0         73.0 ->  73.0
+
+locked: test inputs (seen, not matched to a task) after each task: [[1400, 0], [1600, 0], [1800, 0], [2000, 0], [2200, 0]]
+locked: every task scores exactly the same at the end as right after it was learned: False
+
+certified: the protected zone of each task
+   [certified] task 1: opening of 129 tokens; zone radius 15.58 (0.5 x 31.16, the distance to the nearest known signature); 0 earlier zones loaded; training inputs already inside an older zone: 0 of 800
+   [certified] task 2: opening of 61 tokens; zone radius 14.54 (0.5 x 29.08, the distance to the nearest known signature); 1 earlier zones loaded; training inputs already inside an older zone: 0 of 800
+   [certified] task 3: opening of 105 tokens; zone radius 12.24 (0.5 x 24.48, the distance to the nearest known signature); 2 earlier zones loaded; training inputs already inside an older zone: 0 of 800
+   [certified] task 4: opening of 51 tokens; zone radius 15.88 (0.5 x 31.76, the distance to the nearest known signature); 3 earlier zones loaded; training inputs already inside an older zone: 0 of 800
+   [certified] task 5: opening of 74 tokens; zone radius 14.29 (0.5 x 28.57, the distance to the nearest known signature); 4 earlier zones loaded; training inputs already inside an older zone: 0 of 800
+
+certified run, re-test after 5 tasks. Same trained adapters for every rule. Scores here use
+every reference answer (the official score picks one at random), so they can differ a little from the table above.
+wording   rule                    learned      AP      FT   answers changed  right task   certified
+original  certified (ours)          79.33   79.33    0.00          0 of 400       1.000  500 of 500
+original  nearest task only         79.33   79.33    0.00          0 of 400       1.000
+original  exact key (= locked)      79.33   79.33    0.00          0 of 400       1.000
+original  all on (= plain)          79.33   33.54   57.23        331 of 400       0.200
+light     certified (ours)          79.15   79.15    0.00          0 of 400       1.000  499 of 500
+light     nearest task only         79.15   79.15    0.00          0 of 400       1.000
+light     exact key (= locked)      79.15   32.83   57.90        332 of 400       0.200
+light     all on (= plain)          79.15   32.83   57.90        332 of 400       0.200
+medium    certified (ours)          77.61   77.61    0.00          0 of 400       1.000  100 of 500
+medium    nearest task only         77.61   77.61    0.00          0 of 400       1.000
+medium    exact key (= locked)      77.61   32.72   56.11        334 of 400       0.200
+medium    all on (= plain)          77.61   32.72   56.11        334 of 400       0.200
+heavy     certified (ours)          75.32   75.32    0.00          0 of 400       0.974  100 of 500
+heavy     nearest task only         75.32   75.32    0.00          0 of 400       0.974
+heavy     exact key (= locked)      76.72   32.23   55.61        335 of 400       0.200
+heavy     all on (= plain)          76.72   32.23   55.61        335 of 400       0.200
+answers changed: answers to a task's test inputs that differ between right after learning it and the end.
+right task: share of test inputs at the end that were given to their own task. certified: inputs inside a protected zone.
+re-test equals the official test (same answers, of inputs), per task: [[100, 100], [200, 200], [300, 300], [400, 400], [500, 500]]

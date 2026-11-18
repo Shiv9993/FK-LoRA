@@ -1,0 +1,53 @@
+{
+ "_source": "silent_adapters/results/2026-11-18_kaggle_noinstruction_published_five_tasks/small_files.zip, seed 42, five tasks, NO task definitions, original wording; made with the notebook functions scores_of and retest_table",
+ "inflora": {
+  "official": {
+   "tasks_done": 5,
+   "learned": 51.08274,
+   "AP": 37.278980000000004,
+   "FT": 17.7547,
+   "minutes_per_task": [
+    2.0,
+    4.0,
+    6.0,
+    4.0,
+    4.0
+   ]
+  },
+  "retest": {
+   "official": {
+    "tasks": 5,
+    "learned": 51.46030605643466,
+    "AP": 37.452831660868405,
+    "FT": 18.009342994457818,
+    "changed": 217,
+    "compared": 400
+   }
+  }
+ },
+ "gainlora_inflora": {
+  "official": {
+   "tasks_done": 5,
+   "learned": 55.81694,
+   "AP": 51.63982,
+   "FT": 6.5547499999999985,
+   "minutes_per_task": [
+    4.0,
+    4.0,
+    6.0,
+    4.0,
+    4.0
+   ]
+  },
+  "retest": {
+   "official": {
+    "tasks": 5,
+    "learned": 56.08429545816297,
+    "AP": 51.94169771038794,
+    "FT": 6.511580518052115,
+    "changed": 129,
+    "compared": 400
+   }
+  }
+ }
+}

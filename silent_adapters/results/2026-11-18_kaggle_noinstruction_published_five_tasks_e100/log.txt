@@ -1,0 +1,235 @@
+/usr/local/lib/python3.13/dist-packages/nbformat/validator.py:434: MissingIDFieldWarning: Cell is missing an id field, this will become a hard error in future nbformat versions. You may want to use `normalize()` on your notebooks before validations (available since nbformat 5.1.4). Previous versions of nbformat are fixing this issue transparently, and will stop doing so in the future.
+  _validate(nbdict, ref, version, version_minor, relax_add_props)
+0.00s - Debugger warning: It seems that frozen modules are being used, which may
+0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off
+0.00s - to python to disable frozen modules.
+0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.
+0.00s - Debugger warning: It seems that frozen modules are being used, which may
+0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off
+0.00s - to python to disable frozen modules.
+0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.
+results are saved in: /kaggle/working/silent_adapters/superni_noinstruction5_published_t5base_e100
+GPU: Tesla T4, 15360 MiB | Tesla T4, 15360 MiB
+$ git clone https://github.com/liangyanshuo/gainlora /tmp/silent_adapters_work/gainlora
+$ git -C /tmp/silent_adapters_work/gainlora checkout e9d0d700538c8d12892f7fd52b216291f7e42acc
+$ /usr/bin/python3 -m pip install -q uv
+$ uv venv --python 3.10.12 /tmp/silent_adapters_work/env
+$ uv pip install -q --python /tmp/silent_adapters_work/env/bin/python torch==2.1.0 --index-url https://download.pytorch.org/whl/cu121
+$ uv pip install -q --python /tmp/silent_adapters_work/env/bin/python transformers==4.30.2 datasets==2.14.6 accelerate==0.24.1 numpy==1.22.4 fsspec==2023.10.0 ...
+$ uv pip install -q --python /tmp/silent_adapters_work/env/bin/python cupy-cuda12x==12.1.0 numpy==1.22.4
+torch 2.1.0+cu121 | transformers 4.30.2 | datasets 2.14.6 | numpy 1.22.4 | GPU seen by PyTorch: Tesla T4
+CuPy does not work here. Reason:
+    Check the Installation Guide for details:
+      https://docs.cupy.dev/en/latest/install.html
+    
+    Original error:
+      ImportError: libcudart.so.12: cannot open shared object file: No such file or directory
+    ================================================================
+SVD step done with: pytorch (stand-in for cupy)
+silent_run.py written: 659 lines
+definitions removed in 15 files; every one of the 15 train/dev/test files of the 5 tasks now has Definition == [""]
+official input builder: the text before the example is identical for all 15 task/split pairs
+input of the first test example of the first task, as the official code builds it:
+------------------------------
+Definition: 
+
+Now complete the following example -
+Input: person can have or can contain offspring
+Output: 
+------------------------------
+2 GPUs: 2 runs are trained at the same time, one per GPU. Lines are marked with the GPU and the run.
+[GPU 1, inflora] === inflora: 5 tasks ===
+[GPU 1, inflora] [1/5] 1-task1510_evalution_relation_extraction: running ...[GPU 0, gainlora_inflora] === gainlora_inflora: 5 tasks ===
+
+[GPU 0, gainlora_inflora] [1/5] 1-task1510_evalution_relation_extraction: running ...
+[GPU 1, inflora]       ... 2 min (latest progress bar: 328/2500)
+[GPU 0, gainlora_inflora]       ... 2 min (latest progress bar: 324/2500)
+[GPU 1, inflora]       ... 4 min (latest progress bar: 708/2500)
+[GPU 0, gainlora_inflora]       ... 4 min (latest progress bar: 704/2500)
+[GPU 1, inflora]       ... 6 min (latest progress bar: 1098/2500)
+[GPU 0, gainlora_inflora]       ... 6 min (latest progress bar: 1090/2500)
+[GPU 1, inflora]       ... 8 min (latest progress bar: 1495/2500)
+[GPU 0, gainlora_inflora]       ... 8 min (latest progress bar: 1477/2500)
+[GPU 1, inflora]       ... 10 min (latest progress bar: 13/13)
+[GPU 0, gainlora_inflora]       ... 10 min (latest progress bar: 1862/2500)
+[GPU 1, inflora]       ... 12 min (latest progress bar: 2252/2500)
+[GPU 0, gainlora_inflora]       ... 12 min (latest progress bar: 2250/2500)
+[GPU 1, inflora]       1-task1510_evalution_relation_extraction done in 14.0 min, saved
+[GPU 0, gainlora_inflora]       1-task1510_evalution_relation_extraction done in 14.0 min, saved
+[GPU 1, inflora] [2/5] 2-task363_sst2_polarity_classification: running ...
+[GPU 0, gainlora_inflora] [2/5] 2-task363_sst2_polarity_classification: running ...
+[GPU 1, inflora]       ... 2 min (latest progress bar: 225/2500)
+[GPU 0, gainlora_inflora]       ... 2 min (latest progress bar: 224/2500)
+[GPU 1, inflora]       ... 4 min (latest progress bar: 470/2500)
+[GPU 0, gainlora_inflora]       ... 4 min (latest progress bar: 478/2500)
+[GPU 1, inflora]       ... 6 min (latest progress bar: 716/2500)
+[GPU 0, gainlora_inflora]       ... 6 min (latest progress bar: 732/2500)
+[GPU 1, inflora]       ... 8 min (latest progress bar: 962/2500)
+[GPU 0, gainlora_inflora]       ... 8 min (latest progress bar: 987/2500)
+[GPU 1, inflora]       ... 10 min (latest progress bar: 1206/2500)
+[GPU 0, gainlora_inflora]       ... 10 min (latest progress bar: 1243/2500)
+[GPU 1, inflora]       ... 12 min (latest progress bar: 1449/2500)
+[GPU 0, gainlora_inflora]       ... 12 min (latest progress bar: 1491/2500)
+[GPU 1, inflora]       ... 14 min (latest progress bar: 1693/2500)
+[GPU 0, gainlora_inflora]       ... 14 min (latest progress bar: 1742/2500)
+[GPU 1, inflora]       ... 16 min (latest progress bar: 1939/2500)
+[GPU 0, gainlora_inflora]       ... 16 min (latest progress bar: 1984/2500)
+[GPU 1, inflora]       ... 18 min (latest progress bar: 2183/2500)
+[GPU 0, gainlora_inflora]       ... 18 min (latest progress bar: 2235/2500)
+[GPU 1, inflora]       ... 20 min (latest progress bar: 2429/2500)
+[GPU 0, gainlora_inflora]       ... 20 min (latest progress bar: 2487/2500)
+[GPU 1, inflora]       2-task363_sst2_polarity_classification done in 22.0 min, saved
+[GPU 0, gainlora_inflora]       2-task363_sst2_polarity_classification done in 22.0 min, saved
+[GPU 1, inflora] [3/5] 3-task748_glucose_reverse_cause_event_detection: running ...
+[GPU 0, gainlora_inflora] [3/5] 3-task748_glucose_reverse_cause_event_detection: running ...
+[GPU 1, inflora]       ... 2 min (latest progress bar: 121/2500)
+[GPU 0, gainlora_inflora]       ... 2 min (latest progress bar: 119/2500)
+[GPU 1, inflora]       ... 4 min (latest progress bar: 244/2500)
+[GPU 0, gainlora_inflora]       ... 4 min (latest progress bar: 243/2500)
+[GPU 1, inflora]       ... 6 min (latest progress bar: 362/2500)
+[GPU 0, gainlora_inflora]       ... 6 min (latest progress bar: 365/2500)
+[GPU 1, inflora]       ... 8 min (latest progress bar: 471/2500)
+[GPU 0, gainlora_inflora]       ... 8 min (latest progress bar: 477/2500)
+[GPU 1, inflora]       ... 10 min (latest progress bar: 577/2500)
+[GPU 0, gainlora_inflora]       ... 10 min (latest progress bar: 592/2500)
+[GPU 1, inflora]       ... 12 min (latest progress bar: 685/2500)
+[GPU 0, gainlora_inflora]       ... 12 min (latest progress bar: 709/2500)
+[GPU 1, inflora]       ... 14 min (latest progress bar: 796/2500)
+[GPU 0, gainlora_inflora]       ... 14 min (latest progress bar: 826/2500)
+[GPU 1, inflora]       ... 16 min (latest progress bar: 906/2500)
+[GPU 0, gainlora_inflora]       ... 16 min (latest progress bar: 943/2500)
+[GPU 1, inflora]       ... 18 min (latest progress bar: 1018/2500)
+[GPU 0, gainlora_inflora]       ... 18 min (latest progress bar: 1061/2500)
+[GPU 1, inflora]       ... 20 min (latest progress bar: 1129/2500)
+[GPU 0, gainlora_inflora]       ... 20 min (latest progress bar: 1178/2500)
+[GPU 1, inflora]       ... 22 min (latest progress bar: 7/13)
+[GPU 0, gainlora_inflora]       ... 22 min (latest progress bar: 1296/2500)
+[GPU 1, inflora]       ... 24 min (latest progress bar: 1372/2500)
+[GPU 0, gainlora_inflora]       ... 24 min (latest progress bar: 1414/2500)
+[GPU 1, inflora]       ... 26 min (latest progress bar: 1483/2500)
+[GPU 0, gainlora_inflora]       ... 26 min (latest progress bar: 1532/2500)
+[GPU 1, inflora]       ... 28 min (latest progress bar: 1594/2500)
+[GPU 0, gainlora_inflora]       ... 28 min (latest progress bar: 1649/2500)
+[GPU 1, inflora]       ... 30 min (latest progress bar: 1705/2500)
+[GPU 0, gainlora_inflora]       ... 30 min (latest progress bar: 1766/2500)
+[GPU 1, inflora]       ... 32 min (latest progress bar: 1816/2500)
+[GPU 0, gainlora_inflora]       ... 32 min (latest progress bar: 1884/2500)
+[GPU 1, inflora]       ... 34 min (latest progress bar: 1927/2500)
+[GPU 0, gainlora_inflora]       ... 34 min (latest progress bar: 2001/2500)
+[GPU 1, inflora]       ... 36 min (latest progress bar: 2038/2500)
+[GPU 0, gainlora_inflora]       ... 36 min (latest progress bar: 10/13)
+[GPU 1, inflora]       ... 38 min (latest progress bar: 2150/2500)
+[GPU 0, gainlora_inflora]       ... 38 min (latest progress bar: 5/13)
+[GPU 1, inflora]       ... 40 min (latest progress bar: 2261/2500)
+[GPU 0, gainlora_inflora]       ... 40 min (latest progress bar: 2375/2500)
+[GPU 1, inflora]       ... 42 min (latest progress bar: 12/13)
+[GPU 0, gainlora_inflora]       ... 42 min (latest progress bar: 2493/2500)
+[GPU 1, inflora]       ... 44 min (latest progress bar: 3/13)
+[GPU 0, gainlora_inflora]       3-task748_glucose_reverse_cause_event_detection done in 44.0 min, saved
+[GPU 0, gainlora_inflora] [4/5] 4-task1687_sentiment140_classification: running ...
+[GPU 1, inflora]       3-task748_glucose_reverse_cause_event_detection done in 46.0 min, saved
+[GPU 1, inflora] [4/5] 4-task1687_sentiment140_classification: running ...
+[GPU 0, gainlora_inflora]       ... 2 min (latest progress bar: 233/2500)
+[GPU 1, inflora]       ... 2 min (latest progress bar: 242/2500)
+[GPU 0, gainlora_inflora]       ... 4 min (latest progress bar: 488/2500)
+[GPU 1, inflora]       ... 4 min (latest progress bar: 4/13)
+[GPU 0, gainlora_inflora]       ... 6 min (latest progress bar: 748/2500)
+[GPU 1, inflora]       ... 6 min (latest progress bar: 754/2500)
+[GPU 0, gainlora_inflora]       ... 8 min (latest progress bar: 11/13)
+[GPU 1, inflora]       ... 8 min (latest progress bar: 1014/2500)
+[GPU 0, gainlora_inflora]       ... 10 min (latest progress bar: 1259/2500)
+[GPU 1, inflora]       ... 10 min (latest progress bar: 1273/2500)
+[GPU 0, gainlora_inflora]       ... 12 min (latest progress bar: 1522/2500)
+[GPU 1, inflora]       ... 12 min (latest progress bar: 1533/2500)
+[GPU 0, gainlora_inflora]       ... 14 min (latest progress bar: 1785/2500)
+[GPU 1, inflora]       ... 14 min (latest progress bar: 1794/2500)
+[GPU 0, gainlora_inflora]       ... 16 min (latest progress bar: 2048/2500)
+[GPU 1, inflora]       ... 16 min (latest progress bar: 2054/2500)
+[GPU 0, gainlora_inflora]       ... 18 min (latest progress bar: 2311/2500)
+[GPU 1, inflora]       ... 18 min (latest progress bar: 2315/2500)
+[GPU 0, gainlora_inflora]       ... 20 min (latest progress bar: 17/25)
+[GPU 1, inflora]       ... 20 min (latest progress bar: 23/25)
+[GPU 0, gainlora_inflora]       4-task1687_sentiment140_classification done in 22.0 min, saved
+[GPU 0, gainlora_inflora] [5/5] 5-task875_emotion_classification: running ...
+[GPU 1, inflora]       4-task1687_sentiment140_classification done in 22.0 min, saved
+[GPU 1, inflora] [5/5] 5-task875_emotion_classification: running ...
+[GPU 0, gainlora_inflora]       ... 2 min (latest progress bar: 205/2500)
+[GPU 1, inflora]       ... 2 min (latest progress bar: 216/2500)
+[GPU 0, gainlora_inflora]       ... 4 min (latest progress bar: 422/2500)
+[GPU 1, inflora]       ... 4 min (latest progress bar: 431/2500)
+[GPU 0, gainlora_inflora]       ... 6 min (latest progress bar: 642/2500)
+[GPU 1, inflora]       ... 6 min (latest progress bar: 653/2500)
+[GPU 0, gainlora_inflora]       ... 8 min (latest progress bar: 6/13)
+[GPU 1, inflora]       ... 8 min (latest progress bar: 13/13)
+[GPU 0, gainlora_inflora]       ... 10 min (latest progress bar: 1105/2500)
+[GPU 1, inflora]       ... 10 min (latest progress bar: 1106/2500)
+[GPU 0, gainlora_inflora]       ... 12 min (latest progress bar: 1331/2500)
+[GPU 1, inflora]       ... 12 min (latest progress bar: 1328/2500)
+[GPU 0, gainlora_inflora]       ... 14 min (latest progress bar: 1559/2500)
+[GPU 1, inflora]       ... 14 min (latest progress bar: 1552/2500)
+[GPU 0, gainlora_inflora]       ... 16 min (latest progress bar: 1788/2500)
+[GPU 1, inflora]       ... 16 min (latest progress bar: 1774/2500)
+[GPU 0, gainlora_inflora]       ... 18 min (latest progress bar: 2014/2500)
+[GPU 1, inflora]       ... 18 min (latest progress bar: 11/13)
+[GPU 0, gainlora_inflora]       ... 20 min (latest progress bar: 4/13)
+[GPU 1, inflora]       ... 20 min (latest progress bar: 2228/2500)
+[GPU 0, gainlora_inflora]       ... 22 min (latest progress bar: 2479/2500)
+[GPU 1, inflora]       ... 22 min (latest progress bar: 2453/2500)
+[GPU 0, gainlora_inflora]       5-task875_emotion_classification done in 24.0 min, saved
+[GPU 1, inflora]       5-task875_emotion_classification done in 24.0 min, saved
+method               tasks   learned      AP      FT   minutes
+inflora                  5     77.72   25.13   65.74       128
+gainlora_inflora         5     75.66   55.88   25.22       126
+
+each task: score right after it was learned -> score at the end
+task                                                   inflora      gainlora_inflora
+task1510_evalution_relation_extraction           99.2 ->  11.0         99.7 ->  65.8
+task363_sst2_polarity_classification             83.0 ->   3.0         72.0 ->  31.0
+task748_glucose_reverse_cause_event_de           62.4 ->  36.6         62.6 ->  60.6
+task1687_sentiment140_classification             76.0 ->   7.0         74.0 ->  52.0
+task875_emotion_classification                   68.0 ->  68.0         70.0 ->  70.0
+
+inflora run, re-test after 5 tasks. Scores here use every reference answer (the official score
+picks one at random), so they can differ a little from the table above. `tasks`: how many tasks have this wording.
+wording   rule                   tasks  learned      AP      FT   answers changed  right task     certified
+original  as published               5    78.37   25.37   66.25        382 of 400                          
+re-test equals the official test (same answers, of inputs), per task: [[100, 100], [200, 200], [300, 300], [400, 400], [500, 500]]
+
+gainlora_inflora run, re-test after 5 tasks. Scores here use every reference answer (the official score
+picks one at random), so they can differ a little from the table above. `tasks`: how many tasks have this wording.
+wording   rule                   tasks  learned      AP      FT   answers changed  right task     certified
+original  as published               5    76.29   56.41   25.35        178 of 400                          
+re-test equals the official test (same answers, of inputs), per task: [[100, 100], [200, 200], [300, 300], [400, 400], [500, 500]]
+
+answers changed: answers to a task's test inputs that differ between right after learning it and the end.
+right task: share of test inputs at the end that were given to their own task. certified: inputs inside a protected zone.
+
+==================== 100 epochs against 10 epochs, no task definition, seed 42 ====================
+learned: average score right after learning each task | AP: average score at the end | FT: forgetting (lower is better)
+answers changed: answers to the inputs of the first four tasks (400) that differ between right after learning and the end
+
+method              run                                 learned      AP      FT   answers changed
+inflora             100 epochs, no definitions            78.37   25.37   66.25        382 of 400
+                    10 epochs, no definitions             51.46   37.45   18.01        217 of 400
+                    10 epochs, with definitions           56.96   58.89   -1.41         98 of 400
+gainlora_inflora    100 epochs, no definitions            76.29   56.41   25.35        178 of 400
+                    10 epochs, no definitions             56.08   51.94    6.51        129 of 400
+                    10 epochs, with definitions           60.85   61.31   -0.32         17 of 400
+
+official test (one random reference answer per example):
+method              run                                 learned      AP      FT
+inflora             100 epochs, no definitions            77.72   25.13   65.74
+                    10 epochs, no definitions             51.08   37.28   17.75
+gainlora_inflora    100 epochs, no definitions            75.66   55.88   25.22
+                    10 epochs, no definitions             55.82   51.64    6.55
+
+saved: /kaggle/working/silent_adapters/superni_noinstruction5_published_t5base_e100/results.json | scores, answers and logs in one file: /kaggle/working/silent_adapters/superni_noinstruction5_published_t5base_e100_small_files.zip
+1 seed(s), 5 tasks, reduced setting: an early look, not a result. Copy everything above into the chat.
+/usr/local/lib/python3.13/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\|'
+  cells[i][c] = re.sub('\\\\\|', '|', cell)
+/usr/local/lib/python3.13/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\_'
+  text = re.sub(r'_', '\_', text) # Escape underscores in display text
+[NbConvertApp] Converting notebook __notebook__.ipynb to notebook
+[NbConvertApp] Writing 124902 bytes to __notebook__.ipynb
+[NbConvertApp] Converting notebook __notebook__.ipynb to html
+[NbConvertApp] Writing 585838 bytes to __results__.html
