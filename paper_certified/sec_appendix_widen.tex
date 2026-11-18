@@ -1,0 +1,329 @@
+\clearpage
+\section{Attempts to widen the zones}
+\label{app:widen}
+
+Section~\ref{sec:paraphrase} reports that the zones of \cert{} certify only between four and five in ten
+machine-paraphrased inputs for their own task (\WidenRefTfivePLow{}\% to \WidenRefTfivePHigh{}\%, by pivot). We tried five ways to make the zones wider without
+more wrong certificates. Each was written down in the plan of the repository, with the setting to be
+read and a rule for success, \emph{before} it was run, and each result was read against its rule.
+None of the five met the bar set for it in advance. One more check, on one setting that was looked at after the runs, is described later in this appendix. All five work on routes only, on a CPU, and train nothing. The same split is used throughout:
+\WidenTasksCal{} calibration tasks, in two halves of \WidenHalfA{} and \WidenHalfB{} (called A and B)
+where a study needs two, and \WidenTasksEval{} evaluation tasks in one random order of arrival. \textsf{C}, \textsf{U}, \textsf{P}, \textsf{M}, \textsf{R} are defined
+in Section~\ref{sec:paraphrase} (these letters name measures here only); \textsf{Z} is the share of paraphrased inputs inside their own task's zone,
+whatever an older zone does with them. Theorem~\ref{thm:writeonce} holds for every zone below as defined, because
+each is a fixed set once its task has arrived, decided by frozen parts that are computed reproducibly (Remark~\ref{rem:otherzones}); for the judge zone as
+measured it does not (idea 4).
+
+\paragraph{Idea 1: the hidden states of a frozen causal language model.}
+\emph{Idea.} For a decoder-only model the hidden states of the frozen base model at the first $n$
+positions depend only on the first $n$ tokens, so one pass gives a feature of the instruction in the
+model's own reading. Zones, radii, routes and the theorem stay as they are; only the feature changes.
+\emph{Set-up.} SmolLM2-135M, layers 0, 2, 4, 8, 16 and 30, each pooled as a weighted mean over the
+first $n$ positions (word weights as in the paper) or as the state at position $n$: \WidenFeatSettings{}
+settings of layer and pooling. Among layer, pooling and radius (\cert{} with $\kappa = 0.1, \dots, 1.0$, or one radius at a quantile of 0.5 to 0.95), the setting with the
+highest \textsf{P} on the calibration tasks among those with \textsf{C} at most that of \cert{} there (\WidenFeatCalRefC{}\%) was chosen, then used once on the evaluation tasks. Check that had to
+hold: layer 0 with the weighted mean and the paper's radius rule reproduces the routes published for
+this model; it did.
+\emph{Rule.} Success: at least 20 points more paraphrased inputs certified for their own task than the
+word-vectors, at the same or a lower collision rate, without more inputs certified for another task.
+Against: no setting gains 5 points at a matched collision rate, or wrong certificates go up.
+\emph{Result} (Table~\ref{tab:widenmain}). Chosen on the calibration tasks: the last layer
+(layer 30), weighted mean, one radius at quantile \WidenFeatRadiusQuantile{}. On the
+evaluation tasks \textsf{P} rises from \WidenRefSmolP{}\% to \WidenFeatP{}\% (a gain of \WidenFeatGain{}
+points), but \textsf{C} rises from \WidenRefSmolC{}\% to \WidenFeatC{}\% and \textsf{M} from \WidenRefSmolM{}\% to
+\WidenFeatM{}\%. \emph{Verdict: against}, by the second clause (wrong certificates went up). One
+flaw of the rule: the collision rate of the calibration tasks (\WidenFeatCalC{}\% for the chosen
+setting) does not carry over to \WidenTasksEval{} tasks, because a longer sequence has more collisions,
+so the first clause could not be applied as written. We do not read the result more kindly for that.
+\emph{What it shows.} Hidden states tolerate paraphrase better and tell sibling tasks apart worse;
+they move along the trade and do not leave it.
+
+\paragraph{Idea 2: a metric in units of what paraphrasing does.}
+\emph{Idea.} Keep the word-vector feature and the zones; change the ruler. Distances are rescaled, as
+in the paper, by how unrelated inputs vary; instead we rescale by how a paraphrase moves the
+feature, the second moment of ``feature of the paraphrase minus feature of the original'', shrunk
+by 10\% towards the identity (the usual removal of within-class variation). The feature map is fixed after set-up, so the theorem holds.
+\emph{Set-up.} Moments from the first three inputs of the \WidenTasksCal{} calibration tasks, German pivot only;
+word-vectors of T5-base and SmolLM2; evaluation with the French pivot, which the ruler has not seen;
+one radius for all tasks, swept over a grid; the curves of the new and the old ruler are read at the
+radius where \textsf{C} equals the \textsf{C} of \cert{} (\WidenRulerTfiveC{}\% on T5-base).
+\emph{Rule.} Success: at that point at least 20 points more \textsf{P}, with no more \textsf{M}. Against: a gain below 5
+points, or more \textsf{M}.
+\emph{Result.} T5-base: \textsf{P} from \WidenRulerTfivePOld{}\% to \WidenRulerTfivePNew{}\% (gain
+\WidenRulerTfiveGain{}), \textsf{M} from \WidenRulerTfiveMOld{}\% to \WidenRulerTfiveMNew{}\%. SmolLM2: gain
+\WidenRulerSmolGain{}, \textsf{M} from \WidenRulerSmolMOld{}\% to \WidenRulerSmolMNew{}\%. \emph{Verdict: against}, for
+both models: the gain is far below 20 points and \textsf{M} rises. With the paper's own radius rule the gain
+on T5-base is nil (\textsf{P} \WidenRulerTfiveRuleBOld{}\% against \WidenRulerTfiveRuleBNew{}\%, French pivot). With 50\% instead of 10\% shrinkage towards the identity, French pivot, \textsf{P} is \WidenRulerHalfP{}\% and \textsf{M} \WidenRulerHalfM{}\% (not a verdict-changing difference). On the five
+benchmark tasks with the development rewordings the new ruler is worse than the old one: with the heavy rewording
+\WidenRulerHeavyNew{}\% of the inputs reach their own task, against \WidenRulerHeavyOld{}\%.
+\emph{What it shows.} The ten largest directions of the movement hold only \WidenRulerTopTenTfive{}\% (T5-base)
+and \WidenRulerTopTenSmol{}\% (SmolLM2) of it; the movement of a paraphrase is not confined to a few
+directions, which may be why a linear ruler on an average of word-vectors did not separate it from the difference
+between siblings.
+
+\paragraph{Idea 3: a frozen sentence encoder and a radius with a stated coverage.}
+\emph{Idea.} Use a sentence encoder, which was made to bring paraphrases together, as the feature, and
+set one radius by split-conformal calibration so that a stated share $1 - \alpha$ of rewordings lies
+inside ($\alpha$ is the level of the radius, not the scaling factor of the adapters) (Proposition~\ref{prop:conformal}). \emph{Set-up.} all-MiniLM-L6-v2 (\WidenEncParams{} million
+weights), mean pooling, unit length, Euclidean distance, applied to the first tokens of the input. The
+opening length $n_k$ of a task, in tokens of the encoder, is rounded down to the grid \WidenEncGrid{} (\WidenEncPrefixes{} of these lengths occur), so an unedited input is at distance exactly 0 from its own signature
+(true for all \WidenEncUneditedZero{} unedited inputs). The ruler, if used, is fitted on half A
+(\WidenEncDisplacements{} displacements, German pivot, shrunk 10\% towards the identity); the radius is
+the $\lceil (1-\alpha)(m+1) \rceil$-th smallest distance of the first paraphrased input of each task of half B, German pivot
+($m = \WidenHalfB{}$), for $\alpha = 0.1$ (primary), $0.05$ and $0.2$. Which of plain and ruler is primary
+was decided on half B only, by the larger ratio of the median distance between a signature and the
+nearest other signature to the radius: \WidenEncRatioRuler{} for the ruler against \WidenEncRatioPlain{} plain,
+so the ruler. The route rule is that of \cert{}: the oldest zone that contains the input, else the nearest signature.
+\emph{Rule.} Success: at $\alpha = 0.1$ on the French pivot \textsf{P} $\ge$ 75\%, \textsf{M} $\le$ 5\% and \textsf{C} $\le$ 19\%.
+Against: \textsf{P} $<$ 55\%, or \textsf{M} $>$ 9\%, or \textsf{C} $>$ 25\%. In between: partial.
+\emph{Result} (Table~\ref{tab:widenencoder}). Primary setting: \textsf{P}~=~\WidenEncPrimP{}\%, \textsf{M}~=~\WidenEncPrimM{}\%,
+\textsf{C}~=~\WidenEncPrimC{}\%, \textsf{R}~=~\WidenEncPrimR{}\%, \textsf{Z}~=~\WidenEncPrimZ{}\%. \emph{Verdict: against}
+(\textsf{M} is above 9\%, and \textsf{P} misses 75\%). A second encoder (bge-small-en-v1.5) gives the same picture
+(\textsf{P}~\WidenBgeP{}\%, \textsf{M}~\WidenBgeM{}\%, \textsf{C}~\WidenBgeC{}\%). With the instruction taken as a separate field of the input, so that the whole
+definition is encoded and no prefix is needed, three encoders (all-MiniLM-L6-v2, bge-small-en-v1.5 \citep{xiao2023cpack} and all-mpnet-base-v2 \citep{song2020mpnet}) give \textsf{P} between \WidenFieldPLow{}\% and
+\WidenFieldPHigh{}\% and \textsf{M} between \WidenFieldMLow{}\% and \WidenFieldMHigh{}\%. The second view planned for this idea, the curve over a grid of radii read at the collision rate of \cert{}, was run at
+\textsf{C}~=~\WidenEncCurveC{}\%, the value of the SmolLM2 reference and not of T5-base: ruler \textsf{P}~\WidenEncCurveRulerP{}\%, \textsf{M}~\WidenEncCurveRulerM{}\%, \textsf{R}~\WidenEncCurveRulerR{}\%
+(plain: \WidenEncCurvePlainP{}\%, \WidenEncCurvePlainM{}\%, \WidenEncCurvePlainR{}\%). \emph{What it shows.}
+The encoder does what it was chosen for: \textsf{P} rises from about \WidenRefTfiveFrP{}\% to between
+\WidenEncRulerTwentyFrP{}\% and \WidenEncPlainTenFrP{}\% (French pivot) and \textsf{R} from \WidenRefTfiveFrR{}\% to
+\WidenEncRHighLow{}\%--\WidenEncRHighHigh{}\% at $\alpha = 0.1$ and $0.2$. It does not bring the wrong certificates under the bar of 5\%: \textsf{M} is at least \WidenEncRulerTwentyFrM{}\% in all six settings. (Settings that are not the primary one,
+for example the ruler at $\alpha = 0.2$ with \textsf{C}~=~\WidenEncRulerTwentyFrC{}\%, \textsf{P}~=~\WidenEncRulerTwentyFrP{}\%,
+\textsf{M}~=~\WidenEncRulerTwentyFrM{}\% and \textsf{R}~=~\WidenEncRulerTwentyFrR{}\%, were looked at after the run and were not chosen; none meets the bar. On the French
+pivot this setting has fewer wrong certificates and more correct ones than \cert{} (\textsf{M} \WidenRefTfiveFrM{}\%, \textsf{P} \WidenRefTfiveFrP{}\%
+for \cert{} on that pivot); on the German pivot it has more wrong certificates (\WidenEncRulerTwentyDeM{}\% against \WidenRefTfiveDeM{}\%).)
+
+\begin{table}[t]
+  \caption{The six settings of the sentence encoder (plain metric or paraphrase ruler; $\alpha = 0.05$,
+  $0.1$, $0.2$), on the French and the German pivot, \WidenParaInputsPivot{} paraphrased inputs each,
+  \WidenTasksEval{} evaluation tasks, in \%. The primary setting is in bold. \textsf{C} and \textsf{U} do not depend
+  on the pivot. \textsf{Z} is to be compared with $1 - \alpha$. The radius was set on German-pivot paraphrases
+  of other tasks.}
+  \label{tab:widenencoder}
+  \centering
+  \footnotesize
+  \setlength{\tabcolsep}{4pt}
+  \input{tables/widen_encoder}
+\end{table}
+
+\paragraph{Idea 4: a zone decided by a frozen judge of ``the same instruction''.}
+\emph{Idea.} The two ideas above fail on one kind of case: in every measure of how alike two texts
+are, a sibling task is as close as a paraphrase. The question that a zone has to answer is whether the
+two instructions ask for the same thing, and small frozen models exist for it (natural-language
+inference). The theorem needs no distance; a zone may be any set that is fixed when the task
+arrives. \emph{Set-up.} The instruction is taken as a separate field. The zone of task $k$ holds the
+instructions $u$ with (a) a MiniLM distance to the task's instruction of at most $r_w$ and (b) a judge
+score of at least $\tau$. The score is the smaller of the two probabilities of ``entailment''
+($u$ given the task's instruction and the reverse) from cross-encoder/nli-deberta-v3-xsmall
+\citep{he2023debertav3}, each text cut at 128 tokens; it is 1 for identical texts. Thresholds come from
+half B, German pivot, by split-conformal quantiles ($r_w$ at $\alpha = 0.02$, $\tau$ at
+$\alpha = 0.08$, so that together at least 90\% of rewordings are inside). A second, free judge (the
+largest word weight among the words that are in only one of the two texts) was to be used if it was better by more than 0.02 in area
+under the curve; it was not (\WidenJudgeAucFree{} against \WidenJudgeAucNli{}). The route is the oldest task
+whose zone holds the instruction, else the nearest by the encoder. At most \WidenJudgeLimit{} nearest tasks inside $r_w$ are
+judged per text. The limit is a shortcut of the evaluation: the \WidenJudgeLimit{} are the nearest of all \WidenTasksEval{} tasks, older and newer, so with it the zone of a task also depends on tasks that arrive later, and
+Theorem~\ref{thm:writeonce} does not apply to the zone as measured. It applies to the zone as defined, without a limit, which can only claim more texts than the measured one; we did not measure it. \emph{Rule.} The bar of idea 3.
+\emph{Result} (Table~\ref{tab:widenmain}). $r_w$ came out as \WidenJudgeRw{}, which is the largest calibration distance (with \WidenHalfB{} tasks the
+quantile at $\alpha = 0.02$ is the maximum), so the filter lets almost every pair through; alone it would certify
+almost every text for a wrong task (\textsf{P} \WidenJudgeFilterOnlyP{}\%, \textsf{M} \WidenJudgeFilterOnlyM{}\%). With $\tau = \WidenJudgeTau{}$,
+\WidenJudgePosSame{}\% of the calibration paraphrase pairs and \WidenJudgeNegSame{}\% of the pairs of nearest other tasks count as the same request. On
+the evaluation tasks, French pivot: \textsf{C}~=~\WidenJudgeC{}\%, \textsf{P}~=~\WidenJudgeFrP{}\%, \textsf{M}~=~\WidenJudgeFrM{}\%,
+\textsf{R}~=~\WidenJudgeFrR{}\%, \textsf{Z}~=~\WidenJudgeFrZ{}\%; German pivot: \textsf{P}~\WidenJudgeDeP{}\%, \textsf{M}~\WidenJudgeDeM{}\%, \textsf{R}~\WidenJudgeDeR{}\%.
+\emph{Verdict: against}: \textsf{M} is far above 9\%, \textsf{C} above 25\%, \textsf{P} below 75\%. \emph{What it shows.} The judge is good on single pairs
+(area under the curve \WidenJudgeAucNli{} on half B) and bad as a zone: the limit of \WidenJudgeLimit{} was reached for
+\WidenJudgeLimitFr{} of the \WidenTasksEval{} French texts, and one wrong ``same'' among up to twenty nearby tasks gives a wrong
+certificate, if it comes from an older zone or the text's own zone does not hold it; \WidenJudgeNegSame{}\% wrong ``same'' on the nearest pair becomes \WidenJudgeFrM{}\% wrong certificates. Of the
+\WidenJudgeCollisionPairs{} pairs of tasks that collide under \cert{}, the judge calls \WidenJudgeCollisionSame{} the same (\WidenJudgeCollisionNotSameSame{} of the \WidenJudgeCollisionNotSame{} whose definitions are not identical; identical texts score 1 by construction).
+On the five benchmark tasks it handles free rewording of different tasks better than any distance did:
+\WidenJudgeBenchInside{} of the \WidenJudgeBenchTotal{} development rewordings lie inside their own zone (the heavy
+rewording of the sentiment task does not), all are given to their own task, and none is certified for another task.
+A stricter threshold does not rescue it (Table~\ref{tab:widenjudge}, read after the run, nothing chosen from it): \textsf{P} never exceeds
+\WidenSweepPMax{}\%; \textsf{M} is below 9\% only at the strictest threshold (\WidenSweepLastTau{}), where \textsf{P} is \WidenSweepLastP{}\%. At
+the threshold that brings \textsf{C} nearest to 19\% ($\tau = \WidenSweepMidTau{}$) it gives \textsf{P}~\WidenSweepMidP{}\% and \textsf{M}~\WidenSweepMidM{}\%,
+close to where the sentence encoder alone already was.
+
+\begin{table}[t]
+  \caption{The judge zone over twelve thresholds $\tau$ (French pivot, \WidenTasksEval{} evaluation
+  tasks, in \%), looked at after the run; no value was chosen from it. The primary $\tau = \WidenJudgeTau{}$ was fixed on half B
+  before the run (the row 0.19 is a grid point, not the primary $\tau$).}
+  \label{tab:widenjudge}
+  \centering
+  \small
+  \input{tables/widen_judge}
+\end{table}
+
+\paragraph{Why likeness is not enough: a look at the words (an exploration, not a test).} Before designing the next attempt we looked at why every ``likeness'' idea had failed, on the \WidenTasksCal{} calibration tasks and their German-pivot paraphrases only; nothing from the \WidenTasksEval{} evaluation tasks was read. The numbers are
+copied from the diary of the repository (the small script of this look was not kept in the repository), and this is an exploration. A paraphrase drops \WidenExploreDropShare{}\% of the words of a definition, and it drops rare words more often than common ones: \WidenExploreDropRare{}\% of the words that occur in only one calibration definition, \WidenExploreDropCommon{}\% of the words that occur in more than 60.
+Sibling tasks (\WidenExploreSiblingPairs{} pairs of calibration tasks with different texts that share at least \WidenExploreSiblingSharedMin{}\% of their words) differ in the same kind of words: \WidenExploreSiblingRare{}\% of the words in which they differ occur in only one definition, and \WidenExploreSiblingFew{}\% in at most three. A rule ``the rare words of the instruction must all be present'' therefore does not work: only \WidenExploreKeepAllOne{}\% of the paraphrases keep all words that occur in one definition only
+(\WidenExploreKeepAllTwo{}\% for words in at most two), and \WidenExploreSiblingSameOne{}\% (\WidenExploreSiblingSameTwo{}\%) of the sibling pairs have the same such words. Rewording and being a sibling task change the same words, so no count of words, no weighting by rarity and no distance between averages can tell them apart; we dropped ideas built on key words or on weights learned from what rewording changes without a test.
+The next attempt asks a judge of meaning, sentence by sentence.
+
+\paragraph{Idea 5: a zone decided sentence by sentence.} \emph{Idea.} The fourth idea asked a judge about whole instructions of up to 128 tokens, where one decisive word is easily lost, and against up to twenty candidates at once. Here the judge is asked sentence by sentence and only about close candidates. \emph{Set-up.} The instruction is a separate field. The zone of task $k$ holds the instruction texts $u$ for which (1) the MiniLM distance (whole text) to the stored instruction $o_k$ is at most $r$ and (2) the sentence-by-sentence score is at least $\tau$: $u$ and $o_k$ are split into sentences;
+every sentence of $u$ is paired with its most similar sentence of $o_k$ and every sentence of $o_k$ with its most similar sentence of $u$ (MiniLM cosine); a pair of identical sentences scores 1, any other pair the smaller of the two probabilities of ``entailment'' (each direction) of a frozen inference model; the score of $(u, o_k)$ is the smallest score over all pairs. Every task within $r$ is judged, with no limit on their number, so the zone is a fixed set and Theorem~\ref{thm:writeonce} applies to the zone as measured. A text outside every zone goes to the task with the nearest MiniLM signature (no certificate).
+Thresholds come from half B of the calibration tasks, German pivot, by split-conformal quantiles: $r$ at $\alpha = \WidenSentRAlpha{}$ ($r = \WidenSentR{}$) and $\tau$ at $\alpha = \WidenSentTauAlpha{}$. The judge was chosen on half B only, among three, by the area under the curve of the sentence-by-sentence score for telling a task's German paraphrase (\WidenSentPositives{} pairs) from the other calibration instructions within $r$ (\WidenSentNegatives{} pairs):
+\WidenSentAucXsmall{} for cross-encoder/nli-deberta-v3-xsmall, \WidenSentAucBase{} for cross-encoder/nli-deberta-v3-base and \WidenSentAucMnli{} for MoritzLaurer/DeBERTa-v3-base-mnli-fever-anli; the first, which is also the smallest, was used.
+\emph{Rule.} The bar of ideas 3 and 4 (success: \textsf{P} $\ge$ 75\%, \textsf{M} $\le$ 5\%, \textsf{C} $\le$ 19\%; against: \textsf{P} $<$ 55\%, or \textsf{M} $>$ 9\%, or \textsf{C} $>$ 25\%), with the verdict read on a pivot that no study had read (Italian). We expected \textsf{P} 62\% to 74\%, \textsf{M} 3\% to 7\% and \textsf{C} 5\% to 10\%.
+\emph{Calibration.} The threshold that the calibration produced is very low, $\tau = \WidenSentTau{}$: the score is the smallest over all sentence pairs, so a true rewording of one sentence often scores low on some pair, and to keep \WidenSentPosSameXsmall{}\% of the German paraphrases the threshold has to go close to zero. At that threshold \WidenSentNegSameXsmall{}\% of the pairs of nearest other instructions still count as the same (\WidenSentNegSameBase{}\% and \WidenSentNegSameMnli{}\% for the two other judges, at their own thresholds): the test hardly filters, and what it lets through is mostly what the encoder filter already lets through.
+\emph{Result} (Table~\ref{tab:widenmain}; the verdict is read on the Italian pivot, which no study had read): \textsf{C} \WidenSentC{}\% on every pivot; Italian \textsf{P} \WidenSentItP{}\%, \textsf{M} \WidenSentItM{}\%, \textsf{R} \WidenSentItR{}\%, \textsf{Z} \WidenSentItZ{}\%; French \textsf{P} \WidenSentFrP{}\%, \textsf{M} \WidenSentFrM{}\%, \textsf{R} \WidenSentFrR{}\%, \textsf{Z} \WidenSentFrZ{}\%; German \textsf{P} \WidenSentDeP{}\%, \textsf{M} \WidenSentDeM{}\%, \textsf{R} \WidenSentDeR{}\%, \textsf{Z} \WidenSentDeZ{}\%; Spanish \textsf{P} \WidenSentEsP{}\%, \textsf{M} \WidenSentEsM{}\%, \textsf{R} \WidenSentEsR{}\%, \textsf{Z} \WidenSentEsZ{}\%.
+\emph{Verdict: against}, by the rule fixed before the run: on the Italian pivot \textsf{M} is \WidenSentItM{}\%, above the 9\% limit, while \textsf{P} (\WidenSentItP{}\%) and \textsf{C} (\WidenSentC{}\%) are on the right side of the success lines; the wrong certificates are not. We had expected \textsf{P} 62\% to 74\%, \textsf{M} 3\% to 7\% and \textsf{C} 5\% to 10\%: \textsf{P} came out above the expected range, \textsf{M} and \textsf{C} above theirs.
+(The diary of the repository calls this attempt the sixth idea, because it counts the test of the fallback in between; in the paper it is attempt 5.)
+\emph{What it shows.} (1) It is the best point so far: \WidenSentItP{}\% of the rewordings certified for their own task with \WidenSentItM{}\% for another, with fewer wrong certificates and about half the collisions of the sentence encoder alone (\WidenEncPlainTenFrP{}\%, \WidenEncPlainTenFrM{}\%, \textsf{C} \WidenEncPlainTenFrC{}\%). (2) The wrong certificates are the same sibling tasks as always, for example
+\texttt{\WidenSentExOneTask{}} claimed by \texttt{\WidenSentExOneClaim{}} (lowest sentence-pair score \WidenSentExOneScore{}), \texttt{\WidenSentExTwoTask{}} by \texttt{\WidenSentExTwoClaim{}} (\WidenSentExTwoScore{}) and \texttt{\WidenSentExThreeTask{}} by \texttt{\WidenSentExThreeClaim{}} (\WidenSentExThreeScore{}) (three of the \WidenSentWrongCerts{} wrong certificates on the Italian pivot, the first three in the file). Of the \WidenSentCollNotSame{} colliding pairs of tasks with different texts the judge still passes \WidenSentCollPass{}. (3) Judging sentence by sentence did not make the judge stricter where it counts: the threshold that keeps the rewordings is so low that it stops only a part of the siblings. A small inference model is not shown to know that ``reaction'' and ``intent'' ask for different things; we did not test why.
+(4) On the five benchmark tasks the development rewordings are mostly outside these zones (\WidenSentBenchLightZone{} of \WidenSentBenchN{} light, \WidenSentBenchMediumZone{} of \WidenSentBenchN{} medium, \WidenSentBenchHeavyZone{} of \WidenSentBenchN{} heavy lie inside), all are routed to the right task, and none is certified for a wrong task. (5) Cost: \WidenSentSeconds{} seconds per text on \WidenSentThreads{} CPU threads; a text has \WidenSentWithinMean{} tasks within $r$ on average (\WidenSentMax{} at most over the four pivots); \WidenSentNoneIt{} of the \WidenTasksEval{} Italian texts have none and are not certified. The frontier moved (about 40\% certified with about 9\% wrong for \cert{}, \WidenSentItP{}\% with \WidenSentItM{}\% here) and the wall did not: what separates a rewording from a sibling is the meaning of one or two words, and nothing small and frozen that we tried knows it.
+
+\paragraph{A second exploration: a round trip as a normal form.} On the calibration tasks: passing the original and its paraphrase through a frozen translator (a round trip, English to German and back) made \WidenExploreRoundTripIdentical{}\% of the sentences of a French-pivot paraphrase identical to those of the original's own round trip, and raised, in a word-level measure, the share of sibling comparisons in which the sibling is farther from the original than the own paraphrase is from \WidenExploreRoundTripFarFrom{}\% to \WidenExploreRoundTripFarTo{}\%. It was not tested as a zone.
+
+\paragraph{Sibling tasks that collide.} Table~\ref{tab:widensiblings} lists pairs from the files of
+the runs. The pairs shown differ in one or a few decisive words (a date format, an
+order of comparison, which part of a relation is asked for), and a feature that reads meaning, or a judge,
+sees nearly the same request. The pairs are a selection by hand; the lists in the files also hold wrong certificates between tasks that are not siblings, for example
+sentence generation from a relation for an entailment task (judge score 0.47), option generation for a physics-style question for a gap classification task (0.68), and gender criticism for offensiveness (0.74).
+
+\begin{table}[t]
+  \caption{Sibling tasks that collide, selected by hand from these lists. (3): the unedited instruction of the arriving task lies inside the
+  zone of the older task under the encoder zone (first 15 collisions of the file). (4): a French
+  paraphrase of the first task is certified for the second (older or, when its own zone does not hold it, newer) under the judge zone (first 12 such
+  cases of the file); the score is the judge's score for that paraphrase against the instruction
+  of the claiming task. ``--'': not among the cases listed in the file.}
+  \label{tab:widensiblings}
+  \centering
+  \footnotesize
+  \setlength{\tabcolsep}{3pt}
+  \input{tables/widen_siblings}
+\end{table}
+
+\begin{proposition}[Coverage of the split-conformal radius]
+\label{prop:conformal}
+Let $D_1, \dots, D_m$ be the distances of the calibration rewordings from their own signatures and
+$D_{m+1}$ that of a new task's rewording. If $(D_1, \dots, D_{m+1})$ are exchangeable, and $r_\alpha$ is the
+$\lceil (1-\alpha)(m+1) \rceil$-th smallest of $D_1, \dots, D_m$ ($r_\alpha = \infty$ if that index exceeds $m$), then
+$\Pr[D_{m+1} \le r_\alpha] \ge 1 - \alpha$, where the probability is over the joint draw of all $m+1$ values; it is not conditional on the calibration set.
+\end{proposition}
+
+\begin{proof}
+Put $k=\lceil(1-\alpha)(m+1)\rceil$; if $k>m$ there is nothing to prove. Let $N_i$ be the number of $j\le m+1$ with $D_j<D_i$. If $D_{m+1}>r_\alpha$, then
+$D_{m+1}$ exceeds the $k$ smallest of $D_1,\dots,D_m$, so $N_{m+1}\ge k$. Any index with $N_i\ge k$ has $D_i$ larger than the $k$-th smallest of all $m+1$ values,
+so at most $m+1-k$ indices have $N_i\ge k$. By exchangeability $\Pr[N_{m+1}\ge k]=\frac{1}{m+1}\mathbb{E}\,|\{i: N_i\ge k\}|\le\frac{m+1-k}{m+1}\le\alpha$.
+\end{proof}
+
+This is the standard result of split-conformal prediction \citep{vovk2005algorithmic,angelopoulos2023conformal}. It
+says nothing about the zones of older tasks, which may claim the input first, and nothing about
+the route. \emph{Check.} With the plain metric, \textsf{Z} is \WidenEncPlainTenFrZ{}\% (French) and \WidenEncPlainTenDeZ{}\% (German)
+at $\alpha = 0.1$, \WidenEncPlainFiveFrZ{}\% and \WidenEncPlainFiveDeZ{}\% at $0.05$, \WidenEncPlainTwentyFrZ{}\% and
+\WidenEncPlainTwentyDeZ{}\% at $0.2$ (Table~\ref{tab:widenencoder}): slightly below the promise in \WidenPlainZBelowCount{} of the six cases (by at most \WidenPlainZBelowMax{} points) and above it in the others. The
+condition does not hold exactly here: the calibration paraphrases go through German, the test paraphrases of the primary
+column through French, and the tasks differ, so the agreement is an observation. With the paraphrase ruler, which was fitted on
+German-pivot paraphrases, the promise did not hold on the French pivot: \textsf{Z} is \WidenEncRulerFiveFrZ{}\%, \WidenEncRulerTenFrZ{}\% and
+\WidenEncRulerTwentyFrZ{}\% where 95\%, 90\% and 80\% were promised. The ruler also misses on the German pivot it was fitted on at $\alpha = 0.1$ (\textsf{Z} \WidenRulerDeTenZ{}\% against 90\%). For the judge zone, \textsf{Z} is \WidenJudgeFrZ{}\% on the French pivot
+where 90\% was promised.
+
+\paragraph{What the zones cost per input.} The word-vector zones cost one average and the distances
+to the signatures. The sentence encoder (\WidenEncParams{} million weights) is run on up to \WidenEncPrefixes{} prefixes per
+input: \WidenEncMs{} ms on average (\WidenEncMsHigh{} ms at the 90th percentile) with two CPU threads, including the distances to \WidenTasksEval{}
+signatures. The judge zone needs the encoder and an inference model: about \WidenJudgePairs{} judged pairs and \WidenJudgeSeconds{} seconds per text on two
+threads, a cost that grows with the number of look-alike tasks. Both give up the edit bound of
+Proposition~\ref{prop:edits}.
+
+\paragraph{A check on held-out paraphrases (not one of the five ideas).} \emph{Why.} Reading the table of idea 3 we saw that
+one setting that was not the primary one, the paraphrase ruler at $\alpha = 0.2$, was better than \cert{} on all four measures on
+the French pivot (\textsf{C} \WidenSpC{}\% against \WidenSpCRule{}\%, \textsf{P} \WidenSpEncFrP{}\% against \WidenRefTfiveFrP{}\%, \textsf{M} \WidenSpEncFrM{}\% against
+\WidenRefTfiveFrM{}\%, \textsf{R} \WidenSpEncFrR{}\% against \WidenRefTfiveFrR{}\%). A comparison chosen after the results proves nothing by itself.
+\emph{Rule, fixed before the Spanish paraphrases were read.} The paraphrases through Spanish (MarianMT, as above) had not been read by any
+study. The same \WidenTasksEval{} evaluation tasks in the same order, the same calibration (ruler from half A, radius from half B at $\alpha = 0.2$,
+both from German-pivot paraphrases), nothing fitted or chosen again; the script first had to reproduce the stored radius, the stored French and German
+numbers of the encoder setting and the numbers of \cert{}, and it did. Confirmed if on the Spanish pivot the encoder setting has \textsf{P} at least
+\WidenSpAskP{} points above \cert{}, \textsf{R} at least \WidenSpAskR{} points above, and \textsf{M} not above. We had expected \textsf{P} about 40\% for \cert{};
+it is \WidenRefTfiveEsP{}\%; these paraphrases also keep more of the original words (\WidenSpKept{}\% against \WidenKeptDe{}\% and \WidenKeptFr{}\%; \WidenSpSame{} of the \WidenTasksAll{} are identical to the original,
+against \WidenSameFr{} French and \WidenSameDe{} German), which may explain it.
+\emph{Result} (Table~\ref{tab:widenspanish}). Spanish pivot: \cert{} \textsf{P} \WidenRefTfiveEsP{}\%, \textsf{M} \WidenRefTfiveEsM{}\%, \textsf{R} \WidenRefTfiveEsR{}\%;
+encoder setting \textsf{P} \WidenSpEncEsP{}\%, \textsf{M} \WidenSpEncEsM{}\%, \textsf{R} \WidenSpEncEsR{}\%, \textsf{Z} \WidenSpEncEsZ{}\%. \emph{Verdict: not confirmed}: the
+gain in \textsf{P} is \WidenSpGainP{} points where \WidenSpAskP{} were asked; the gain in \textsf{R} (\WidenSpGainR{}) and the condition on \textsf{M} hold.
+\emph{Other splits.} On \WidenSplitCount{} other random splits of the tasks (seeds 1 to 5, ruler and radius fitted again on each split's calibration
+tasks), Spanish pivot, \cert{} has \textsf{C} \WidenSplitRuleCMean{}\% (\WidenSplitRuleCLow{} to \WidenSplitRuleCHigh{}), \textsf{P} \WidenSplitRulePMean{}\%,
+\textsf{M} \WidenSplitRuleMMean{}\% and \textsf{R} \WidenSplitRuleRMean{}\%; the encoder setting has \textsf{C} \WidenSplitEncCMean{}\% (\WidenSplitEncCLow{} to \WidenSplitEncCHigh{}),
+\textsf{P} \WidenSplitEncPMean{}\% (\WidenSplitEncPLow{} to \WidenSplitEncPHigh{}), \textsf{M} \WidenSplitEncMMean{}\% (\WidenSplitEncMLow{} to \WidenSplitEncMHigh{}) and \textsf{R}
+\WidenSplitEncRMean{}\%. None of the \WidenSplitCount{} splits passes the rule by itself, and the encoder setting depends more on the split than
+\cert{} does. On \WidenSplitMoreM{} of these splits the encoder setting has more wrong certificates than \cert{} (\WidenSplitSeedOneEncM{}\% against \WidenSplitSeedOneRuleM{}\% on seed 1,
+\WidenSplitSeedThreeEncM{}\% against \WidenSplitSeedThreeRuleM{}\% on seed 3, \WidenSplitSeedFourEncM{}\% against \WidenSplitSeedFourRuleM{}\% on seed 4), and on \WidenSplitMoreC{} of them more collisions (seed 3:
+\WidenSplitSeedThreeEncC{}\% against \WidenSplitSeedThreeRuleC{}\%), so the advantage on every measure is a property of the original split, not of the setting. On the French pivot
+the same splits give \textsf{P} of \WidenSplitFrRulePMean{}\% (\WidenSplitFrRulePLow{} to \WidenSplitFrRulePHigh{}) and \textsf{M} of \WidenSplitFrRuleMMean{}\% for \cert{}, and \textsf{P} of
+\WidenSplitFrEncPMean{}\% (\WidenSplitFrEncPLow{} to \WidenSplitFrEncPHigh{}) and \textsf{M} of \WidenSplitFrEncMMean{}\% for the encoder setting. \emph{Coverage.} The promise of $1 - \alpha = 80\%$ does not carry over for the ruler metric: \textsf{Z} is \WidenSpEncEsZ{}\% (Spanish) and
+\WidenSpEncFrZ{}\% (French), and \WidenSpEncDeZ{}\% on the German pivot it was fitted on. \emph{Other settings.} The other five encoder settings repeat the
+French picture on the Spanish pivot : the ruler at $\alpha = 0.1$ has \textsf{P} \WidenSpAllRulerTenP{}\% and \textsf{M} \WidenSpAllRulerTenM{}\%, the plain metric at
+$\alpha = 0.2$ has \textsf{P} \WidenSpAllPlainTwentyP{}\% and \textsf{M} \WidenSpAllPlainTwentyM{}\%. \emph{Benchmark tasks.} With this setting the original and the light rewording of
+the five benchmark tasks lie inside their own zones; the medium and the heavy development rewording do not (\WidenSpBenchMediumZone{}\% and
+\WidenSpBenchHeavyZone{}\% inside), and all are still given to the right task (\WidenSpBenchMediumRouted{}\% and \WidenSpBenchHeavyRouted{}\%), none is certified for a wrong one.
+\emph{What it shows.} On this split the encoder setting is ahead of \cert{} on each measure on paraphrases that nobody had looked at, by less than the margin
+fixed in advance, and not on every measure in other splits. We therefore report it as a variant with these costs (a second model at several prefix lengths per input, no edit bound, no coverage promise
+across pivots, no certificate for the free development rewordings), and not as an improvement that we have shown. \cert{} is unchanged.
+
+\paragraph{What the five attempts do not show.} The rules were fixed before each run, and none of the five met the bar set for it. The machine paraphrases are not rewordings by people; the tasks come from one
+collection; one radius for all tasks was used throughout; and a much larger judge, for example the frozen base
+model asked whether two instructions ask for the same thing, was not tried. We do not claim that no zone can do better, only that none of
+these five met the rule fixed for it in advance.
+
+\FloatBarrier
+\section{Do later tasks re-route reworded inputs?}
+\label{app:reroute}
+
+This appendix belongs to Section~\ref{sec:paraphrase}. It uses \cert{} unchanged, on routes only, with the T5-base word-vectors, the same \WidenTasksEval{} evaluation tasks in the same
+order of arrival, and the paraphrased inputs of every task (up to three per task and pivot; \RerouteInputs{} for the German and French pivot together, \RerouteInputsPivot{} for the Spanish pivot) and the unedited inputs (up to six per task).
+For every input and rule we record the route right after the input's own task has arrived (only tasks $1,\dots,j$ and their radii are used) and the route after all \WidenTasksEval{} tasks. ``Changed'': the two differ.
+``Lost'': own task at arrival, another task at the end. The script first reproduced the stored numbers of \cert{}, and it checked the theorem: no input that is inside a zone at arrival changed its route under \cert{}.
+
+\paragraph{What was fixed before each computation.} (1) \emph{First reading.} The zones add something at scale if \nearest{} changes at least 5\% of the routes and \cert{} at most half as many; they add little if
+\nearest{} changes fewer than \RerouteLimitLow{}\%, or if \cert{} changes more than three quarters as many. We expected \RerouteExpectNearLow{}\% to \RerouteExpectNearHigh{}\% for \nearest{}, about half of that for \cert{}, all of it among
+uncertified inputs, and more paraphrased inputs given to their own task by \nearest{} than by \cert{}. (2) \emph{Follow-up}, thought of after the first result was seen: the plain nearest signature without radii. ``The radius fixed at arrival is what keeps routes stable'' if it changes at least 5\%;
+``rare under any best-match rule'' if fewer than \RerouteLimitLow{}\%; in between ``some''. We expected \RerouteExpectSigLow{}\% to \RerouteExpectSigHigh{}\%. (3) \emph{Last rule}, designed after the numbers above had been seen, on data that had been looked at, with no free setting:
+zones first (exactly as in the paper, so the same certificates and the same theorem), then the plain nearest signature for inputs outside every zone. We expected 84\% to 88\% to their own task and 1.4\% to 2.0\% changed routes, and, on the benchmark tasks, no better result
+than \cert{} under heavy rewording. It is not an independent test.
+
+\paragraph{Result of the first reading.} \nearest{} changed \RerouteNearNChanged{} of \RerouteInputs{} routes (\RerouteNearChanged{}\%, in \RerouteNearTasks{} tasks), \cert{} the same \RerouteCertNChanged{}, and so did the variant \exactfirst{}. All changed inputs lie
+outside every zone. Of the \RerouteCertInZone{}\% of the inputs inside a zone at arrival none changed. Of the \RerouteCertOwn{} inputs that \cert{} certifies for their own task, \nearest{} gives every one to the same task at the end. Own task at arrival and at the end:
+\RerouteCertOwnStart{}\% and \RerouteCertOwnEnd{}\% for both rules. Spanish pivot: \RerouteCertEsNChanged{} of \RerouteInputsPivot{} changed under each of the three rules. Unedited inputs: none changed under any rule, and \nearest{} serves more of them than \cert{}
+(\RerouteNearUnOwn{}\% against \RerouteCertUnOwn{}\%). The verdict by the rule fixed in advance is ``the zones add little here''. Both expectations about \nearest{} were wrong (the rate, and more inputs to their own task: both rules give \RerouteCertOwnEnd{}\%); that all changes are among uncertified inputs was right.
+
+\paragraph{Result of the follow-up and of the last rule} (Table~\ref{tab:reroute}). The plain nearest signature changed \RerouteSigNChanged{} routes (\RerouteSigChanged{}\%, in \RerouteSigTasks{} tasks; verdict ``some''; we had expected more), lost
+\RerouteSigNLost{} inputs, and gave \RerouteSigOwnEnd{}\% of the inputs to their own task at the end (\RerouteSigOwnStart{}\% at arrival). Of the \RerouteCertOwn{} inputs certified for their own task it loses \RerouteSigLostOfCert{}
+(\RerouteSigLostOfCertPct{}\%). Of its \RerouteSigNChanged{} changed inputs, \RerouteSigToSibling{} end at a task whose definition shares at least 80\% of its words with their own; for \nearest{} this is \RerouteNearToSibling{} of \RerouteNearNChanged{}. The Spanish pivot gives
+\RerouteSigEsOwn{}\% to their own task and \RerouteSigEsChanged{}\% changed routes for the plain rule, against \RerouteCertEsOwn{}\% and \RerouteCertEsChanged{}\% for \cert{}. The last rule, \hybrid{}, gives \RerouteHybOwnEnd{}\% to their own task, changes \RerouteHybChanged{}\% of the routes
+(\RerouteHybNChanged{} inputs in \RerouteHybTasks{} tasks), loses \RerouteHybNLost{} inputs, keeps the \RerouteHybInZone{}\% certificates and changes none of the certified inputs; the expectations (84\% to 88\%, 1.4\% to 2.0\%) were right; on the benchmark tasks the plain fallback was, as expected, no better than \cert{}, but far worse than we had thought (\RerouteSigBenchFiveHeavyOwn{}\% against \RerouteCertBenchFiveHeavyOwn{}\%). Unedited inputs: \RerouteHybUnOwn{}\%, as \cert{}.
+Examples of inputs that the plain nearest signature re-routed (three of 15 inputs, spaced evenly through the list of changed inputs in the file): a \RerouteExOnePivot{} paraphrase of \texttt{\RerouteExOneTask{}} ends at \texttt{\RerouteExOneEnd{}} (\RerouteExOneBetween{} tasks in between; the two definitions share \RerouteExOneShare{}\% of their words); a \RerouteExTwoPivot{} paraphrase of
+\texttt{\RerouteExTwoTask{}} ends at \texttt{\RerouteExTwoEnd{}} (\RerouteExTwoShare{}\%, \RerouteExTwoBetween{} tasks in between); a \RerouteExThreePivot{} paraphrase of \texttt{\RerouteExThreeTask{}} ends at \texttt{\RerouteExThreeEnd{}} (\RerouteExThreeShare{}\%, \RerouteExThreeBetween{} tasks in between).
+
+\paragraph{The benchmark tasks.} On the five benchmark tasks with their four wordings (routes only, \RerouteBenchInputs{} inputs per wording), \cert{} and \nearest{} give \RerouteCertBenchFiveMediumOwn{}\% (medium) and \RerouteCertBenchFiveHeavyOwn{}\% (heavy)
+of the inputs to their own task and change \RerouteCertBenchFiveMediumChanged{} and \RerouteCertBenchFiveHeavyChanged{} routes; the plain nearest signature and \hybrid{} give \RerouteSigBenchFiveMediumOwn{}\% (\RerouteSigBenchFiveMediumChanged{} changed) and \RerouteSigBenchFiveHeavyOwn{}\%
+(\RerouteSigBenchFiveHeavyChanged{} changed). In the 15-task sequence the medium wording gives \RerouteSigBenchFifteenMediumOwn{}\% (\RerouteSigBenchFifteenMediumChanged{} changed). With the original and the light wording all four rules give 100\% and change nothing. So the two fallbacks trade places: the plain
+nearest signature is the better fallback on real tasks with machine paraphrases and much the worse one on the benchmark tasks with the heavier development rewordings. We did not test why.
+
+\paragraph{Two fallbacks scaled differently (written down after the results above).} The two fallbacks trade places: the radius scale is right on the benchmark tasks and wrong at scale, the plain distance the other way round. \emph{First reading, not tested yet.} The radius does two things: (a) it puts tasks with openings of different lengths on one scale
+(an average over many tokens lies closer to everything), which the benchmark needs, and (b) it shrinks the zone of a task that arrives next to a sibling, which is what goes wrong at scale. If so, a scale that depends only on the length of the opening should keep (a) and drop (b). \emph{Rule fixed before the run} (\texttt{normalised}): let $\sigma(n)$ be the root-mean-square distance of the 4{,}000
+unrelated inputs from their own mean in the feature $\psi_n$; an input goes to the task with the smallest distance to its signature divided by $\sigma(n_k)$ (ties to the older task); \texttt{certified3} puts the zones of \cert{} in front. No free setting. The test: the benchmark tasks with the four wordings (the development set), and paraphrases through Italian, made for this test and used once, for the verdict at scale. \emph{Success} if at least \RerouteLineHeavy{}\% of the inputs
+go to their own task under heavy rewording on five and on fifteen tasks, at least \RerouteLineMedium{}\% under medium rewording and at least \RerouteLineItalian{}\% on the Italian pivot; \emph{against} if heavy rewording is below \RerouteLineHeavyAgainst{}\% in either sequence or the Italian pivot is below \RerouteLineItalianAgainst{}\%; anything else partial. We expected \RerouteExpectNormItLow{}\% to \RerouteExpectNormItHigh{}\% on the Italian pivot for \texttt{normalised}, \RerouteExpectCfThreeItLow{}\% to \RerouteExpectCfThreeItHigh{}\% for \texttt{certified3}, and \RerouteExpectNormChangedLow{}\% to \RerouteExpectNormChangedHigh{}\% changed routes.
+
+\emph{Result: against.} Under heavy rewording \RerouteNormHeavyFive{}\% (five tasks) and \RerouteNormHeavyFifteen{}\% (fifteen tasks) go to their own task, under medium rewording \RerouteNormMediumFive{}\% and \RerouteNormMediumFifteen{}\%, and on the Italian pivot \RerouteNormItOwn{}\% (\RerouteCertThreeItOwn{}\% with the zones in front; \RerouteNormItChanged{}\% changed routes). The Italian pivot was slightly above what we had expected, the benchmark failed the rule; the changed routes were in the expected range on the Italian pivot (\RerouteNormItChanged{}\%). The reading was only partly right: the correlation of $\sigma(n_k)$ with the radius over the \WidenTasksEval{} tasks is \RerouteSigmaCorr{} (Spearman \RerouteSigmaCorrSpearman{}), so the radius is not mainly a scale for the length of the opening. On the French and German pivot it gives \RerouteNormOwnEnd{}\% (\RerouteCertThreeOwnEnd{}\% with zones), changing \RerouteNormChanged{}\% of the routes.
+
+\emph{Second reading, which led to the next rule.} The radius is half the distance to the nearest \emph{known} signature, and known means the unrelated tasks and the earlier tasks. It measures how isolated an instruction is. On the benchmark the tasks are far apart and the nearest known signature is an unrelated one: $U_k$ (the distance from the signature of task $k$ to the nearest signature of the unrelated tasks) ranges from \RerouteBBenchFiveMin{} to \RerouteBBenchFiveMax{} on the five tasks, and the radius is half of it for \RerouteBBenchFiveShare{}\% of them and for \RerouteBBenchFifteenCount{} of the fifteen.
+At scale $U_k$ has median \RerouteBMedian{} (range \RerouteBMin{} to \RerouteBMax{}), its correlation with the radius is \RerouteBCorr{}, and the radius equals half of it for only \RerouteBShare{}\% of the \WidenTasksEval{} tasks: for the others an earlier task is nearer than every unrelated one, the radius shrinks, and the nearest-zone fallback turns away the reworded inputs of exactly those tasks. So take the scale from the unrelated tasks only. \emph{Rule fixed before the run} (\scaled{}, \texttt{background}): an input goes to the task with the smallest distance divided by $U_k$ (ties to the older task);
+\certscaled{} (\texttt{certified4}) puts the zones of \cert{} in front, with the same certificates. $U_k$ is fixed when task $k$ arrives. The test and the lines for success and failure are those of the first one, and the Italian pivot is read once, for this rule, before any Italian number had been seen by the person who wrote the rule. We expected \RerouteExpectBgHeavyLow{}\% to \RerouteExpectBgHeavyHigh{}\% under heavy rewording and \RerouteExpectBgItLow{}\% to \RerouteExpectBgItHigh{}\% on the Italian pivot for \scaled{}, \RerouteExpectCfItLow{}\% to \RerouteExpectCfItHigh{}\% for \certscaled{}.
+
+\emph{Result: success.} \scaled{} gives \RerouteBgHeavyFive{}\% (five and fifteen tasks) under heavy and \RerouteBgMediumFive{}\% under medium rewording, the same as the fallback of \cert{}, and \RerouteBgItOwn{}\% of the Italian-pivot inputs to their own task (Table~\ref{tab:reroute}). \certscaled{}: \RerouteCertFourItOwn{}\% on the Italian pivot, \RerouteCertFourOwnEnd{}\% on the French and German pivot and \RerouteCertFourEsOwn{}\% on the Spanish pivot, against \RerouteCertItOwn{}\%, \RerouteCertOwnEnd{}\% and \RerouteCertEsOwn{}\% for \cert{}; \RerouteCertFourInZone{}\% of the French and German inputs are inside a zone at arrival
+and none of them changed; unedited inputs \RerouteCertFourUnOwn{}\%, as before, because the zones and their collisions are the same; on the benchmark the shares are those of \cert{} in every wording. Without zones, \scaled{} gives \RerouteBgOwnEnd{}\% (French and German), \RerouteBgEsOwn{}\% (Spanish) and \RerouteBgItOwn{}\% (Italian); unedited inputs \RerouteBgUnOwn{}\%. We had expected less on the 700 tasks (\RerouteExpectBgItLow{}\% to \RerouteExpectBgItHigh{}\% and \RerouteExpectCfItLow{}\% to \RerouteExpectCfItHigh{}\% on the Italian pivot); both are higher. The benchmark expectation was right.
+\emph{Identity on the benchmark, input by input.} For every benchmark input and wording we compared the route of \cert{} with that of \certscaled{} (and \nearest{} with \scaled{}) after the last task and at every point of the sequence. Five tasks: the radius is half of $U_k$ for all five tasks, so the two fallbacks order the tasks identically; the check finds \RerouteIdFiveLast{} differing routes after the last task and \RerouteIdFiveScored{} at any point, in \RerouteIdFiveComparisons{} comparisons (four wordings). Fifteen tasks: the radius is half of $U_k$ for all tasks except \texttt{\RerouteIdTask{}}, the \RerouteIdTaskPos{}rd to arrive, whose radius (\RerouteIdRadius{}) is half the distance to the earlier task \texttt{\RerouteIdEarlier{}} and slightly below half of $U_k$ (\RerouteIdHalfB{}); \RerouteIdFifteenLast{} routes differ after the last task, and \RerouteIdFifteenScored{} at any point from the arrival of the input's own task on, in every wording; before their own task has arrived \RerouteIdFifteenBeforeOriginal{} (original), \RerouteIdFifteenBeforeLight{} (light), \RerouteIdFifteenBeforeMedium{} (medium) and \RerouteIdFifteenBeforeHeavy{} (heavy) inputs differ, at points where the GPU runs take no score. Hence every score of the GPU runs of \cert{} and \nearest{} in this paper, for five and for fifteen tasks, is also the score of the corresponding variant (the comparison covers the four wordings, the five-task order and fifteen-task order 1, \RerouteBenchInputs{} inputs per wording and \RerouteIdFifteenOriginalN{} for the fifteen-task original wording).
+The costs: routes changed after arrival, French and German (Italian): \scaled{} \RerouteBgChanged{}\% (\RerouteBgItChanged{}\%), \certscaled{} \RerouteCertFourChanged{}\% (\RerouteCertFourItChanged{}\%), against \RerouteCertChanged{}\% (\RerouteCertItChanged{}\%) for \cert{}, \RerouteNearChanged{}\% (\RerouteNearItChanged{}\%) for \nearest{} and \RerouteSigChanged{}\% (\RerouteSigItChanged{}\%) for the plain nearest signature; inputs that lose their own task: \RerouteBgNLost{} (\scaled{}) and \RerouteCertFourNLost{} (\certscaled{}). On the Italian pivot the other rules give: \cert{} \RerouteCertItOwn{}\% (\textsf{P} \WidenRefTfiveItP{}\%, \textsf{M} \WidenRefTfiveItM{}\%, \textsf{R} \WidenRefTfiveItR{}\%),
+nearest zone \RerouteNearItOwn{}\%, plain nearest signature \RerouteSigItOwn{}\%, zones then plain signature \RerouteHybItOwn{}\%, length-scaled \RerouteNormItOwn{}\%.
+
+\begin{table}[t]
+  \caption{The stress test of Section~\ref{sec:stress} with the scaled fallbacks: a sixth task whose definition is the light (upper block) or the medium (lower block) rewording of the definition of task~2 arrives after the five tasks; old test inputs of task~2 (\RerouteStressOld{} per wording) routed elsewhere afterwards. The inputs with the original and the light wording are certified under every rule with zones. In the lower block the medium wording is the look-alike's own wording, so its \RerouteStressOld{} are re-routed under every rule.}
+  \label{tab:reroutestress}
+  \centering
+  \footnotesize
+  \input{tables/reroute_stress}
+\end{table}
+
+In the stress test, with the light rewording as the look-alike's definition, a look-alike task takes \RerouteStressTaken{} uncertified old inputs under \certscaled{} (\RerouteStressCertFourMedium{} medium, \RerouteStressCertFourHeavy{} heavy) that the fallback of \cert{} kept (0 and 0); with the medium rewording as its definition it takes \RerouteStressMedCertFourHeavy{} of the \RerouteStressOld{} old inputs with the heavy wording, where the fallback of \cert{} loses \RerouteStressMedCertHeavy{}, so \RerouteStressMedExtra{} more; the \RerouteStressOld{} certified old inputs of each of the original and the light wording do not change under any rule with zones. The length-scaled fallback changes \RerouteStressNormMedium{} and \RerouteStressNormHeavy{}.
+
+\paragraph{What the two fallback tests show and do not show.} A fallback for the inputs outside the zones that is right on the benchmark tasks and on the large collection exists in the sense of these route tests, and it was found at the end, with its rule fixed in advance and its verdict read on paraphrases that had not been read. The zones, the certificates and the theorem are untouched. It is a variant: every GPU run of \cert{} and every other route test of the zones used the fallback of \cert{}; where the routes are the same the scores are the same (below the benchmark shares are the same in every wording); the benchmark rewordings are the development set, so on that side the test is no independent one; none of it was run with trained answers; the reasons for the success are read from the numbers above and not tested separately. With the zones in front the best rule without zones still gives \RerouteZonesCost{} to \RerouteZonesCostFG{} points more right routes: the zones add the proof, not better routing.
+
+\paragraph{What this shows and does not show.} At this scale the certified switch showed no measured stability beyond the nearest-zone rule: both changed the same inputs. What it adds is the proof for the inputs inside a zone, about half of the machine-paraphrased inputs. The rule fixed for the first reading went
+against the claim of the paper that the zones prevent re-routing that a best-match rule would cause; in this collection that case is rare. The plain nearest signature serves more reworded inputs than \cert{} and pays with about two silent changes in a hundred. \hybrid{} is not a repair: it gains \RerouteHybGain{} points in one test and loses \RerouteHybLoss{} in the other. The certificates
+do not depend on the fallback. None of these rules was run with trained answers, the paraphrases are made by translation models, and the collection is one collection.

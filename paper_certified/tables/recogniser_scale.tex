@@ -1,0 +1,16 @@
+{\scriptsize\setlength{\tabcolsep}{2.5pt}\begin{tabular}{p{0.85in}rrrrrrrr}
+    \toprule
+    & & \multicolumn{5}{c}{\recog{}} & \multicolumn{2}{c}{\handicap{}, $\nu = 2$} \\
+    \cmidrule(lr){3-7}\cmidrule(l){8-9}
+    Sequence & Tasks & \shortstack[r]{Sent\\to own\\task\\at\\arrival,\\\% $\uparrow$} & \shortstack[r]{Sent\\to own\\task\\at the\\end,\\\% $\uparrow$} & \shortstack[r]{Route\\changed,\\\% $\downarrow$} & \shortstack[r]{Audit\\$H/m$, \%} & \shortstack[r]{95\% bound,\\\%} & \shortstack[r]{Sent\\to own\\task\\at the\\end,\\\% $\uparrow$} & \shortstack[r]{Route\\changed,\\\% $\downarrow$} \\
+    \midrule
+    SuperNI order 1 & \AudScaleSuperniOneTasks{} & \AudScaleSuperniOneArrive{} & \AudScaleSuperniOneEnd{} & \AudScaleSuperniOneChanged{} & \AudScaleSuperniOneAuditEst{} & \AudScaleSuperniOneAuditBound{} & \AudScaleSuperniOneHEnd{} & \AudScaleSuperniOneHChanged{} \\
+    SuperNI order 2 & \AudScaleSuperniTwoTasks{} & \AudScaleSuperniTwoArrive{} & \AudScaleSuperniTwoEnd{} & \AudScaleSuperniTwoChanged{} & \AudScaleSuperniTwoAuditEst{} & \AudScaleSuperniTwoAuditBound{} & \AudScaleSuperniTwoHEnd{} & \AudScaleSuperniTwoHChanged{} \\
+    Long Sequence order 3 & \AudScaleLongThreeTasks{} & \AudScaleLongThreeArrive{} & \AudScaleLongThreeEnd{} & \AudScaleLongThreeChanged{} & \AudScaleLongThreeAuditEst{} & \AudScaleLongThreeAuditBound{} & \AudScaleLongThreeHEnd{} & \AudScaleLongThreeHChanged{} \\
+    Long Sequence order 4 & \AudScaleLongFourTasks{} & \AudScaleLongFourArrive{} & \AudScaleLongFourEnd{} & \AudScaleLongFourChanged{} & \AudScaleLongFourAuditEst{} & \AudScaleLongFourAuditBound{} & \AudScaleLongFourHEnd{} & \AudScaleLongFourHChanged{} \\
+    fresh batch 1 & \AudScaleFreshThirtyTasks{} & \AudScaleFreshThirtyArrive{} & \AudScaleFreshThirtyEnd{} & \AudScaleFreshThirtyChanged{} & \AudScaleFreshThirtyAuditEst{} & \AudScaleFreshThirtyAuditBound{} & \AudScaleFreshThirtyHEnd{} & \AudScaleFreshThirtyHChanged{} \\
+    fresh batches 1+2 & \AudScaleFreshSixtyTasks{} & \AudScaleFreshSixtyArrive{} & \AudScaleFreshSixtyEnd{} & \AudScaleFreshSixtyChanged{} & \AudScaleFreshSixtyAuditEst{} & \AudScaleFreshSixtyAuditBound{} & \AudScaleFreshSixtyHEnd{} & \AudScaleFreshSixtyHChanged{} \\
+    fresh batches 1+2+3 & \AudScaleFreshNinetyTasks{} & \AudScaleFreshNinetyArrive{} & \AudScaleFreshNinetyEnd{} & \AudScaleFreshNinetyChanged{} & \AudScaleFreshNinetyAuditEst{} & \AudScaleFreshNinetyAuditBound{} & \AudScaleFreshNinetyHEnd{} & \AudScaleFreshNinetyHChanged{} \\
+    all & \AudScaleAllHundredTwentyTasks{} & \AudScaleAllHundredTwentyArrive{} & \AudScaleAllHundredTwentyEnd{} & \AudScaleAllHundredTwentyChanged{} & \AudScaleAllHundredTwentyAuditEst{} & \AudScaleAllHundredTwentyAuditBound{} & \AudScaleAllHundredTwentyHEnd{} & \AudScaleAllHundredTwentyHChanged{} \\
+    \bottomrule
+\end{tabular}}

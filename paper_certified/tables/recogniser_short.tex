@@ -1,0 +1,13 @@
+{\footnotesize\setlength{\tabcolsep}{1.2pt}\begin{tabular}{lrrrrrr}
+    \toprule
+    & \multicolumn{4}{c}{\recog{}, \%} & \multicolumn{2}{c}{\handicap{}, $\nu = 2$, \%} \\
+    \cmidrule(lr){2-5}\cmidrule(l){6-7}
+    & \shortstack[r]{own task\\at arrival $\uparrow$} & \shortstack[r]{own task\\at the end $\uparrow$} & \shortstack[r]{routes\\changed $\downarrow$} & \shortstack[r]{audit\\95\% bound} & \shortstack[r]{own task\\at the end $\uparrow$} & \shortstack[r]{routes\\changed $\downarrow$} \\
+    \midrule
+    15 SuperNI tasks (development) & \AudDevLLamOneArrive{} & \AudDevLLamOneEnd{} & \AudDevLLamOneChanged{} & \AudDevLLamOneAuditBound{} & \AudDevHPrimeTTwoEnd{} & \AudDevHPrimeTTwoChanged{} \\
+    15 Long Sequence tasks & \AudScaleLongThreeArrive{} & \AudScaleLongThreeEnd{} & \AudScaleLongThreeChanged{} & \AudScaleLongThreeAuditBound{} & \AudScaleLongThreeHEnd{} & \AudScaleLongThreeHChanged{} \\
+    30 unseen tasks (read once) & \AudFreshFourthLArrive{} & \AudFreshFourthLEnd{} & \AudFreshFourthLChanged{} & \AudFreshFourthAuditBound{} & \AudFreshFourthHEnd{} & \AudFreshFourthHChanged{} \\
+    90 fresh tasks & \AudScaleFreshNinetyArrive{} & \AudScaleFreshNinetyEnd{} & \AudScaleFreshNinetyChanged{} & \AudScaleFreshNinetyAuditBound{} & \AudScaleFreshNinetyHEnd{} & \AudScaleFreshNinetyHChanged{} \\
+    120 tasks & \AudScaleAllHundredTwentyArrive{} & \AudScaleAllHundredTwentyEnd{} & \AudScaleAllHundredTwentyChanged{} & \AudScaleAllHundredTwentyAuditBound{} & \AudScaleAllHundredTwentyHEnd{} & \AudScaleAllHundredTwentyHChanged{} \\
+    \bottomrule
+\end{tabular}}

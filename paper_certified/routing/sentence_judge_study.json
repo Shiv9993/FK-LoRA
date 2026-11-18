@@ -1,0 +1,731 @@
+{
+ "notes": {
+  "split": {
+   "calibration": 175,
+   "evaluation": 700,
+   "half_B": 87
+  },
+  "sentence_split": "re.split(r'(?<=[.!?])\\s+', text.strip()), as paraphrase_make.py (empty result -> the whole text is one sentence)",
+  "pairing": "each sentence of u with its most similar sentence of o_k by cosine of MiniLM sentence embeddings (max 254 tokens), and each sentence of o_k with its most similar sentence of u; score = min over all these pairs of min(P_entail(a,b), P_entail(b,a)); identical sentences 1; identical texts 1; ties in argmax -> first",
+  "cut": "each sentence cut at 128 judge tokens; input [CLS] a [SEP] b [SEP]; no token_type_ids",
+  "r": "split-conformal quantile alpha 0.10 of the MiniLM whole-text distance (cut 254 tokens) between half-B German paraphrase and own instruction: index ceil(0.9 (m+1)) of the sorted values",
+  "tau": "alpha 0.05: the k-th smallest positive score, k = floor(0.05 (m+1)), with the chosen judge",
+  "judge_choice": "AUC of sentence score, positives = (German paraphrase, own instruction), negatives = (fewer than 30 negatives within r: the 5 nearest other half-B instructions of each paraphrase); highest AUC; models within 0.005 of the best: the first in the listed order (xsmall, cross-encoder base, MoritzLaurer base) wins, so ties between the two base models go to the cross-encoder",
+  "candidates": "every task within r of the text is judged, no limit; own pair is also scored if outside r (reporting only)",
+  "R": "text outside every zone goes to the task with the nearest MiniLM whole-text signature (all 700)",
+  "C": "share of tasks whose original lies in the zone of an older task; U share with route(o_k) = k",
+  "threads": 3,
+  "step2_written": true
+ },
+ "calibration": {
+  "m": 87,
+  "r": 0.5876135309932703,
+  "r_index": 80,
+  "r_index_exceeds_m_used_largest": false,
+  "k": 4,
+  "tau": 0.0016976221231743693,
+  "chosen": "cross-encoder/nli-deberta-v3-xsmall",
+  "negatives_rule": "fewer than 30 negatives within r: the 5 nearest other half-B instructions of each paraphrase",
+  "judges": {
+   "cross-encoder/nli-deberta-v3-xsmall": {
+    "auc": 0.9646981107147575,
+    "tau": 0.0016976221231743693,
+    "share_negatives_ge_tau": 0.2413793103448276,
+    "share_positives_ge_tau": 0.9655172413793104,
+    "n_positives": 87,
+    "n_negatives": 435,
+    "id2label": {
+     "0": "contradiction",
+     "1": "entailment",
+     "2": "neutral"
+    },
+    "tokenizer_fast": true
+   },
+   "cross-encoder/nli-deberta-v3-base": {
+    "auc": 0.9643017571673933,
+    "tau": 7.896219176473096e-05,
+    "share_negatives_ge_tau": 0.42528735632183906,
+    "share_positives_ge_tau": 0.9655172413793104,
+    "n_positives": 87,
+    "n_negatives": 435,
+    "id2label": {
+     "0": "contradiction",
+     "1": "entailment",
+     "2": "neutral"
+    },
+    "tokenizer_fast": true
+   },
+   "MoritzLaurer/DeBERTa-v3-base-mnli-fever-anli": {
+    "auc": 0.95410225921522,
+    "tau": 0.0007674086955375969,
+    "share_negatives_ge_tau": 0.4160919540229885,
+    "share_positives_ge_tau": 0.9655172413793104,
+    "n_positives": 87,
+    "n_negatives": 435,
+    "id2label": {
+     "0": "entailment",
+     "1": "neutral",
+     "2": "contradiction"
+    },
+    "tokenizer_fast": true
+   }
+  },
+  "d_pos_min_med_max": [
+   0.12020105070049056,
+   0.32838095781464943,
+   1.1254399139094808
+  ]
+ },
+ "candidates": {
+  "orig": {
+   "tasks_within_r_mean": 2.057142857142857,
+   "median": 1.0,
+   "max": 20,
+   "texts_with_none_within_r": 0,
+   "unique_sentence_pairs_judged": 676,
+   "sentence_pair_occurrences": 1826,
+   "wall_seconds": 79.05176115036011,
+   "mean_wall_ms_per_text_cached_batch": 112.93108735765729
+  },
+  "de": {
+   "tasks_within_r_mean": 1.4957142857142858,
+   "median": 1.0,
+   "max": 13,
+   "texts_with_none_within_r": 83,
+   "unique_sentence_pairs_judged": 2978,
+   "sentence_pair_occurrences": 5468,
+   "wall_seconds": 313.25360441207886,
+   "mean_wall_ms_per_text_cached_batch": 447.50514916011264
+  },
+  "fr": {
+   "tasks_within_r_mean": 1.552857142857143,
+   "median": 1.0,
+   "max": 15,
+   "texts_with_none_within_r": 75,
+   "unique_sentence_pairs_judged": 2964,
+   "sentence_pair_occurrences": 5366,
+   "wall_seconds": 262.1465554237366,
+   "mean_wall_ms_per_text_cached_batch": 374.4950791767665
+  },
+  "es": {
+   "tasks_within_r_mean": 1.3942857142857144,
+   "median": 1.0,
+   "max": 11,
+   "texts_with_none_within_r": 100,
+   "unique_sentence_pairs_judged": 2744,
+   "sentence_pair_occurrences": 4472,
+   "wall_seconds": 126.78139686584473,
+   "mean_wall_ms_per_text_cached_batch": 181.11628123692103
+  },
+  "it": {
+   "tasks_within_r_mean": 1.65,
+   "median": 1.0,
+   "max": 14,
+   "texts_with_none_within_r": 53,
+   "unique_sentence_pairs_judged": 2929,
+   "sentence_pair_occurrences": 5320,
+   "wall_seconds": 199.39765310287476,
+   "mean_wall_ms_per_text_cached_batch": 284.85379014696395
+  }
+ },
+ "table": {
+  "originals": {
+   "C": 0.12428571428571429,
+   "U": 0.8757142857142857
+  },
+  "German": {
+   "C": 0.12428571428571429,
+   "U": 0.8757142857142857,
+   "Z": 0.8314285714285714,
+   "P": 0.7428571428571429,
+   "M": 0.09,
+   "R": 0.8971428571428571,
+   "n_texts": 700
+  },
+  "French": {
+   "C": 0.12428571428571429,
+   "U": 0.8757142857142857,
+   "Z": 0.8528571428571429,
+   "P": 0.7542857142857143,
+   "M": 0.1,
+   "R": 0.8914285714285715,
+   "n_texts": 700
+  },
+  "Spanish": {
+   "C": 0.12428571428571429,
+   "U": 0.8757142857142857,
+   "Z": 0.8171428571428572,
+   "P": 0.7385714285714285,
+   "M": 0.08,
+   "R": 0.8985714285714286,
+   "n_texts": 700
+  },
+  "Italian": {
+   "C": 0.12428571428571429,
+   "U": 0.8757142857142857,
+   "Z": 0.87,
+   "P": 0.7614285714285715,
+   "M": 0.10857142857142857,
+   "R": 0.8871428571428571,
+   "n_texts": 700
+  }
+ },
+ "verdict": {
+  "pivot": "Italian",
+  "P": 0.7614285714285715,
+  "M": 0.10857142857142857,
+  "C": 0.12428571428571429,
+  "outcome": "against"
+ },
+ "collisions": {
+  "source": "many_tasks.json, 'random order, seed 0', 875 tasks, key 'collisions' (task, older); pair = (original of task, original of older)",
+  "listed": 151,
+  "evaluated": 151,
+  "tau": 0.0016976221231743693,
+  "r": 0.5876135309932703,
+  "n_score_ge_tau": 59,
+  "n_in_zone_d_le_r_and_score_ge_tau": 51,
+  "n_d_le_r": 96,
+  "median_score": 0.0007732710801064968,
+  "n_same_definition": 9,
+  "n_score_ge_tau_not_same_definition": 50,
+  "n_not_same_definition": 142,
+  "share_score_ge_tau": 0.39072847682119205,
+  "share_score_ge_tau_not_same_definition": 0.352112676056338
+ },
+ "benchmark": {
+  "r": 0.5876135309932703,
+  "tau": 0.0016976221231743693,
+  "rows": [
+   {
+    "task": "task1510_evalution_relation_extraction",
+    "level": "original",
+    "d_own": 0.0,
+    "score_own": 1.0,
+    "in_own_zone": true,
+    "route_five": {
+     "task": "task1510_evalution_relation_extraction",
+     "certified": true,
+     "correct": true
+    },
+    "route_fifteen": {
+     "task": "task1510_evalution_relation_extraction",
+     "certified": true,
+     "correct": true
+    }
+   },
+   {
+    "task": "task1510_evalution_relation_extraction",
+    "level": "light",
+    "d_own": 0.13309821750979503,
+    "score_own": 0.9846011400222778,
+    "in_own_zone": true,
+    "route_five": {
+     "task": "task1510_evalution_relation_extraction",
+     "certified": true,
+     "correct": true
+    },
+    "route_fifteen": {
+     "task": "task1510_evalution_relation_extraction",
+     "certified": true,
+     "correct": true
+    }
+   },
+   {
+    "task": "task1510_evalution_relation_extraction",
+    "level": "medium",
+    "d_own": 0.5957036246309857,
+    "score_own": 0.05749285966157913,
+    "in_own_zone": false,
+    "route_five": {
+     "task": "task1510_evalution_relation_extraction",
+     "certified": false,
+     "correct": true
+    },
+    "route_fifteen": {
+     "task": "task1510_evalution_relation_extraction",
+     "certified": false,
+     "correct": true
+    }
+   },
+   {
+    "task": "task1510_evalution_relation_extraction",
+    "level": "heavy",
+    "d_own": 0.586135152791742,
+    "score_own": 0.13010872900485992,
+    "in_own_zone": true,
+    "route_five": {
+     "task": "task1510_evalution_relation_extraction",
+     "certified": true,
+     "correct": true
+    },
+    "route_fifteen": {
+     "task": "task1510_evalution_relation_extraction",
+     "certified": true,
+     "correct": true
+    }
+   },
+   {
+    "task": "task363_sst2_polarity_classification",
+    "level": "original",
+    "d_own": 0.0,
+    "score_own": 1.0,
+    "in_own_zone": true,
+    "route_five": {
+     "task": "task363_sst2_polarity_classification",
+     "certified": true,
+     "correct": true
+    },
+    "route_fifteen": {
+     "task": "task363_sst2_polarity_classification",
+     "certified": true,
+     "correct": true
+    }
+   },
+   {
+    "task": "task363_sst2_polarity_classification",
+    "level": "light",
+    "d_own": 0.1657874920445755,
+    "score_own": 0.899199903011322,
+    "in_own_zone": true,
+    "route_five": {
+     "task": "task363_sst2_polarity_classification",
+     "certified": true,
+     "correct": true
+    },
+    "route_fifteen": {
+     "task": "task363_sst2_polarity_classification",
+     "certified": true,
+     "correct": true
+    }
+   },
+   {
+    "task": "task363_sst2_polarity_classification",
+    "level": "medium",
+    "d_own": 0.6108201160701295,
+    "score_own": 0.7312152981758118,
+    "in_own_zone": false,
+    "route_five": {
+     "task": "task363_sst2_polarity_classification",
+     "certified": false,
+     "correct": true
+    },
+    "route_fifteen": {
+     "task": "task363_sst2_polarity_classification",
+     "certified": false,
+     "correct": true
+    }
+   },
+   {
+    "task": "task363_sst2_polarity_classification",
+    "level": "heavy",
+    "d_own": 0.8625511686334016,
+    "score_own": 0.4518376290798187,
+    "in_own_zone": false,
+    "route_five": {
+     "task": "task363_sst2_polarity_classification",
+     "certified": false,
+     "correct": true
+    },
+    "route_fifteen": {
+     "task": "task363_sst2_polarity_classification",
+     "certified": false,
+     "correct": true
+    }
+   },
+   {
+    "task": "task748_glucose_reverse_cause_event_detection",
+    "level": "original",
+    "d_own": 0.0,
+    "score_own": 1.0,
+    "in_own_zone": true,
+    "route_five": {
+     "task": "task748_glucose_reverse_cause_event_detection",
+     "certified": true,
+     "correct": true
+    },
+    "route_fifteen": {
+     "task": "task748_glucose_reverse_cause_event_detection",
+     "certified": true,
+     "correct": true
+    }
+   },
+   {
+    "task": "task748_glucose_reverse_cause_event_detection",
+    "level": "light",
+    "d_own": 0.2271891253905028,
+    "score_own": 0.0013934260932728648,
+    "in_own_zone": false,
+    "route_five": {
+     "task": "task748_glucose_reverse_cause_event_detection",
+     "certified": false,
+     "correct": true
+    },
+    "route_fifteen": {
+     "task": "task748_glucose_reverse_cause_event_detection",
+     "certified": false,
+     "correct": true
+    }
+   },
+   {
+    "task": "task748_glucose_reverse_cause_event_detection",
+    "level": "medium",
+    "d_own": 0.6256952573899789,
+    "score_own": 0.000868217262905091,
+    "in_own_zone": false,
+    "route_five": {
+     "task": "task748_glucose_reverse_cause_event_detection",
+     "certified": false,
+     "correct": true
+    },
+    "route_fifteen": {
+     "task": "task748_glucose_reverse_cause_event_detection",
+     "certified": false,
+     "correct": true
+    }
+   },
+   {
+    "task": "task748_glucose_reverse_cause_event_detection",
+    "level": "heavy",
+    "d_own": 0.7441979252408302,
+    "score_own": 0.0003823181032203138,
+    "in_own_zone": false,
+    "route_five": {
+     "task": "task748_glucose_reverse_cause_event_detection",
+     "certified": false,
+     "correct": true
+    },
+    "route_fifteen": {
+     "task": "task748_glucose_reverse_cause_event_detection",
+     "certified": false,
+     "correct": true
+    }
+   },
+   {
+    "task": "task1687_sentiment140_classification",
+    "level": "original",
+    "d_own": 0.0,
+    "score_own": 1.0,
+    "in_own_zone": true,
+    "route_five": {
+     "task": "task1687_sentiment140_classification",
+     "certified": true,
+     "correct": true
+    },
+    "route_fifteen": {
+     "task": "task1687_sentiment140_classification",
+     "certified": true,
+     "correct": true
+    }
+   },
+   {
+    "task": "task1687_sentiment140_classification",
+    "level": "light",
+    "d_own": 0.13597417697569408,
+    "score_own": 0.31374430656433105,
+    "in_own_zone": true,
+    "route_five": {
+     "task": "task1687_sentiment140_classification",
+     "certified": true,
+     "correct": true
+    },
+    "route_fifteen": {
+     "task": "task1687_sentiment140_classification",
+     "certified": true,
+     "correct": true
+    }
+   },
+   {
+    "task": "task1687_sentiment140_classification",
+    "level": "medium",
+    "d_own": 0.7142819340473002,
+    "score_own": 0.06006766855716705,
+    "in_own_zone": false,
+    "route_five": {
+     "task": "task1687_sentiment140_classification",
+     "certified": false,
+     "correct": true
+    },
+    "route_fifteen": {
+     "task": "task1687_sentiment140_classification",
+     "certified": false,
+     "correct": true
+    }
+   },
+   {
+    "task": "task1687_sentiment140_classification",
+    "level": "heavy",
+    "d_own": 0.9950665256920108,
+    "score_own": 0.015780553221702576,
+    "in_own_zone": false,
+    "route_five": {
+     "task": "task1687_sentiment140_classification",
+     "certified": false,
+     "correct": true
+    },
+    "route_fifteen": {
+     "task": "task1687_sentiment140_classification",
+     "certified": false,
+     "correct": true
+    }
+   },
+   {
+    "task": "task875_emotion_classification",
+    "level": "original",
+    "d_own": 0.0,
+    "score_own": 1.0,
+    "in_own_zone": true,
+    "route_five": {
+     "task": "task875_emotion_classification",
+     "certified": true,
+     "correct": true
+    },
+    "route_fifteen": {
+     "task": "task875_emotion_classification",
+     "certified": true,
+     "correct": true
+    }
+   },
+   {
+    "task": "task875_emotion_classification",
+    "level": "light",
+    "d_own": 0.3435633482326817,
+    "score_own": 0.9418423175811768,
+    "in_own_zone": true,
+    "route_five": {
+     "task": "task875_emotion_classification",
+     "certified": true,
+     "correct": true
+    },
+    "route_fifteen": {
+     "task": "task875_emotion_classification",
+     "certified": true,
+     "correct": true
+    }
+   },
+   {
+    "task": "task875_emotion_classification",
+    "level": "medium",
+    "d_own": 0.6029138236555688,
+    "score_own": 0.9039408564567566,
+    "in_own_zone": false,
+    "route_five": {
+     "task": "task875_emotion_classification",
+     "certified": false,
+     "correct": true
+    },
+    "route_fifteen": {
+     "task": "task875_emotion_classification",
+     "certified": false,
+     "correct": true
+    }
+   },
+   {
+    "task": "task875_emotion_classification",
+    "level": "heavy",
+    "d_own": 0.7314354647489986,
+    "score_own": 0.5998233556747437,
+    "in_own_zone": false,
+    "route_five": {
+     "task": "task875_emotion_classification",
+     "certified": false,
+     "correct": true
+    },
+    "route_fifteen": {
+     "task": "task875_emotion_classification",
+     "certified": false,
+     "correct": true
+    }
+   }
+  ],
+  "summary": {
+   "original": {
+    "n": 5,
+    "in_own_zone": 5,
+    "routed_right_five": 5,
+    "certified_wrong_five": 0,
+    "routed_right_fifteen": 5,
+    "certified_wrong_fifteen": 0
+   },
+   "light": {
+    "n": 5,
+    "in_own_zone": 4,
+    "routed_right_five": 5,
+    "certified_wrong_five": 0,
+    "routed_right_fifteen": 5,
+    "certified_wrong_fifteen": 0
+   },
+   "medium": {
+    "n": 5,
+    "in_own_zone": 0,
+    "routed_right_five": 5,
+    "certified_wrong_five": 0,
+    "routed_right_fifteen": 5,
+    "certified_wrong_fifteen": 0
+   },
+   "heavy": {
+    "n": 5,
+    "in_own_zone": 1,
+    "routed_right_five": 5,
+    "certified_wrong_five": 0,
+    "routed_right_fifteen": 5,
+    "certified_wrong_fifteen": 0
+   }
+  }
+ },
+ "examples": {
+  "pivot": "Italian",
+  "n_wrong_certificates": 76,
+  "first_12": [
+   {
+    "pos": 38,
+    "task": "task1403_check_validity_date_mmddyyyy",
+    "claimed_by": "task1333_check_validity_date_ddmmyyyy",
+    "claimed_by_pos": 7,
+    "d": 0.4611333299150332,
+    "score": 0.017764177173376083,
+    "own_zone_holds": true,
+    "lowest_pair_u_sentence": "One day(dd) is valid if it is greater than or equal to 1 and less than 30 or 31 depending on the month(mm).",
+    "lowest_pair_o_sentence": "A day(dd) is valid if it: a) lies between 1 and 31 for the months of January, March, May, July, August, October, December, b) lies between 1 and 28 for February on non-leap years and between 1-29 on leap years, c) lies between 1-30 for all other months."
+   },
+   {
+    "pos": 41,
+    "task": "task1201_atomic_classification_xintent",
+    "claimed_by": "task1203_atomic_classification_xreact",
+    "claimed_by_pos": 1,
+    "d": 0.5417352384715662,
+    "score": 0.002280179876834154,
+    "own_zone_holds": true,
+    "lowest_pair_u_sentence": "The intention is the likely intent or desire of PersonX behind the execution of an event.",
+    "lowest_pair_o_sentence": "In this task, the feeling is an emotional reaction on the part of X or other participants in an event."
+   },
+   {
+    "pos": 51,
+    "task": "task064_all_elements_except_first_i",
+    "claimed_by": "task091_all_elements_from_index_i_to_j",
+    "claimed_by_pos": 14,
+    "d": 0.5356556099661532,
+    "score": 0.0018959419103339314,
+    "own_zone_holds": true,
+    "lowest_pair_u_sentence": "In this task, you are given input i and A, where i is an integer and A is a list.",
+    "lowest_pair_o_sentence": "In this task, you are given inputs i,j, and A, where i and j are integers and A is a list."
+   },
+   {
+    "pos": 56,
+    "task": "task1197_atomic_classification_oreact",
+    "claimed_by": "task1203_atomic_classification_xreact",
+    "claimed_by_pos": 1,
+    "d": 0.40296788947995676,
+    "score": 0.009385677054524422,
+    "own_zone_holds": true,
+    "lowest_pair_u_sentence": "You must determine whether, as a result of the head, Person, or others, feel what is mentioned in the tail or not.",
+    "lowest_pair_o_sentence": "You have to determine whether, as a result of the Head, PersonX may feel what is mentioned in the Tail or not."
+   },
+   {
+    "pos": 60,
+    "task": "task1216_atomic_classification_causes",
+    "claimed_by": "task1196_atomic_classification_oeffect",
+    "claimed_by_pos": 53,
+    "d": 0.4922497750688577,
+    "score": 0.0024719317443668842,
+    "own_zone_holds": true,
+    "lowest_pair_u_sentence": "Classify your answers in \"Yes\" and \"No.\" The phrase can also contain \"____,\" a placeholder that can be an object, a person and/or an action.",
+    "lowest_pair_o_sentence": "For example, X may get hugged, and Y may blush in response."
+   },
+   {
+    "pos": 99,
+    "task": "task129_scan_long_text_generation_action_command_short",
+    "claimed_by": "task128_scan_structured_text_generation_command_action_short",
+    "claimed_by_pos": 54,
+    "d": 0.3952514811056092,
+    "score": 0.0030117472633719444,
+    "own_zone_holds": true,
+    "lowest_pair_u_sentence": "Actions are individual steps that serve as building blocks for a command.",
+    "lowest_pair_o_sentence": "Actions are uppercase and are individual steps that serve as the building blocks for a command."
+   },
+   {
+    "pos": 150,
+    "task": "task345_hybridqa_answer_generation",
+    "claimed_by": "task382_hybridqa_answer_generation",
+    "claimed_by_pos": 81,
+    "d": 0.4244192522393639,
+    "score": 0.012437752448022366,
+    "own_zone_holds": true,
+    "lowest_pair_u_sentence": "In this task, you will be asked a question, and you must write the part-of-speech tag for each word in the application.",
+    "lowest_pair_o_sentence": "In this task, you will be presented with a question about part-of-speech tag of a word in the question."
+   },
+   {
+    "pos": 186,
+    "task": "task1202_atomic_classification_xneed",
+    "claimed_by": "task1216_atomic_classification_causes",
+    "claimed_by_pos": 60,
+    "d": 0.5455136854803908,
+    "score": 0.002546540927141905,
+    "own_zone_holds": true,
+    "lowest_pair_u_sentence": "For example, in order for PersonX to give Persony gifts, PersonX must first purchase gifts.",
+    "lowest_pair_o_sentence": "PersonX is always the subject of the event."
+   },
+   {
+    "pos": 196,
+    "task": "task730_mmmlu_answer_generation_professional_medicine",
+    "claimed_by": "task685_mmmlu_answer_generation_clinical_knowledge",
+    "claimed_by_pos": 167,
+    "d": 0.4191375479853237,
+    "score": 0.8967810273170471,
+    "own_zone_holds": true,
+    "lowest_pair_u_sentence": "You are also given 4 response options (associated with \"A,\" \"B,\" \"C,\" \"D\"), of which only one is correct.",
+    "lowest_pair_o_sentence": "You are also given 4 answer options (associated with \"A\", \"B\", \"C\", \"D\"), out of which only one is correct."
+   },
+   {
+    "pos": 201,
+    "task": "task176_break_decompose_questions",
+    "claimed_by": "task184_break_generate_question",
+    "claimed_by_pos": 119,
+    "d": 0.49816366161321857,
+    "score": 0.0022676619701087475,
+    "own_zone_holds": true,
+    "lowest_pair_u_sentence": "In this task a question will be divided into the basic steps necessary to answer.",
+    "lowest_pair_o_sentence": "Your job is to generate that question."
+   },
+   {
+    "pos": 202,
+    "task": "task1484_gene_extraction_linnaeus_dataset",
+    "claimed_by": "task1480_gene_extraction_jnlpba_dataset",
+    "claimed_by_pos": 189,
+    "d": 0.1573223754629285,
+    "score": 0.9818395972251892,
+    "own_zone_holds": true,
+    "lowest_pair_u_sentence": "It is expected to recognize the name of the gene or proteins.",
+    "lowest_pair_o_sentence": "You are expected to recognize the name of gene or protein."
+   },
+   {
+    "pos": 235,
+    "task": "task716_mmmlu_answer_generation_jurisprudence",
+    "claimed_by": "task729_mmmlu_answer_generation_professional_law",
+    "claimed_by_pos": 135,
+    "d": 0.5151609518298255,
+    "score": 0.012686887755990028,
+    "own_zone_holds": true,
+    "lowest_pair_u_sentence": "Law is the theory or philosophy of law.",
+    "lowest_pair_o_sentence": "You are given a question on professional law."
+   }
+  ]
+ },
+ "cost": {
+  "chosen_judge": "cross-encoder/nli-deberta-v3-xsmall",
+  "timing_sample_texts": 60,
+  "mean_ms_per_text": 840.5637118166396,
+  "median_ms": 536.6175359999943,
+  "p90_ms": 1621.4221239997644,
+  "mean_tasks_within_r_in_sample": 1.7,
+  "mean_unique_sentence_pairs_in_sample": 3.35,
+  "note": "sequential, one text at a time, 3 threads, no judge cache; MiniLM encode of the text and its sentences + distances to 700 originals + all sentence pairs within r in both directions + route; task-side sentence embeddings precomputed; sample = every 35th task of originals, French, Italian",
+  "total_unique_sentence_pairs_per_pivot": {
+   "orig": 676,
+   "de": 2978,
+   "fr": 2964,
+   "es": 2744,
+   "it": 2929
+  }
+ }
+}

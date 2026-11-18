@@ -1,0 +1,1051 @@
+{
+ "five_same_routes": 2000,
+ "five_inputs": 2000,
+ "fifteen_same_routes": 2697,
+ "fifteen_inputs": 2697,
+ "stress": {
+  "light": {
+   "exact": {
+    "changed": [
+     0,
+     100,
+     0,
+     0
+    ],
+    "new_task_own": 800,
+    "new_task_inputs": 800
+   },
+   "certified": {
+    "changed": [
+     0,
+     0,
+     0,
+     0
+    ],
+    "new_task_own": 1,
+    "new_task_inputs": 800
+   },
+   "nearest": {
+    "changed": [
+     0,
+     100,
+     0,
+     0
+    ],
+    "new_task_own": 800,
+    "new_task_inputs": 800
+   }
+  },
+  "medium": {
+   "exact": {
+    "changed": [
+     0,
+     0,
+     100,
+     2
+    ],
+    "new_task_own": 800,
+    "new_task_inputs": 800
+   },
+   "certified": {
+    "changed": [
+     0,
+     0,
+     100,
+     2
+    ],
+    "new_task_own": 800,
+    "new_task_inputs": 800
+   },
+   "nearest": {
+    "changed": [
+     0,
+     0,
+     100,
+     2
+    ],
+    "new_task_own": 800,
+    "new_task_inputs": 800
+   }
+  },
+  "heavy": {
+   "exact": {
+    "changed": [
+     0,
+     0,
+     0,
+     100
+    ],
+    "new_task_own": 800,
+    "new_task_inputs": 800
+   },
+   "certified": {
+    "changed": [
+     0,
+     0,
+     0,
+     100
+    ],
+    "new_task_own": 800,
+    "new_task_inputs": 800
+   },
+   "nearest": {
+    "changed": [
+     0,
+     0,
+     0,
+     100
+    ],
+    "new_task_own": 800,
+    "new_task_inputs": 800
+   }
+  }
+ },
+ "many": {
+  "tasks": 875,
+  "inputs": 5237,
+  "inputs_with_two_exact_claims": 138,
+  "random order, seed 0": {
+   "50": {
+    "tasks": 50,
+    "inputs": 300,
+    "exact": {
+     "right": 300,
+     "changed": 0,
+     "changed_exact": 0,
+     "changed_zone": 0,
+     "tasks_own_all": 50,
+     "tasks_own_none": 0,
+     "tasks_own_some": 0
+    },
+    "certified": {
+     "right": 296,
+     "changed": 0,
+     "changed_exact": 0,
+     "changed_zone": 0,
+     "tasks_own_all": 49,
+     "tasks_own_none": 0,
+     "tasks_own_some": 1
+    },
+    "nearest": {
+     "right": 300,
+     "changed": 0,
+     "changed_exact": 0,
+     "changed_zone": 0,
+     "tasks_own_all": 50,
+     "tasks_own_none": 0,
+     "tasks_own_some": 0
+    }
+   },
+   "100": {
+    "tasks": 100,
+    "inputs": 600,
+    "exact": {
+     "right": 600,
+     "changed": 0,
+     "changed_exact": 0,
+     "changed_zone": 0,
+     "tasks_own_all": 100,
+     "tasks_own_none": 0,
+     "tasks_own_some": 0
+    },
+    "certified": {
+     "right": 580,
+     "changed": 0,
+     "changed_exact": 0,
+     "changed_zone": 0,
+     "tasks_own_all": 96,
+     "tasks_own_none": 1,
+     "tasks_own_some": 3
+    },
+    "nearest": {
+     "right": 600,
+     "changed": 0,
+     "changed_exact": 0,
+     "changed_zone": 0,
+     "tasks_own_all": 100,
+     "tasks_own_none": 0,
+     "tasks_own_some": 0
+    }
+   },
+   "200": {
+    "tasks": 200,
+    "inputs": 1200,
+    "exact": {
+     "right": 1188,
+     "changed": 0,
+     "changed_exact": 0,
+     "changed_zone": 0,
+     "tasks_own_all": 198,
+     "tasks_own_none": 2,
+     "tasks_own_some": 0
+    },
+    "certified": {
+     "right": 1085,
+     "changed": 0,
+     "changed_exact": 0,
+     "changed_zone": 0,
+     "tasks_own_all": 178,
+     "tasks_own_none": 15,
+     "tasks_own_some": 7
+    },
+    "nearest": {
+     "right": 1182,
+     "changed": 0,
+     "changed_exact": 0,
+     "changed_zone": 0,
+     "tasks_own_all": 197,
+     "tasks_own_none": 3,
+     "tasks_own_some": 0
+    }
+   },
+   "400": {
+    "tasks": 400,
+    "inputs": 2397,
+    "exact": {
+     "right": 2379,
+     "changed": 0,
+     "changed_exact": 0,
+     "changed_zone": 0,
+     "tasks_own_all": 397,
+     "tasks_own_none": 3,
+     "tasks_own_some": 0
+    },
+    "certified": {
+     "right": 2054,
+     "changed": 0,
+     "changed_exact": 0,
+     "changed_zone": 0,
+     "tasks_own_all": 337,
+     "tasks_own_none": 50,
+     "tasks_own_some": 13
+    },
+    "nearest": {
+     "right": 2373,
+     "changed": 0,
+     "changed_exact": 0,
+     "changed_zone": 0,
+     "tasks_own_all": 396,
+     "tasks_own_none": 4,
+     "tasks_own_some": 0
+    }
+   },
+   "875": {
+    "tasks": 875,
+    "inputs": 5237,
+    "exact": {
+     "right": 5153,
+     "changed": 0,
+     "changed_exact": 0,
+     "changed_zone": 0,
+     "tasks_own_all": 861,
+     "tasks_own_none": 14,
+     "tasks_own_some": 0
+    },
+    "certified": {
+     "right": 4388,
+     "changed": 0,
+     "changed_exact": 0,
+     "changed_zone": 0,
+     "tasks_own_all": 724,
+     "tasks_own_none": 129,
+     "tasks_own_some": 22
+    },
+    "nearest": {
+     "right": 5147,
+     "changed": 0,
+     "changed_exact": 0,
+     "changed_zone": 0,
+     "tasks_own_all": 860,
+     "tasks_own_none": 15,
+     "tasks_own_some": 0
+    }
+   }
+  },
+  "random order, seed 1": {
+   "50": {
+    "tasks": 50,
+    "inputs": 300,
+    "exact": {
+     "right": 300,
+     "changed": 0,
+     "changed_exact": 0,
+     "changed_zone": 0,
+     "tasks_own_all": 50,
+     "tasks_own_none": 0,
+     "tasks_own_some": 0
+    },
+    "certified": {
+     "right": 276,
+     "changed": 0,
+     "changed_exact": 0,
+     "changed_zone": 0,
+     "tasks_own_all": 46,
+     "tasks_own_none": 4,
+     "tasks_own_some": 0
+    },
+    "nearest": {
+     "right": 300,
+     "changed": 0,
+     "changed_exact": 0,
+     "changed_zone": 0,
+     "tasks_own_all": 50,
+     "tasks_own_none": 0,
+     "tasks_own_some": 0
+    }
+   },
+   "100": {
+    "tasks": 100,
+    "inputs": 597,
+    "exact": {
+     "right": 591,
+     "changed": 0,
+     "changed_exact": 0,
+     "changed_zone": 0,
+     "tasks_own_all": 99,
+     "tasks_own_none": 1,
+     "tasks_own_some": 0
+    },
+    "certified": {
+     "right": 549,
+     "changed": 0,
+     "changed_exact": 0,
+     "changed_zone": 0,
+     "tasks_own_all": 92,
+     "tasks_own_none": 8,
+     "tasks_own_some": 0
+    },
+    "nearest": {
+     "right": 591,
+     "changed": 0,
+     "changed_exact": 0,
+     "changed_zone": 0,
+     "tasks_own_all": 99,
+     "tasks_own_none": 1,
+     "tasks_own_some": 0
+    }
+   },
+   "200": {
+    "tasks": 200,
+    "inputs": 1190,
+    "exact": {
+     "right": 1184,
+     "changed": 0,
+     "changed_exact": 0,
+     "changed_zone": 0,
+     "tasks_own_all": 199,
+     "tasks_own_none": 1,
+     "tasks_own_some": 0
+    },
+    "certified": {
+     "right": 1059,
+     "changed": 0,
+     "changed_exact": 0,
+     "changed_zone": 0,
+     "tasks_own_all": 178,
+     "tasks_own_none": 21,
+     "tasks_own_some": 1
+    },
+    "nearest": {
+     "right": 1172,
+     "changed": 0,
+     "changed_exact": 0,
+     "changed_zone": 0,
+     "tasks_own_all": 197,
+     "tasks_own_none": 3,
+     "tasks_own_some": 0
+    }
+   },
+   "400": {
+    "tasks": 400,
+    "inputs": 2390,
+    "exact": {
+     "right": 2366,
+     "changed": 0,
+     "changed_exact": 0,
+     "changed_zone": 0,
+     "tasks_own_all": 396,
+     "tasks_own_none": 4,
+     "tasks_own_some": 0
+    },
+    "certified": {
+     "right": 2037,
+     "changed": 0,
+     "changed_exact": 0,
+     "changed_zone": 0,
+     "tasks_own_all": 339,
+     "tasks_own_none": 57,
+     "tasks_own_some": 4
+    },
+    "nearest": {
+     "right": 2354,
+     "changed": 0,
+     "changed_exact": 0,
+     "changed_zone": 0,
+     "tasks_own_all": 394,
+     "tasks_own_none": 6,
+     "tasks_own_some": 0
+    }
+   },
+   "875": {
+    "tasks": 875,
+    "inputs": 5237,
+    "exact": {
+     "right": 5153,
+     "changed": 0,
+     "changed_exact": 0,
+     "changed_zone": 0,
+     "tasks_own_all": 861,
+     "tasks_own_none": 14,
+     "tasks_own_some": 0
+    },
+    "certified": {
+     "right": 4346,
+     "changed": 0,
+     "changed_exact": 0,
+     "changed_zone": 0,
+     "tasks_own_all": 718,
+     "tasks_own_none": 143,
+     "tasks_own_some": 14
+    },
+    "nearest": {
+     "right": 5141,
+     "changed": 0,
+     "changed_exact": 0,
+     "changed_zone": 0,
+     "tasks_own_all": 859,
+     "tasks_own_none": 16,
+     "tasks_own_some": 0
+    }
+   }
+  },
+  "random order, seed 2": {
+   "50": {
+    "tasks": 50,
+    "inputs": 300,
+    "exact": {
+     "right": 300,
+     "changed": 0,
+     "changed_exact": 0,
+     "changed_zone": 0,
+     "tasks_own_all": 50,
+     "tasks_own_none": 0,
+     "tasks_own_some": 0
+    },
+    "certified": {
+     "right": 288,
+     "changed": 0,
+     "changed_exact": 0,
+     "changed_zone": 0,
+     "tasks_own_all": 48,
+     "tasks_own_none": 2,
+     "tasks_own_some": 0
+    },
+    "nearest": {
+     "right": 300,
+     "changed": 0,
+     "changed_exact": 0,
+     "changed_zone": 0,
+     "tasks_own_all": 50,
+     "tasks_own_none": 0,
+     "tasks_own_some": 0
+    }
+   },
+   "100": {
+    "tasks": 100,
+    "inputs": 600,
+    "exact": {
+     "right": 588,
+     "changed": 0,
+     "changed_exact": 0,
+     "changed_zone": 0,
+     "tasks_own_all": 98,
+     "tasks_own_none": 2,
+     "tasks_own_some": 0
+    },
+    "certified": {
+     "right": 528,
+     "changed": 0,
+     "changed_exact": 0,
+     "changed_zone": 0,
+     "tasks_own_all": 88,
+     "tasks_own_none": 12,
+     "tasks_own_some": 0
+    },
+    "nearest": {
+     "right": 588,
+     "changed": 0,
+     "changed_exact": 0,
+     "changed_zone": 0,
+     "tasks_own_all": 98,
+     "tasks_own_none": 2,
+     "tasks_own_some": 0
+    }
+   },
+   "200": {
+    "tasks": 200,
+    "inputs": 1200,
+    "exact": {
+     "right": 1188,
+     "changed": 0,
+     "changed_exact": 0,
+     "changed_zone": 0,
+     "tasks_own_all": 198,
+     "tasks_own_none": 2,
+     "tasks_own_some": 0
+    },
+    "certified": {
+     "right": 1077,
+     "changed": 0,
+     "changed_exact": 0,
+     "changed_zone": 0,
+     "tasks_own_all": 178,
+     "tasks_own_none": 20,
+     "tasks_own_some": 2
+    },
+    "nearest": {
+     "right": 1188,
+     "changed": 0,
+     "changed_exact": 0,
+     "changed_zone": 0,
+     "tasks_own_all": 198,
+     "tasks_own_none": 2,
+     "tasks_own_some": 0
+    }
+   },
+   "400": {
+    "tasks": 400,
+    "inputs": 2400,
+    "exact": {
+     "right": 2388,
+     "changed": 0,
+     "changed_exact": 0,
+     "changed_zone": 0,
+     "tasks_own_all": 398,
+     "tasks_own_none": 2,
+     "tasks_own_some": 0
+    },
+    "certified": {
+     "right": 2118,
+     "changed": 0,
+     "changed_exact": 0,
+     "changed_zone": 0,
+     "tasks_own_all": 350,
+     "tasks_own_none": 45,
+     "tasks_own_some": 5
+    },
+    "nearest": {
+     "right": 2388,
+     "changed": 0,
+     "changed_exact": 0,
+     "changed_zone": 0,
+     "tasks_own_all": 398,
+     "tasks_own_none": 2,
+     "tasks_own_some": 0
+    }
+   },
+   "875": {
+    "tasks": 875,
+    "inputs": 5237,
+    "exact": {
+     "right": 5153,
+     "changed": 0,
+     "changed_exact": 0,
+     "changed_zone": 0,
+     "tasks_own_all": 861,
+     "tasks_own_none": 14,
+     "tasks_own_some": 0
+    },
+    "certified": {
+     "right": 4327,
+     "changed": 0,
+     "changed_exact": 0,
+     "changed_zone": 0,
+     "tasks_own_all": 718,
+     "tasks_own_none": 148,
+     "tasks_own_some": 9
+    },
+    "nearest": {
+     "right": 5147,
+     "changed": 0,
+     "changed_exact": 0,
+     "changed_zone": 0,
+     "tasks_own_all": 860,
+     "tasks_own_none": 15,
+     "tasks_own_some": 0
+    }
+   }
+  },
+  "random order, seed 3": {
+   "50": {
+    "tasks": 50,
+    "inputs": 300,
+    "exact": {
+     "right": 300,
+     "changed": 0,
+     "changed_exact": 0,
+     "changed_zone": 0,
+     "tasks_own_all": 50,
+     "tasks_own_none": 0,
+     "tasks_own_some": 0
+    },
+    "certified": {
+     "right": 282,
+     "changed": 0,
+     "changed_exact": 0,
+     "changed_zone": 0,
+     "tasks_own_all": 47,
+     "tasks_own_none": 3,
+     "tasks_own_some": 0
+    },
+    "nearest": {
+     "right": 300,
+     "changed": 0,
+     "changed_exact": 0,
+     "changed_zone": 0,
+     "tasks_own_all": 50,
+     "tasks_own_none": 0,
+     "tasks_own_some": 0
+    }
+   },
+   "100": {
+    "tasks": 100,
+    "inputs": 600,
+    "exact": {
+     "right": 594,
+     "changed": 0,
+     "changed_exact": 0,
+     "changed_zone": 0,
+     "tasks_own_all": 99,
+     "tasks_own_none": 1,
+     "tasks_own_some": 0
+    },
+    "certified": {
+     "right": 540,
+     "changed": 0,
+     "changed_exact": 0,
+     "changed_zone": 0,
+     "tasks_own_all": 90,
+     "tasks_own_none": 10,
+     "tasks_own_some": 0
+    },
+    "nearest": {
+     "right": 594,
+     "changed": 0,
+     "changed_exact": 0,
+     "changed_zone": 0,
+     "tasks_own_all": 99,
+     "tasks_own_none": 1,
+     "tasks_own_some": 0
+    }
+   },
+   "200": {
+    "tasks": 200,
+    "inputs": 1200,
+    "exact": {
+     "right": 1182,
+     "changed": 0,
+     "changed_exact": 0,
+     "changed_zone": 0,
+     "tasks_own_all": 197,
+     "tasks_own_none": 3,
+     "tasks_own_some": 0
+    },
+    "certified": {
+     "right": 1086,
+     "changed": 0,
+     "changed_exact": 0,
+     "changed_zone": 0,
+     "tasks_own_all": 181,
+     "tasks_own_none": 19,
+     "tasks_own_some": 0
+    },
+    "nearest": {
+     "right": 1182,
+     "changed": 0,
+     "changed_exact": 0,
+     "changed_zone": 0,
+     "tasks_own_all": 197,
+     "tasks_own_none": 3,
+     "tasks_own_some": 0
+    }
+   },
+   "400": {
+    "tasks": 400,
+    "inputs": 2387,
+    "exact": {
+     "right": 2339,
+     "changed": 0,
+     "changed_exact": 0,
+     "changed_zone": 0,
+     "tasks_own_all": 392,
+     "tasks_own_none": 8,
+     "tasks_own_some": 0
+    },
+    "certified": {
+     "right": 2074,
+     "changed": 0,
+     "changed_exact": 0,
+     "changed_zone": 0,
+     "tasks_own_all": 347,
+     "tasks_own_none": 52,
+     "tasks_own_some": 1
+    },
+    "nearest": {
+     "right": 2339,
+     "changed": 0,
+     "changed_exact": 0,
+     "changed_zone": 0,
+     "tasks_own_all": 392,
+     "tasks_own_none": 8,
+     "tasks_own_some": 0
+    }
+   },
+   "875": {
+    "tasks": 875,
+    "inputs": 5237,
+    "exact": {
+     "right": 5153,
+     "changed": 0,
+     "changed_exact": 0,
+     "changed_zone": 0,
+     "tasks_own_all": 861,
+     "tasks_own_none": 14,
+     "tasks_own_some": 0
+    },
+    "certified": {
+     "right": 4348,
+     "changed": 0,
+     "changed_exact": 0,
+     "changed_zone": 0,
+     "tasks_own_all": 724,
+     "tasks_own_none": 146,
+     "tasks_own_some": 5
+    },
+    "nearest": {
+     "right": 5147,
+     "changed": 0,
+     "changed_exact": 0,
+     "changed_zone": 0,
+     "tasks_own_all": 860,
+     "tasks_own_none": 15,
+     "tasks_own_some": 0
+    }
+   }
+  },
+  "random order, seed 4": {
+   "50": {
+    "tasks": 50,
+    "inputs": 297,
+    "exact": {
+     "right": 297,
+     "changed": 0,
+     "changed_exact": 0,
+     "changed_zone": 0,
+     "tasks_own_all": 50,
+     "tasks_own_none": 0,
+     "tasks_own_some": 0
+    },
+    "certified": {
+     "right": 291,
+     "changed": 0,
+     "changed_exact": 0,
+     "changed_zone": 0,
+     "tasks_own_all": 49,
+     "tasks_own_none": 1,
+     "tasks_own_some": 0
+    },
+    "nearest": {
+     "right": 297,
+     "changed": 0,
+     "changed_exact": 0,
+     "changed_zone": 0,
+     "tasks_own_all": 50,
+     "tasks_own_none": 0,
+     "tasks_own_some": 0
+    }
+   },
+   "100": {
+    "tasks": 100,
+    "inputs": 597,
+    "exact": {
+     "right": 597,
+     "changed": 0,
+     "changed_exact": 0,
+     "changed_zone": 0,
+     "tasks_own_all": 100,
+     "tasks_own_none": 0,
+     "tasks_own_some": 0
+    },
+    "certified": {
+     "right": 531,
+     "changed": 0,
+     "changed_exact": 0,
+     "changed_zone": 0,
+     "tasks_own_all": 89,
+     "tasks_own_none": 11,
+     "tasks_own_some": 0
+    },
+    "nearest": {
+     "right": 597,
+     "changed": 0,
+     "changed_exact": 0,
+     "changed_zone": 0,
+     "tasks_own_all": 100,
+     "tasks_own_none": 0,
+     "tasks_own_some": 0
+    }
+   },
+   "200": {
+    "tasks": 200,
+    "inputs": 1197,
+    "exact": {
+     "right": 1197,
+     "changed": 0,
+     "changed_exact": 0,
+     "changed_zone": 0,
+     "tasks_own_all": 200,
+     "tasks_own_none": 0,
+     "tasks_own_some": 0
+    },
+    "certified": {
+     "right": 1023,
+     "changed": 0,
+     "changed_exact": 0,
+     "changed_zone": 0,
+     "tasks_own_all": 171,
+     "tasks_own_none": 29,
+     "tasks_own_some": 0
+    },
+    "nearest": {
+     "right": 1197,
+     "changed": 0,
+     "changed_exact": 0,
+     "changed_zone": 0,
+     "tasks_own_all": 200,
+     "tasks_own_none": 0,
+     "tasks_own_some": 0
+    }
+   },
+   "400": {
+    "tasks": 400,
+    "inputs": 2387,
+    "exact": {
+     "right": 2375,
+     "changed": 0,
+     "changed_exact": 0,
+     "changed_zone": 0,
+     "tasks_own_all": 398,
+     "tasks_own_none": 2,
+     "tasks_own_some": 0
+    },
+    "certified": {
+     "right": 2066,
+     "changed": 0,
+     "changed_exact": 0,
+     "changed_zone": 0,
+     "tasks_own_all": 345,
+     "tasks_own_none": 53,
+     "tasks_own_some": 2
+    },
+    "nearest": {
+     "right": 2375,
+     "changed": 0,
+     "changed_exact": 0,
+     "changed_zone": 0,
+     "tasks_own_all": 398,
+     "tasks_own_none": 2,
+     "tasks_own_some": 0
+    }
+   },
+   "875": {
+    "tasks": 875,
+    "inputs": 5237,
+    "exact": {
+     "right": 5153,
+     "changed": 0,
+     "changed_exact": 0,
+     "changed_zone": 0,
+     "tasks_own_all": 861,
+     "tasks_own_none": 14,
+     "tasks_own_some": 0
+    },
+    "certified": {
+     "right": 4327,
+     "changed": 0,
+     "changed_exact": 0,
+     "changed_zone": 0,
+     "tasks_own_all": 721,
+     "tasks_own_none": 151,
+     "tasks_own_some": 3
+    },
+    "nearest": {
+     "right": 5147,
+     "changed": 0,
+     "changed_exact": 0,
+     "changed_zone": 0,
+     "tasks_own_all": 860,
+     "tasks_own_none": 15,
+     "tasks_own_some": 0
+    }
+   }
+  },
+  "order of the task numbers": {
+   "50": {
+    "tasks": 50,
+    "inputs": 300,
+    "exact": {
+     "right": 300,
+     "changed": 0,
+     "changed_exact": 0,
+     "changed_zone": 0,
+     "tasks_own_all": 50,
+     "tasks_own_none": 0,
+     "tasks_own_some": 0
+    },
+    "certified": {
+     "right": 287,
+     "changed": 0,
+     "changed_exact": 0,
+     "changed_zone": 0,
+     "tasks_own_all": 47,
+     "tasks_own_none": 2,
+     "tasks_own_some": 1
+    },
+    "nearest": {
+     "right": 294,
+     "changed": 0,
+     "changed_exact": 0,
+     "changed_zone": 0,
+     "tasks_own_all": 49,
+     "tasks_own_none": 1,
+     "tasks_own_some": 0
+    }
+   },
+   "100": {
+    "tasks": 100,
+    "inputs": 600,
+    "exact": {
+     "right": 576,
+     "changed": 0,
+     "changed_exact": 0,
+     "changed_zone": 0,
+     "tasks_own_all": 96,
+     "tasks_own_none": 4,
+     "tasks_own_some": 0
+    },
+    "certified": {
+     "right": 539,
+     "changed": 0,
+     "changed_exact": 0,
+     "changed_zone": 0,
+     "tasks_own_all": 89,
+     "tasks_own_none": 10,
+     "tasks_own_some": 1
+    },
+    "nearest": {
+     "right": 570,
+     "changed": 0,
+     "changed_exact": 0,
+     "changed_zone": 0,
+     "tasks_own_all": 95,
+     "tasks_own_none": 5,
+     "tasks_own_some": 0
+    }
+   },
+   "200": {
+    "tasks": 200,
+    "inputs": 1200,
+    "exact": {
+     "right": 1176,
+     "changed": 0,
+     "changed_exact": 0,
+     "changed_zone": 0,
+     "tasks_own_all": 196,
+     "tasks_own_none": 4,
+     "tasks_own_some": 0
+    },
+    "certified": {
+     "right": 1037,
+     "changed": 0,
+     "changed_exact": 0,
+     "changed_zone": 0,
+     "tasks_own_all": 172,
+     "tasks_own_none": 27,
+     "tasks_own_some": 1
+    },
+    "nearest": {
+     "right": 1170,
+     "changed": 0,
+     "changed_exact": 0,
+     "changed_zone": 0,
+     "tasks_own_all": 195,
+     "tasks_own_none": 5,
+     "tasks_own_some": 0
+    }
+   },
+   "400": {
+    "tasks": 400,
+    "inputs": 2391,
+    "exact": {
+     "right": 2343,
+     "changed": 0,
+     "changed_exact": 0,
+     "changed_zone": 0,
+     "tasks_own_all": 392,
+     "tasks_own_none": 8,
+     "tasks_own_some": 0
+    },
+    "certified": {
+     "right": 2108,
+     "changed": 0,
+     "changed_exact": 0,
+     "changed_zone": 0,
+     "tasks_own_all": 352,
+     "tasks_own_none": 47,
+     "tasks_own_some": 1
+    },
+    "nearest": {
+     "right": 2337,
+     "changed": 0,
+     "changed_exact": 0,
+     "changed_zone": 0,
+     "tasks_own_all": 391,
+     "tasks_own_none": 9,
+     "tasks_own_some": 0
+    }
+   },
+   "875": {
+    "tasks": 875,
+    "inputs": 5237,
+    "exact": {
+     "right": 5153,
+     "changed": 0,
+     "changed_exact": 0,
+     "changed_zone": 0,
+     "tasks_own_all": 861,
+     "tasks_own_none": 14,
+     "tasks_own_some": 0
+    },
+    "certified": {
+     "right": 4661,
+     "changed": 0,
+     "changed_exact": 0,
+     "changed_zone": 0,
+     "tasks_own_all": 777,
+     "tasks_own_none": 95,
+     "tasks_own_some": 3
+    },
+    "nearest": {
+     "right": 5147,
+     "changed": 0,
+     "changed_exact": 0,
+     "changed_zone": 0,
+     "tasks_own_all": 860,
+     "tasks_own_none": 15,
+     "tasks_own_some": 0
+    }
+   }
+  }
+ }
+}

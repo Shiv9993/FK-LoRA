@@ -1,0 +1,14 @@
+\begin{tabular}{lccccc}
+    \toprule
+    Method & \shortstack[c]{Score\\right after\\learning $\uparrow$} & \shortstack[c]{Final\\score $\uparrow$} & \shortstack[c]{Forgetting\\(points) $\downarrow$} & \shortstack[c]{Answers\\changed $\downarrow$} & Certified inputs \\
+    \midrule
+    \cert{} (ours) & 42.77 & 42.77 & 0.00 & 0 of 1{,}097 & 1{,}197 of 1{,}197 \\
+    \nearest{} & 42.77 & 42.77 & 0.00 & 0 of 1{,}097 &  \\
+    \centre{} & 42.77 & 42.63 & 0.15 & 2 of 1{,}097 &  \\
+    \keyswitch{} & 42.77 & 42.77 & 0.00 & 0 of 1{,}097 &  \\
+    \plain{} & 42.77 & 14.88 & 30.67 & 973 of 1{,}097 &  \\
+    \midrule
+    InfLoRA & 30.46 & 26.13 & 5.69 & 661 of 1{,}097 &  \\
+    GainLoRA & 29.08 & 28.62 & 1.09 & 215 of 1{,}097 &  \\
+    \bottomrule
+\end{tabular}

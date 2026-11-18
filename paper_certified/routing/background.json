@@ -1,0 +1,928 @@
+[
+ {
+  "name": "as in the paper (seed 0, 4,000)",
+  "seed": 0,
+  "inputs": 4000,
+  "tasks": [
+   "mnli",
+   "cb",
+   "qqp",
+   "rte",
+   "dbpedia",
+   "agnews",
+   "yahoo",
+   "multirc",
+   "boolq",
+   "wic"
+  ],
+  "five": {
+   "original": {
+    "zone": 1.0,
+    "wrong": 0,
+    "blocked": 0,
+    "certified": 1.0,
+    "nearest": 1.0,
+    "centre": 1.0,
+    "certified_changed": 0,
+    "nearest_changed": 0,
+    "centre_changed": 0
+   },
+   "light": {
+    "zone": 1.0,
+    "wrong": 0,
+    "blocked": 0,
+    "certified": 1.0,
+    "nearest": 1.0,
+    "centre": 1.0,
+    "certified_changed": 0,
+    "nearest_changed": 0,
+    "centre_changed": 0
+   },
+   "medium": {
+    "zone": 0.2,
+    "wrong": 0,
+    "blocked": 0,
+    "certified": 1.0,
+    "nearest": 1.0,
+    "centre": 0.992,
+    "certified_changed": 0,
+    "nearest_changed": 0,
+    "centre_changed": 0
+   },
+   "heavy": {
+    "zone": 0.196,
+    "wrong": 0,
+    "blocked": 0,
+    "certified": 0.938,
+    "nearest": 0.938,
+    "centre": 0.722,
+    "certified_changed": 0,
+    "nearest_changed": 0,
+    "centre_changed": 58
+   }
+  },
+  "five_radius": [
+   10.088901723979893,
+   16.559096510403293
+  ],
+  "fifteen": {
+   "original": {
+    "zone": 1.0,
+    "wrong": 0,
+    "blocked": 0,
+    "certified": 1.0,
+    "nearest": 1.0,
+    "centre": 0.9949874686716792,
+    "certified_changed": 0,
+    "nearest_changed": 0,
+    "centre_changed": 2
+   },
+   "light": {
+    "zone": 1.0,
+    "wrong": 0,
+    "blocked": 0,
+    "certified": 1.0,
+    "nearest": 1.0,
+    "centre": 1.0,
+    "certified_changed": 0,
+    "nearest_changed": 0,
+    "centre_changed": 0
+   },
+   "medium": {
+    "zone": 0.2,
+    "wrong": 0,
+    "blocked": 0,
+    "certified": 1.0,
+    "nearest": 1.0,
+    "centre": 0.852,
+    "certified_changed": 0,
+    "nearest_changed": 0,
+    "centre_changed": 29
+   },
+   "heavy": {
+    "zone": 0.196,
+    "wrong": 0,
+    "blocked": 0,
+    "certified": 0.938,
+    "nearest": 0.938,
+    "centre": 0.592,
+    "certified_changed": 0,
+    "nearest_changed": 0,
+    "centre_changed": 100
+   }
+  },
+  "fifteen_radius": [
+   10.088901723979893,
+   21.32330104545012
+  ]
+ },
+ {
+  "name": "another draw (seed 1)",
+  "seed": 1,
+  "inputs": 4000,
+  "tasks": [
+   "mnli",
+   "cb",
+   "qqp",
+   "rte",
+   "dbpedia",
+   "agnews",
+   "yahoo",
+   "multirc",
+   "boolq",
+   "wic"
+  ],
+  "five": {
+   "original": {
+    "zone": 1.0,
+    "wrong": 0,
+    "blocked": 0,
+    "certified": 1.0,
+    "nearest": 1.0,
+    "centre": 1.0,
+    "certified_changed": 0,
+    "nearest_changed": 0,
+    "centre_changed": 0
+   },
+   "light": {
+    "zone": 1.0,
+    "wrong": 0,
+    "blocked": 0,
+    "certified": 1.0,
+    "nearest": 1.0,
+    "centre": 1.0,
+    "certified_changed": 0,
+    "nearest_changed": 0,
+    "centre_changed": 0
+   },
+   "medium": {
+    "zone": 0.2,
+    "wrong": 0,
+    "blocked": 0,
+    "certified": 1.0,
+    "nearest": 1.0,
+    "centre": 0.99,
+    "certified_changed": 0,
+    "nearest_changed": 0,
+    "centre_changed": 0
+   },
+   "heavy": {
+    "zone": 0.192,
+    "wrong": 0,
+    "blocked": 0,
+    "certified": 0.942,
+    "nearest": 0.942,
+    "centre": 0.75,
+    "certified_changed": 0,
+    "nearest_changed": 0,
+    "centre_changed": 54
+   }
+  },
+  "five_radius": [
+   10.03715428661342,
+   16.201693587712985
+  ],
+  "fifteen": {
+   "original": {
+    "zone": 1.0,
+    "wrong": 0,
+    "blocked": 0,
+    "certified": 1.0,
+    "nearest": 1.0,
+    "centre": 0.9966583124477861,
+    "certified_changed": 0,
+    "nearest_changed": 0,
+    "centre_changed": 1
+   },
+   "light": {
+    "zone": 1.0,
+    "wrong": 0,
+    "blocked": 0,
+    "certified": 1.0,
+    "nearest": 1.0,
+    "centre": 1.0,
+    "certified_changed": 0,
+    "nearest_changed": 0,
+    "centre_changed": 0
+   },
+   "medium": {
+    "zone": 0.2,
+    "wrong": 0,
+    "blocked": 0,
+    "certified": 1.0,
+    "nearest": 1.0,
+    "centre": 0.842,
+    "certified_changed": 0,
+    "nearest_changed": 0,
+    "centre_changed": 33
+   },
+   "heavy": {
+    "zone": 0.192,
+    "wrong": 0,
+    "blocked": 0,
+    "certified": 0.942,
+    "nearest": 0.942,
+    "centre": 0.594,
+    "certified_changed": 0,
+    "nearest_changed": 0,
+    "centre_changed": 100
+   }
+  },
+  "fifteen_radius": [
+   10.03715428661342,
+   21.24419105542467
+  ]
+ },
+ {
+  "name": "another draw (seed 2)",
+  "seed": 2,
+  "inputs": 4000,
+  "tasks": [
+   "mnli",
+   "cb",
+   "qqp",
+   "rte",
+   "dbpedia",
+   "agnews",
+   "yahoo",
+   "multirc",
+   "boolq",
+   "wic"
+  ],
+  "five": {
+   "original": {
+    "zone": 1.0,
+    "wrong": 0,
+    "blocked": 0,
+    "certified": 1.0,
+    "nearest": 1.0,
+    "centre": 1.0,
+    "certified_changed": 0,
+    "nearest_changed": 0,
+    "centre_changed": 0
+   },
+   "light": {
+    "zone": 1.0,
+    "wrong": 0,
+    "blocked": 0,
+    "certified": 1.0,
+    "nearest": 1.0,
+    "centre": 1.0,
+    "certified_changed": 0,
+    "nearest_changed": 0,
+    "centre_changed": 0
+   },
+   "medium": {
+    "zone": 0.2,
+    "wrong": 0,
+    "blocked": 0,
+    "certified": 1.0,
+    "nearest": 1.0,
+    "centre": 0.992,
+    "certified_changed": 0,
+    "nearest_changed": 0,
+    "centre_changed": 0
+   },
+   "heavy": {
+    "zone": 0.198,
+    "wrong": 0,
+    "blocked": 0,
+    "certified": 0.93,
+    "nearest": 0.93,
+    "centre": 0.722,
+    "certified_changed": 0,
+    "nearest_changed": 0,
+    "centre_changed": 66
+   }
+  },
+  "five_radius": [
+   10.024255740061584,
+   16.323696477163274
+  ],
+  "fifteen": {
+   "original": {
+    "zone": 1.0,
+    "wrong": 0,
+    "blocked": 0,
+    "certified": 1.0,
+    "nearest": 1.0,
+    "centre": 0.9966583124477861,
+    "certified_changed": 0,
+    "nearest_changed": 0,
+    "centre_changed": 1
+   },
+   "light": {
+    "zone": 1.0,
+    "wrong": 0,
+    "blocked": 0,
+    "certified": 1.0,
+    "nearest": 1.0,
+    "centre": 1.0,
+    "certified_changed": 0,
+    "nearest_changed": 0,
+    "centre_changed": 0
+   },
+   "medium": {
+    "zone": 0.2,
+    "wrong": 0,
+    "blocked": 0,
+    "certified": 1.0,
+    "nearest": 1.0,
+    "centre": 0.86,
+    "certified_changed": 0,
+    "nearest_changed": 0,
+    "centre_changed": 25
+   },
+   "heavy": {
+    "zone": 0.198,
+    "wrong": 0,
+    "blocked": 0,
+    "certified": 0.93,
+    "nearest": 0.93,
+    "centre": 0.594,
+    "certified_changed": 0,
+    "nearest_changed": 0,
+    "centre_changed": 100
+   }
+  },
+  "fifteen_radius": [
+   10.024255740061584,
+   21.28213640794694
+  ]
+ },
+ {
+  "name": "500 unrelated inputs",
+  "seed": 0,
+  "inputs": 500,
+  "tasks": [
+   "mnli",
+   "cb",
+   "qqp",
+   "rte",
+   "dbpedia",
+   "agnews",
+   "yahoo",
+   "multirc",
+   "boolq",
+   "wic"
+  ],
+  "five": {
+   "original": {
+    "zone": 1.0,
+    "wrong": 0,
+    "blocked": 0,
+    "certified": 1.0,
+    "nearest": 1.0,
+    "centre": 1.0,
+    "certified_changed": 0,
+    "nearest_changed": 0,
+    "centre_changed": 0
+   },
+   "light": {
+    "zone": 1.0,
+    "wrong": 0,
+    "blocked": 0,
+    "certified": 1.0,
+    "nearest": 1.0,
+    "centre": 1.0,
+    "certified_changed": 0,
+    "nearest_changed": 0,
+    "centre_changed": 0
+   },
+   "medium": {
+    "zone": 0.2,
+    "wrong": 0,
+    "blocked": 0,
+    "certified": 1.0,
+    "nearest": 1.0,
+    "centre": 0.988,
+    "certified_changed": 0,
+    "nearest_changed": 0,
+    "centre_changed": 0
+   },
+   "heavy": {
+    "zone": 0.2,
+    "wrong": 0,
+    "blocked": 0,
+    "certified": 0.9,
+    "nearest": 0.9,
+    "centre": 0.736,
+    "certified_changed": 0,
+    "nearest_changed": 0,
+    "centre_changed": 47
+   }
+  },
+  "five_radius": [
+   10.952101252484963,
+   18.00394627350109
+  ],
+  "fifteen": {
+   "original": {
+    "zone": 1.0,
+    "wrong": 0,
+    "blocked": 0,
+    "certified": 1.0,
+    "nearest": 1.0,
+    "centre": 0.9966583124477861,
+    "certified_changed": 0,
+    "nearest_changed": 0,
+    "centre_changed": 1
+   },
+   "light": {
+    "zone": 1.0,
+    "wrong": 0,
+    "blocked": 0,
+    "certified": 1.0,
+    "nearest": 1.0,
+    "centre": 1.0,
+    "certified_changed": 0,
+    "nearest_changed": 0,
+    "centre_changed": 0
+   },
+   "medium": {
+    "zone": 0.2,
+    "wrong": 0,
+    "blocked": 0,
+    "certified": 1.0,
+    "nearest": 1.0,
+    "centre": 0.872,
+    "certified_changed": 0,
+    "nearest_changed": 0,
+    "centre_changed": 18
+   },
+   "heavy": {
+    "zone": 0.2,
+    "wrong": 0,
+    "blocked": 0,
+    "certified": 0.9,
+    "nearest": 0.9,
+    "centre": 0.596,
+    "certified_changed": 0,
+    "nearest_changed": 0,
+    "centre_changed": 100
+   }
+  },
+  "fifteen_radius": [
+   10.952101252484963,
+   23.102050713061622
+  ]
+ },
+ {
+  "name": "1,000 unrelated inputs",
+  "seed": 0,
+  "inputs": 1000,
+  "tasks": [
+   "mnli",
+   "cb",
+   "qqp",
+   "rte",
+   "dbpedia",
+   "agnews",
+   "yahoo",
+   "multirc",
+   "boolq",
+   "wic"
+  ],
+  "five": {
+   "original": {
+    "zone": 1.0,
+    "wrong": 0,
+    "blocked": 0,
+    "certified": 1.0,
+    "nearest": 1.0,
+    "centre": 1.0,
+    "certified_changed": 0,
+    "nearest_changed": 0,
+    "centre_changed": 0
+   },
+   "light": {
+    "zone": 1.0,
+    "wrong": 0,
+    "blocked": 0,
+    "certified": 1.0,
+    "nearest": 1.0,
+    "centre": 1.0,
+    "certified_changed": 0,
+    "nearest_changed": 0,
+    "centre_changed": 0
+   },
+   "medium": {
+    "zone": 0.2,
+    "wrong": 0,
+    "blocked": 0,
+    "certified": 1.0,
+    "nearest": 1.0,
+    "centre": 0.994,
+    "certified_changed": 0,
+    "nearest_changed": 0,
+    "centre_changed": 0
+   },
+   "heavy": {
+    "zone": 0.184,
+    "wrong": 0,
+    "blocked": 0,
+    "certified": 0.918,
+    "nearest": 0.918,
+    "centre": 0.726,
+    "certified_changed": 0,
+    "nearest_changed": 0,
+    "centre_changed": 72
+   }
+  },
+  "five_radius": [
+   10.570839364225012,
+   17.20474779815378
+  ],
+  "fifteen": {
+   "original": {
+    "zone": 1.0,
+    "wrong": 0,
+    "blocked": 0,
+    "certified": 1.0,
+    "nearest": 1.0,
+    "centre": 0.9966583124477861,
+    "certified_changed": 0,
+    "nearest_changed": 0,
+    "centre_changed": 1
+   },
+   "light": {
+    "zone": 1.0,
+    "wrong": 0,
+    "blocked": 0,
+    "certified": 1.0,
+    "nearest": 1.0,
+    "centre": 1.0,
+    "certified_changed": 0,
+    "nearest_changed": 0,
+    "centre_changed": 0
+   },
+   "medium": {
+    "zone": 0.2,
+    "wrong": 0,
+    "blocked": 0,
+    "certified": 1.0,
+    "nearest": 1.0,
+    "centre": 0.87,
+    "certified_changed": 0,
+    "nearest_changed": 0,
+    "centre_changed": 23
+   },
+   "heavy": {
+    "zone": 0.184,
+    "wrong": 0,
+    "blocked": 0,
+    "certified": 0.918,
+    "nearest": 0.918,
+    "centre": 0.598,
+    "certified_changed": 0,
+    "nearest_changed": 0,
+    "centre_changed": 100
+   }
+  },
+  "fifteen_radius": [
+   10.570839364225012,
+   22.427607017298428
+  ]
+ },
+ {
+  "name": "2,000 unrelated inputs",
+  "seed": 0,
+  "inputs": 2000,
+  "tasks": [
+   "mnli",
+   "cb",
+   "qqp",
+   "rte",
+   "dbpedia",
+   "agnews",
+   "yahoo",
+   "multirc",
+   "boolq",
+   "wic"
+  ],
+  "five": {
+   "original": {
+    "zone": 1.0,
+    "wrong": 0,
+    "blocked": 0,
+    "certified": 1.0,
+    "nearest": 1.0,
+    "centre": 1.0,
+    "certified_changed": 0,
+    "nearest_changed": 0,
+    "centre_changed": 0
+   },
+   "light": {
+    "zone": 1.0,
+    "wrong": 0,
+    "blocked": 0,
+    "certified": 1.0,
+    "nearest": 1.0,
+    "centre": 1.0,
+    "certified_changed": 0,
+    "nearest_changed": 0,
+    "centre_changed": 0
+   },
+   "medium": {
+    "zone": 0.2,
+    "wrong": 0,
+    "blocked": 0,
+    "certified": 1.0,
+    "nearest": 1.0,
+    "centre": 0.996,
+    "certified_changed": 0,
+    "nearest_changed": 0,
+    "centre_changed": 0
+   },
+   "heavy": {
+    "zone": 0.196,
+    "wrong": 0,
+    "blocked": 0,
+    "certified": 0.908,
+    "nearest": 0.908,
+    "centre": 0.758,
+    "certified_changed": 0,
+    "nearest_changed": 0,
+    "centre_changed": 45
+   }
+  },
+  "five_radius": [
+   10.25332399374997,
+   16.401928333519443
+  ],
+  "fifteen": {
+   "original": {
+    "zone": 1.0,
+    "wrong": 0,
+    "blocked": 0,
+    "certified": 1.0,
+    "nearest": 1.0,
+    "centre": 0.9966583124477861,
+    "certified_changed": 0,
+    "nearest_changed": 0,
+    "centre_changed": 1
+   },
+   "light": {
+    "zone": 1.0,
+    "wrong": 0,
+    "blocked": 0,
+    "certified": 1.0,
+    "nearest": 1.0,
+    "centre": 1.0,
+    "certified_changed": 0,
+    "nearest_changed": 0,
+    "centre_changed": 0
+   },
+   "medium": {
+    "zone": 0.2,
+    "wrong": 0,
+    "blocked": 0,
+    "certified": 1.0,
+    "nearest": 1.0,
+    "centre": 0.866,
+    "certified_changed": 0,
+    "nearest_changed": 0,
+    "centre_changed": 23
+   },
+   "heavy": {
+    "zone": 0.196,
+    "wrong": 0,
+    "blocked": 0,
+    "certified": 0.906,
+    "nearest": 0.906,
+    "centre": 0.598,
+    "certified_changed": 0,
+    "nearest_changed": 0,
+    "centre_changed": 99
+   }
+  },
+  "fifteen_radius": [
+   10.25332399374997,
+   21.640515894701874
+  ]
+ },
+ {
+  "name": "first five unrelated tasks",
+  "seed": 0,
+  "inputs": 4000,
+  "tasks": [
+   "mnli",
+   "cb",
+   "qqp",
+   "rte",
+   "dbpedia"
+  ],
+  "five": {
+   "original": {
+    "zone": 1.0,
+    "wrong": 0,
+    "blocked": 0,
+    "certified": 1.0,
+    "nearest": 1.0,
+    "centre": 1.0,
+    "certified_changed": 0,
+    "nearest_changed": 0,
+    "centre_changed": 0
+   },
+   "light": {
+    "zone": 1.0,
+    "wrong": 0,
+    "blocked": 0,
+    "certified": 1.0,
+    "nearest": 1.0,
+    "centre": 1.0,
+    "certified_changed": 0,
+    "nearest_changed": 0,
+    "centre_changed": 0
+   },
+   "medium": {
+    "zone": 0.2,
+    "wrong": 0,
+    "blocked": 0,
+    "certified": 1.0,
+    "nearest": 1.0,
+    "centre": 0.96,
+    "certified_changed": 0,
+    "nearest_changed": 0,
+    "centre_changed": 0
+   },
+   "heavy": {
+    "zone": 0.198,
+    "wrong": 0,
+    "blocked": 0,
+    "certified": 0.906,
+    "nearest": 0.906,
+    "centre": 0.702,
+    "certified_changed": 0,
+    "nearest_changed": 0,
+    "centre_changed": 68
+   }
+  },
+  "five_radius": [
+   9.961872105584357,
+   16.40797668973387
+  ],
+  "fifteen": {
+   "original": {
+    "zone": 1.0,
+    "wrong": 0,
+    "blocked": 0,
+    "certified": 1.0,
+    "nearest": 1.0,
+    "centre": 0.9949874686716792,
+    "certified_changed": 0,
+    "nearest_changed": 0,
+    "centre_changed": 1
+   },
+   "light": {
+    "zone": 1.0,
+    "wrong": 0,
+    "blocked": 0,
+    "certified": 1.0,
+    "nearest": 1.0,
+    "centre": 1.0,
+    "certified_changed": 0,
+    "nearest_changed": 0,
+    "centre_changed": 0
+   },
+   "medium": {
+    "zone": 0.2,
+    "wrong": 0,
+    "blocked": 0,
+    "certified": 1.0,
+    "nearest": 1.0,
+    "centre": 0.816,
+    "certified_changed": 0,
+    "nearest_changed": 0,
+    "centre_changed": 39
+   },
+   "heavy": {
+    "zone": 0.198,
+    "wrong": 0,
+    "blocked": 0,
+    "certified": 0.902,
+    "nearest": 0.902,
+    "centre": 0.582,
+    "certified_changed": 0,
+    "nearest_changed": 0,
+    "centre_changed": 104
+   }
+  },
+  "fifteen_radius": [
+   9.961872105584357,
+   20.678735262919602
+  ]
+ },
+ {
+  "name": "last five unrelated tasks",
+  "seed": 0,
+  "inputs": 4000,
+  "tasks": [
+   "agnews",
+   "yahoo",
+   "multirc",
+   "boolq",
+   "wic"
+  ],
+  "five": {
+   "original": {
+    "zone": 1.0,
+    "wrong": 0,
+    "blocked": 0,
+    "certified": 1.0,
+    "nearest": 1.0,
+    "centre": 1.0,
+    "certified_changed": 0,
+    "nearest_changed": 0,
+    "centre_changed": 0
+   },
+   "light": {
+    "zone": 1.0,
+    "wrong": 0,
+    "blocked": 0,
+    "certified": 1.0,
+    "nearest": 1.0,
+    "centre": 1.0,
+    "certified_changed": 0,
+    "nearest_changed": 0,
+    "centre_changed": 0
+   },
+   "medium": {
+    "zone": 0.2,
+    "wrong": 0,
+    "blocked": 0,
+    "certified": 1.0,
+    "nearest": 1.0,
+    "centre": 0.992,
+    "certified_changed": 0,
+    "nearest_changed": 0,
+    "centre_changed": 0
+   },
+   "heavy": {
+    "zone": 0.2,
+    "wrong": 0,
+    "blocked": 0,
+    "certified": 0.978,
+    "nearest": 0.978,
+    "centre": 0.8,
+    "certified_changed": 1,
+    "nearest_changed": 1,
+    "centre_changed": 47
+   }
+  },
+  "five_radius": [
+   11.112853050494863,
+   16.480839196377186
+  ],
+  "fifteen": {
+   "original": {
+    "zone": 1.0,
+    "wrong": 0,
+    "blocked": 0,
+    "certified": 1.0,
+    "nearest": 1.0,
+    "centre": 0.9966583124477861,
+    "certified_changed": 0,
+    "nearest_changed": 0,
+    "centre_changed": 1
+   },
+   "light": {
+    "zone": 1.0,
+    "wrong": 0,
+    "blocked": 0,
+    "certified": 1.0,
+    "nearest": 1.0,
+    "centre": 1.0,
+    "certified_changed": 0,
+    "nearest_changed": 0,
+    "centre_changed": 0
+   },
+   "medium": {
+    "zone": 0.2,
+    "wrong": 0,
+    "blocked": 0,
+    "certified": 1.0,
+    "nearest": 1.0,
+    "centre": 0.85,
+    "certified_changed": 0,
+    "nearest_changed": 0,
+    "centre_changed": 29
+   },
+   "heavy": {
+    "zone": 0.2,
+    "wrong": 0,
+    "blocked": 0,
+    "certified": 0.976,
+    "nearest": 0.976,
+    "centre": 0.596,
+    "certified_changed": 1,
+    "nearest_changed": 1,
+    "centre_changed": 100
+   }
+  },
+  "fifteen_radius": [
+   11.112853050494863,
+   20.104754323220643
+  ]
+ }
+]

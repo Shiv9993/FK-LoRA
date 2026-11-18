@@ -1,0 +1,168 @@
+[five] finished seeds: {'certified2': 3, 'inflora': 3, 'gainlora_inflora': 3}; seeds of certified2: [42, 43, 44]
+[five] minutes per run | certified2: 38, 38, 38
+[five] certified2: training inputs inside an older zone 0 of 12000; radii 10.1 to 16.6
+[five] minutes per run | inflora: 36, 36, 36
+[five] minutes per run | gainlora_inflora: 38, 38, 38
+[five] original | ClaimLoRA (ours): seeds 3 learned 79.74 AP 79.74 FT 0.00 changed 0/1200 right 1.000
+[five] original | Nearest zone: seeds 3 learned 79.74 AP 79.74 FT 0.00 changed 0/1200 right 1.000
+[five] original | Nearest centre: seeds 3 learned 79.74 AP 79.74 FT 0.00 changed 0/1200 right 1.000
+[five] original | Exact key: seeds 3 learned 79.74 AP 79.74 FT 0.00 changed 0/1200 right 1.000
+[five] original | Plain adapters: seeds 3 learned 79.74 AP 36.08 FT 54.58 changed 994/1200 right 0.200
+[five] original | InfLoRA: seeds 3 learned 60.02 AP 62.93 FT -3.14 changed 370/1200
+[five] original | GainLoRA: seeds 3 learned 61.42 AP 61.96 FT -0.51 changed 65/1200
+[five] original | ClaimLoRA (ours): tasks 5 learned 79.74 AP 79.74 FT 0.00 changed 0/1200 right 1.000 in zone 1500/1500
+[five] light | ClaimLoRA (ours): tasks 5 learned 79.59 AP 79.59 FT 0.00 changed 0/1200 right 1.000 in zone 1500/1500
+[five] medium | ClaimLoRA (ours): tasks 5 learned 78.98 AP 78.98 FT 0.00 changed 0/1200 right 1.000 in zone 300/1500
+[five] heavy | ClaimLoRA (ours): tasks 5 learned 74.07 AP 74.07 FT 0.00 changed 0/1200 right 0.938 in zone 294/1500
+[five] original | Nearest zone: tasks 5 learned 79.74 AP 79.74 FT 0.00 changed 0/1200 right 1.000
+[five] light | Nearest zone: tasks 5 learned 79.59 AP 79.59 FT 0.00 changed 0/1200 right 1.000
+[five] medium | Nearest zone: tasks 5 learned 78.98 AP 78.98 FT 0.00 changed 0/1200 right 1.000
+[five] heavy | Nearest zone: tasks 5 learned 74.07 AP 74.07 FT 0.00 changed 0/1200 right 0.938
+[five] original | Nearest centre: tasks 5 learned 79.74 AP 79.74 FT 0.00 changed 0/1200 right 1.000
+[five] light | Nearest centre: tasks 5 learned 79.59 AP 79.59 FT 0.00 changed 0/1200 right 1.000
+[five] medium | Nearest centre: tasks 5 learned 78.45 AP 78.45 FT 0.00 changed 0/1200 right 0.992
+[five] heavy | Nearest centre: tasks 5 learned 67.81 AP 59.38 FT 10.54 changed 171/1200 right 0.722
+[five] original | Exact key: tasks 5 learned 79.74 AP 79.74 FT 0.00 changed 0/1200 right 1.000
+[five] light | Exact key: tasks 5 learned 79.59 AP 36.36 FT 54.04 changed 985/1200 right 0.200
+[five] medium | Exact key: tasks 5 learned 78.98 AP 35.98 FT 53.76 changed 1001/1200 right 0.200
+[five] heavy | Exact key: tasks 5 learned 78.40 AP 35.15 FT 54.06 changed 939/1200 right 0.200
+[five] original | Plain adapters: tasks 5 learned 79.74 AP 36.08 FT 54.58 changed 994/1200 right 0.200
+[five] light | Plain adapters: tasks 5 learned 79.59 AP 36.36 FT 54.04 changed 985/1200 right 0.200
+[five] medium | Plain adapters: tasks 5 learned 78.98 AP 35.98 FT 53.76 changed 1001/1200 right 0.200
+[five] heavy | Plain adapters: tasks 5 learned 78.40 AP 35.15 FT 54.06 changed 939/1200 right 0.200
+[five] original | InfLoRA: tasks 5 learned 60.02 AP 62.93 FT -3.14 changed 370/1200
+[five] light | InfLoRA: tasks 5 learned 63.64 AP 64.32 FT -0.57 changed 296/1200
+[five] medium | InfLoRA: tasks 5 learned 58.52 AP 57.77 FT 1.00 changed 320/1200
+[five] heavy | InfLoRA: tasks 5 learned 53.24 AP 54.33 FT -0.25 changed 470/1200
+[five] original | GainLoRA: tasks 5 learned 61.42 AP 61.96 FT -0.51 changed 65/1200
+[five] light | GainLoRA: tasks 5 learned 64.54 AP 64.65 FT 0.13 changed 58/1200
+[five] medium | GainLoRA: tasks 5 learned 59.96 AP 58.75 FT 1.65 changed 122/1200
+[five] heavy | GainLoRA: tasks 5 learned 50.95 AP 51.63 FT -0.52 changed 178/1200
+[five] official script | certified2: learned 79.13 AP 79.28 FT 0.00
+[five] official script | inflora: learned 59.57 AP 62.49 FT -3.15
+[five] official script | gainlora_inflora: learned 61.02 AP 61.55 FT -0.47
+[five] re-test equals official test | certified2: 4500 of 4500 answers
+[five] re-test equals official test | inflora: 4500 of 4500 answers
+[five] re-test equals official test | gainlora_inflora: 4500 of 4500 answers
+[fifteen] finished seeds: {'certified2': 1, 'inflora': 1, 'gainlora_inflora': 1}; seeds of certified2: [42]
+[fifteen] minutes per run | certified2: 210
+[fifteen] certified2: training inputs inside an older zone 0 of 9391; radii 10.1 to 21.3
+[fifteen] minutes per run | inflora: 188
+[fifteen] minutes per run | gainlora_inflora: 198
+[fifteen] original | ClaimLoRA (ours): seeds 1 learned 42.77 AP 42.77 FT 0.00 changed 0/1097 right 1.000
+[fifteen] original | Nearest zone: seeds 1 learned 42.77 AP 42.77 FT 0.00 changed 0/1097 right 1.000
+[fifteen] original | Nearest centre: seeds 1 learned 42.77 AP 42.63 FT 0.15 changed 2/1097 right 0.995
+[fifteen] original | Exact key: seeds 1 learned 42.77 AP 42.77 FT 0.00 changed 0/1097 right 1.000
+[fifteen] original | Plain adapters: seeds 1 learned 42.77 AP 14.88 FT 30.67 changed 973/1097 right 0.084
+[fifteen] original | InfLoRA: seeds 1 learned 30.46 AP 26.13 FT 5.69 changed 661/1097
+[fifteen] original | GainLoRA: seeds 1 learned 29.08 AP 28.62 FT 1.09 changed 215/1097
+[fifteen] original | ClaimLoRA (ours): tasks 15 learned 42.77 AP 42.77 FT 0.00 changed 0/1097 right 1.000 in zone 1197/1197
+[fifteen] light | ClaimLoRA (ours): tasks 5 learned 80.71 AP 80.71 FT 0.00 changed 0/400 right 1.000 in zone 500/500
+[fifteen] medium | ClaimLoRA (ours): tasks 5 learned 80.20 AP 80.20 FT 0.00 changed 0/400 right 1.000 in zone 100/500
+[fifteen] heavy | ClaimLoRA (ours): tasks 5 learned 76.00 AP 76.00 FT 0.00 changed 0/400 right 0.938 in zone 98/500
+[fifteen] original | Nearest zone: tasks 15 learned 42.77 AP 42.77 FT 0.00 changed 0/1097 right 1.000
+[fifteen] light | Nearest zone: tasks 5 learned 80.71 AP 80.71 FT 0.00 changed 0/400 right 1.000
+[fifteen] medium | Nearest zone: tasks 5 learned 80.20 AP 80.20 FT 0.00 changed 0/400 right 1.000
+[fifteen] heavy | Nearest zone: tasks 5 learned 76.00 AP 76.00 FT 0.00 changed 0/400 right 0.938
+[fifteen] original | Nearest centre: tasks 15 learned 42.77 AP 42.63 FT 0.15 changed 2/1097 right 0.995
+[fifteen] light | Nearest centre: tasks 5 learned 80.71 AP 80.71 FT 0.00 changed 0/400 right 1.000
+[fifteen] medium | Nearest centre: tasks 5 learned 73.78 AP 71.98 FT 2.25 changed 29/400 right 0.852
+[fifteen] heavy | Nearest centre: tasks 5 learned 53.71 AP 57.54 FT 0.00 changed 100/400 right 0.592
+[fifteen] original | Exact key: tasks 15 learned 42.77 AP 42.77 FT 0.00 changed 0/1097 right 1.000
+[fifteen] light | Exact key: tasks 5 learned 80.71 AP 39.61 FT 51.38 changed 316/400 right 0.200
+[fifteen] medium | Exact key: tasks 5 learned 80.20 AP 40.39 FT 49.76 changed 313/400 right 0.200
+[fifteen] heavy | Exact key: tasks 5 learned 80.40 AP 36.11 FT 55.36 changed 310/400 right 0.200
+[fifteen] original | Plain adapters: tasks 15 learned 42.77 AP 14.88 FT 30.67 changed 973/1097 right 0.084
+[fifteen] light | Plain adapters: tasks 5 learned 80.71 AP 39.61 FT 51.38 changed 316/400 right 0.200
+[fifteen] medium | Plain adapters: tasks 5 learned 80.20 AP 40.39 FT 49.76 changed 313/400 right 0.200
+[fifteen] heavy | Plain adapters: tasks 5 learned 80.40 AP 36.11 FT 55.36 changed 310/400 right 0.200
+[fifteen] original | InfLoRA: tasks 15 learned 30.46 AP 26.13 FT 5.69 changed 661/1097
+[fifteen] light | InfLoRA: tasks 5 learned 57.77 AP 51.60 FT 10.48 changed 257/400
+[fifteen] medium | InfLoRA: tasks 5 learned 49.66 AP 44.71 FT 7.72 changed 272/400
+[fifteen] heavy | InfLoRA: tasks 5 learned 41.66 AP 32.57 FT 12.56 changed 270/400
+[fifteen] original | GainLoRA: tasks 15 learned 29.08 AP 28.62 FT 1.09 changed 215/1097
+[fifteen] light | GainLoRA: tasks 5 learned 50.85 AP 51.05 FT 0.85 changed 69/400
+[fifteen] medium | GainLoRA: tasks 5 learned 49.08 AP 47.11 FT 3.26 changed 85/400
+[fifteen] heavy | GainLoRA: tasks 5 learned 39.22 AP 37.03 FT 3.35 changed 109/400
+[fifteen] official script | certified2: learned 42.28 AP 42.26 FT 0.19
+[fifteen] official script | inflora: learned 30.21 AP 25.85 FT 5.66
+[fifteen] official script | gainlora_inflora: learned 28.73 AP 28.21 FT 1.11
+[fifteen] re-test equals official test | certified2: 8874 of 8874 answers
+[fifteen] re-test equals official test | inflora: 8874 of 8874 answers
+[fifteen] re-test equals official test | gainlora_inflora: 8874 of 8874 answers
+[repeat] ('superni_short5_t5base_e10', 'certified2', 42) was run twice (2026-11-17_kaggle_five_tasks_seed42 and 2026-11-17_kaggle_five_tasks_seeds42-44): official scores identical: False
+[repeat] ('superni_short5_t5base_e10', 'certified2', 42): re-test learned 79.33 vs 79.23, AP 79.33 vs 79.23, changed 0 vs 0; answers at the end equal in both runs 427 of 500; first tasks reproduced answer for answer: 2
+[repeat] ('superni_short5_t5base_e10', 'gainlora_inflora', 42) was run twice (2026-11-17_kaggle_five_tasks_seed42 and 2026-11-17_kaggle_five_tasks_seeds42-44): official scores identical: False
+[repeat] ('superni_short5_t5base_e10', 'gainlora_inflora', 42): re-test learned 60.85 vs 60.76, AP 61.31 vs 60.86, changed 17 vs 20; answers at the end equal in both runs 457 of 500; first tasks reproduced answer for answer: 1
+[repeat] ('superni_short5_t5base_e10', 'inflora', 42) was run twice (2026-11-17_kaggle_five_tasks_seed42 and 2026-11-17_kaggle_five_tasks_seeds42-44): official scores identical: False
+[repeat] ('superni_short5_t5base_e10', 'inflora', 42): re-test learned 56.96 vs 56.59, AP 58.89 vs 58.98, changed 98 vs 100; answers at the end equal in both runs 450 of 500; first tasks reproduced answer for answer: 2
+[models] t5-small: five zone 100/100/20/20 right 100/100/100/89 | fifteen zone(orig) 100 right 100/100/100/89 | wrong zone 0 blocked 0 changed 0
+[models] t5-base: five zone 100/100/20/20 right 100/100/100/94 | fifteen zone(orig) 100 right 100/100/100/94 | wrong zone 0 blocked 0 changed 0
+[models] t5-large: five zone 100/100/20/19 right 100/100/100/83 | fifteen zone(orig) 100 right 100/100/100/83 | wrong zone 0 blocked 0 changed 0
+[models] google/flan-t5-base: five zone 100/100/20/14 right 100/100/100/99 | fifteen zone(orig) 100 right 100/100/100/99 | wrong zone 0 blocked 0 changed 2
+[models] gpt2: five zone 100/99/20/20 right 100/100/100/87 | fifteen zone(orig) 100 right 100/100/100/87 | wrong zone 0 blocked 0 changed 1
+[models] HuggingFaceTB/SmolLM2-135M: five zone 100/99/20/20 right 100/100/100/82 | fifteen zone(orig) 100 right 100/100/100/82 | wrong zone 0 blocked 0 changed 0
+[models] Qwen/Qwen2.5-0.5B: five zone 100/99/20/20 right 100/100/100/80 | fifteen zone(orig) 100 right 100/100/100/80 | wrong zone 0 blocked 0 changed 0
+[models] roberta-base: five zone 100/99/20/20 right 100/100/100/94 | fifteen zone(orig) 100 right 100/100/100/93 | wrong zone 0 blocked 0 changed 0
+[stress] look-alike with light rewording: blocked 799/800; certified changed 0/0/0/0; nearest changed 0/100/0/0; certified before (certified rule) 100/100/0/0
+[stress] look-alike with medium rewording: blocked 0/800; certified changed 0/0/100/2; nearest changed 0/0/100/2; certified before (certified rule) 100/100/0/0
+[stress] look-alike with heavy rewording: blocked 0/800; certified changed 0/0/0/100; nearest changed 0/0/0/100; certified before (certified rule) 100/100/0/0
+[geometry] relation extr.: opening 129 tokens, radius 13.5; own zone median (max): original 0.00 (0.00); light 0.34 (0.34); medium 0.85 (0.85); heavy 0.94 (1.03); nearest other zone, smallest: 2.62/2.58/2.53/2.57
+[geometry] sst2: opening 61 tokens, radius 15.5; own zone median (max): original 0.00 (0.00); light 0.78 (0.93); medium 1.94 (2.09); heavy 2.08 (2.28); nearest other zone, smallest: 2.16/2.07/2.31/2.19
+[geometry] glucose: opening 105 tokens, radius 10.1; own zone median (max): original 0.00 (0.00); light 0.76 (0.90); medium 1.85 (2.01); heavy 2.06 (2.29); nearest other zone, smallest: 2.26/2.28/2.30/2.30
+[geometry] sentiment140: opening 51 tokens, radius 16.6; own zone median (max): original 0.00 (0.00); light 0.11 (0.11); medium 1.84 (2.00); heavy 2.29 (2.60); nearest other zone, smallest: 2.05/2.07/2.21/2.13
+[geometry] emotion: opening 74 tokens, radius 14.0; own zone median (max): original 0.00 (0.00); light 0.53 (0.61); medium 1.52 (1.65); heavy 1.73 (1.93); nearest other zone, smallest: 2.21/2.21/2.25/2.31
+[geometry] fifteen tasks, original wording: nearest other zone over all test inputs, smallest 1.73, largest 2.57; radii 10.1 to 21.3; openings 26 to 192 tokens
+[cost] routing one input, 15 tasks, CPU, one thread: 3.3 ms; stored per task: 770 numbers; stored once: 1213312 numbers (d = 768)
+[orders] 5 tasks, all orders: orders 120; right o/l/m/h 100/100/100/93.8; own zone 100/100/20/19.6; wrong zone (most) 0; blocked (most) 0; routes changed later 0--31
+[orders] 15 tasks, official order 1: orders 1; right o/l/m/h 100/100/100/93.8; own zone 100/100/20/19.6; wrong zone (most) 0; blocked (most) 0; routes changed later 0
+[orders] 15 tasks, official order 2: orders 1; right o/l/m/h 100/100/100/93.8; own zone 100/100/20/19.6; wrong zone (most) 0; blocked (most) 0; routes changed later 31
+[orders] 15 tasks, random orders: orders 1,000; right o/l/m/h 100/100/100/93.8; own zone 100/100/20/19.6; wrong zone (most) 0; blocked (most) 0; routes changed later 0--31
+[orders] tasks whose nearest signature is another task (radius depends on the order): samsum (30.5 vs unrelated 32.7, reddit_tifu), xsum (38.0 vs unrelated 43.6, reddit_tifu)
+[edits] edited inputs in total: 23640; inside the zone of another task: 0; test inputs per condition: 1197
+[edits] typos, k = 1/2/4/8/16: certified 87.1/74.4/37.8/10.7/0.3; right task 100.0/99.9/98.1/82.7/45.4; worst task right 100 (samsum)/99 (sciq)/83 (sciq)/3 (sciq)/0 (xsum)
+[edits] dropped words, k = 1/2/4/8/16: certified 93.7/87.6/73.1/47.5/17.0; right task 100.0/100.0/99.6/95.5/87.0; worst task right 100 (samsum)/100 (samsum)/95 (sciq)/51 (sciq)/25 (xsum)
+[edits] replaced words, k = 1/2/4/8/16: certified 94.6/89.0/77.4/49.3/16.5; right task 100.0/100.0/99.7/95.7/85.9; worst task right 100 (samsum)/100 (samsum)/97 (sciq)/51 (sciq)/11 (sciq)
+[edits] lower case: tasks 15 inputs 1197 certified 91.4 right 100.0 worst task right 100 (samsum) foreign 0
+[edits] sentence in front: tasks 15 inputs 1197 certified 91.6 right 100.0 worst task right 100 (samsum) foreign 0
+[edits] first sentence removed: tasks 14 inputs 1097 certified 24.7 right 100.0 worst task right 100 (samsum) foreign 0
+[edits] last sentence removed: tasks 14 inputs 1097 certified 32.8 right 81.5 worst task right 2 (sst2) foreign 0
+[edits] sentences shuffled: tasks 14 inputs 1097 certified 100.0 right 100.0 worst task right 100 (samsum) foreign 0
+[edits] bound in tokens of average weight (opening length x R_k/D): 1.05 to 4.10
+[edits] bound: D = 509.6 (largest norm 352.6, median norm 143.9); R_k/D from 0.020 to 0.042
+[edits] numerical check of the bound: 2250 edited inputs, held for all; moved at most 41% of the bound (median 15%); inside their zone 1324, guaranteed by the bound 164
+[background] as in the paper (seed 0, 4,000): five zone 100/100/20/20 right 100.0/100.0/100.0/93.8; fifteen zone(orig) 100 right 100.0/100.0/100.0/93.8; wrong zone 0; blocked 0; radii 10.1-21.3
+[background] another draw (seed 1): five zone 100/100/20/19 right 100.0/100.0/100.0/94.2; fifteen zone(orig) 100 right 100.0/100.0/100.0/94.2; wrong zone 0; blocked 0; radii 10.0-21.2
+[background] another draw (seed 2): five zone 100/100/20/20 right 100.0/100.0/100.0/93.0; fifteen zone(orig) 100 right 100.0/100.0/100.0/93.0; wrong zone 0; blocked 0; radii 10.0-21.3
+[background] 500 unrelated inputs: five zone 100/100/20/20 right 100.0/100.0/100.0/90.0; fifteen zone(orig) 100 right 100.0/100.0/100.0/90.0; wrong zone 0; blocked 0; radii 11.0-23.1
+[background] 1,000 unrelated inputs: five zone 100/100/20/18 right 100.0/100.0/100.0/91.8; fifteen zone(orig) 100 right 100.0/100.0/100.0/91.8; wrong zone 0; blocked 0; radii 10.6-22.4
+[background] 2,000 unrelated inputs: five zone 100/100/20/20 right 100.0/100.0/100.0/90.8; fifteen zone(orig) 100 right 100.0/100.0/100.0/90.6; wrong zone 0; blocked 0; radii 10.3-21.6
+[background] first five unrelated tasks: five zone 100/100/20/20 right 100.0/100.0/100.0/90.6; fifteen zone(orig) 100 right 100.0/100.0/100.0/90.2; wrong zone 0; blocked 0; radii 10.0-20.7
+[background] last five unrelated tasks: five zone 100/100/20/20 right 100.0/100.0/100.0/97.8; fifteen zone(orig) 100 right 100.0/100.0/100.0/97.6; wrong zone 0; blocked 0; radii 11.1-20.1
+[background] right task under heavy rewording over all variants: 90.0 to 97.8
+[many] first 50 tasks (main order): clean 49 some 1 all 0; inputs 300 blocked 4; right certified 98.7% nearest 100.0%; changed certified 0 nearest 0; zero radius 0; median radius 13.3
+[many] first 100 tasks (main order): clean 96 some 3 all 1; inputs 600 blocked 20; right certified 96.7% nearest 100.0%; changed certified 0 nearest 0; zero radius 0; median radius 13.4
+[many] first 200 tasks (main order): clean 178 some 7 all 15; inputs 1200 blocked 115; right certified 90.4% nearest 98.5%; changed certified 0 nearest 0; zero radius 2; median radius 12.6
+[many] first 400 tasks (main order): clean 337 some 13 all 50; inputs 2397 blocked 343; right certified 85.7% nearest 99.0%; changed certified 0 nearest 0; zero radius 3; median radius 12.2
+[many] first 875 tasks (main order): clean 724 some 22 all 129; inputs 5237 blocked 849; right certified 83.8% nearest 98.3%; changed certified 0 nearest 0; zero radius 14; median radius 11.7
+[many] colliding tasks 151 of 875: same text 9, 80% or more common words 114, 50% to 80% 28, under 50% 0; lowest 63%; mmmlu 35, atomic 17; same-definition pairs in the collection 13; openings {'min': 25, 'median': 80, 'max': 512}
+[exact-first] stress, light look-alike: routes changed exact 0/100/0/0 certified 0/0/0/0 nearest 0/100/0/0; new task's own inputs: exact 800 certified 1 of 800
+[exact-first] stress, medium look-alike: routes changed exact 0/0/100/2 certified 0/0/100/2 nearest 0/0/100/2; new task's own inputs: exact 800 certified 800 of 800
+[exact-first] stress, heavy look-alike: routes changed exact 0/0/0/100 certified 0/0/0/100 nearest 0/0/0/100; new task's own inputs: exact 800 certified 800 of 800
+[exact-first] 875 tasks: right 98.4% (5153 of 5237); tasks with all own inputs 861, none 14; changed later 0; same routes as certified on five 2000/2000, fifteen 2697/2697
+[many] random order, seed 0: clean 724 some 22 all 129; right certified 83.8% nearest 98.3%; changed 0/0
+[many] random order, seed 1: clean 718 some 14 all 143; right certified 83.0% nearest 98.2%; changed 0/0
+[many] random order, seed 2: clean 718 some 9 all 148; right certified 82.6% nearest 98.3%; changed 0/0
+[many] random order, seed 3: clean 724 some 5 all 146; right certified 83.0% nearest 98.3%; changed 0/0
+[many] random order, seed 4: clean 721 some 3 all 151; right certified 82.6% nearest 98.3%; changed 0/0
+[many] order of the task numbers: clean 777 some 3 all 95; right certified 89.0% nearest 98.3%; changed 0/0
+[many] radius factor 0.1: clean 856 (97.8%) all held 19 inputs held 114 right certified 97.7%
+[many] radius factor 0.2: clean 843 (96.3%) all held 32 inputs held 192 right certified 96.3%
+[many] radius factor 0.3: clean 827 (94.5%) all held 46 inputs held 284 right certified 94.6%
+[many] radius factor 0.4: clean 795 (90.9%) all held 78 inputs held 473 right certified 91.0%
+[many] radius factor 0.5: clean 724 (82.7%) all held 129 inputs held 849 right certified 83.8%
+[demo] HuggingFaceTB/SmolLM2-135M (decoder-only): certified learned 74.3 AP 74.3 changed 0/120 | plain AP 27.7 changed 100/120 | certified inputs 150/150 | heavy: AP 65.1 changed 0/120 right 0.807 | 48 min
+[demo] gpt2 (decoder-only): certified learned 67.9 AP 67.9 changed 0/120 | plain AP 15.8 changed 119/120 | certified inputs 150/150 | heavy: AP 54.8 changed 0/120 right 0.813 | 69 min
+[demo] t5-small (encoder-decoder): certified learned 65.8 AP 65.8 changed 0/200 | plain AP 12.0 changed 200/200 | certified inputs 250/250 | heavy: AP 56.2 changed 0/200 right 0.888 | 36 min
+[sibling] certified: blocked 400/400; sibling right 0/50 (old words 50); old answers changed original 0/250 (task 2: 0/50); light 0/250 (task 2: 0/50); medium 0/250 (task 2: 0/50); heavy 0/250 (task 2: 0/50)
+[sibling] exact_first: blocked 400/400; sibling right 31/50 (old words 0); old answers changed original 0/250 (task 2: 0/50); light 50/250 (task 2: 50/50); medium 0/250 (task 2: 0/50); heavy 0/250 (task 2: 0/50)

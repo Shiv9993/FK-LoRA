@@ -1,0 +1,11 @@
+\begin{tabular}{llcccccccc}
+    \toprule
+    & & \multicolumn{3}{c}{\cert{}, original} & \multicolumn{2}{c}{\plain{}, original} & & \multicolumn{2}{c}{\cert{}, heavy} \\
+    \cmidrule(lr){3-5} \cmidrule(lr){6-7} \cmidrule(lr){9-10}
+    Model & Kind & \shortstack[c]{Score\\right\\after\\learning\\$\uparrow$} & \shortstack[c]{Final\\score\\$\uparrow$} & \shortstack[c]{Answers\\changed $\downarrow$} & \shortstack[c]{Final\\score\\$\uparrow$} & \shortstack[c]{Answers\\changed $\downarrow$} & \shortstack[c]{Certified\\inputs} & \shortstack[c]{Final\\score\\$\uparrow$} & \shortstack[c]{Answers\\changed $\downarrow$} \\
+    \midrule
+    \texttt{SmolLM2-135M} & dec.-only & 74.3 & 74.3 & 0 of 120 & 27.7 & 100 of 120 & 150 of 150 & 65.1 & 0 of 120 \\
+    \texttt{gpt2} & dec.-only & 67.9 & 67.9 & 0 of 120 & 15.8 & 119 of 120 & 150 of 150 & 54.8 & 0 of 120 \\
+    \texttt{t5-small} & enc.-dec. & 65.8 & 65.8 & 0 of 200 & 12.0 & 200 of 200 & 250 of 250 & 56.2 & 0 of 200 \\
+    \bottomrule
+\end{tabular}

@@ -1,0 +1,21 @@
+\begin{tabular}{lrrrr}
+    \toprule
+    Rule & \shortstack[r]{Routes\\changed,\\original $\downarrow$} & \shortstack[r]{Routes\\changed,\\light $\downarrow$} & \shortstack[r]{Routes\\changed,\\medium $\downarrow$} & \shortstack[r]{Routes\\changed,\\heavy $\downarrow$} \\
+    \midrule
+    \multicolumn{5}{l}{New definition: the light rewording} \\
+    \cert{} & 0 & 0 & 0 & 0 \\
+    \nearest{} & 0 & 100 & 0 & 0 \\
+    Length-scaled fallback & 0 & 100 & 78 & 23 \\
+    Zones, then length-scaled & 0 & 0 & 78 & 23 \\
+    \scaled{} & 0 & 100 & 2 & 20 \\
+    \certscaled{} & 0 & 0 & 2 & 20 \\
+    \midrule
+    \multicolumn{5}{l}{New definition: the medium rewording} \\
+    \cert{} & 0 & 0 & 100 & 2 \\
+    \nearest{} & 0 & 0 & 100 & 2 \\
+    Length-scaled fallback & 0 & 0 & 100 & 1 \\
+    Zones, then length-scaled & 0 & 0 & 100 & 1 \\
+    \scaled{} & 0 & 0 & 100 & 80 \\
+    \certscaled{} & 0 & 0 & 100 & 80 \\
+    \bottomrule
+\end{tabular}

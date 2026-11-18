@@ -1,0 +1,160 @@
+% =====================================================================================
+\section{Discussion}
+\label{sec:discussion}
+
+\input{sec_discussion_paras}
+
+\section{Limitations}
+\label{sec:limits}
+
+\begin{itemize}
+  \item \textbf{Reduced setting, and published methods that learned less.} T5-base instead of T5-large, and 10 epochs instead of 100 in all runs but a few, on free GPUs. In this setting the two published methods are at the level
+  of guessing on two of the five tasks right after learning them, on the 15 tasks they learned less
+  than plain adapters, and one step of their code was
+  computed with a substitute for the library it uses, without a number-for-number check
+  (Appendix~\ref{app:impl}). No conclusion about these methods in the published setting follows from our numbers, and the
+  comparison without instructions (Section~\ref{sec:nodefpublished}) has the same limits: two methods, five tasks, a tenth of their epochs on three seeds and the full number on one.
+  \item \textbf{Without instructions: two published methods, one sequence of five tasks, development
+  tasks.} The comparison without instructions (Section~\ref{sec:nodefpublished}) covers two
+  published methods and one sequence of five tasks with trained answers (three seeds), with a tenth
+  of their published epochs. Plain adapters behind \recog{} or \handicap{} beat them by a line fixed
+  before the run, but there most of the gap in the final score is learning, not retention. With their
+  published number of epochs the two methods learned the tasks and then forgot \AudFullGainloraFTInt{}
+  and \AudFullInfloraFTInt{} points (Section~\ref{sec:nodeftrained}); at the same number of epochs our rules end at \AudFullOursRidgeAPOne{} and \AudFullOursHandicapAPOne{}. With their definitions and the same number of epochs they forget \AudFullDefOriginalGainloraFTOne{} and \AudFullDefOriginalInfloraFTOne{} points, so in this setting the loss is due to the missing instruction. All of this is one seed. The rules were chosen on the 15 benchmark
+  tasks, so their numbers there are development numbers (\AudDevLLamOneEnd{}\% of the test inputs at
+  their own task after 15 tasks); the five GPU tasks are among them. The numbers on fresh tasks
+  (\AudFreshFourthLEnd{}\% on 30 unseen tasks, \AudScaleLongThreeEnd{}\% on the second benchmark,
+  \AudScaleAllHundredTwentyEnd{}\% with 120 tasks) are routes only. On fifteen tasks trained answers without instructions exist for our rules only, with one seed
+  (Section~\ref{sec:nodeftrained}); there are none on the second benchmark, nor with the published methods given an oracle
+  for the task or our recogniser in front.
+  \item \textbf{The bound in advance is loose, and the split of fresh tasks is not exact.} The
+  handicap gives \AudDevHPrimeTTwoBound{}\% on average against \AudDevHPrimeTTwoChanged{}\% measured; a
+  tight bound in advance was not reached. The split of the fresh tasks does not ensure that test and
+  held-out inputs are the same kind of draw (a later check with a random split moved the numbers by
+  \AudScaleSplitMaxDiffEnd{} points or less).
+  \item \textbf{Inputs that occur in two tasks, and rewordings by people.} Without instructions no
+  method can do better than split inputs that occur in two tasks (two tasks built on the same texts
+  reached \AudScalePairOlderLEnd{}\% and \AudScalePairNewerLEnd{}\% of their own inputs). Rewordings written by people were not
+  tested, and the published setting (a larger model) was not reached.
+  \item \textbf{Routes from the example alone: five tasks, and two fields.} The runs with
+  instructions in which \recog{} sets the route from the example alone
+  (Section~\ref{sec:exampleroutes}) have three seeds but only five tasks, and their rewordings were written by
+  machine and are a development set. The benchmark gives the instruction and the example as two fields; a system that receives one
+  string has to find where the example begins, and we did not test that.
+  \item \textbf{Chosen tasks.} The five-task sequence was put together from tasks that one of the
+  published methods had forgotten most in an earlier run of ours, and the unrelated inputs come
+  from a benchmark from which we left out the sentiment tasks. The first choice was not varied; the
+  second was varied for routes only (Section~\ref{sec:background}).
+  \item \textbf{The closest method was run only as our own re-implementation.} Latent-LoRA, which
+  also recognises tasks from frozen word-vectors, has no public code. We wrote it from its paper and
+  ran it with a third of its epochs. It learned little, so we compare no scores. Its router gave
+  every input to the right task and no answer changed. It was not run in the stress test
+  (Appendix~\ref{app:latent}).
+  \item \textbf{The scores do not separate the switch from simpler rules.} On the benchmark
+  sequences a nearest-zone rule, and with unedited instructions even an exact match of the
+  instruction, reach the same scores. What the certified switch adds there is the proof and the
+  certificate, not points.
+  \item \textbf{Few seeds, small test sets.} The five-task comparison has three seeds and the
+  15-task comparison one. Test sets have about 100 inputs per task, so differences of a few points
+  on one task are not meaningful, and two runs with the same seed already differ by a few tenths
+  of a point.
+  \item \textbf{At scale the switch adds the proof, not better routing.} On machine paraphrases of \WidenTasksEval{} real tasks the nearest-zone rule changed \RerouteNearNChanged{} of \RerouteInputs{} routes after the tasks arrived
+  and the certified switch the same \RerouteCertNChanged{}, against the \RerouteExpectNearLow{}\% to \RerouteExpectNearHigh{}\% we had expected. With the fallback used in all GPU runs the switch routed worse at scale than a plain nearest-signature rule
+  (\RerouteCertOwnEnd{}\% against \RerouteSigOwnEnd{}\% of the inputs to their own task). A variant of the fallback, scaled by each task's distance to unrelated text and tested at the end on routes only, is right on the benchmark (\RerouteBgHeavyFive{}\% under heavy rewording) and at scale
+  (\RerouteBgItOwn{}\% without zones and \RerouteCertFourItOwn{}\% with the zones in front, on paraphrases through a fourth language); even then the best rule without zones gives about five points more right routes, so the zones add the proof and not better routing. The two fallbacks trade places between the tests, and the variant has not been run with trained answers (Section~\ref{sec:paraphrase}).
+  \item \textbf{The zones from the inputs of a task block later tasks.}
+  The bound of Theorem~\ref{thm:bound} holds for test inputs that are like the training inputs of their task and was met in every run (\BoundAllChangedLow{}\% to \BoundAllChangedHigh{}\% of the routes changed against the \BoundAlpha{}\% allowed), but with frozen word-vector features most later tasks were blocked when they arrived (Section~\ref{sec:noinstruction}).
+  \item \textbf{The zones are narrow at scale.} On machine paraphrases of \WidenTasksEval{} real tasks \cert{} certifies \WidenRefTfivePLow{}\% to \WidenRefTfivePHigh{}\% of the inputs for their own task and \WidenRefTfiveMLow{}\% to \WidenRefTfiveMHigh{}\% for another task,
+  depending on the pivot language (Section~\ref{sec:paraphrase}); about three quarters reach their own task, against \FiveCertRightLight{}\%, \FiveCertRightMedium{}\% and \FiveCertRightHeavy{}\% on the five benchmark tasks, which are far apart. None of five attempts
+  to widen the zones (hidden states, a paraphrase ruler, a sentence encoder with a conformal radius, an inference model as judge, the same judge sentence by sentence) met the bar set for it before the runs: the share of correct certificates rose, but in every attempt the wrong certificates rose with it
+  (hidden states, paraphrase ruler) or stayed above the bar set for them (sentence encoder \WidenEncPrimM{}\%, judge \WidenJudgeFrM{}\%, sentence-by-sentence judge \WidenSentItM{}\% with \WidenSentItP{}\% correct certificates on the Italian pivot, against 9\% for a failure and 5\% for a success)
+  (Appendix~\ref{app:widen}). Machine paraphrases are not rewordings by people. A sentence-encoder zone chosen after the runs was ahead of \cert{}
+  on each measure on held-out paraphrases of the same tasks, but by less than the margin fixed in advance, and not on every measure in other random splits, so we do not claim it as an improvement.
+  \item \textbf{The reworded instructions are a development set.} They were written by machine during
+  the development of the method, they share words with the originals, and two design
+  choices (the radius factor, and the rule for inputs outside the zones together with the word
+  weights) were made while looking at where they were routed. An independent test needs rewordings
+  written by people who have not seen the method.
+  \item \textbf{The zone guarantee covers certified inputs only.} With medium and heavy rewording most
+  inputs are outside the zones. They kept their answers in our runs, but nothing guarantees it, and
+  the stress test shows that a later look-alike task can take them. How many of them reach their
+  own task also depends on the unrelated inputs that set the scale of distances: between
+  \BackgroundHeavyLow{}\% and \BackgroundHeavyHigh{}\% under heavy rewording
+  (Section~\ref{sec:background}).
+  \item \textbf{Uncertified routes fail under heavy damage.} In the mechanical edit test, sixteen
+  typos in the instruction leave only 45\% of the inputs on their own task, and tasks with very
+  short instructions lose their route after a few edits. The method flags these inputs; it does not
+  rescue them.
+  \item \textbf{The switch ignores word order.} Its feature is a weighted average of the first
+  tokens, so two instructions made of the same words in a different order cannot be told apart.
+  \item \textbf{Several tests are about routes only.} The machine-paraphrase test, the re-routing study, the five attempts to widen the zones, the Spanish check, the stress test, the mechanical edit test, the test of task orders and the test with other embedding tables compute where inputs are sent; they do not measure what a model answers once an input has reached its adapters. The paraphrase tests use one split and one arrival order (except the five extra splits of the Spanish check).
+  \item \textbf{The instruction zones need an instruction.} The zones of Section~\ref{sec:zones} are
+  built from the common opening of a task's inputs; a task whose inputs share no opening has no
+  signature. Such tasks are served by \recog{} (Sections~\ref{sec:recogniser}
+  and~\ref{sec:nodeftrained}), not by the zones.
+  \item \textbf{Older tasks have priority, and in a large collection this is costly.} A new task
+  that collides with an old zone is blocked on the colliding inputs. Among \ManyTasks{} real tasks
+  this happened to \ManyCollidingPct{}\% of the tasks, almost all of them siblings of an older task
+  with a nearly identical instruction, and \ManyAllHeld{} tasks could not be learned at all under
+  their given instruction. The collision is reported, but the zones offer no remedy except
+  rewording the new task's instruction, a smaller radius factor, or giving up the old claim; the
+  variant \exactfirst{} serves such tasks with a weaker guarantee and was tested on routes only. On
+  unedited instructions a nearest-zone rule without frozen zones gives more inputs to their own
+  task (\ManyNearRightPct{}\% against \ManyCertRightPct{}\%).
+  \item \textbf{No backward transfer.} Certified answers cannot improve through later tasks.
+  \item \textbf{One trained model family.} Training and answers were tested with T5-base and, at
+  small scale on a CPU, with the stand-alone code on small models. For the other models only the
+  routes were checked.
+  \item \textbf{Memory grows with the number of tasks.} One adapter per task is kept, as in all
+  methods of this family.
+\end{itemize}
+
+\section{Conclusion}
+\label{sec:conclusion}
+
+If the adapters of old tasks are frozen and each task keeps one set, an answer changes only if its
+route changes, so forgetting is a question about the rule that sets the route. Without instructions
+every method loses at least the conflict of the inputs of two tasks, and the published benchmarks
+hide this, because their inputs begin with the instruction of the task. When it was removed, the
+two published methods that we ran changed \AudSeedsGainloraChanged{} and \AudSeedsInfloraChanged{}
+of \AudSeedsCompared{} answers, and this loss was not forced. Our main rule is a recogniser on the
+frozen model's own states: it blocks no task, is the same for every order of arrival, and comes with
+an audit of the share of changed answers and a bound in advance on what later tasks can take, which
+is loose. It gave \AudDevLLamOneEnd{}\% of the test inputs of the 15 development tasks to their own
+task, \AudScaleLongThreeEnd{}\% on a second benchmark, \AudFreshFourthLEnd{}\% on 30 unseen tasks and
+\AudScaleAllHundredTwentyEnd{}\% with 120 tasks. In a reduced comparison on five tasks, plain
+adapters behind it beat the two published methods without their instructions by a line fixed before
+the run. With a tenth of their epochs most of that gap is learning; with their published number of
+epochs (one seed) they learned the tasks and then forgot \AudFullGainloraFTInt{} and
+\AudFullInfloraFTInt{} points, ending at \AudFullGainloraAPOne{} and \AudFullInfloraAPOne{} against
+\AudFullOursRidgeAPOne{} for plain adapters behind the recogniser with the same number of epochs. The five tasks are among the development tasks.
+
+The recogniser reads only the example, so its routes are the same for every wording of the
+instruction: with instructions (five tasks, three seeds, machine-written rewordings)
+plain adapters behind it ended at \AudUThreeHeavyRidgeAPOne{} under a heavy rewording
+where the zones ended at \AudUThreeHeavyCertAPOne{}, and changed at most \AudUThreeMaxChangedPerSeed{} of
+\AudUCompared{} answers per seed where the zones changed none.
+
+When inputs do carry an instruction, an exact statement is possible: each task claims a zone built
+from the frozen word-vectors of its instruction, and the oldest claim wins. The answer to an input
+inside a zone then cannot change, for any model and any later tasks, and the price, a new task that
+collides with an old claim, is visible when it arises. In a reduced setting on a real model, on five
+tasks and on 15, this rule kept every answer of the old tasks while learning as much as unprotected
+adapters, with the original instructions and, in the order we ran, with reworded ones. Simpler rules
+that recognise the task reach the same scores there; what the zones add is the proof. In a
+constructed case, a look-alike task re-routed certified old inputs under a best-match rule but not
+under the zones (routes only). On machine paraphrases of real tasks, however, a nearest-zone rule
+changed the same \RerouteNearNChanged{} of \RerouteInputs{} routes. A plain nearest-signature rule
+gave more of them to their own task (\RerouteSigOwnEnd{}\% against \RerouteCertOwnEnd{}\%) but did
+much worse on the benchmark rewordings. A variant of the fallback, fixed at the end, does well in
+both places on route tests, yet the best rule without zones still routes about five points better. The limits of the zones are equally
+plain: the guarantee ends at the border of the zones, the zones are built from words and not from
+meaning (on machine paraphrases of real tasks they certify \WidenRefTfivePLow{}\% to \WidenRefTfivePHigh{}\% of the inputs for their own task, and none of five attempts to widen
+them met the bar set for it in advance), a mechanical test showed that the route of an input outside the zones is lost when its
+instruction is badly damaged, and in a large collection of real tasks about one task in six arrived
+inside an older zone and was blocked. The version of the zones built from the inputs of a task has a proved bound on forgetting, met in every run, but with frozen word-vector features it blocks most later tasks, which are then not learned.
+
+What is missing: the larger model of the published setting, more than one seed at the full number of epochs, the published methods without instructions on more than five tasks, a
+tight bound in advance, rewordings written by people, and tasks that share inputs, which no method without
+instructions can do better than split. All of this was measured with a small model, and all but a few runs with a short training budget.
+

@@ -1,0 +1,20 @@
+{\scriptsize\setlength{\tabcolsep}{2.5pt}\begin{tabular}{p{1.6in}rrrrrr}
+    \toprule
+    Rule & \shortstack[r]{Sent to\\own task\\at arrival,\\\% $\uparrow$} & \shortstack[r]{Sent to\\own task\\at the end,\\\% $\uparrow$} & \shortstack[r]{Route\\changed,\\\% $\downarrow$} & \shortstack[r]{Audit\\$H/m$, \%} & \shortstack[r]{95\% bound,\\\%} & \shortstack[r]{Bound in\\advance, \%} \\
+    \midrule
+    \recog{} with logistic regression ($C = 1$) & \AudDevJCOneArrive{} & \AudDevJCOneEnd{} & \AudDevJCOneChanged{} & \AudDevJCOneAuditEst{} & \AudDevJCOneAuditBound{} & -- \\
+    \textbf{\recog{}, ridge $1\times$} & \textbf{\AudDevLLamOneArrive{}} & \textbf{\AudDevLLamOneEnd{}} & \textbf{\AudDevLLamOneChanged{}} & \textbf{\AudDevLLamOneAuditEst{}} & \textbf{\AudDevLLamOneAuditBound{}} & \textbf{--} \\
+    \recog{}, ridge $10\times$ & \AudDevLLamTenArrive{} & \AudDevLLamTenEnd{} & \AudDevLLamTenChanged{} & \AudDevLLamTenAuditEst{} & \AudDevLLamTenAuditBound{} & -- \\
+    \recog{}, ridge $100\times$ & \AudDevLLamHundredArrive{} & \AudDevLLamHundredEnd{} & \AudDevLLamHundredChanged{} & \AudDevLLamHundredAuditEst{} & \AudDevLLamHundredAuditBound{} & -- \\
+    zones, newest wins, $r = 1$ & \AudDevClaimsROneArrive{} & \AudDevClaimsROneEnd{} & \AudDevClaimsROneChanged{} & -- & -- & \AudDevClaimsROneBound{} \\
+    \handicap{}, $\nu = 0$ & \AudDevHPrimeTZeroArrive{} & \AudDevHPrimeTZeroEnd{} & \AudDevHPrimeTZeroChanged{} & -- & -- & \AudDevHPrimeTZeroBound{} \\
+    \handicap{}, $\nu = 1$ & \AudDevHPrimeTOneArrive{} & \AudDevHPrimeTOneEnd{} & \AudDevHPrimeTOneChanged{} & -- & -- & \AudDevHPrimeTOneBound{} \\
+    \textbf{\handicap{}, $\nu = 2$} & \textbf{\AudDevHPrimeTTwoArrive{}} & \textbf{\AudDevHPrimeTTwoEnd{}} & \textbf{\AudDevHPrimeTTwoChanged{}} & \textbf{--} & \textbf{--} & \textbf{\AudDevHPrimeTTwoBound{}} \\
+    \handicap{}, $\nu = 5$ & \AudDevHPrimeTFiveArrive{} & \AudDevHPrimeTFiveEnd{} & \AudDevHPrimeTFiveChanged{} & -- & -- & \AudDevHPrimeTFiveBound{} \\
+    \handicap{} without protection ($\nu = \infty$) & \AudDevHPrimeTNoneArrive{} & \AudDevHPrimeTNoneEnd{} & \AudDevHPrimeTNoneChanged{} & -- & -- & -- \\
+    \midrule
+    \handicap{} without the floor (first form), $\nu = 0$ & \AudDevHTZeroArrive{} & \AudDevHTZeroEnd{} & \AudDevHTZeroChanged{} & -- & -- & \AudDevHTZeroBound{} \\
+    \handicap{} without the floor (first form), $\nu = 1$ & \AudDevHTOneArrive{} & \AudDevHTOneEnd{} & \AudDevHTOneChanged{} & -- & -- & \AudDevHTOneBound{} \\
+    \handicap{} without the floor (first form), $\nu = 2$ & \AudDevHTTwoArrive{} & \AudDevHTTwoEnd{} & \AudDevHTTwoChanged{} & -- & -- & \AudDevHTTwoBound{} \\
+    \bottomrule
+\end{tabular}}

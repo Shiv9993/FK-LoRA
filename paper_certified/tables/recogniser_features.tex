@@ -1,0 +1,33 @@
+{\footnotesize\setlength{\tabcolsep}{3pt}\begin{tabular}{lrrrr}
+    \toprule
+    Feature & \shortstack[r]{Inside own\\zone, \%} & \shortstack[r]{Blocked,\\\% $\downarrow$} & \shortstack[r]{Sent to\\own task\\at the end,\\\% $\uparrow$} & \shortstack[r]{Route\\changed,\\\% $\downarrow$} \\
+    \midrule
+    word vectors & \AudZoneWordVecInside{} & \AudZoneWordVecBlocked{} & \AudZoneWordVecOwn{} & \AudZoneWordVecChanged{} \\
+    sentence encoder & \AudZoneSentenceInside{} & \AudZoneSentenceBlocked{} & \AudZoneSentenceOwn{} & \AudZoneSentenceChanged{} \\
+    frozen T5-base states & \AudZoneFrozenTInside{} & \AudZoneFrozenTBlocked{} & \AudZoneFrozenTOwn{} & \AudZoneFrozenTChanged{} \\
+    \bottomrule
+\end{tabular}}
+\par\medskip
+{\footnotesize\setlength{\tabcolsep}{1.8pt}\begin{tabular}{lrrrrrr}
+    \toprule
+    & \multicolumn{2}{c}{\shortstack{Sent to own task\\at the end, \% $\uparrow$}} & \multicolumn{2}{c}{\shortstack{Route changed,\\\% $\downarrow$}} & \multicolumn{2}{c}{\shortstack{Audit\\$(c{+}1)/(m{+}1)$, \%}} \\
+    \cmidrule(lr){2-3}\cmidrule(lr){4-5}\cmidrule(l){6-7}
+    Recogniser, feature & SuperNI & Long & SuperNI & Long & SuperNI & Long \\
+    \midrule
+    logistic reg., sentence enc., $C=$\AudRecLrMiniParam{} & \AudRecLrMiniEndSuperni{} & \AudRecLrMiniEndLong{} & \AudRecLrMiniChangedSuperni{} & \AudRecLrMiniChangedLong{} & \AudRecLrMiniAuditLineSuperni{} & \AudRecLrMiniAuditLineLong{} \\
+    \textbf{\quad + shape numbers, $C=$\AudRecLrShapeParam{}} & \textbf{\AudRecLrShapeEndSuperni{}} & \textbf{\AudRecLrShapeEndLong{}} & \textbf{\AudRecLrShapeChangedSuperni{}} & \textbf{\AudRecLrShapeChangedLong{}} & \textbf{\AudRecLrShapeAuditLineSuperni{}} & \textbf{\AudRecLrShapeAuditLineLong{}} \\
+    \quad + character n-grams, $C=$\AudRecLrCharParam{} & \AudRecLrCharEndSuperni{} & \AudRecLrCharEndLong{} & \AudRecLrCharChangedSuperni{} & \AudRecLrCharChangedLong{} & \AudRecLrCharAuditLineSuperni{} & \AudRecLrCharAuditLineLong{} \\
+    cosine features, sentence enc., $\lambda=$\AudRecCosMiniParam{} & \AudRecCosMiniEndSuperni{} & \AudRecCosMiniEndLong{} & \AudRecCosMiniChangedSuperni{} & \AudRecCosMiniChangedLong{} & \AudRecCosMiniAuditLineSuperni{} & \AudRecCosMiniAuditLineLong{} \\
+    \quad + shape numbers, $\lambda=$\AudRecCosShapeParam{} & \AudRecCosShapeEndSuperni{} & \AudRecCosShapeEndLong{} & \AudRecCosShapeChangedSuperni{} & \AudRecCosShapeChangedLong{} & \AudRecCosShapeAuditLineSuperni{} & \AudRecCosShapeAuditLineLong{} \\
+    \bottomrule
+\end{tabular}}
+\par\medskip
+{\footnotesize\setlength{\tabcolsep}{3pt}\begin{tabular}{lrrrr}
+    \toprule
+    & \multicolumn{2}{c}{Audit $H/m$, \%} & \multicolumn{2}{c}{95\% bound, \%} \\
+    \cmidrule(lr){2-3}\cmidrule(l){4-5}
+    Chosen variant & SuperNI & Long & SuperNI & Long \\
+    \midrule
+    logistic reg. + shape numbers, $C=$\AudRecLrShapeParam{} & \AudRecChosenAuditEstSuperni{} & \AudRecChosenAuditEstLong{} & \AudRecChosenAuditBoundSuperni{} & \AudRecChosenAuditBoundLong{} \\
+    \bottomrule
+\end{tabular}}

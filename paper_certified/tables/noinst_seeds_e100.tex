@@ -1,0 +1,20 @@
+{\footnotesize\setlength{\tabcolsep}{2.5pt}\begin{tabular}{lrrrr}
+    \toprule
+    Method & \shortstack[r]{Score after\\learning $\uparrow$} & \shortstack[r]{Final\\score $\uparrow$} & \shortstack[r]{Forgetting\\(points) $\downarrow$} & \shortstack[r]{Answers changed\\of \AudSeedsCompared{} $\downarrow$} \\
+    \midrule
+    InfLoRA & \AudSeedsInfloraLearned{} & \AudSeedsInfloraAP{} {\scriptsize (\AudSeedsInfloraAPLow{}--\AudSeedsInfloraAPHigh{})} & \AudSeedsInfloraFT{} & \AudSeedsInfloraChanged{} \\
+    GainLoRA & \AudSeedsGainloraLearned{} & \AudSeedsGainloraAP{} {\scriptsize (\AudSeedsGainloraAPLow{}--\AudSeedsGainloraAPHigh{})} & \AudSeedsGainloraFT{} & \AudSeedsGainloraChanged{} \\
+    InfLoRA, 100 epochs & \AudFullInfloraLearned{} & \AudFullInfloraAP{} & \AudFullInfloraFT{} & \AudFullInfloraChanged{} of \AudFullCompared{} \\
+    GainLoRA, 100 epochs & \AudFullGainloraLearned{} & \AudFullGainloraAP{} & \AudFullGainloraFT{} & \AudFullGainloraChanged{} of \AudFullCompared{} \\
+    InfLoRA, 100 epochs, with definitions & \AudFullDefOriginalInfloraLearned{} & \AudFullDefOriginalInfloraAP{} & \AudFullDefOriginalInfloraFT{} & \AudFullDefOriginalInfloraChanged{} of \AudFullDefCompared{} \\
+    GainLoRA, 100 epochs, with definitions & \AudFullDefOriginalGainloraLearned{} & \AudFullDefOriginalGainloraAP{} & \AudFullDefOriginalGainloraFT{} & \AudFullDefOriginalGainloraChanged{} of \AudFullDefCompared{} \\
+    \midrule
+    \plain{} & \AudSeedsPlainLearned{} & \AudSeedsPlainAP{} {\scriptsize (\AudSeedsPlainAPLow{}--\AudSeedsPlainAPHigh{})} & \AudSeedsPlainFT{} & \AudSeedsPlainChanged{} \\
+    \centre{} & \AudSeedsCentreLearned{} & \AudSeedsCentreAP{} {\scriptsize (\AudSeedsCentreAPLow{}--\AudSeedsCentreAPHigh{})} & \AudSeedsCentreFT{} & \AudSeedsCentreChanged{} \\
+    \recog{} (ours) & \AudSeedsRidgeLearned{} & \AudSeedsRidgeAP{} {\scriptsize (\AudSeedsRidgeAPLow{}--\AudSeedsRidgeAPHigh{})} & \AudSeedsRidgeFT{} & \AudSeedsRidgeChanged{} \\
+    \handicap{} (ours) & \AudSeedsHandicapLearned{} & \AudSeedsHandicapAP{} {\scriptsize (\AudSeedsHandicapAPLow{}--\AudSeedsHandicapAPHigh{})} & \AudSeedsHandicapFT{} & \AudSeedsHandicapChanged{} \\
+    \recog{} (ours), 100 epochs & \AudFullOursRidgeLearned{} & \AudFullOursRidgeAP{} & \AudFullOursRidgeFT{} & \AudFullOursRidgeChanged{} of \AudFullCompared{} \\
+    \handicap{} (ours), 100 epochs & \AudFullOursHandicapLearned{} & \AudFullOursHandicapAP{} & \AudFullOursHandicapFT{} & \AudFullOursHandicapChanged{} of \AudFullCompared{} \\
+    own task (ceiling) & \AudSeedsOwnLearned{} & \AudSeedsOwnAP{} {\scriptsize (\AudSeedsOwnAPLow{}--\AudSeedsOwnAPHigh{})} & \AudSeedsOwnFT{} & \AudSeedsOwnChanged{} \\
+    \bottomrule
+\end{tabular}}

@@ -1,0 +1,15 @@
+{\footnotesize\setlength{\tabcolsep}{3pt}\begin{tabular}{p{1.75in}rrrrr}
+    \toprule
+    Method (seed 42, 15 tasks) & \shortstack[r]{Score right\\after\\learning $\uparrow$} & \shortstack[r]{Final\\score $\uparrow$} & \shortstack[r]{Forgetting\\(points) $\downarrow$} & \shortstack[r]{Answers\\changed\\of \AudFifteenNoDefCompared{} $\downarrow$} & \shortstack[r]{Sent to own\\task, \% $\uparrow$} \\
+    \midrule
+    \plain{} & \AudFifteenNoDefPlainLearned{} & \AudFifteenNoDefPlainAP{} & \AudFifteenNoDefPlainFT{} & \AudFifteenNoDefPlainChanged{} & \AudFifteenNoDefPlainRight{} \\
+    \centre{} & \AudFifteenNoDefCentreLearned{} & \AudFifteenNoDefCentreAP{} & \AudFifteenNoDefCentreFT{} & \AudFifteenNoDefCentreChanged{} & \AudFifteenNoDefCentreRight{} \\
+    \recog{} (ours) & \AudFifteenNoDefRidgeLearned{} & \AudFifteenNoDefRidgeAP{} & \AudFifteenNoDefRidgeFT{} & \AudFifteenNoDefRidgeChanged{} & \AudFifteenNoDefRidgeRight{} \\
+    \handicap{} (ours) & \AudFifteenNoDefHandicapLearned{} & \AudFifteenNoDefHandicapAP{} & \AudFifteenNoDefHandicapFT{} & \AudFifteenNoDefHandicapChanged{} & \AudFifteenNoDefHandicapRight{} \\
+    every input to its own task (ceiling) & \AudFifteenNoDefOwnLearned{} & \AudFifteenNoDefOwnAP{} & \AudFifteenNoDefOwnFT{} & \AudFifteenNoDefOwnChanged{} & \AudFifteenNoDefOwnRight{} \\
+    \midrule
+    \cert{}, with definitions & \AudFifteenDefCertLearned{} & \AudFifteenDefCertAP{} & \AudFifteenDefCertFT{} & \AudFifteenDefCertChanged{} & \AudFifteenDefCertRight{} \\
+    GainLoRA, with definitions & \AudFifteenDefGainloraLearned{} & \AudFifteenDefGainloraAP{} & \AudFifteenDefGainloraFT{} & \AudFifteenDefGainloraChanged{} & -- \\
+    InfLoRA, with definitions & \AudFifteenDefInfloraLearned{} & \AudFifteenDefInfloraAP{} & \AudFifteenDefInfloraFT{} & \AudFifteenDefInfloraChanged{} & -- \\
+    \bottomrule
+\end{tabular}}

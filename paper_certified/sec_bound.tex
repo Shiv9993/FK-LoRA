@@ -1,0 +1,104 @@
+% =====================================================================================
+\subsection{Zones from the inputs of a task: a bound that does not grow with later tasks}
+\label{sec:bound}
+
+Theorem~\ref{thm:writeonce} speaks about an input that is known to lie inside a zone. It does not
+say how many inputs of a task do. For an unedited instruction the answer is all of them
+(Proposition~\ref{prop:own}); for reworded instructions we could only measure it
+(Section~\ref{sec:paraphrase}). There is a setting in which the share is guaranteed in advance, and
+it needs no instruction at all: the zone is built from the task's own inputs, and its size is set
+on inputs of the task that were held out. This subsection states the guarantee. In our tests it held, but with the features we
+tried the zones of early tasks held the inputs of later tasks, which were then blocked
+(Section~\ref{sec:noinstruction}); the recogniser of Section~\ref{sec:audit} avoids this. We keep
+the statement because it is the one bound in this paper that needs no instruction and does not
+grow with the number of later tasks.
+
+\paragraph{Zones from the inputs of a task.} Let $u$ be a frozen feature of a whole input, as in
+Section~\ref{sec:audit}; no part of the input is treated as an instruction. When task $k$ arrives with training inputs $D_k$, split
+$D_k$ at random into fit inputs $D_k^{\mathrm{f}}$ and $m$ calibration inputs $c_1, \dots, c_m$.
+Fix a score $a_k(x) \ge 0$ that says how unlike the fit inputs an input $x$ is. The score may depend
+on $u$, on $D_k^{\mathrm{f}}$ and on anything frozen, but not on the calibration inputs. For a level
+$\beta \in (0,1)$ (the level called $\alpha$ in Appendix~\ref{app:widen}; we write $\beta$ because $\alpha$ is the scale of the adapters in Eq.~\eqref{eq:layer}) let $q_k$ be the $\lceil (1-\beta)(m+1) \rceil$-th smallest of
+$a_k(c_1), \dots, a_k(c_m)$, with $q_k = \infty$ if that index exceeds $m$, and let
+\begin{equation}
+  Z_k \;=\; \{\, x : a_k(x) \le q_k \,\} .
+  \label{eq:inputzone}
+\end{equation}
+What defines the zone (the fit features and $q_k$) is stored and never changed. The switch is used
+as before: an input goes to the oldest zone that holds it (Eq.~\eqref{eq:route}; an input outside every zone goes to the task with the smallest $a_k(x)/q_k$), and it is answered
+with the adapters that existed when that task was learned. The adapter of task $k$ may be trained
+on all of $D_k$; the zone does not depend on it.
+
+\begin{theorem}[Bounded forgetting rate]
+\label{thm:bound}
+Assume the conditions of Theorem~\ref{thm:writeonce} (they apply to these zones by Remark~\ref{rem:otherzones}), with the zones of Eq.~\eqref{eq:inputzone},
+and let $X$ be an input of task $k$ such that, given the fit inputs, $c_1, \dots, c_m, X$ are
+exchangeable (for example, the training inputs of the task and $X$ are independent draws from one
+distribution). Then for every choice of the later tasks, and of the way their adapters are trained,
+\[
+  \Pr\bigl[\ \text{there are } T' > T \ge k \text{ with } y_{T'}(X) \ne y_T(X) \ \bigr]
+  \;\le\; \Pr\bigl[\, X \notin Z_k \,\bigr] \;\le\; \beta .
+\]
+\end{theorem}
+
+\begin{proof}
+Given the fit inputs, $a_k$ is a fixed function, so the $m+1$ numbers
+$a_k(c_1), \dots, a_k(c_m), a_k(X)$ are exchangeable. The proof of
+Proposition~\ref{prop:conformal} uses nothing else, and gives
+$\Pr[a_k(X) \le q_k] \ge 1 - \beta$, that is, $\Pr[X \notin Z_k] \le \beta$. Now let $X \in Z_k$.
+Then $X \in Z_1 \cup \dots \cup Z_k$, so $X$ is certified at time $k$ ($c_k(X) = 1$ in the notation of Eq.~\eqref{eq:certificate}), and Theorem~\ref{thm:writeonce}, applied at time $k$, gives
+$y_{T}(X) = y_k(X)$ for every $T \ge k$ and every choice of the later tasks. So the answer to $X$
+can differ between two times $T' > T \ge k$ only if $X \notin Z_k$.
+\end{proof}
+
+\begin{corollary}[A bound on the usual measure of forgetting]
+\label{cor:bound}
+Let $\mu$ be a fixed, deterministic score of an answer against its reference answers, with values
+in $[0, M]$ (for Rouge-L in per cent, $M = 100$). Under the conditions of
+Theorem~\ref{thm:bound}, for all $T' > T \ge k$ and all later tasks,
+\[
+  \bigl|\ \mathbb{E}\,\mu\bigl(y_T(X)\bigr) - \mathbb{E}\,\mu\bigl(y_{T'}(X)\bigr) \ \bigr|
+  \;\le\; M \beta .
+\]
+In particular the expected forgetting of every task is at most $M\beta$ points, whatever is learned
+later.
+\end{corollary}
+
+\begin{proof}
+The two scores are equal unless the answer to $X$ changed between $T$ and $T'$, and then they differ
+by at most $M$. By Theorem~\ref{thm:bound} this event has probability at most $\beta$.
+\end{proof}
+
+The bound covers an input drawn from the task's whole distribution, not only a marked subset of inputs; it uses no property of
+the model, of the feature or of the later tasks; and it is set by a number that is chosen in
+advance. Its price is paid when a task arrives, and it is visible there.
+
+\begin{remark}[What the bound does not say]
+\label{rem:boundlimits}
+\emph{(i) It bounds change, not quality.} An input of task $k$ that lies in the zone of an older
+task is answered by the adapters of that older task from the first moment on. It does not forget,
+but task $k$ was never learned for it. The share of such inputs,
+$b_k = \Pr[X \in Z_1 \cup \dots \cup Z_{k-1}]$, is not controlled by anything. It is measured on the
+training inputs of the task when it arrives, and reported: the older zones do not depend on these
+inputs, so for $n$ independent training inputs the observed share $\hat b_k$ satisfies
+$|\hat b_k - b_k| \le \sqrt{\log(2/\delta)/(2n)}$ with probability at least $1 - \delta$
+(Hoeffding's inequality). If two tasks have the same kind of input and differ only in what is asked,
+$b_k$ is close to one: without an instruction nothing can tell them apart, and the report says so
+before any training.
+\emph{(ii) The probability is over the calibration inputs and the test input together.} For one
+given set of calibration inputs the share of the task's inputs outside its zone can be larger than
+$\beta$. For independent draws it is at most $\beta + \sqrt{\log(1/\delta)/(2m)}$ with probability
+at least $1 - \delta$ over the calibration inputs (for $\delta \le 1/2$): by the one-sided
+Dvoretzky--Kiefer--Wolfowitz inequality
+the share of calibration scores at or below any threshold exceeds the true share by at most that
+amount, and at least $\lceil (1-\beta)(m+1) \rceil$ of the $m$ calibration scores are at or below
+$q_k$.
+\emph{(iii) The test inputs have to be like the training inputs of the task.} An input from a
+shifted distribution, for example a reworded one, has no guarantee from this theorem.
+\emph{(iv) Something has to be stored for every task:} the fit features for a nearest-neighbour
+score, or a mean and a radius for a distance to the mean.
+\end{remark}
+
+For the zones of Section~\ref{sec:zones}, built from the instruction, the same statement holds with
+$\beta = 0$ for unedited inputs (Proposition~\ref{prop:own}). Theorem~\ref{thm:bound} is its
+counterpart for inputs that share no fixed opening.

@@ -1,0 +1,81 @@
+\FloatBarrier
+\section{A re-implementation of Latent-LoRA}
+\label{app:latent}
+
+Latent-LoRA \citep{latentlora2026} is the published method closest to our recognition step. It has no
+public code that we could find. We wrote it again from the text of its paper and ran it next to the
+certified switch. This was not planned in advance: no rule for this run was written in the plan
+before it was started.
+
+\paragraph{What was run.} The five tasks of Section~\ref{sec:five}, \LatentTrainInputs{} training and
+\LatentTestInputs{} test inputs per task, T5-base, \LatentEpochs{} epochs, \LatentSeeds{} seeds (42 to 44), on two T4 GPUs.
+Both methods ran in the same stand-alone code with the same data, budget and test. The certified switch
+is the stand-alone code of \texttt{certified\_switch/} (rank \LatentRank{}); all-on is the same set of
+adapters with every adapter used. For Latent-LoRA we ran the rule of the paper (``soft'': the
+adapters are blended with the weights given by a router) and the ablation of the paper without router
+(``sum''). The differences from the paper that we know of: \LatentEpochs{} epochs instead of 30, T5-base
+instead of T5-large, five tasks, and our own Rouge-L scorer. The paper does not state 20 further details;
+the choice made for each is listed in \texttt{latent\_lora/README.md} in the repository.
+
+\begin{table}[h]
+  \caption{Original instructions, mean over \LatentSeeds{} seeds. Answers changed: answers to old inputs that
+  differ from those given right after learning. The sum rule and all-on use no router. Rows 3 and 4 are
+  our re-implementation from the paper.}
+  \label{tab:latentmain}
+  \centering
+  \small
+  \input{tables/latent_main}
+\end{table}
+
+\begin{table}[h]
+  \caption{The four wordings of the task instructions (Appendix~\ref{app:rewordings}), mean over \LatentSeeds{} seeds. Answers changed: of \LatentCompared{} answers. Right: share of test inputs given to their own task (for the soft rule: the adapter with the largest router weight).}
+  \label{tab:latentwordings}
+  \centering
+  \small
+  \input{tables/latent_wordings}
+\end{table}
+
+\begin{table}[h]
+  \caption{Original instructions, mean over \LatentSeeds{} seeds: score of each task right after it
+  was learned, and the training loss of its last epoch.}
+  \label{tab:latentpertask}
+  \centering
+  \small
+  \input{tables/latent_pertask}
+\end{table}
+
+\paragraph{Learning.} Our re-implementation learned the first task and almost nothing after it
+(Table~\ref{tab:latentpertask}). With seed 42, the scores right after learning were
+\LatentSeedSoftRelation{}, \LatentSeedSoftSst{}, \LatentSeedSoftGlucose{}, \LatentSeedSoftSenti{} and
+\LatentSeedSoftEmotion{} for relation extraction, SST-2, Glucose, Sentiment140 and emotion; the other
+seeds are alike. At the end of the Glucose task the training loss was about \LatentLossSoftGlucose{}
+against about \LatentLossCertGlucose{} for the certified switch. Learned and AP are \LatentSoftAP{}
+against \LatentCertAP{}. We do not know whether this comes from the reduced budget (a third of the
+epochs, a smaller model) or from a mistake in our re-implementation, and without public code we cannot
+check. So the run says nothing about how well Latent-LoRA learns or retains, and we make no such claim.
+One sign that its adapters were barely trained: with the light rewording its average is higher
+(\LatentSoftAPLight{}) than with the original instructions (\LatentSoftAP{}), because its Sentiment140
+score rises from \LatentSoftSentOriginal{} with the original instruction to between \LatentSoftSentLightLow{} and \LatentSoftSentLightHigh{} (over seeds) with the
+light rewording, and falls to \LatentSoftSentMediumMean{} with the medium rewording.
+
+\paragraph{Its router.} The router of the re-implementation gave every test input to its own task in
+all four wordings (right task \LatentSoftRight{}\%; certified switch \LatentCertRightOriginal{}\% /
+\LatentCertRightLight{}\% / \LatentCertRightMedium{}\% / \LatentCertRightHeavy{}\% in the four wordings), and with
+the soft rule none of \LatentCompared{} answers changed in any wording. So on these five tasks its
+router is as stable as ours in practice, and it recognises the heavy rewording better than ours does.
+What the certified switch adds is the proof and the
+certificate on each answer, not better recognition. Latent-LoRA was not run in the stress test with a
+look-alike task (Section~\ref{sec:stress}), so we do not know how its router behaves there. With the
+sum rule (no router) AP is \LatentSumAP{}, FT \LatentSumFT{} and \LatentSumChanged{} of \LatentCompared{} answers changed.
+
+\paragraph{The stand-alone code.} The same run reproduces the result of the certified switch on T5-base in a
+second, independent code base: AP \LatentCertAP{} (\LatentSeeds{} seeds), FT \LatentCertFT{}, and
+\LatentCertChanged{} of \LatentCompared{} answers changed in each of the four wordings (AP
+\LatentCertAPLight{} / \LatentCertAPMedium{} / \LatentCertAPHeavy{} with the light, medium and heavy
+rewording; right task \LatentCertRightHeavy{}\% with the heavy one). The same adapters all on give AP
+\LatentAllAP{}, FT \LatentAllFT{} and \LatentAllChanged{} of \LatentCompared{} answers changed. The main
+experiments of the paper use other code and another rank; their AP is \FiveCertAP{}.
+
+\paragraph{What this does not show.} Nothing about the learning or the forgetting of Latent-LoRA as
+its authors built it. Nothing about its router outside these five tasks. The reworded instructions
+are the development set described in Appendix~\ref{app:rewordings}.

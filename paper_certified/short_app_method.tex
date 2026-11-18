@@ -1,0 +1,380 @@
+\FloatBarrier
+\section{Method material left out of the main text}
+\label{app:method}
+
+This section holds what was cut from Section~\ref{sec:method}: the word-vector features and the full
+statements of Propositions~\ref{prop:own}, \ref{prop:edits}, \ref{prop:price} and~\ref{prop:uncertified},
+the algorithm, the answering step, the corollary, the remarks, the methods compared, and the proofs
+of Propositions~\ref{prop:edits}, \ref{prop:price}, \ref{prop:uncertified} and~\ref{prop:exactfirst}.
+The text is that of the long version of the paper.
+
+\subsection{Answering, and the algorithm}
+\paragraph{Answering.} For an input $x$, compute $\psi_{n}(x)$ for the distinct opening lengths
+$n \in \{n_1, \dots, n_T\}$, the relative distances $\delta_1(x), \dots, \delta_T(x)$, the route and
+the certificate by Eqs.~\eqref{eq:certificate}--\eqref{eq:route}, and run the model once with the
+adapters $1, \dots, \rho_T(x)$. Return the answer $y_T(x)$ together with $c_T(x)$. The extra cost is
+one lookup in the embedding table, one product with $\hat C^{-1/2}$ per distinct opening length, and $T$ distances in $\R^d$ per input, which is negligible next to
+one pass through the model.
+Algorithm~\ref{alg:switch} puts the two procedures side by side.
+
+\begin{algorithm}
+  \caption{The certified switch}
+  \label{alg:switch}
+  \small
+  \begin{tabular}{@{}r@{\hspace{0.8em}}p{0.92\linewidth}@{}}
+    \multicolumn{2}{@{}l}{\textbf{Once}, before the first task (frozen embedding table $E$, unrelated inputs $\mathcal{B}$):} \\[1pt]
+    1 & compute the token weights $w$ (Eq.~\ref{eq:weights}), the mean $\mu$ and the rescaling $\hat{C}^{-1/2}$ (Eq.~\ref{eq:whiten}), and the
+        signatures of the unrelated tasks \\[4pt]
+    \multicolumn{2}{@{}l}{\textbf{Learn task $t$} (training inputs $D_t$; zones and adapters of tasks $1, \dots, t-1$):} \\[1pt]
+    2 & $o_t \leftarrow$ the opening of task $t$ (the longest common token prefix of its template filled with two instances); \quad $n_t \leftarrow$ its length in tokens \\
+    3 & $s_t \leftarrow \psi_{n_t}(o_t)$; \quad $R_t \leftarrow \kappa \cdot \min_{s \in \mathcal{S}_t} \lVert s_t - s \rVert_2$
+        \hfill \emph{the zone $Z_t$ is fixed from here on} \\
+    4 & $b_t \leftarrow \bigl|\{x \in D_t : x \in Z_1 \cup \dots \cup Z_{t-1}\}\bigr|$; \quad report $b_t$
+        \hfill \emph{blocked inputs} \\
+    5 & add adapter $t$ with a zero update; freeze the adapters $1, \dots, t-1$ \\
+    6 & train adapter $t$ on $D_t$ with the usual loss; each input $x$ is processed with the adapters $1, \dots, \rho_t(x)$ \\[4pt]
+    \multicolumn{2}{@{}l}{\textbf{Answer input $x$} (after $T$ tasks):} \\[1pt]
+    7 & $\delta_k \leftarrow \lVert \psi_{n_k}(x) - s_k \rVert_2 \,/\, R_k$ \quad for $k = 1, \dots, T$ \quad (with the convention of Definition~1 if $R_k = 0$) \\
+    8 & \textbf{if} some $\delta_k \le 1$: \quad $\rho \leftarrow \min\{k : \delta_k \le 1\}$, \quad $c \leftarrow 1$
+        \hfill \emph{the oldest claim wins} \\
+    9 & \textbf{else}: \quad $\rho \leftarrow \arg\min_k \delta_k$, \quad $c \leftarrow 0$
+        \hfill \emph{nearest zone, no certificate} \\
+    10 & \textbf{return} the answer of the base model with the adapters $1, \dots, \rho$, together with $c$ \\
+  \end{tabular}
+\end{algorithm}
+
+\subsection{Corollary and remarks}
+\begin{remark}[Other zones]
+\label{rem:otherzones}
+The proof of Theorem~\ref{thm:writeonce} uses only that $Z_1,\dots,Z_T$ are the same sets at every later time. It therefore applies to any zone whose membership is a
+deterministic function of the input, of parts frozen before the first task (another feature, a second model) and of quantities stored when the task arrives
+(for example its instruction), and does not depend on any later task, provided that function is computed reproducibly: bit for bit, or with inputs within a fixed tolerance of the border decided by a fixed convention.
+A zone decided by a comparison with the instruction has to store the instruction text, not one vector, one radius and one integer.
+\end{remark}
+\begin{corollary}[Zero forgetting on certified inputs]
+\label{cor:zero}
+Let $\mathcal{X}$ be a set of inputs that are all certified after $T$ tasks, and let $m$ be any fixed, deterministic score of an
+answer against reference answers. Then $\sum_{x \in \mathcal{X}} m(y_{T'}(x)) = \sum_{x \in \mathcal{X}} m(y_T(x))$ for all
+$T' \ge T$. In particular, if every test input of task $k$ is certified once task $k$ has been
+learned, the forgetting of task $k$ is exactly zero under any such metric and for any later tasks, and
+not a single answer changes.
+\end{corollary}
+\begin{remark}[Three consequences that should not be overlooked]
+First, the guarantee is about \emph{certified} inputs only; how many inputs are certified is an
+empirical question, answered in Section~\ref{sec:results}. Second, the guarantee gives older tasks
+priority: a later task whose inputs fall into an older zone cannot be learned on those inputs
+(Proposition~\ref{prop:price}). Third, exact retention rules out \emph{backward transfer}: a
+certified answer can never get better through later tasks either.
+\end{remark}
+
+\begin{remark}[A vanishing radius, and the exact key]
+If the radius factor $\kappa$ tends to zero, $Z_k$ shrinks to the inputs whose weighted prefix
+average equals the signature, in practice the unedited inputs. All other inputs leave the zones and are routed by $\arg\min_k \delta_k(x)$, which does not depend on $\kappa$ because $\kappa$ cancels;
+their routes can therefore differ from those at $\kappa = \tfrac12$, where a certified input goes to the oldest zone that contains it. The limit of \cert{} is therefore
+\nearest{} with a certificate for unedited inputs only. The rule we call \keyswitch{} is a different
+one: it also matches the opening token for token, but an input that matches no opening gets all
+adapters, as in \plain{}. It keeps unedited inputs for ever unless a later task's opening extends theirs, and gives no protection at all to an
+input whose instruction has been reworded (Section~\ref{sec:results}). Formally, \keyswitch{} routes $x$ to the task with the
+longest opening that $x$ carries token for token (the older one if two are equally long), and to $T$ (all adapters) if there is none.
+\end{remark}
+
+\begin{remark}[Exactness in practice]
+The route is a deterministic function of the token sequence, computed in 64-bit floating point;
+positions that only pad a batch contribute exact zeros. Rounding could in principle decide an
+input that lies almost exactly on the border of a zone differently in two runs; we did not observe
+this. The theorem speaks about the same adapters being switched on. In the implementation the
+adapters of later tasks are multiplied by zero rather than removed, and in every case we compared
+the answer was identical, as a string, to the answer given before those tasks existed
+(Section~\ref{sec:results}). The theorem is about the function $F$. An implementation computes $F$
+in floating-point arithmetic, and its output can depend on how inputs are put into batches and on
+hardware and library versions; in one of our runs 6 of 1{,}500 answers of a baseline differed
+between batches of 16 and of 32. ``The same answer'' therefore presupposes the same inference
+set-up.
+\end{remark}
+
+\subsection{A variant for collections with sibling tasks}
+\label{sec:exactfirst}
+
+A sibling of an old task lies inside the old zone and is blocked (Proposition~\ref{prop:price}). This
+variant serves siblings; it was designed after Section~\ref{sec:many}, and its guarantee is weaker.
+
+\begin{table}[!htbp]
+  \caption{What each rule promises about the route of an input when later tasks are learned.
+  ``One exception'': see Proposition~\ref{prop:exactfirst}(ii). $^*$ Unless its opening begins with an older one.}
+  \label{tab:guarantees}
+  \centering
+  \footnotesize
+  \setlength{\tabcolsep}{4pt}
+  \begin{tabular}{lllll}
+    \toprule
+    Rule & Unedited input & Edited, inside a zone & Outside every zone & Sibling of an old task \\
+    \midrule
+    \cert{} & fixed for ever & fixed for ever & may change & blocked and reported \\
+    \exactfirst{} & fixed for ever & fixed, with one exception & may change & learned$^*$ \\
+    \nearest{} & fixed for ever & may change & may change & learned \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\begin{definition}[Exact claims first]
+Let $X_T(x) = \{\, k \le T : \text{the first } n_k \text{ tokens of } x \text{ are } o_k \,\}$ be the
+set of tasks whose opening the input carries token for token. The rule \exactfirst{} uses the route
+\begin{equation}
+  \rho^{\mathrm{x}}_T(x) = \min X_T(x) \text{ if } X_T(x) \neq \emptyset \text{ (oldest exact claim)}, \quad
+  \rho^{\mathrm{x}}_T(x) = \rho_T(x) \text{ otherwise},
+  \label{eq:exactfirst}
+\end{equation}
+and certifies an input if $X_T(x) \neq \emptyset$ or $c_T(x) = 1$.
+\end{definition}
+
+Two caveats. A sibling is served only word for word: an \emph{edited} input of the sibling inside the
+old zone goes to the old task, with a certificate. And the certificate now stands for two promises, an
+unconditional one for exact claims and a conditional one for other inputs inside a zone. A task whose
+opening is, or begins with, that of an older task still cannot be learned.
+
+\begin{proposition}[What exact claims first guarantees]
+\label{prop:exactfirst}
+Under the assumptions of Theorem~\ref{thm:writeonce}: (i) if $X_T(x) \neq \emptyset$, the route and answer of $x$ are the same at every later time,
+whatever the later tasks; (ii) if $X_T(x) = \emptyset$ and $c_T(x) = 1$, they are the same unless a
+later task has an opening that $x$ carries token for token; (iii) if $X_T(x) = \emptyset$ or
+$\min X_T(x) = \rho_T(x)$, the route is that of \cert{}; since $X_T(x)\subseteq\{k: x\in Z_k\}$, always $\min X_T(x)\ge\rho_T(x)$, and the two rules differ only when an older zone contains an unedited input of a newer task.
+\end{proposition}
+
+Table~\ref{tab:guarantees} compares the rules. On our two benchmark sequences \exactfirst{} gives the
+same route as \cert{} for every test input in every wording (\ExactSameFive{} and \ExactSameFifteen{}
+inputs, checked by computation).
+
+\subsection{The variant on the benchmark sequences}
+
+On our two benchmark sequences \exactfirst{} gives the same route as \cert{} for every test input in
+every wording, so every result that Section~\ref{sec:results} reports for \cert{} on these sequences
+holds for \exactfirst{} unchanged.
+
+\subsection{Compared methods}
+
+
+\begin{table}[t]
+  \caption{Methods in this study. ``Stored per task'' excludes the frozen adapters themselves. $^\dagger$ Unless a later opening extends theirs.}
+  \label{tab:methods}
+  \centering
+  \footnotesize
+  \setlength{\tabcolsep}{3pt}
+  \begin{tabular}{llll}
+    \toprule
+    Method & Which adapters answer an input & Stored per task & Guarantee \\
+    \midrule
+    \plain   & all adapters on for every input & nothing & none \\
+    \keyswitch & exact match of the opening; else all on & the opening & unedited inputs$^\dagger$ \\
+    \centre  & nearest centre of the whole input & one vector & none \\
+    \nearest & nearest zone & signature, radius & unedited inputs \\
+    \cert    & oldest zone holding the input; else nearest zone & signature, radius & inputs in a zone \\
+    \exactfirst & oldest exact opening; else as \cert{} & also the opening & Prop.~\ref{prop:exactfirst} \\
+    InfLoRA  & all on; updates restricted to a subspace & subspace bases & none \\
+    GainLoRA & all on, scaled by learned gates & subspace bases, gates & none \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+Table~\ref{tab:methods} lists the methods. \plain{}, \keyswitch{}, \centre{}, \nearest{}, \cert{} and
+\exactfirst{} use the same adapters: the adapters are trained once, and only the switches of
+Eq.~\eqref{eq:gates} differ at test time. No training input was blocked in our GPU runs, so this
+training was exactly that of \plain{}. \plain{} is the plain-adapter mode of the code base we
+use (one new LoRA per task, older ones frozen, all added together, no penalty), often called
+IncLoRA. \keyswitch{} is the exact switch discussed above. We also run two published methods with
+their official implementation: InfLoRA \citep{liang2024inflora}, which designs the
+dimension-reduction matrix of each new adapter so that the update lies in a subspace intended not
+to interfere with earlier tasks and trains only the other matrix, and GainLoRA
+\citep{liang2025gainlora}, which adds to each new branch a gating module whose output is
+constrained to stay near zero on inputs of earlier tasks.
+
+\subsection{Word-vector features, and four propositions}
+\label{app:features}
+
+\paragraph{Word-vector features.} Let $\mathcal{V}$ be the vocabulary and $E \in \R^{|\mathcal{V}| \times d}$ the input embedding
+table of the base model. An input is a token sequence $x=(x_1,\dots,x_L)$. The \emph{opening} $o_k$ of task $k$ is the longest common token prefix of its template
+filled with two instances (Appendix~\ref{app:impl}), of length $n_k$ tokens. The switch reads an input through weighted averages of its word-vectors. Let $\mathcal{B}$ be a
+fixed collection of \emph{unrelated} inputs from tasks that are never learned, and $p(v)$ the share
+of token $v$ among its tokens. A token counts with the weight $w(v)$ of \citet{arora2017simple}, and the \emph{prefix average} of the
+first $n$ tokens is $\varphi_n(x)$:
+\begin{align}
+  w(v) &\;=\; \frac{a}{a + p(v)} , \quad a = 10^{-3}, \label{eq:weights}\\
+  \varphi_n(x) &\;=\; \frac{\sum_{i=1}^{\min(n, L)} w(x_i)\, E_{x_i}}{\sum_{i=1}^{\min(n, L)} w(x_i)} \;\in\; \R^d .
+  \label{eq:prefix}
+\end{align}
+Let $\mu$ and $C$ be the mean and covariance of $\{\varphi_{64}(b) : b \in \mathcal{B}\}$ and
+\begin{equation}
+  \hat{C} \;=\; \tfrac{1}{2}\, C + \tfrac{1}{2}\, \frac{\operatorname{tr} C}{d}\, I ,
+  \qquad
+  \psi_n(x) \;=\; \hat{C}^{-1/2} \bigl( \varphi_n(x) - \mu \bigr) .
+  \label{eq:whiten}
+\end{equation}
+All this depends only on the base model and on $\mathcal{B}$, is computed once, and never changes.
+Details of the zones: $s_k$ equals $\psi_{n_k}(x)$ for every input $x$ of task $k$ in its original wording; $R_k = 0$ happens when $s_k$ equals a known signature (for example when the opening of task $k$ is identical to a known one); zones can overlap, and an input in several goes to the oldest. A variant of the fallback scaled by the distance to the unrelated tasks (\certscaled{}) is in Appendix~\ref{sec:paraphrase}. The proof of Theorem~\ref{thm:writeonce} applies to any zone whose membership is a deterministic function of the input, of frozen parts and of quantities stored when the task arrives, independent of later tasks, computed reproducibly (Remark~\ref{rem:otherzones}).
+
+\begin{proposition}[The original wording is always certified]
+\label{prop:own}
+Every input whose first $n_k$ tokens are the opening $o_k$ satisfies $\delta_k(x) = 0$, so it lies in
+$Z_k$ and is certified from the moment task $k$ arrives. Its route is $k$ unless an older
+zone contains it.
+\end{proposition}
+
+\begin{proof}
+By Eq.~\eqref{eq:prefix}, $\varphi_{n_k}(x)$ depends only on the first $n_k$ tokens, which are $o_k$.
+Hence $\psi_{n_k}(x) = s_k$ and $\delta_k(x) = 0$.
+\end{proof}
+
+How far an edit can go can be bounded without looking at it. Read the first $n_k$ tokens as a bag. For
+an input $x$ that carries $o_k$ and an arbitrary $x'$, let $W_{\mathrm{c}}$ be the total weight
+(Eq.~\ref{eq:weights}) of the tokens the bags share, $W_{\mathrm{r}}$ that of the tokens only $x$ has
+(removed) and $W_{\mathrm{a}}$ that of the tokens only $x'$ has (added). Let
+\begin{equation}
+  \lambda \;=\; \frac{W_{\mathrm{r}}}{W_{\mathrm{c}} + W_{\mathrm{r}}}, \qquad \lambda' \;=\; \frac{W_{\mathrm{a}}}{W_{\mathrm{c}} + W_{\mathrm{a}}}, \qquad
+  D \;=\; \max_{u, v \in \mathcal{V}} \bigl\lVert \hat{C}^{-1/2} (E_u - E_v) \bigr\rVert_2 ,
+  \label{eq:shares}
+\end{equation}
+the shares of weight removed and added, and the largest distance between rescaled embedding rows.
+
+\begin{proposition}[A certified radius for edits]
+\label{prop:edits}
+Let $R_k > 0$. Then $\delta_k(x') \le \max(\lambda, \lambda')\, D / R_k$. Hence every edit with
+$\max(\lambda, \lambda') \le R_k / D$ leaves the input inside $Z_k$: it is certified, and by
+Theorem~\ref{thm:writeonce} its answer never changes. In particular an input whose first $n_k$ tokens
+are a permutation of the opening has $\delta_k = 0$.
+\end{proposition}
+
+The bound is a worst case; the switch ignores word order.
+
+\begin{proposition}[The price is paid at admission and is visible]
+\label{prop:price}
+The $b_t$ training inputs of task $t$ in an older zone are routed to an older task for ever and give
+no gradient to adapter $t$. The number $b_t = |\{x \in D_t : x \in Z_1 \cup \dots \cup Z_{t-1}\}|$, for the training set $D_t$ of task $t$, is known before task $t$ is trained. If $b_t = 0$ and every training input carries the opening $o_t$ (true in all our runs), training is identical, step for step, to plain sequential training.
+\end{proposition}
+
+Blocked inputs are counted on the training inputs only: an unseen input of the new task can lie in an
+older zone even if $b_t = 0$ (in Section~\ref{sec:many} some tasks had part of their inputs blocked).
+
+\begin{proposition}[What can still change]
+\label{prop:uncertified}
+Let $c_T(x) = 0$. When task $T+1$ is added, the route of $x$ changes only if
+$\delta_{T+1}(x) < \min_{k \le T} \delta_k(x)$. Once an input is certified its route never changes;
+an uncertified input can change its route several times.
+\end{proposition}
+
+\subsection{Proofs}
+
+
+\begin{proof}[Proof of Proposition~\ref{prop:edits}]
+(If an input has fewer than $n_k$ tokens, its bag is the whole input.) Let $m_{\mathrm{c}}$, $m_{\mathrm{r}}$ and $m_{\mathrm{a}}$ be the weighted means of the embedding rows of the common, the removed
+and the added tokens (bags are multisets, so a token that occurs twice counts twice). By
+Eq.~\eqref{eq:prefix}, $\varphi_{n_k}(x) = m_{\mathrm{c}} + \lambda\,(m_{\mathrm{r}} - m_{\mathrm{c}})$ and
+$\varphi_{n_k}(x') = m_{\mathrm{c}} + \lambda'\,(m_{\mathrm{a}} - m_{\mathrm{c}})$. Assume $\lambda' \ge \lambda$; the other case is
+symmetric. Then
+\[
+  \varphi_{n_k}(x') - \varphi_{n_k}(x) \;=\; \lambda\,(m_{\mathrm{a}} - m_{\mathrm{r}}) \;+\; (\lambda' - \lambda)\,(m_{\mathrm{a}} - m_{\mathrm{c}}) .
+\]
+Each of $m_{\mathrm{c}}$, $m_{\mathrm{r}}$, $m_{\mathrm{a}}$ is a convex combination of rows of $E$, and the diameter of a set
+equals the diameter of its convex hull, so after the linear map $\hat{C}^{-1/2}$ each of the two
+differences has norm at most $D$. Hence
+$\lVert \psi_{n_k}(x') - s_k \rVert_2 \le \lambda D + (\lambda' - \lambda) D = \lambda' D$. If the bags
+have nothing in common, $\lambda = \lambda' = 1$ and the bound is the diameter itself. A
+permutation has $W_{\mathrm{r}} = W_{\mathrm{a}} = 0$.
+\end{proof}
+
+\begin{proof}[Proof of Proposition~\ref{prop:price}]
+For $x$ in an older zone, $\rho_t(x) < t$ by Eq.~\eqref{eq:route}, so $g_t(x) = 0$ in
+Eq.~\eqref{eq:gates}: adapter $t$ is multiplied by zero in every layer, in the forward and in the
+backward pass, and by Theorem~\ref{thm:writeonce} the route never changes. If $b_t = 0$, every
+training input has $\delta_t(x) = 0$ and lies in no older zone, so its route is $t$ and all switches
+are one.
+\end{proof}
+
+\begin{proof}[Proof of Proposition~\ref{prop:uncertified}]
+The relative distances $\delta_1(x), \dots, \delta_T(x)$ do not change when a task is added, and
+they are all larger than one. Ties go to the older task, so the minimiser over $k \le T+1$ differs
+from the old one only if $\delta_{T+1}(x)$ is strictly smaller than the old minimum; this covers
+the case $x \in Z_{T+1}$, in which the route becomes $T+1$ and Theorem~\ref{thm:writeonce} applies
+from then on.
+\end{proof}
+
+\begin{proof}[Proof of Proposition~\ref{prop:exactfirst}]
+(i) Later tasks have larger indices, so $\min X_{T'}(x) = \min X_T(x)$, and the adapters up to this
+route are frozen. (ii) If no later opening is carried by $x$, then $X_{T'}(x) = \emptyset$ and the
+route is $\rho_{T'}(x)$, which equals $\rho_T(x)$ by Theorem~\ref{thm:writeonce}. (iii) If $X_T(x)=\emptyset$ the route is $\rho_T(x)$ by Eq.~\eqref{eq:exactfirst}. Every $k\in X_T(x)$ has $\delta_k(x)=0$, so $x\in Z_k$ and $\min X_T(x)\ge\rho_T(x)$; equality gives the route of \cert{}, and strict inequality means that the older zone $Z_{\rho_T(x)}$ contains an unedited input of the newer task $\min X_T(x)$.
+\end{proof}
+
+\input{sec_bound}
+\input{sec_audit}
+
+\FloatBarrier
+\section{Experimental protocol in full}
+\label{app:cut}
+
+\paragraph{Code base and benchmark.} All GPU experiments use the official GainLoRA repository at
+commit \texttt{e9d0d70} with its data, input format, trainer and metrics, on the SuperNI benchmark
+\citep{wang2022superni}. Every input is a string of the form ``\texttt{Definition:}
+$\langle$task definition$\rangle$ \texttt{Now complete the following example - Input:}
+$\langle$instance$\rangle$ \texttt{Output:}''. Our additions run on top of the unmodified training
+script: a launcher sets the switches of Eq.~\eqref{eq:gates} inside the attention modules at run
+time. For the two published methods the launcher changes nothing; it only records the test set and
+repeats the test with reworded definitions after the official test.
+
+\paragraph{Reduced setting.} The published experiments use T5-large and 100 epochs per task. To fit
+free GPUs (one or two NVIDIA T4), we use T5-base \citep{raffel2020t5} (220M parameters) and 10 epochs
+per task; everything else is as in the official scripts: rank $r = 4$, $\alpha = 32$, learning rate
+$3 \times 10^{-4}$ with a constant schedule, effective batch size 32, source length 512, target
+length 50, greedy decoding, and the checkpoint with the best development Rouge-L. \textbf{Because
+of the reduced setting, none of our numbers can be compared with the tables of the published
+papers}, and in this setting the two published methods learned less than plain adapters, for reasons we did not separate (Section~\ref{sec:results}).
+
+\paragraph{Sequences.} (i) A five-task sequence: relation extraction (\texttt{task1510}), sentiment
+of a movie-review sentence (\texttt{task363}, SST-2), cause-event detection (\texttt{task748},
+GLUCOSE), tweet sentiment (\texttt{task1687}, Sentiment140) and emotion classification
+(\texttt{task875}). (ii) The official SuperNI order~1 with 15 tasks. Each of the five tasks has 800
+training and 100 test examples; in the 15-task sequence tasks have between 100 and 800 training and
+between 16 and 100 test examples. \textbf{The five tasks were not drawn at random.} In an earlier
+15-task run of ours the first three were the short-input tasks that InfLoRA had forgotten most, and
+the last two are of the kind after which that forgetting had happened; the sequence was put
+together to make forgetting visible.
+
+\paragraph{Unrelated inputs.} The collection $\mathcal{B}$ consists of 4{,}000 inputs drawn with a
+fixed random seed from ten tasks of a different benchmark shipped with the same code base (MNLI, CB,
+QQP, RTE, DBpedia, AG News, Yahoo, MultiRC, BoolQ and WiC, each with its own definition). None of
+these tasks is ever learned or tested. That benchmark has five more tasks. Its four sentiment tasks
+were left out on purpose, because the sequences to be learned contain sentiment tasks, and one task
+has no definition. Section~\ref{sec:background} looks at how much this choice matters.
+
+\paragraph{Reworded definitions.} To test what happens when a task is asked in other words, each of
+the five tasks has three reworded definitions, called \emph{light} (a few words changed),
+\emph{medium} (sentences rewritten) and \emph{heavy} (a different, shorter formulation). They keep the
+answer format of the original and are listed in Appendix~\ref{app:rewordings}. \textbf{They were
+written by machine during the development of the method, not by people, and the two design choices described in
+Appendix~\ref{app:history} were made while looking at where these reworded inputs were routed} (never
+at an answer of the model). They are therefore a development set, not an independent test; we call them the development rewordings.
+
+\paragraph{Metrics.} Let $a_{i,j}$ be the Rouge-L score \citep{lin2004rouge} on the test set of task
+$j$ after learning task $i$. We report the average performance
+$\mathrm{AP} = \tfrac{1}{T}\sum_{j=1}^{T} a_{T,j}$, the forgetting
+$\mathrm{FT} = \tfrac{1}{T-1}\sum_{j=1}^{T-1}\bigl(\max_{j \le i < T} a_{i,j} - a_{T,j}\bigr)$ and
+$\mathrm{Learned} = \tfrac{1}{T}\sum_{j} a_{j,j}$, the average score of each task right after it was
+learned. \emph{Showing Learned next to AP and FT matters}: a method can have a low AP because it
+forgets or because it learns little, and only the three numbers together say which. We add a
+measure at the level of single answers, \emph{answers changed}: the number of test inputs of the
+tasks $1, \dots, T-1$ whose answer after the last task differs, as a string, from the answer right
+after their own task was learned.
+
+\paragraph{Official test and re-test.} The official code scores each test input against one
+reference answer picked at random each time the data are loaded, which adds noise of about one
+point for tasks with several references. We therefore report two things. The \emph{official} scores
+are those written by the official script. The \emph{re-test}, run after every task with the same
+weights, answers every test input again with the original and the reworded definitions and scores
+it against all reference answers. For the methods that share adapters the re-test uses the fact
+that an answer depends only on the input and on its route: each pair of an input and a route is
+generated once, and all rules are evaluated from these answers, so differences between rules cannot
+come from training noise. The re-test with the original wording reproduces the answers of the
+official test (Section~\ref{sec:results}).
+
+\paragraph{Checks without a GPU.} Where an input is routed depends only on the tokenizer and the
+embedding table, so the routes of all test inputs can be computed on a CPU in a few minutes, for
+any model. We use this to check the 15-task sequence and several other models
+(Section~\ref{sec:models}), and we report openly where such checks were used to make design choices
+(Appendix~\ref{app:history}).

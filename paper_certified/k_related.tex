@@ -1,0 +1,72 @@
+\section{Related work}
+\label{sec:related}
+
+\paragraph{Task identity.} Forgetting has been addressed by penalising changes to important weights
+\citep{kirkpatrick2017ewc}, distilling the old model \citep{li2016lwf}, replaying examples
+\citep{shin2017dgr} and projecting updates away from old directions \citep{saha2021gpm}.
+\citet{vandeven2019three} distinguish scenarios by whether the task identity is given at test time.
+When it is, separate parameters per task forget nothing: progressive networks
+\citep{rusu2016progressive}, PackNet \citep{mallya2018packnet}, hard attention to the task
+\citep{serra2018hat} and progressive prompts \citep{razdaibiedina2023progressive}. Without it, these
+parameters have to be selected from the input.
+
+\paragraph{Inferring the task from the input.} \citet{kim2022theoretical} show that continual learning
+without task identity splits into prediction within a task and prediction of the task, the second tied
+to out-of-distribution detection; CLOM \citep{kim2022clom} trains each task as a detector and protects
+its parameters with masks. Distance-based detectors include the Mahalanobis detector
+\citep{lee2018mahalanobis}. L2P \citep{wang2022l2p} selects prompts by matching a query to learned
+keys, and S-Prompts \citep{wang2022sprompts} identifies the domain by clustering frozen features.
+These methods choose the best match among all known tasks, so the choice for an old input can change
+when a task is added. \recog{} is such a rule; we add an audit of that change and, with \handicap{}, a
+bound on it. The zones of our second rule differ in precedence: a zone is never revised and an older
+zone wins over a newer one, which turns an empirical observation (routes rarely change) into a
+guarantee. Recognisers on frozen features with accumulated statistics are known from class-incremental
+learning \citep{mcdonnell2023ranpac,zhuang2022acil}; we add the link from routes to answers through
+frozen sets of adapters.
+
+\paragraph{Selecting a frozen expert from the input.} Expert Gate \citep{aljundi2017expertgate} sends
+an input to the expert whose autoencoder reconstructs it best. SupSup \citep{wortsman2020supsup} keeps
+one mask per task and infers the task by minimising output entropy. AdapterCL
+\citep{madotto2021adaptercl} selects the adapter under which the input has the lowest perplexity.
+HiDe-Prompt \citep{wang2023hide} treats task-identity inference as an explicit sub-problem, and
+\citet{yu2024moeadapters} add a selector that sends inputs outside the learned distributions back to
+the original model. LoraRetriever \citep{zhao2024loraretriever} retrieves adapters from a growing pool.
+All select by best match among the experts known at test time. Our \nearest{} baseline is this rule in
+our feature space; Section~\ref{sec:stress} shows in a constructed case what frozen zones and the
+precedence of older tasks add, and at scale they added no measured stability
+(Section~\ref{sec:paraphrase}).
+
+\paragraph{Certificates.} Selective classification \citep{geifman2017selective} flags whether a
+guarantee on the risk of accepted inputs applies. Our certificate concerns the stability of an answer
+under future learning, not its correctness. The bound of Proposition~\ref{prop:edits} is a certified
+radius as in adversarial robustness \citep{cohen2019smoothing}; the decision is the route, and the
+bound is elementary because the feature is a weighted average. Conformal prediction has been used in
+continual learning for uncertainty \citep{gao2025conformalcl}, and bounds on forgetting exist under
+assumptions on the tasks \citep{friedman2024forgettingbounds}; Theorem~\ref{thm:bound} calibrates a
+zone on held-out inputs of a task and assumes nothing about later tasks. The audit
+(Section~\ref{sec:audit}) is ordinary held-out estimation, and the handicap is a conformal rank
+argument for each later task with a union bound.
+
+\paragraph{Adapters in language models.} O-LoRA \citep{wang2023olora} keeps new adapters orthogonal to
+old ones and adds all adapters at inference. InfLoRA \citep{liang2024inflora} confines the update to a
+subspace chosen to limit interference. GainLoRA \citep{liang2025gainlora} adds a gate to each branch and constrains it, with stored subspace bases, to stay near zero on inputs of old tasks. SPACE-LoRA \citep{spacelora2026} projects the adapter to zero response on a protected
+activation subspace. SAPT \citep{zhao2024sapt} learns a shared attention over adapters. Closest to our
+zones, Latent-LoRA \citep{latentlora2026} fits a mixture model to pooled frozen word-vectors and uses it
+without gradient training to weight stored adapters; it reports near-zero forgetting. We share the
+observation that frozen word-vectors separate tasks, and differ in three respects: our routes are hard,
+so an answer is a function of the input and a set of adapters; our zones are frozen and ordered by age,
+which yields the proof, and each answer inside a zone carries a certificate; \recog{} uses model states
+and has an audit. In our re-implementation (Appendix~\ref{app:latent}) its router gave every input to
+its own task in all wordings and no answer changed; it has no guarantee. Outside continual learning, adapters are routed
+\citep{lorauter2026,logo2025} or grown so that new skills read from but do not write to old ones
+\citep{read2026}.
+
+\paragraph{Averaged word-vectors.} We use the weighted average of word-vectors of \citet{arora2017simple}
+with their weighting; instead of removing a principal component, we rescale the features with the
+covariance of unrelated inputs, as for distance-based detectors \citep{lee2018mahalanobis}.
+
+\paragraph{Keeping a new adapter silent.} Training each new adapter to change nothing on stand-in
+inputs, which we tested before the present work, protected one further task and then faded (Appendix~\ref{app:silence}). Regularising an adapter
+towards the base model on its own training text has been proposed for single adapters
+\citep{maskthetarget2026}, and distilling from an earlier model version to restore lost behaviour
+\citep{lu2025onpolicy}.

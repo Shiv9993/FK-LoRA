@@ -1,0 +1,147 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+
+==================== t5-small: embedding table 32128 x 512; word weights a = 0.001 ====================
+
+five tasks, radius factor 0.5: zone radii 10.9 12.3 8.4 13.2 10.6 | training inputs inside an older zone: 0
+  original   5 tasks,  500 inputs | in own zone 1.000 | wrong zone 0 | right task, and routes changed later: certified 1.000, 0; nearest 1.000, 0; centre 1.000, 0
+  light      5 tasks,  500 inputs | in own zone 1.000 | wrong zone 0 | right task, and routes changed later: certified 1.000, 0; nearest 1.000, 0; centre 1.000, 0
+  medium     5 tasks,  500 inputs | in own zone 0.200 | wrong zone 0 | right task, and routes changed later: certified 1.000, 0; nearest 1.000, 0; centre 0.994, 0
+  heavy      5 tasks,  500 inputs | in own zone 0.200 | wrong zone 0 | right task, and routes changed later: certified 0.886, 0; nearest 0.886, 0; centre 0.708, 65
+
+fifteen tasks (SuperNI order 1), radius factor 0.5: zone radii 12.9 12.3 17.4 9.0 10.8 10.9 12.7 11.2 9.2 9.6 8.4 11.2 16.9 13.2 10.6 | training inputs inside an older zone: 0
+  original  15 tasks, 1197 inputs | in own zone 1.000 | wrong zone 0 | right task, and routes changed later: certified 1.000, 0; nearest 1.000, 0; centre 0.998, 0
+  light      5 tasks,  500 inputs | in own zone 1.000 | wrong zone 0 | right task, and routes changed later: certified 1.000, 0; nearest 1.000, 0; centre 1.000, 0
+  medium     5 tasks,  500 inputs | in own zone 0.200 | wrong zone 0 | right task, and routes changed later: certified 1.000, 0; nearest 1.000, 0; centre 0.916, 8
+  heavy      5 tasks,  500 inputs | in own zone 0.200 | wrong zone 0 | right task, and routes changed later: certified 0.886, 0; nearest 0.886, 0; centre 0.604, 100
+
+==================== t5-base: embedding table 32128 x 768; word weights a = 0.001 ====================
+
+five tasks, radius factor 0.5: zone radii 13.5 15.5 10.1 16.6 14.0 | training inputs inside an older zone: 0
+  original   5 tasks,  500 inputs | in own zone 1.000 | wrong zone 0 | right task, and routes changed later: certified 1.000, 0; nearest 1.000, 0; centre 1.000, 0
+  light      5 tasks,  500 inputs | in own zone 1.000 | wrong zone 0 | right task, and routes changed later: certified 1.000, 0; nearest 1.000, 0; centre 1.000, 0
+  medium     5 tasks,  500 inputs | in own zone 0.200 | wrong zone 0 | right task, and routes changed later: certified 1.000, 0; nearest 1.000, 0; centre 0.992, 0
+  heavy      5 tasks,  500 inputs | in own zone 0.196 | wrong zone 0 | right task, and routes changed later: certified 0.938, 0; nearest 0.938, 0; centre 0.722, 58
+
+fifteen tasks (SuperNI order 1), radius factor 0.5: zone radii 16.3 15.5 21.3 10.9 13.0 13.5 15.6 14.0 11.2 11.9 10.1 14.2 20.5 16.6 14.0 | training inputs inside an older zone: 0
+  original  15 tasks, 1197 inputs | in own zone 1.000 | wrong zone 0 | right task, and routes changed later: certified 1.000, 0; nearest 1.000, 0; centre 0.995, 2
+  light      5 tasks,  500 inputs | in own zone 1.000 | wrong zone 0 | right task, and routes changed later: certified 1.000, 0; nearest 1.000, 0; centre 1.000, 0
+  medium     5 tasks,  500 inputs | in own zone 0.200 | wrong zone 0 | right task, and routes changed later: certified 1.000, 0; nearest 1.000, 0; centre 0.852, 29
+  heavy      5 tasks,  500 inputs | in own zone 0.196 | wrong zone 0 | right task, and routes changed later: certified 0.938, 0; nearest 0.938, 0; centre 0.592, 100
+
+==================== t5-large: embedding table 32128 x 1024; word weights a = 0.001 ====================
+
+five tasks, radius factor 0.5: zone radii 15.2 18.4 11.6 18.8 16.1 | training inputs inside an older zone: 0
+  original   5 tasks,  500 inputs | in own zone 1.000 | wrong zone 0 | right task, and routes changed later: certified 1.000, 0; nearest 1.000, 0; centre 1.000, 0
+  light      5 tasks,  500 inputs | in own zone 1.000 | wrong zone 0 | right task, and routes changed later: certified 1.000, 0; nearest 1.000, 0; centre 1.000, 0
+  medium     5 tasks,  500 inputs | in own zone 0.200 | wrong zone 0 | right task, and routes changed later: certified 1.000, 0; nearest 1.000, 0; centre 0.996, 0
+  heavy      5 tasks,  500 inputs | in own zone 0.192 | wrong zone 0 | right task, and routes changed later: certified 0.830, 0; nearest 0.830, 0; centre 0.658, 85
+
+fifteen tasks (SuperNI order 1), radius factor 0.5: zone radii 19.6 18.4 23.7 12.5 15.0 15.2 17.6 16.6 12.9 13.6 11.6 16.3 24.6 18.8 16.1 | training inputs inside an older zone: 0
+  original  15 tasks, 1197 inputs | in own zone 1.000 | wrong zone 0 | right task, and routes changed later: certified 1.000, 0; nearest 1.000, 0; centre 0.995, 2
+  light      5 tasks,  500 inputs | in own zone 1.000 | wrong zone 0 | right task, and routes changed later: certified 1.000, 0; nearest 1.000, 0; centre 1.000, 0
+  medium     5 tasks,  500 inputs | in own zone 0.200 | wrong zone 0 | right task, and routes changed later: certified 1.000, 0; nearest 1.000, 0; centre 0.876, 17
+  heavy      5 tasks,  500 inputs | in own zone 0.192 | wrong zone 0 | right task, and routes changed later: certified 0.830, 0; nearest 0.830, 0; centre 0.586, 100
+[transformers] [1mT5Model LOAD REPORT[0m from: google/flan-t5-base
+Key            | Status     |  | 
+---------------+------------+--+-
+lm_head.weight | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+
+==================== google/flan-t5-base: embedding table 32128 x 768; word weights a = 0.001 ====================
+
+five tasks, radius factor 0.5: zone radii 12.4 15.5 9.8 17.2 12.9 | training inputs inside an older zone: 0
+  original   5 tasks,  500 inputs | in own zone 1.000 | wrong zone 0 | right task, and routes changed later: certified 1.000, 0; nearest 1.000, 0; centre 1.000, 0
+  light      5 tasks,  500 inputs | in own zone 1.000 | wrong zone 0 | right task, and routes changed later: certified 1.000, 0; nearest 1.000, 0; centre 1.000, 0
+  medium     5 tasks,  500 inputs | in own zone 0.200 | wrong zone 0 | right task, and routes changed later: certified 1.000, 0; nearest 1.000, 0; centre 0.996, 0
+  heavy      5 tasks,  500 inputs | in own zone 0.136 | wrong zone 0 | right task, and routes changed later: certified 0.992, 1; nearest 0.992, 1; centre 0.672, 78
+
+fifteen tasks (SuperNI order 1), radius factor 0.5: zone radii 17.0 15.5 21.1 10.6 13.0 12.4 14.5 13.8 10.4 11.5 9.8 15.1 21.9 17.2 12.9 | training inputs inside an older zone: 0
+  original  15 tasks, 1197 inputs | in own zone 1.000 | wrong zone 0 | right task, and routes changed later: certified 1.000, 0; nearest 1.000, 0; centre 0.997, 2
+  light      5 tasks,  500 inputs | in own zone 1.000 | wrong zone 0 | right task, and routes changed later: certified 1.000, 0; nearest 1.000, 0; centre 1.000, 0
+  medium     5 tasks,  500 inputs | in own zone 0.200 | wrong zone 0 | right task, and routes changed later: certified 1.000, 0; nearest 1.000, 0; centre 0.894, 24
+  heavy      5 tasks,  500 inputs | in own zone 0.136 | wrong zone 0 | right task, and routes changed later: certified 0.992, 1; nearest 0.992, 1; centre 0.578, 100
+
+==================== gpt2: embedding table 50257 x 768; word weights a = 0.001 ====================
+
+five tasks, radius factor 0.5: zone radii 17.2 15.2 10.2 15.1 14.9 | training inputs inside an older zone: 0
+  original   5 tasks,  500 inputs | in own zone 1.000 | wrong zone 0 | right task, and routes changed later: certified 1.000, 0; nearest 1.000, 0; centre 1.000, 0
+  light      5 tasks,  500 inputs | in own zone 0.994 | wrong zone 0 | right task, and routes changed later: certified 1.000, 0; nearest 1.000, 0; centre 1.000, 0
+  medium     5 tasks,  500 inputs | in own zone 0.200 | wrong zone 0 | right task, and routes changed later: certified 1.000, 0; nearest 1.000, 0; centre 0.998, 0
+  heavy      5 tasks,  500 inputs | in own zone 0.200 | wrong zone 0 | right task, and routes changed later: certified 0.868, 0; nearest 0.868, 0; centre 0.900, 11
+
+fifteen tasks (SuperNI order 1), radius factor 0.5: zone radii 16.7 15.2 18.8 11.0 13.2 17.2 15.2 13.8 12.3 12.3 10.2 14.7 20.3 15.1 14.9 | training inputs inside an older zone: 0
+  original  15 tasks, 1197 inputs | in own zone 1.000 | wrong zone 0 | right task, and routes changed later: certified 1.000, 0; nearest 1.000, 0; centre 0.996, 1
+  light      5 tasks,  500 inputs | in own zone 0.994 | wrong zone 0 | right task, and routes changed later: certified 1.000, 0; nearest 1.000, 0; centre 1.000, 0
+  medium     5 tasks,  500 inputs | in own zone 0.200 | wrong zone 0 | right task, and routes changed later: certified 1.000, 0; nearest 1.000, 0; centre 0.922, 13
+  heavy      5 tasks,  500 inputs | in own zone 0.200 | wrong zone 0 | right task, and routes changed later: certified 0.868, 1; nearest 0.868, 1; centre 0.642, 91
+
+==================== HuggingFaceTB/SmolLM2-135M: embedding table 49152 x 576; word weights a = 0.001 ====================
+
+five tasks, radius factor 0.5: zone radii 15.6 13.4 9.3 13.4 11.6 | training inputs inside an older zone: 0
+  original   5 tasks,  500 inputs | in own zone 1.000 | wrong zone 0 | right task, and routes changed later: certified 1.000, 0; nearest 1.000, 0; centre 1.000, 0
+  light      5 tasks,  500 inputs | in own zone 0.994 | wrong zone 0 | right task, and routes changed later: certified 1.000, 0; nearest 1.000, 0; centre 1.000, 0
+  medium     5 tasks,  500 inputs | in own zone 0.200 | wrong zone 0 | right task, and routes changed later: certified 1.000, 0; nearest 1.000, 0; centre 1.000, 0
+  heavy      5 tasks,  500 inputs | in own zone 0.200 | wrong zone 0 | right task, and routes changed later: certified 0.818, 0; nearest 0.818, 0; centre 0.864, 2
+
+fifteen tasks (SuperNI order 1), radius factor 0.5: zone radii 14.0 13.4 16.8 9.6 12.0 15.6 13.5 12.4 11.4 10.8 9.3 12.1 17.0 13.4 11.6 | training inputs inside an older zone: 0
+  original  15 tasks, 1197 inputs | in own zone 1.000 | wrong zone 0 | right task, and routes changed later: certified 1.000, 0; nearest 1.000, 0; centre 0.998, 0
+  light      5 tasks,  500 inputs | in own zone 0.994 | wrong zone 0 | right task, and routes changed later: certified 1.000, 0; nearest 1.000, 0; centre 1.000, 0
+  medium     5 tasks,  500 inputs | in own zone 0.200 | wrong zone 0 | right task, and routes changed later: certified 1.000, 0; nearest 1.000, 0; centre 0.900, 4
+  heavy      5 tasks,  500 inputs | in own zone 0.200 | wrong zone 0 | right task, and routes changed later: certified 0.818, 0; nearest 0.818, 0; centre 0.648, 78
+
+==================== Qwen/Qwen2.5-0.5B: embedding table 151936 x 896; word weights a = 0.001 ====================
+
+five tasks, radius factor 0.5: zone radii 19.9 20.3 12.0 18.8 16.3 | training inputs inside an older zone: 0
+  original   5 tasks,  500 inputs | in own zone 1.000 | wrong zone 0 | right task, and routes changed later: certified 1.000, 0; nearest 1.000, 0; centre 1.000, 0
+  light      5 tasks,  500 inputs | in own zone 0.990 | wrong zone 0 | right task, and routes changed later: certified 1.000, 0; nearest 1.000, 0; centre 1.000, 0
+  medium     5 tasks,  500 inputs | in own zone 0.200 | wrong zone 0 | right task, and routes changed later: certified 1.000, 0; nearest 1.000, 0; centre 0.998, 0
+  heavy      5 tasks,  500 inputs | in own zone 0.200 | wrong zone 0 | right task, and routes changed later: certified 0.800, 0; nearest 0.800, 0; centre 0.742, 52
+
+fifteen tasks (SuperNI order 1), radius factor 0.5: zone radii 20.2 20.3 24.7 13.2 15.8 19.9 18.7 17.1 15.2 15.3 12.0 18.0 25.0 18.8 16.3 | training inputs inside an older zone: 0
+  original  15 tasks, 1197 inputs | in own zone 1.000 | wrong zone 0 | right task, and routes changed later: certified 1.000, 0; nearest 1.000, 0; centre 0.996, 1
+  light      5 tasks,  500 inputs | in own zone 0.990 | wrong zone 0 | right task, and routes changed later: certified 1.000, 0; nearest 1.000, 0; centre 1.000, 0
+  medium     5 tasks,  500 inputs | in own zone 0.200 | wrong zone 0 | right task, and routes changed later: certified 1.000, 0; nearest 1.000, 0; centre 0.924, 4
+  heavy      5 tasks,  500 inputs | in own zone 0.200 | wrong zone 0 | right task, and routes changed later: certified 0.800, 0; nearest 0.800, 0; centre 0.608, 97
+[transformers] [1mRobertaModel LOAD REPORT[0m from: roberta-base
+Key                       | Status     | 
+--------------------------+------------+-
+lm_head.bias              | UNEXPECTED | 
+lm_head.dense.bias        | UNEXPECTED | 
+lm_head.dense.weight      | UNEXPECTED | 
+lm_head.layer_norm.weight | UNEXPECTED | 
+lm_head.layer_norm.bias   | UNEXPECTED | 
+pooler.dense.bias         | MISSING    | 
+pooler.dense.weight       | MISSING    | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+
+==================== roberta-base: embedding table 50265 x 768; word weights a = 0.001 ====================
+
+five tasks, radius factor 0.5: zone radii 16.9 15.6 10.2 16.0 14.8 | training inputs inside an older zone: 0
+  original   5 tasks,  500 inputs | in own zone 1.000 | wrong zone 0 | right task, and routes changed later: certified 1.000, 0; nearest 1.000, 0; centre 1.000, 0
+  light      5 tasks,  500 inputs | in own zone 0.990 | wrong zone 0 | right task, and routes changed later: certified 1.000, 0; nearest 1.000, 0; centre 1.000, 0
+  medium     5 tasks,  500 inputs | in own zone 0.200 | wrong zone 0 | right task, and routes changed later: certified 1.000, 0; nearest 1.000, 0; centre 1.000, 0
+  heavy      5 tasks,  500 inputs | in own zone 0.200 | wrong zone 0 | right task, and routes changed later: certified 0.936, 0; nearest 0.936, 0; centre 0.814, 27
+
+fifteen tasks (SuperNI order 1), radius factor 0.5: zone radii 16.7 15.6 19.0 11.0 13.5 16.9 15.6 13.7 11.9 11.7 10.2 15.4 21.5 16.0 14.8 | training inputs inside an older zone: 0
+  original  15 tasks, 1197 inputs | in own zone 1.000 | wrong zone 0 | right task, and routes changed later: certified 1.000, 0; nearest 1.000, 0; centre 0.997, 1
+  light      5 tasks,  500 inputs | in own zone 0.990 | wrong zone 0 | right task, and routes changed later: certified 1.000, 0; nearest 1.000, 0; centre 1.000, 0
+  medium     5 tasks,  500 inputs | in own zone 0.200 | wrong zone 0 | right task, and routes changed later: certified 1.000, 0; nearest 1.000, 0; centre 0.944, 8
+  heavy      5 tasks,  500 inputs | in own zone 0.200 | wrong zone 0 | right task, and routes changed later: certified 0.934, 0; nearest 0.934, 0; centre 0.608, 97
+
+
+All models together. zone: inside own zone; right: given to the own task (certified rule). o/l/m/h: original, light, medium, heavy wording.
+model                                table factor | five tasks: zone o/l/m/h        right o/l/m/h        | fifteen tasks: zone o  right o/l/m/h        wrong zone  blocked  changed
+t5-small                         32128x512    0.5 |          100/100/20/20       100/100/100/89        |                100       100/100/100/89           0        0        0
+t5-base                          32128x768    0.5 |          100/100/20/20       100/100/100/94        |                100       100/100/100/94           0        0        0
+t5-large                        32128x1024    0.5 |          100/100/20/19       100/100/100/83        |                100       100/100/100/83           0        0        0
+google/flan-t5-base              32128x768    0.5 |          100/100/20/14       100/100/100/99        |                100       100/100/100/99           0        0        2
+gpt2                             50257x768    0.5 |           100/99/20/20       100/100/100/87        |                100       100/100/100/87           0        0        1
+HuggingFaceTB/SmolLM2-135M       49152x576    0.5 |           100/99/20/20       100/100/100/82        |                100       100/100/100/82           0        0        0
+Qwen/Qwen2.5-0.5B               151936x896    0.5 |           100/99/20/20       100/100/100/80        |                100       100/100/100/80           0        0        0
+roberta-base                     50265x768    0.5 |           100/99/20/20       100/100/100/94        |                100       100/100/100/93           0        0        0
+exit 0

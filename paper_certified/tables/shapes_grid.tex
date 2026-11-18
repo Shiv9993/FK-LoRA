@@ -1,0 +1,12 @@
+{\footnotesize\setlength{\tabcolsep}{3pt}\begin{tabular}{lrrrrr}
+    \toprule
+    & \multicolumn{2}{c}{Sentence encoder} & \multicolumn{3}{c}{+ shape numbers} \\
+    \cmidrule(lr){2-3}\cmidrule(l){4-6}
+    Boundary & \shortstack[r]{Sent to\\own task\\at the end,\\\% $\uparrow$} & \shortstack[r]{Route\\changed,\\\% $\downarrow$} & \shortstack[r]{Sent to\\own task\\at the end,\\\% $\uparrow$} & \shortstack[r]{Route\\changed,\\\% $\downarrow$} & weight \\
+    \midrule
+    one boundary against everything & \AudShapeOvrMiniEnd{} & \AudShapeOvrMiniChanged{} & \AudShapeOvrShapeEnd{} & \AudShapeOvrShapeChanged{} & \AudShapeOvrShapeWeight{} \\
+    one boundary per older task & \AudShapePairMiniEnd{} & \AudShapePairMiniChanged{} & \textbf{\AudShapePairShapeEnd{}} & \textbf{\AudShapePairShapeChanged{}} & \textbf{\AudShapePairShapeWeight{}} \\
+    balls around the task's inputs & \AudShapePairKnnMiniEnd{} & \AudShapePairKnnMiniChanged{} & \AudShapePairKnnShapeEnd{} & \AudShapePairKnnShapeChanged{} & \AudShapePairKnnShapeWeight{} \\
+    curved boundaries & \AudShapePairRffMiniEnd{} & \AudShapePairRffMiniChanged{} & \AudShapePairRffShapeEnd{} & \AudShapePairRffShapeChanged{} & \AudShapePairRffShapeWeight{} \\
+    \bottomrule
+\end{tabular}}

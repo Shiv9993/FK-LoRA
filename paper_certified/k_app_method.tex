@@ -1,0 +1,303 @@
+% =====================================================================================
+\section{Method: proofs and details}
+\label{app:methoddetails}
+
+\subsection{Audit and handicap}
+\paragraph{The price of having no instruction.} Let two tasks $j < k$ have inputs with
+probabilities $p_j(x)$ and $p_k(x)$ (inputs are texts, so there are countably many), and let
+$\omega_i(x, y) \in [0, M]$ be the expected score of the answer $y$ to the input $x$ under task
+$i \in \{j, k\}$, the expectation being over the reference answers of that task for $x$. Write
+$\omega_i^*(x) = \sup_y \omega_i(x, y)$, and for a system that answers $y_T(x)$ at time $T$ let
+$\ell_i(T) = \mathbb{E}_{X \sim p_i}\bigl[\omega_i^*(X) - \omega_i(X, y_T(X))\bigr]$ be what it loses on task
+$i$ against the best possible answers.
+
+\begin{proposition}[The price of having no instruction]
+\label{prop:noinstructionprice}
+For every system whose answer at time $T \ge k$, or the distribution of its answer if it answers at
+random, depends on the input alone,
+\[
+  \ell_j(T) + \ell_k(T) \;\ge\; \Omega_{jk} \;:=\; \sum_x \min\bigl(p_j(x), p_k(x)\bigr)\, \gamma_{jk}(x),
+\]
+where
+\[
+  \gamma_{jk}(x) \;=\; \inf_y \Bigl[ \bigl(\omega_j^*(x) - \omega_j(x, y)\bigr) + \bigl(\omega_k^*(x) - \omega_k(x, y)\bigr) \Bigr] .
+\]
+\end{proposition}
+
+\begin{proof}
+Fix $x$, let $y = y_T(x)$, $a = \omega_j^*(x) - \omega_j(x, y) \ge 0$ and $b = \omega_k^*(x) - \omega_k(x, y) \ge 0$.
+Then $p_j(x)\, a + p_k(x)\, b \ge \min(p_j(x), p_k(x))\,(a + b) \ge \min(p_j(x), p_k(x))\, \gamma_{jk}(x)$.
+Sum over $x$. For a system that answers at random, $a$ and $b$ are averages over its answers, each
+answer satisfies $a + b \ge \gamma_{jk}(x)$, and the same lines hold.
+\end{proof}
+
+Three things follow. (i) If no input belongs to both tasks, $\Omega_{jk} = 0$ and nothing is forced; this holds when every input begins with the instruction of its task and no instruction is the beginning of another. (ii) If the score is $M$ for the right answer and $0$ otherwise, and every input that belongs to both tasks has a right answer under each task and the two differ, then $\gamma_{jk} = M$ on those inputs and $\Omega_{jk}/M$ is one minus the total-variation distance of the two input distributions. (iii) The forgetting of task $j$ between its arrival and time $T$ is $\ell_j(T) - \ell_j(j)$, so
+\[
+  \bigl(\ell_j(T) - \ell_j(j)\bigr) \;+\; \ell_k(T) \;\ge\; \Omega_{jk} - \ell_j(j) :
+\]
+what is forgotten of the older task plus what is not learned of the newer one is at least the conflict, minus what the older task never had. Every method, with shared weights or not, is bound by this inequality; a rule under which the oldest claim wins puts the sum on the newer task, except for a share of inputs chosen in advance. The proposition is elementary, and that the recognition of the task limits learning without task labels is known \citep{kim2022theoretical}; it is stated because $\Omega_{jk}$ can be counted from below on a benchmark (inputs that occur word for word in two tasks; Section~\ref{sec:nodefpublished}).
+
+\begin{remark}[What these statements do not say]
+\label{rem:auditlimits}
+\emph{(i) They bound change, not quality:} an input that the recogniser gives to the wrong task from the start does not change and is answered by the wrong adapters; how many go to their own task is measured, not guaranteed.
+\emph{(ii) The price of the handicap is paid by the newcomer} and is seen when it arrives: the share of its own held-out inputs that it does not take. With $\nu = 0$ one held-out input of an older task that looks like the newcomer can be enough to keep most of the newcomer out.
+\emph{(iii) The bound in advance grows with the number of later tasks and falls with the number of held-out inputs.} For $m = 200$, $\nu = 2$ and $14$ later tasks it is $21\%$; what we measured on test inputs was far smaller (Section~\ref{sec:recogniser}), because most later tasks take nothing
+from most older ones, which the bound cannot know. A tighter bound in advance needs more held-out
+inputs. They are not lost for training: the adapter may learn from them. Under the handicap the
+audit of Proposition~\ref{prop:audit} is not valid for the same held-out inputs, because they set
+the thresholds; a second held-out set would be needed for both.
+\emph{(iv) All statements need test inputs that are like the training inputs of the task}
+(exchangeability), and later tasks that were not chosen by looking at the held-out inputs or at
+anything computed from them. The probabilities are over the held-out inputs and the test input
+together; for one given split the share can be larger (compare
+Remark~\ref{rem:boundlimits}(ii)).
+\emph{(v) Nothing here reads an instruction.} When inputs carry one, the feature can be computed from the example alone while the adapters read the whole input; the answer still depends on the route only, and the route does not depend on how the instruction is worded. The audit and the bound hold for every wording, and when there is no instruction, with exchangeability a statement about the examples. A system that receives one string has to find where the example begins; the benchmarks give the two parts separately. A first test with trained answers is in Section~\ref{sec:exampleroutes}.
+\end{remark}
+
+\subsection{Guarantees of the zones}
+\begin{remark}[Other zones]
+\label{rem:otherzones}
+The proof of Theorem~\ref{thm:writeonce} uses only that $Z_1,\dots,Z_T$ are the same sets at every later time. It applies to any zone whose membership is a deterministic function of the input, of parts frozen before the first task (another feature, a second model) and of quantities stored when the task arrives (for example its instruction), and does not depend on any later task, provided the function is computed reproducibly: bit for bit, or with inputs within a fixed tolerance of the border decided by a fixed convention. A zone decided by a comparison with the instruction has to store the instruction text, not one vector, one radius and one integer.
+\end{remark}
+
+\begin{corollary}[Zero forgetting on certified inputs]
+\label{cor:zero}
+Let $\mathcal{X}$ be a set of inputs that are all certified after $T$ tasks, and let $m$ be any fixed, deterministic score of an
+answer against reference answers. Then $\sum_{x \in \mathcal{X}} m(y_{T'}(x)) = \sum_{x \in \mathcal{X}} m(y_T(x))$ for all
+$T' \ge T$. In particular, if every test input of task $k$ is certified once task $k$ has been
+learned, the forgetting of task $k$ is exactly zero under any such metric and for any later tasks, and
+not a single answer changes.
+\end{corollary}
+
+\begin{proposition}[The original wording is always certified]
+\label{prop:own}
+Every input whose first $n_k$ tokens are the opening $o_k$ satisfies $\delta_k(x) = 0$, so it lies in
+$Z_k$ and is certified from the moment task $k$ arrives. Its route is $k$ unless an older
+zone contains it.
+\end{proposition}
+
+\begin{proof}
+By Eq.~\eqref{eq:prefix} the prefix average $\varphi_{n_k}(x)$ depends only on the first $n_k$ tokens
+of $x$, which are $o_k$. Hence $\psi_{n_k}(x) = s_k$ and $\delta_k(x) = 0 \le 1$.
+\end{proof}
+
+Read the first $n_k$ tokens of an input as a bag
+of tokens (if an input has fewer than $n_k$ tokens, its bag is the whole input). For an input $x$ that carries the opening $o_k$ and an arbitrary input $x'$, let $W_{\mathrm{c}}$ be
+the total weight, by Eq.~\eqref{eq:weights}, of the tokens that the two bags have in common, $W_{\mathrm{r}}$
+the weight of the tokens that only $x$ has (removed by the edit) and $W_{\mathrm{a}}$ the weight of the tokens
+that only $x'$ has (added by the edit). Let
+\begin{equation}
+  \lambda \;=\; \frac{W_{\mathrm{r}}}{W_{\mathrm{c}} + W_{\mathrm{r}}}, \qquad \lambda' \;=\; \frac{W_{\mathrm{a}}}{W_{\mathrm{c}} + W_{\mathrm{a}}}, \qquad
+  D \;=\; \max_{u, v \in \mathcal{V}} \bigl\lVert \hat{C}^{-1/2} (E_u - E_v) \bigr\rVert_2 ,
+  \label{eq:shares}
+\end{equation}
+so $\lambda$ and $\lambda'$ are the shares of the weight that the edit removes and adds, and $D$ is
+the largest distance between two rows of the rescaled embedding table.
+
+\begin{proposition}[A certified radius for edits]
+\label{prop:edits}
+Let $R_k > 0$. With the notation of Eq.~\eqref{eq:shares}, $\delta_k(x') \le \max(\lambda, \lambda')\, D / R_k$.
+Hence every edit with $\max(\lambda, \lambda') \le R_k / D$ leaves the input inside $Z_k$: it is
+certified, and by Theorem~\ref{thm:writeonce} its answer never changes. In particular an input
+whose first $n_k$ tokens are a permutation of the opening has $\delta_k = 0$.
+\end{proposition}
+
+\begin{proof}
+Let $m_{\mathrm{c}}$, $m_{\mathrm{r}}$ and $m_{\mathrm{a}}$ be the weighted means of the embedding rows of the common, the removed
+and the added tokens (bags are multisets, so a token that occurs twice counts twice). By
+Eq.~\eqref{eq:prefix}, $\varphi_{n_k}(x) = m_{\mathrm{c}} + \lambda\,(m_{\mathrm{r}} - m_{\mathrm{c}})$ and
+$\varphi_{n_k}(x') = m_{\mathrm{c}} + \lambda'\,(m_{\mathrm{a}} - m_{\mathrm{c}})$. Assume $\lambda' \ge \lambda$; the other case is
+symmetric. Then
+\[
+  \varphi_{n_k}(x') - \varphi_{n_k}(x) \;=\; \lambda\,(m_{\mathrm{a}} - m_{\mathrm{r}}) \;+\; (\lambda' - \lambda)\,(m_{\mathrm{a}} - m_{\mathrm{c}}) .
+\]
+Each of $m_{\mathrm{c}}$, $m_{\mathrm{r}}$, $m_{\mathrm{a}}$ is a convex combination of rows of $E$, and the diameter of a set
+equals the diameter of its convex hull, so after the linear map $\hat{C}^{-1/2}$ each of the two
+differences has norm at most $D$. Hence
+$\lVert \psi_{n_k}(x') - s_k \rVert_2 \le \lambda D + (\lambda' - \lambda) D = \lambda' D$. If the bags
+have nothing in common, $\lambda = \lambda' = 1$ and the bound is the diameter itself. A
+permutation has $W_{\mathrm{r}} = W_{\mathrm{a}} = 0$.
+\end{proof}
+
+The bound is a worst case, as if the edit exchanged the two most different tokens (Section~\ref{sec:edits} compares it with random edits). That a permutation is not an edit is a limit of the method: the switch reads \emph{which} words open an input, not their order.
+
+\begin{proposition}[The price is paid at admission and is visible]
+\label{prop:price}
+Let $b_t$ be the number of training inputs of task $t$ that lie in an older zone. These inputs are
+routed to an older task now and for ever, whatever adapter $t$ learns, and they contribute no
+gradient to adapter $t$. The number $b_t$ is known before task $t$ is trained. If $b_t = 0$ and every training input carries the opening $o_t$ (true in all our runs), training is identical, step for step, to plain sequential
+training of adapters.
+\end{proposition}
+
+\begin{proof}
+For $x$ in an older zone, $\rho_t(x) < t$ by Eq.~\eqref{eq:route}, so $g_t(x) = 0$ in
+Eq.~\eqref{eq:gates}: adapter $t$ is multiplied by zero in every layer, in the forward and in the
+backward pass, and by Theorem~\ref{thm:writeonce} the route never changes. If $b_t = 0$, every
+training input has $\delta_t(x) = 0$ and lies in no older zone, so its route is $t$ and all switches
+are one.
+\end{proof}
+
+When openings have different lengths, $b_t = 0$ does not exclude that some unseen input of task $t$ lies inside an older zone and stays with the older task; in the large collection of Section~\ref{sec:many} some tasks had only part of their inputs blocked.
+
+\begin{proposition}[What can still change]
+\label{prop:uncertified}
+Let $c_T(x) = 0$. When task $T+1$ is added, the route of $x$ changes only if
+$\delta_{T+1}(x) < \min_{k \le T} \delta_k(x)$, that is, only if the new task is nearer to $x$, in
+relative distance, than every old one. The route of an input never changes after the input has
+become certified. An uncertified input can change its route several times as tasks are added.
+\end{proposition}
+
+\begin{proof}
+The relative distances $\delta_1(x), \dots, \delta_T(x)$ do not change when a task is added, and
+they are all larger than one. Ties go to the older task, so the minimiser over $k \le T+1$ differs
+from the old one only if $\delta_{T+1}(x)$ is strictly smaller than the old minimum; this covers
+the case $x \in Z_{T+1}$, in which the route becomes $T+1$ and Theorem~\ref{thm:writeonce} applies
+from then on.
+\end{proof}
+
+\begin{remark}[Three consequences that should not be overlooked]
+\label{rem:consequences}
+First, the guarantee is about \emph{certified} inputs only; how many inputs are certified is an
+empirical question, answered in Section~\ref{sec:results}. Second, the guarantee gives older tasks
+priority: a later task whose inputs fall into an older zone cannot be learned on those inputs
+(Proposition~\ref{prop:price}). Third, exact retention rules out \emph{backward transfer}: a
+certified answer can never get better through later tasks either.
+\end{remark}
+
+\begin{remark}[A vanishing radius, and the exact key]
+\label{rem:keyswitch}
+If the radius factor $\kappa$ tends to zero, $Z_k$ shrinks to the inputs whose weighted prefix
+average equals the signature, in practice the unedited inputs. All other inputs leave the zones and are routed by $\arg\min_k \delta_k(x)$, which does not depend on $\kappa$ because $\kappa$ cancels;
+their routes can therefore differ from those at $\kappa = \tfrac12$, where a certified input goes to the oldest zone that contains it. The limit of \cert{} is therefore
+\nearest{} with a certificate for unedited inputs only. The rule we call \keyswitch{} is a different
+one: it also matches the opening token for token, but an input that matches no opening gets all
+adapters, as in \plain{}. It keeps unedited inputs for ever unless a later task's opening extends theirs, and gives no protection at all to an
+input whose instruction has been reworded (Section~\ref{sec:results}). Formally, \keyswitch{} routes $x$ to the task with the
+longest opening that $x$ carries token for token (the older one if two are equally long), and to $T$ (all adapters) if there is none.
+\end{remark}
+
+\begin{remark}[Exactness in practice]
+\label{rem:exactness}
+The route is a deterministic function of the token sequence, computed in 64-bit floating point;
+positions that only pad a batch contribute exact zeros. Rounding could in principle decide an
+input that lies almost exactly on the border of a zone differently in two runs; we did not observe
+this. In the implementation the adapters of later tasks are multiplied by zero rather than removed, and in every case we compared the answer was identical, as a string, to the answer given before those tasks existed (Section~\ref{sec:results}). The theorem is about the function $F$; an implementation computes it in floating point, and its output can depend on batching, hardware and library versions: in one of our runs 6 of 1{,}500 answers of a baseline differed between batches of 16 and of 32. ``The same answer'' therefore presupposes the same inference set-up.
+\end{remark}
+
+\subsection{Exact claims first}
+\begin{definition}[Exact claims first]
+Let $X_T(x) = \{\, k \le T : \text{the first } n_k \text{ tokens of } x \text{ are } o_k \,\}$ be the
+set of tasks whose opening the input carries token for token. The rule \exactfirst{} uses the route
+\begin{equation}
+  \rho^{\mathrm{x}}_T(x) \;=\;
+  \begin{cases}
+    \min X_T(x) & \text{if } X_T(x) \neq \emptyset \quad \text{(the oldest exact claim)}, \\[2pt]
+    \rho_T(x) & \text{otherwise} \quad \text{(Eq.~\ref{eq:route})} ,
+  \end{cases}
+  \label{eq:exactfirst}
+\end{equation}
+and certifies an input if $X_T(x) \neq \emptyset$ or $c_T(x) = 1$.
+\end{definition}
+
+\begin{proposition}[What exact claims first guarantees]
+\label{prop:exactfirst}
+Under the assumptions of Theorem~\ref{thm:writeonce}, with the routes of Eq.~\eqref{eq:exactfirst}:
+(i) if $X_T(x) \neq \emptyset$, the route and the answer of $x$ are the same at every later time,
+whatever the later tasks are; (ii) if $X_T(x) = \emptyset$ and $c_T(x) = 1$, the route and the answer
+of $x$ are the same at every later time $T'$ unless one of the tasks $T+1, \dots, T'$ has an opening
+that $x$ carries token for token; (iii) for an input with $X_T(x) = \emptyset$ or
+$\min X_T(x) = \rho_T(x)$ the rule gives the route of \cert{}. Since $X_T(x) \subseteq \{k : x \in Z_k\}$, always
+$\min X_T(x) \ge \rho_T(x)$; the two rules differ only when an older zone contains an unedited input of a newer task.
+\end{proposition}
+
+\begin{proof}
+(i) Later tasks have larger indices, so $\min X_{T'}(x) = \min X_T(x)$, and the adapters up to this
+route are frozen. (ii) If no later opening is carried by $x$, then $X_{T'}(x) = \emptyset$ and the
+route is $\rho_{T'}(x)$, which equals $\rho_T(x)$ by Theorem~\ref{thm:writeonce}. (iii) If $X_T(x)=\emptyset$ the route is $\rho_T(x)$ by Eq.~\eqref{eq:exactfirst}. Every $k\in X_T(x)$ has $\delta_k(x)=0$, so $x\in Z_k$ and $\min X_T(x)\ge\rho_T(x)$; equality gives the route of \cert{}, and strict inequality means that the older zone $Z_{\rho_T(x)}$ contains an unedited input of the newer task $\min X_T(x)$.
+\end{proof}
+
+\subsection{Zones from the inputs of a task}
+\paragraph{Zones from the inputs of a task.} Let $u$ be a frozen feature of a whole input, as in
+Section~\ref{sec:audit}; no part of the input is treated as an instruction. When task $k$ arrives with training inputs $D_k$, split
+$D_k$ at random into fit inputs $D_k^{\mathrm{f}}$ and $m$ calibration inputs $c_1, \dots, c_m$.
+Fix a score $a_k(x) \ge 0$ that says how unlike the fit inputs an input $x$ is. The score may depend
+on $u$, on $D_k^{\mathrm{f}}$ and on anything frozen, but not on the calibration inputs. For a level
+$\beta \in (0,1)$ (the level called $\alpha$ in Appendix~\ref{app:widen}; we write $\beta$ because $\alpha$ is the scale of the adapters in Eq.~\eqref{eq:layer}) let $q_k$ be the $\lceil (1-\beta)(m+1) \rceil$-th smallest of
+$a_k(c_1), \dots, a_k(c_m)$, with $q_k = \infty$ if that index exceeds $m$, and let
+\begin{equation}
+  Z_k \;=\; \{\, x : a_k(x) \le q_k \,\} .
+  \label{eq:inputzone}
+\end{equation}
+What defines the zone (the fit features and $q_k$) is stored and never changed. The switch is used
+as before: an input goes to the oldest zone that holds it (Eq.~\eqref{eq:route}; an input outside every zone goes to the task with the smallest $a_k(x)/q_k$), and it is answered
+with the adapters that existed when that task was learned. The adapter of task $k$ may be trained
+on all of $D_k$; the zone does not depend on it.
+
+\begin{theorem}[Bounded forgetting rate]
+\label{thm:bound}
+Assume the conditions of Theorem~\ref{thm:writeonce} (they apply to these zones by Remark~\ref{rem:otherzones}), with the zones of Eq.~\eqref{eq:inputzone},
+and let $X$ be an input of task $k$ such that, given the fit inputs, $c_1, \dots, c_m, X$ are
+exchangeable (for example, the training inputs of the task and $X$ are independent draws from one
+distribution). Then for every choice of the later tasks, and of the way their adapters are trained,
+\[
+  \Pr\bigl[\ \text{there are } T' > T \ge k \text{ with } y_{T'}(X) \ne y_T(X) \ \bigr]
+  \;\le\; \Pr\bigl[\, X \notin Z_k \,\bigr] \;\le\; \beta .
+\]
+\end{theorem}
+
+\begin{proof}
+Given the fit inputs, $a_k$ is a fixed function, so the $m+1$ numbers
+$a_k(c_1), \dots, a_k(c_m), a_k(X)$ are exchangeable. The proof of
+Proposition~\ref{prop:conformal} uses nothing else, and gives
+$\Pr[a_k(X) \le q_k] \ge 1 - \beta$, that is, $\Pr[X \notin Z_k] \le \beta$. Now let $X \in Z_k$.
+Then $X \in Z_1 \cup \dots \cup Z_k$, so $X$ is certified at time $k$ ($c_k(X) = 1$ in the notation of Eq.~\eqref{eq:certificate}), and Theorem~\ref{thm:writeonce}, applied at time $k$, gives
+$y_{T}(X) = y_k(X)$ for every $T \ge k$ and every choice of the later tasks. So the answer to $X$
+can differ between two times $T' > T \ge k$ only if $X \notin Z_k$.
+\end{proof}
+
+\begin{corollary}[A bound on the usual measure of forgetting]
+\label{cor:bound}
+Let $\mu$ be a fixed, deterministic score of an answer against its reference answers, with values
+in $[0, M]$ (for Rouge-L in per cent, $M = 100$). Under the conditions of
+Theorem~\ref{thm:bound}, for all $T' > T \ge k$ and all later tasks,
+\[
+  \bigl|\ \mathbb{E}\,\mu\bigl(y_T(X)\bigr) - \mathbb{E}\,\mu\bigl(y_{T'}(X)\bigr) \ \bigr|
+  \;\le\; M \beta .
+\]
+In particular the expected forgetting of every task is at most $M\beta$ points, whatever is learned
+later.
+\end{corollary}
+
+\begin{proof}
+The two scores are equal unless the answer to $X$ changed between $T$ and $T'$, and then they differ
+by at most $M$. By Theorem~\ref{thm:bound} this event has probability at most $\beta$.
+\end{proof}
+
+The bound covers an input drawn from the task's whole distribution, not only a marked subset; it uses no property of
+the model, of the feature or of the later tasks, and is set by a number chosen in advance. Its price is paid, visibly, when a task arrives.
+
+\begin{remark}[What the bound does not say]
+\label{rem:boundlimits}
+\emph{(i) It bounds change, not quality.} An input of task $k$ that lies in the zone of an older
+task is answered by the adapters of that older task from the first moment on. It does not forget,
+but task $k$ was never learned for it. The share of such inputs,
+$b_k = \Pr[X \in Z_1 \cup \dots \cup Z_{k-1}]$, is not controlled by anything. It is measured on the
+training inputs of the task when it arrives, and reported: the older zones do not depend on these
+inputs, so for $n$ independent training inputs the observed share $\hat b_k$ satisfies
+$|\hat b_k - b_k| \le \sqrt{\log(2/\delta)/(2n)}$ with probability at least $1 - \delta$
+(Hoeffding's inequality). If two tasks have the same kind of input and differ only in what is asked,
+$b_k$ is close to one: without an instruction nothing can tell them apart, and the report says so
+before any training.
+\emph{(ii) The probability is over the calibration inputs and the test input together.} For one
+given set of calibration inputs the share of the task's inputs outside its zone can be larger than
+$\beta$. For independent draws it is at most $\beta + \sqrt{\log(1/\delta)/(2m)}$ with probability
+at least $1 - \delta$ over the calibration inputs (for $\delta \le 1/2$): by the one-sided
+Dvoretzky--Kiefer--Wolfowitz inequality
+the share of calibration scores at or below any threshold exceeds the true share by at most that
+amount, and at least $\lceil (1-\beta)(m+1) \rceil$ of the $m$ calibration scores are at or below
+$q_k$.
+\emph{(iii) The test inputs have to be like the training inputs of the task.} An input from a
+shifted distribution, for example a reworded one, has no guarantee from this theorem.
+\emph{(iv) Something has to be stored for every task:} the fit features for a nearest-neighbour
+score, or a mean and a radius for a distance to the mean.
+\end{remark}

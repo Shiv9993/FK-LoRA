@@ -1,0 +1,369 @@
+% =====================================================================================
+\section{Results}
+\label{sec:results}
+
+This section reports the tests in the order of the method of Section~\ref{sec:method}, main method first. It starts with inputs that carry no instruction. First come the two published methods that we ran, with their instructions taken away (Section~\ref{sec:nodefpublished}). Next comes the recogniser \recog{} of Section~\ref{sec:audit}: what it recognises, on which tasks, and with which guarantee (Section~\ref{sec:recogniser}). Then come trained answers with its routes, against the published methods (Section~\ref{sec:nodeftrained}). After these come the certified switch \cert{} with instructions, routes from the example alone with instructions (Section~\ref{sec:exampleroutes}), the stress tests and variants of the zones, and the section ends with zones built from the inputs of a task (Section~\ref{sec:noinstruction}). Every test had its pass line written before the run (Section~\ref{sec:protocol}); where a choice or a line was changed after numbers had been seen, we say so.
+
+\input{sec_results_nodef_published}
+
+\input{sec_results_recognition}
+
+\input{sec_results_nodef_trained}
+
+The remaining subsections are mostly about inputs that carry an instruction: the certified switch \cert{} on five and on fifteen tasks, \recog{} with instructions, what the zones add and cost, and how the switch behaves under rewording, edits, other orders and other models; the last one returns to zones built without instructions.
+
+\input{sec_results_five}
+
+\input{sec_results_fifteen}
+
+\input{sec_results_gap}
+
+\subsection{What the zones add: a later task that looks like an old one}
+\label{sec:stress}
+
+On the benchmark sequences \nearest{} and \cert{} give the same routes, so the experiments above
+cannot show what the frozen zones and the priority of older tasks are for. They matter when a later
+task resembles an earlier one. We construct this case from the five-task sequence, at the level of
+routes, which needs no GPU: after the five tasks a sixth task arrives whose inputs are of the same
+kind as those of task~2 (SST-2 sentences) and whose definition is one of the rewordings of task~2's
+definition. This is what happens when someone adds ``the same task again'' with a slightly
+different instruction and possibly different labels. Table~\ref{tab:stress} counts how many of the
+100 old test inputs of task~2, under each wording, are routed differently after the sixth task has
+been added.
+
+\begin{table}[t]
+  \caption{Stress test (routes only, T5-base word-vectors). A sixth task with SST-2 inputs and a
+  reworded SST-2 definition is added after the five tasks. ``Blocked'': training
+  inputs of the new task that lie inside an older zone, reported when the task arrives. ``Routes
+  changed'': old test inputs of task~2 (100 per wording) that are given to a different task
+  afterwards.}
+  \label{tab:stress}
+  \centering
+  \small
+  \setlength{\tabcolsep}{4pt}
+  \input{tables/stress}
+\end{table}
+
+\paragraph{A look-alike inside an old zone is blocked and reported.} If the definition of the new
+task is the light rewording of task~2's definition, its inputs fall inside the zone of task~2: 799 of
+its 800 training inputs are blocked. The user is told so when the task arrives, before any
+training. Under \cert{} not a single old input changes its route. Under \nearest{} the picture is
+different: the old inputs with the light rewording, which task~2 has answered until now, carry the
+instruction of the new task word for word and lie exactly on its signature, and all 100 are
+re-routed to it. The same text gets a different answer from then on, and nothing announces it.
+This is the case the frozen zones exist for: under a rule that always picks the best match, the
+arrival of a task can change answers that were given before; under the oldest-claim rule it
+cannot, for a certified input. Section~\ref{sec:paraphrase} counts how often this occurs among \WidenTasksEval{} real tasks with machine-paraphrased instructions: rarely, and the zones did not prevent it there (\nearest{} and \cert{} changed the same \RerouteNearNChanged{} of \RerouteInputs{} routes), so this constructed case is not typical of that collection. Whether the old or the new task ought to answer such a text is a question the rules do not
+settle. The test is one constructed case and it is about routes; no adapter was trained for the
+sixth task.
+
+\paragraph{A look-alike outside every zone can take uncertified inputs.} If the new definition is
+the medium or the heavy rewording, the new signature lies outside the zone of task~2. Nothing is
+blocked, the new task gets a zone of its own, and under both rules the old inputs that carry exactly
+that rewording are re-routed (100 of 100, plus 2 inputs with the heavy wording in the medium case).
+Those inputs were never certified. The certified inputs of task~2, the original and the light
+wording, keep their route in every case. The stress test thus shows both sides of the guarantee:
+it protects exactly the certified inputs, and it does not protect the others.
+
+
+\subsection{What the zones cost: 875 real tasks}
+\label{sec:many}
+
+The stress test built one look-alike task by hand. A large collection of real tasks contains
+look-alikes by itself, and it shows how often the price of the guarantee has to be paid. We take
+the \ManyTasks{} tasks of the default English split of Super-NaturalInstructions
+\citep{wang2022superni}, each with its definition and its first inputs (\ManyInputs{} inputs;
+openings of \ManyOpeningMin{} to \ManyOpeningMax{} tokens, \ManyOpeningMedian{} in the middle; the longest, \ManyOpeningMax{}, is the truncation length, so for these tasks the instance is cut off), let
+them arrive in a random order, and give each task its zone when it arrives. No model is trained;
+the test is about routes. Its rules, including what would count against the method, were fixed
+before it was run (Appendix~\ref{app:many}).
+
+\begin{table}[t]
+  \caption{The zones on \ManyTasks{} real tasks arriving in a random order (routes only, T5-base
+  word-vectors, unedited instructions). ``Blocked'': inputs of a new task that lie inside an older
+  zone when the task arrives; the columns count the tasks for which this holds for none, some or all
+  of their inputs. ``Routes changed later'': inputs that are given to a different task
+  than right after their own task arrived, under \cert{} / \exactfirst{} / \nearest{}.}
+  \label{tab:many}
+  \centering
+  \small
+  \setlength{\tabcolsep}{4pt}
+  \input{tables/many}
+\end{table}
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=0.86\linewidth]{figures/many}
+  \caption{The price of the guarantee as the collection grows (same test as
+  Table~\ref{tab:many}; lines are means over five random orders of arrival, bands span the lowest
+  and the highest). (a) Share of inputs that are given to their own task; the variant of
+  Section~\ref{sec:exactfirst} and the nearest-zone rule nearly coincide. (b) Share of tasks that
+  arrive with no input inside an older zone.}
+  \label{fig:many}
+\end{figure}
+
+\paragraph{The guarantee holds, and its price grows with the collection.} No certified input changed
+its route, in any order of arrival and at any size of the collection. But the larger the
+collection, the more often a new task arrives inside an older zone (Table~\ref{tab:many},
+Figure~\ref{fig:many}). After all \ManyTasks{} tasks, \ManyColliding{} of them
+(\ManyCollidingPct{}\%) have collided with an older task, and for \ManyAllHeld{} every input is
+blocked, so that under their given instruction they could not be learned at all. In four other
+random orders between \ManyCollidingPctLow{}\% and \ManyCollidingPctHigh{}\% of the tasks collide,
+and in the order of the task numbers \ManyNumericCollidingPct{}\%. These collisions are not
+accidents of the geometry. Of the \ManyColliding{} colliding tasks, \ManySameText{} have the same
+definition text as the task they collide with, a further \ManyAlikeHigh{} share at least 80\% of its words,
+and none shares less than \ManyAlikeLowest{}\%. They come from families
+of tasks whose definitions differ in a word or two: \ManyFamilyMmlu{} are subject variants of one
+multiple-choice task and \ManyFamilyAtomic{} are relation variants of one classification task
+(examples in Table~\ref{tab:manyexamples}).
+
+\paragraph{On unedited instructions the nearest-zone rule is the better rule.} \nearest{} gives
+\ManyNearRightPct{}\% of the inputs to their own task and \cert{} \ManyCertRightPct{}\%, and under
+neither rule is a single input re-routed after its task has arrived. The reason is simple. An
+input with an unedited instruction lies exactly on the signature of its task, so no other zone can
+be nearer, whatever arrives later. Before the test we had written down that we expected \nearest{}
+to re-route inputs here; that was wrong. The weakness of \nearest{} needs edited inputs, as in
+Section~\ref{sec:stress}, and the unedited inputs of this collection contain none. Section~\ref{sec:paraphrase} adds machine paraphrases to the collection and
+counts the re-routing: \nearest{} changed \RerouteNearNChanged{} of \RerouteInputs{} routes there, the same as \cert{}.
+
+\paragraph{The trade, stated plainly.} A zone protects a neighbourhood of an old instruction, where its light rewordings and fewer than half of its machine paraphrases lie, and it takes that neighbourhood away from later tasks. With
+frozen zones a later sibling of an old task is blocked, and the collision is reported. With a best-match rule the
+sibling is served, and reworded inputs of the old task can be re-routed instead. Measured with machine paraphrases (Section~\ref{sec:paraphrase}), this was rare and the zones did not reduce it:
+\RerouteNearChanged{}\% of the routes changed under the nearest-zone rule and the same \RerouteCertNChanged{} inputs under \cert{}; the plain nearest signature changed \RerouteSigChanged{}\% and gave more paraphrased inputs to their own task (\RerouteSigOwnEnd{}\% against \RerouteCertOwnEnd{}\%). Which of the two
+events is the more common one depends on where a system is used; in a collection built from task
+families, as this one is, it is the sibling. The radius factor moves the trade. With
+$\kappa = 0.3$, \ManyCleanKappaThree{} of the \ManyTasks{} tasks arrive without a collision
+instead of \ManyClean{} (Table~\ref{tab:manykappa} in the appendix), but only 59\% of the lightly
+reworded inputs of the five tasks are certified instead of all of them (Table~\ref{tab:kappa}). We
+kept $\kappa = 0.5$, as fixed before this test.
+
+\paragraph{A variant that serves the siblings.} The rule \exactfirst{} of
+Section~\ref{sec:exactfirst} was designed in response to this result, so its numbers on the same
+collection are not an independent test. With it, \ExactTasksOwn{} of the \ManyTasks{} tasks receive
+all their own inputs when they arrive; the remaining \ExactTasksNone{} have an opening that is, token for token, the opening of an older
+task. \ExactRightPct{}\% of the inputs are given to their own task, in every order
+of arrival, and no input changes its route later (Table~\ref{tab:many}). In the stress test of
+Section~\ref{sec:stress} the variant serves the look-alike task, \ExactStressOwn{} of its
+\StressTrain{} training inputs instead of \CertStressOwn{}, and it pays for this exactly as
+Proposition~\ref{prop:exactfirst} says: the 100 old inputs that carry the look-alike's instruction
+word for word are handed to it, and no other old input moves. On these tests the routes of the
+variant are almost those of \nearest{}; what differs is what can be promised about an edited input
+(Table~\ref{tab:guarantees}). We have no test in which the two differ on real inputs (on the French and German machine paraphrases the variant and \nearest{} gave the same routes; on the Spanish ones \nearest{} gives \RerouteNearEsOwn{}\% and the variant \RerouteExactEsOwn{}\% to their own task), and the
+variant has not been run with trained answers on a GPU.
+
+
+\subsection{Mechanical edits of the instruction}
+\label{sec:edits}
+
+The rewordings of the five tasks were written by machine during development, and they were
+looked at during the design; the machine paraphrases of Section~\ref{sec:paraphrase} come from translation models.
+A further view needs no wording at all: we damage the instruction
+mechanically and look at the routes. The rules of this test, including the outcomes that would count
+against the method, were written into the repository before it was run, and nothing was changed
+afterwards (Appendix~\ref{app:edits}). Every test input of the fifteen tasks (1{,}197 inputs) gets
+its own random edit of the task definition: $k$ words of at least four letters with a typo ($k$ is capped at the number of such words; two neighbouring inner letters
+swapped), $k$ words deleted, or $k$ words replaced by words drawn at random from the fifteen
+definitions, for $k \in \{1, 2, 4, 8, 16\}$; the definition in lower case; the sentence ``Please
+help me with this task.'' in front of the whole input; the first or the last sentence of the
+definition removed; and its sentences shuffled. That makes 23{,}640 edited inputs.
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=0.86\linewidth]{figures/edits}
+  \caption{Mechanical edits of the instruction, all fifteen tasks, routes only (T5-base
+  word-vectors; 1{,}197 test inputs per point, each with its own random edit). (a) Share of inputs
+  that are still inside their own zone. (b) Share of inputs that are given to their own task.
+  No edited input was inside the zone of another task.}
+  \label{fig:edits}
+\end{figure}
+
+\begin{table}[t]
+  \caption{Edits of the whole instruction (same test as Figure~\ref{fig:edits}). Tasks whose
+  definition has a single sentence are left out of the last three rows.}
+  \label{tab:edits}
+  \centering
+  \small
+  \input{tables/edits}
+\end{table}
+
+\paragraph{No edited input was certified for another task.} Not one of the 23{,}640 edited inputs
+lay inside the zone of another task. An edited input was either certified for its own task or not
+certified at all. This is a statement about these fifteen tasks, whose instructions are far apart;
+in the large collection of Section~\ref{sec:many} the inputs of sibling tasks do lie inside older
+zones. A certificate promises that an answer will stay the same, not that it comes from the right
+task.
+
+\paragraph{Small edits keep the certificate, large ones lose it.} With one typo 87.1\% of the inputs
+are still certified, with one dropped word 93.7\%, with one replaced word 94.6\%, in lower case
+91.4\% and with a sentence in front 91.6\% (Figure~\ref{fig:edits}a,
+Table~\ref{tab:edits}). With four edited words between 38\% and 77\% remain certified, with sixteen
+at most 17\%. A typo costs more than a dropped word, presumably because a misspelt word falls apart into
+several rare word pieces, which carry a high weight in Eq.~\eqref{eq:weights}.
+
+\paragraph{The route of an uncertified input is not safe under heavy damage.} Up to four edited
+words, at least 98.1\% of the inputs still reach their own task. With eight typos it is 82.7\%, and
+with sixteen typos only 45.4\% (Figure~\ref{fig:edits}b). Before the test we had written down that a
+share under 80\% for any edit would count against the method, and it does: when an instruction is
+badly damaged, the nearest-zone route cannot be relied on. What the method offers in this situation
+is the missing certificate, which marks every one of these inputs.
+
+\paragraph{Long instructions are robust, short ones are not.} The failures are not spread evenly
+(Table~\ref{tab:editspertask} in the appendix). Tasks whose opening has at least 90 tokens keep
+98\% to 100\% of their inputs on the right task even with sixteen typos. The two tasks that fail
+first have the shortest instructions: \texttt{sciq}, whose definition has ten words (opening of 26
+tokens), and \texttt{xsum} (34 tokens); with eight typos only 3\% and 18\% of their inputs arrive.
+With sixteen typos every word of four or more letters in a definition of ten words carries a typo.
+
+\paragraph{Two findings that follow from how the switch reads.} Removing the last sentence of the
+definition leaves 81.5\% of the inputs on their task, but only 2\% for SST-2 and 8\% for emotion
+classification: in both, the removed sentence is the one that states the task. Shuffling the
+sentences changes nothing at all, and every input stays certified, because the feature of
+Eq.~\eqref{eq:prefix} is an average and ignores the order of the words
+(Proposition~\ref{prop:edits}).
+
+\paragraph{The guaranteed tolerance.} The largest distance between two rows of the rescaled
+embedding table of T5-base is $D = 509.6$, and the ratio $R_k / D$ of Proposition~\ref{prop:edits}
+lies between 2.0\% and 4.2\% for the fifteen tasks. Edits that remove at most this share of the
+weight of the opening, and add at most this share, can therefore never leave the zone. Counted in
+tokens of average weight this is the replacement of \BoundTokensLow{} to \BoundTokensHigh{} tokens,
+depending on the task. The measured tolerance is far larger, as it should be: the bound has to
+cover the two most different tokens of the vocabulary. We also
+checked the bound itself on \BoundInputs{} edited inputs of this test (ten per task and edit with
+typos, dropped and replaced words). It held for every one of them; the inputs moved by at most
+\BoundWorstPct{}\% of what the bound allows, \BoundMedianPct{}\% in the middle, and the bound
+alone would have certified \BoundGuaranteed{} of the \BoundInside{} inputs that in fact stayed inside
+their zone.
+
+
+\subsection{The order of the tasks}
+\label{sec:orders}
+
+The signature of a task depends on its own opening only, and its radius on the signatures known
+when the task arrives. How the routes would look if the tasks had arrived in another order can
+therefore be computed exactly, without training. Table~\ref{tab:orders} does this for every one of
+the 120 orders of the five tasks, and for the two official orders of the benchmark and 1{,}000 random
+orders of the fifteen tasks.
+
+\begin{table}[t]
+  \caption{The order of the tasks (routes only, T5-base word-vectors). Entries with four numbers are
+  for the original / light / medium / heavy wording; the reworded inputs are those of the five tasks.
+  ``Blocked'': training inputs inside an older zone. ``Changed'': test inputs whose route changed
+  after their task had been added; where a range is given it depends on the order.}
+  \label{tab:orders}
+  \centering
+  \footnotesize
+  \setlength{\tabcolsep}{3.5pt}
+  \input{tables/orders}
+\end{table}
+
+In every order all inputs with the original wording are certified, no input lies in a foreign
+zone, no training input is blocked, and the shares of inputs that reach their own task are the
+same to the last digit. The reason is plain once the distances are written down
+(Table~\ref{tab:distances} in the appendix). For 13 of the 15 tasks the nearest known signature is
+that of an unrelated task, and the unrelated tasks are known from the start, so the radius of
+these zones does not depend on the order at all. The two exceptions are the summarisation tasks
+\texttt{samsum} and \texttt{xsum}, whose nearest signature is a third summarisation task
+(\texttt{reddit\_tifu}); their radius is up to 7\% and 13\% smaller if that task was learned
+before them, and no test input is affected.
+
+What does depend on the order is \emph{when} an uncertified input goes wrong. The 31 heavily
+reworded tweets that are given to SST-2 are given to it from the start if SST-2 is learned before
+Sentiment140, as in our five-task sequence and in official order~1. If SST-2 comes later, as in
+official order~2, they are first given to their own task and are re-routed at the moment SST-2
+arrives. In that order 31 routes change after the inputs were first answered, and with a route the answer
+changes in general (this test computes routes only). They are uncertified inputs, and
+Proposition~\ref{prop:uncertified} says that this can happen; for certified ones it cannot.
+
+
+\subsection{The unrelated inputs}
+\label{sec:background}
+
+The switch uses the collection $\mathcal{B}$ of unrelated inputs in three places: the token
+weights, the scale of distances, and the signatures of the unrelated tasks, which set most radii.
+A reader may ask whether the results depend on this particular collection. We repeated the route
+computations with two other random draws of the 4{,}000 inputs, with 500, 1{,}000 and 2{,}000 inputs,
+and with only five of the ten unrelated tasks, in two ways (Table~\ref{tab:background} in the
+appendix; the settings and what would count against the method were again fixed beforehand). In
+all eight settings every input with the original or the light wording is certified, every input
+with the original, light or medium wording reaches its own task, no input lies in a foreign zone,
+and no training input is blocked. The part of the results that rests on the guarantee therefore
+did not depend on the choice. The share of heavily reworded inputs that reach their own task did:
+it ranges from \BackgroundHeavyLow{}\% to \BackgroundHeavyHigh{}\% across the settings, so the value
+of our main configuration, 93.8\%, is one draw from that range and not a property of the method.
+One thing we had expected did not happen: with only five unrelated tasks the radii hardly changed (Table~\ref{tab:background}),
+and at most two more heavily reworded inputs were certified.
+
+
+\subsection{Other models}
+\label{sec:models}
+
+\paragraph{The routes with other embedding tables.} The switch needs nothing from a model except its
+tokenizer and its embedding table, so where the test inputs would be routed can be computed for any
+model without training it. Table~\ref{tab:models} does this for eight models of three kinds:
+encoder-decoder models (T5 in three sizes \citep{raffel2020t5} and Flan-T5
+\citep{chung2024flant5}), decoder-only models (GPT-2 \citep{radford2019gpt2}, SmolLM2
+\citep{allal2025smollm2} and Qwen2.5 \citep{yang2024qwen25}) and an encoder (RoBERTa
+\citep{liu2019roberta}), with embedding dimensions from 512 to 1024 and five different
+vocabularies. Nothing was adjusted per model; the radius factor and the word weights are those of
+Section~\ref{sec:method}. For every model, every test input with the original wording lies in its
+own zone, in the five-task and in the 15-task sequence, no input lies in a foreign zone, and no
+training input of a later task is blocked. With light rewording 99\% to 100\% of the inputs are
+certified, and with medium rewording all inputs still reach their own task. Heavy rewording is
+where the models differ: between 80\% and 99\% of those inputs reach their own task. Under heavy rewording the routes of three uncertified inputs changed when a later task arrived (two with Flan-T5, one with GPT-2); no certified route changed.
+
+\begin{table}[t]
+  \caption{Routes computed with the embedding tables of eight models (CPU, no training). Entries
+  with four numbers are for the original / light / medium / heavy wording. ``Wrong zone'': inputs
+  inside the zone of another task, over both sequences and all wordings. ``Changed'': inputs
+  whose route changed after their task had been added. With the original wording every input of
+  the 15-task sequence is certified for every model.}
+  \label{tab:models}
+  \centering
+  \footnotesize
+  \setlength{\tabcolsep}{3pt}
+  \input{tables/models}
+\end{table}
+
+\paragraph{Training other models with the stand-alone code.} To check that the method, and not
+only its routes, carries over to other models, we ran the stand-alone implementation
+(Appendix~\ref{app:impl}) on three small models on a CPU: T5-small (encoder-decoder), GPT-2 and
+SmolLM2-135M (both decoder-only). The runs are small on purpose: the five tasks with 400 training
+examples and five epochs each, 30 to 50 test inputs per task, one seed. They show whether the code
+keeps answers on another architecture, not how good these models can become. In all three runs
+(Table~\ref{tab:demo}) the certified switch ends exactly where it stood right after learning, no
+answer of an earlier task changes, and every test input with the original wording is certified. With
+all adapters on, the same adapters end at \DemoTfivePlainAP{}, \DemoGptPlainAP{} and
+\DemoSmolPlainAP{} instead of \DemoTfiveAP{}, \DemoGptAP{} and \DemoSmolAP{}, and nearly all answers of
+earlier tasks change. With heavily reworded instructions no answer changes either, and
+\DemoTfiveHeavyRight{}\%, \DemoGptHeavyRight{}\% and \DemoSmolHeavyRight{}\% of those inputs reach
+their own task.
+
+\begin{table}[t]
+  \caption{The stand-alone implementation on three small models (CPU, five tasks, 400 training
+  examples and 5 epochs per task, one seed). ``Changed'': answers of the first four tasks that
+  differ at the end. ``Certified'': test inputs with the original wording that are inside a zone.
+  ``enc.-dec.'': encoder-decoder; ``dec.-only'': decoder-only.}
+  \label{tab:demo}
+  \centering
+  \footnotesize
+  \setlength{\tabcolsep}{3pt}
+  \input{tables/demo}
+\end{table}
+
+\paragraph{A sibling task, with trained answers.} The variant \exactfirst{} was also run with the
+stand-alone code on T5-small. After the five tasks a sixth task is learned: the sentences of SST-2
+under the lightly reworded definition of SST-2, but with other answer words (``good'' and ``bad''
+instead of ``POS'' and ``NEG''), so that one can see which adapters answered. The sixth task is
+learned twice from the same starting point. Under \cert{}, all \SiblingCertBlocked{} of its
+\SiblingTrain{} training inputs are blocked; after training, its test inputs are still answered in
+the words of the old task (\SiblingCertRight{} of \SiblingTest{} right), and no answer of the five
+old tasks changes in any wording. Under \exactfirst{} the task is learned (\SiblingExactRight{} of
+\SiblingTest{} right), no answer to an unedited input of the old tasks changes, and the
+\SiblingExactChangedLight{} old test inputs of SST-2 that carry the sibling's instruction word for
+word now get the sibling's answer; nothing else changes (\SiblingOldInputs{} old test inputs per
+wording). This is one small model and one constructed sibling. It shows the two behaviours side by side with trained answers, and it is not a test of the variant at scale.
+
+
+\input{sec_results_paraphrase}
+
+\input{sec_results_noinstruction}

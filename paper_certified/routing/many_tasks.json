@@ -1,0 +1,3471 @@
+{
+ "commit": "55a365637381ce7f3748fa2eac7aef1a113bbb82",
+ "tasks": 875,
+ "inputs": 5237,
+ "opening_tokens": {
+  "min": 25,
+  "median": 80,
+  "max": 512
+ },
+ "same_definition_pairs": 13,
+ "random order, seed 0": {
+  "50": {
+   "tasks": 50,
+   "inputs": 300,
+   "radius_zero": 0,
+   "radius_median": 13.337874746561665,
+   "tasks_clean": 49,
+   "tasks_all_blocked": 0,
+   "tasks_some_blocked": 1,
+   "inputs_blocked": 4,
+   "certified": {
+    "right": 296,
+    "certified_own": 296,
+    "certified_other": 4,
+    "changed": 0,
+    "changed_certified": 0,
+    "tasks_with_changed": 0
+   },
+   "nearest": {
+    "right": 300,
+    "certified_own": 300,
+    "certified_other": 0,
+    "changed": 0,
+    "changed_certified": 0,
+    "tasks_with_changed": 0
+   }
+  },
+  "100": {
+   "tasks": 100,
+   "inputs": 600,
+   "radius_zero": 0,
+   "radius_median": 13.353203255449445,
+   "tasks_clean": 96,
+   "tasks_all_blocked": 1,
+   "tasks_some_blocked": 3,
+   "inputs_blocked": 20,
+   "certified": {
+    "right": 580,
+    "certified_own": 580,
+    "certified_other": 20,
+    "changed": 0,
+    "changed_certified": 0,
+    "tasks_with_changed": 0
+   },
+   "nearest": {
+    "right": 600,
+    "certified_own": 600,
+    "certified_other": 0,
+    "changed": 0,
+    "changed_certified": 0,
+    "tasks_with_changed": 0
+   }
+  },
+  "200": {
+   "tasks": 200,
+   "inputs": 1200,
+   "radius_zero": 2,
+   "radius_median": 12.587764179862145,
+   "tasks_clean": 178,
+   "tasks_all_blocked": 15,
+   "tasks_some_blocked": 7,
+   "inputs_blocked": 115,
+   "certified": {
+    "right": 1085,
+    "certified_own": 1085,
+    "certified_other": 115,
+    "changed": 0,
+    "changed_certified": 0,
+    "tasks_with_changed": 0
+   },
+   "nearest": {
+    "right": 1182,
+    "certified_own": 1182,
+    "certified_other": 18,
+    "changed": 0,
+    "changed_certified": 0,
+    "tasks_with_changed": 0
+   }
+  },
+  "400": {
+   "tasks": 400,
+   "inputs": 2397,
+   "radius_zero": 3,
+   "radius_median": 12.239658833687383,
+   "tasks_clean": 337,
+   "tasks_all_blocked": 50,
+   "tasks_some_blocked": 13,
+   "inputs_blocked": 343,
+   "certified": {
+    "right": 2054,
+    "certified_own": 2054,
+    "certified_other": 343,
+    "changed": 0,
+    "changed_certified": 0,
+    "tasks_with_changed": 0
+   },
+   "nearest": {
+    "right": 2373,
+    "certified_own": 2373,
+    "certified_other": 24,
+    "changed": 0,
+    "changed_certified": 0,
+    "tasks_with_changed": 0
+   }
+  },
+  "875": {
+   "tasks": 875,
+   "inputs": 5237,
+   "radius_zero": 14,
+   "radius_median": 11.678263484012128,
+   "tasks_clean": 724,
+   "tasks_all_blocked": 129,
+   "tasks_some_blocked": 22,
+   "inputs_blocked": 849,
+   "certified": {
+    "right": 4388,
+    "certified_own": 4388,
+    "certified_other": 849,
+    "changed": 0,
+    "changed_certified": 0,
+    "tasks_with_changed": 0
+   },
+   "nearest": {
+    "right": 5147,
+    "certified_own": 5147,
+    "certified_other": 90,
+    "changed": 0,
+    "changed_certified": 0,
+    "tasks_with_changed": 0
+   },
+   "collisions": [
+    {
+     "task": "task689_mmmlu_answer_generation_college_mathematics",
+     "blocked": 4,
+     "inputs": 6,
+     "older": "task713_mmmlu_answer_generation_human_aging",
+     "alike": 0.9607843137254902,
+     "same_definition": false,
+     "radius_older": 8.222679071194849,
+     "radius_new": 3.8747264976709808
+    },
+    {
+     "task": "task1194_kth_largest_element",
+     "blocked": 5,
+     "inputs": 6,
+     "older": "task1406_kth_smallest_element",
+     "alike": 0.8620689655172413,
+     "same_definition": false,
+     "radius_older": 16.714287155671432,
+     "radius_new": 5.310465948266221
+    },
+    {
+     "task": "task1420_mathqa_general",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task1422_mathqa_physics",
+     "alike": 0.9230769230769231,
+     "same_definition": false,
+     "radius_older": 13.790039805397962,
+     "radius_new": 6.19845387815522
+    },
+    {
+     "task": "task686_mmmlu_answer_generation_college_biology",
+     "blocked": 5,
+     "inputs": 6,
+     "older": "task713_mmmlu_answer_generation_human_aging",
+     "alike": 0.9607843137254902,
+     "same_definition": false,
+     "radius_older": 8.222679071194849,
+     "radius_new": 2.330615270250688
+    },
+    {
+     "task": "task478_cls_english_music_classification",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task476_cls_english_books_classification",
+     "alike": 0.9761904761904762,
+     "same_definition": false,
+     "radius_older": 15.595283826376575,
+     "radius_new": 2.687293336596478
+    },
+    {
+     "task": "task735_mmmlu_answer_generation_us_foreign_policy",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task713_mmmlu_answer_generation_human_aging",
+     "alike": 0.9423076923076923,
+     "same_definition": false,
+     "radius_older": 8.222679071194849,
+     "radius_new": 3.6602924963893138
+    },
+    {
+     "task": "task1205_atomic_classification_isafter",
+     "blocked": 3,
+     "inputs": 6,
+     "older": "task1198_atomic_classification_owant",
+     "alike": 0.6343283582089553,
+     "same_definition": false,
+     "radius_older": 11.061905456642334,
+     "radius_new": 5.335109704588084
+    },
+    {
+     "task": "task356_casino_classification_negotiation_self_need",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task355_casino_classification_negotiation_other_need",
+     "alike": 0.75,
+     "same_definition": false,
+     "radius_older": 10.918119691053429,
+     "radius_new": 5.0448227596190245
+    },
+    {
+     "task": "task733_mmmlu_answer_generation_security_studies",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task713_mmmlu_answer_generation_human_aging",
+     "alike": 0.9607843137254902,
+     "same_definition": false,
+     "radius_older": 8.222679071194849,
+     "radius_new": 3.302883439853748
+    },
+    {
+     "task": "task229_arc_answer_generation_hard",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task228_arc_answer_generation_easy",
+     "alike": 0.9827586206896551,
+     "same_definition": false,
+     "radius_older": 9.118723747384692,
+     "radius_new": 2.5767842323596564
+    },
+    {
+     "task": "task306_jeopardy_answer_generation_double",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task308_jeopardy_answer_generation_all",
+     "alike": 1.0,
+     "same_definition": true,
+     "radius_older": 15.385920202913061,
+     "radius_new": 0.0
+    },
+    {
+     "task": "task279_stereoset_classification_stereotype",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task280_stereoset_classification_stereotype_type",
+     "alike": 0.7361111111111112,
+     "same_definition": false,
+     "radius_older": 14.952240621979753,
+     "radius_new": 6.264015125069547
+    },
+    {
+     "task": "task064_all_elements_except_first_i",
+     "blocked": 1,
+     "inputs": 6,
+     "older": "task063_first_i_elements",
+     "alike": 0.8571428571428571,
+     "same_definition": false,
+     "radius_older": 12.887182273295307,
+     "radius_new": 5.510091621577052
+    },
+    {
+     "task": "task730_mmmlu_answer_generation_professional_medicine",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task713_mmmlu_answer_generation_human_aging",
+     "alike": 0.9607843137254902,
+     "same_definition": false,
+     "radius_older": 8.222679071194849,
+     "radius_new": 3.2504948746462348
+    },
+    {
+     "task": "task708_mmmlu_answer_generation_high_school_physics",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task713_mmmlu_answer_generation_human_aging",
+     "alike": 0.9423076923076923,
+     "same_definition": false,
+     "radius_older": 8.222679071194849,
+     "radius_new": 2.929093288300538
+    },
+    {
+     "task": "task696_mmmlu_answer_generation_elementary_mathematics",
+     "blocked": 2,
+     "inputs": 6,
+     "older": "task713_mmmlu_answer_generation_human_aging",
+     "alike": 0.9607843137254902,
+     "same_definition": false,
+     "radius_older": 8.222679071194849,
+     "radius_new": 2.2410940938240307
+    },
+    {
+     "task": "task128_scan_structured_text_generation_command_action_short",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task131_scan_long_text_generation_action_command_long",
+     "alike": 0.927461139896373,
+     "same_definition": false,
+     "radius_older": 11.487578919654101,
+     "radius_new": 2.0040865346675303
+    },
+    {
+     "task": "task1200_atomic_classification_xeffect",
+     "blocked": 5,
+     "inputs": 6,
+     "older": "task1198_atomic_classification_owant",
+     "alike": 0.7164179104477612,
+     "same_definition": false,
+     "radius_older": 11.061905456642334,
+     "radius_new": 2.6858794357036095
+    },
+    {
+     "task": "task1214_atomic_classification_xwant",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task1198_atomic_classification_owant",
+     "alike": 0.8731343283582089,
+     "same_definition": false,
+     "radius_older": 11.061905456642334,
+     "radius_new": 2.99859947747275
+    },
+    {
+     "task": "task127_scan_long_text_generation_action_command_all",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task131_scan_long_text_generation_action_command_long",
+     "alike": 1.0,
+     "same_definition": true,
+     "radius_older": 11.487578919654101,
+     "radius_new": 0.0
+    },
+    {
+     "task": "task378_reverse_words_of_given_length",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task377_remove_words_of_given_length",
+     "alike": 0.9722222222222222,
+     "same_definition": false,
+     "radius_older": 16.140732135132176,
+     "radius_new": 5.122905075211053
+    },
+    {
+     "task": "task076_splash_correcting_sql_mistake",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task077_splash_explanation_to_sql",
+     "alike": 0.9438775510204082,
+     "same_definition": false,
+     "radius_older": 10.671840055704303,
+     "radius_new": 1.1793654257071544
+    },
+    {
+     "task": "task392_inverse_causal_relationship",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task391_causal_relationship",
+     "alike": 0.8888888888888888,
+     "same_definition": false,
+     "radius_older": 12.284111657522947,
+     "radius_new": 5.399814727262026
+    },
+    {
+     "task": "task728_mmmlu_answer_generation_professional_accounting",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task713_mmmlu_answer_generation_human_aging",
+     "alike": 0.9607843137254902,
+     "same_definition": false,
+     "radius_older": 8.222679071194849,
+     "radius_new": 2.776755730116295
+    },
+    {
+     "task": "task862_asdiv_multidiv_question_answering",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task752_svamp_multiplication_question_answering",
+     "alike": 0.8571428571428571,
+     "same_definition": false,
+     "radius_older": 14.604210936746464,
+     "radius_new": 6.852923001132204
+    },
+    {
+     "task": "task718_mmmlu_answer_generation_machine_learning",
+     "blocked": 2,
+     "inputs": 6,
+     "older": "task713_mmmlu_answer_generation_human_aging",
+     "alike": 0.9607843137254902,
+     "same_definition": false,
+     "radius_older": 8.222679071194849,
+     "radius_new": 3.3596147579606583
+    },
+    {
+     "task": "task720_mmmlu_answer_generation_marketing",
+     "blocked": 5,
+     "inputs": 6,
+     "older": "task713_mmmlu_answer_generation_human_aging",
+     "alike": 0.9607843137254902,
+     "same_definition": false,
+     "radius_older": 8.222679071194849,
+     "radius_new": 2.85217806196035
+    },
+    {
+     "task": "task1501_dstc3_answer_generation",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task1499_dstc3_summarization",
+     "alike": 0.7410714285714286,
+     "same_definition": false,
+     "radius_older": 11.451847509268811,
+     "radius_new": 5.338305877144771
+    },
+    {
+     "task": "task674_google_wellformed_query_sentence_generation",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task675_google_wellformed_query_sentence_generation",
+     "alike": 0.7837837837837838,
+     "same_definition": false,
+     "radius_older": 15.71814500939698,
+     "radius_new": 5.473081756673217
+    },
+    {
+     "task": "task074_squad1.1_question_generation",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task917_coqa_question_generation",
+     "alike": 0.9746835443037974,
+     "same_definition": false,
+     "radius_older": 10.453270587978738,
+     "radius_new": 2.7182598820234722
+    },
+    {
+     "task": "task1204_atomic_classification_hinderedby",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task1198_atomic_classification_owant",
+     "alike": 0.7611940298507462,
+     "same_definition": false,
+     "radius_older": 11.061905456642334,
+     "radius_new": 4.824105946992811
+    },
+    {
+     "task": "task927_yelp_negative_to_positive_style_transfer",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task928_yelp_positive_to_negative_style_transfer",
+     "alike": 0.9032258064516129,
+     "same_definition": false,
+     "radius_older": 17.92152872320097,
+     "radius_new": 4.3419667821202514
+    },
+    {
+     "task": "task687_mmmlu_answer_generation_college_chemistry",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task713_mmmlu_answer_generation_human_aging",
+     "alike": 0.9607843137254902,
+     "same_definition": false,
+     "radius_older": 8.222679071194849,
+     "radius_new": 2.517872130909536
+    },
+    {
+     "task": "task867_mawps_multiop_question_answering",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task752_svamp_multiplication_question_answering",
+     "alike": 0.8571428571428571,
+     "same_definition": false,
+     "radius_older": 14.604210936746464,
+     "radius_new": 0.0
+    },
+    {
+     "task": "task1207_atomic_classification_atlocation",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task1205_atomic_classification_isafter",
+     "alike": 0.90625,
+     "same_definition": false,
+     "radius_older": 5.335109704588084,
+     "radius_new": 2.0454731857281065
+    },
+    {
+     "task": "task071_abductivenli_answer_generation",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task072_abductivenli_answer_generation",
+     "alike": 0.9078947368421053,
+     "same_definition": false,
+     "radius_older": 9.879782842329659,
+     "radius_new": 3.0881391107079303
+    },
+    {
+     "task": "task1201_atomic_classification_xintent",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task1198_atomic_classification_owant",
+     "alike": 0.746268656716418,
+     "same_definition": false,
+     "radius_older": 11.061905456642334,
+     "radius_new": 4.078618856181772
+    },
+    {
+     "task": "task1208_atomic_classification_xreason",
+     "blocked": 1,
+     "inputs": 6,
+     "older": "task1198_atomic_classification_owant",
+     "alike": 0.7089552238805971,
+     "same_definition": false,
+     "radius_older": 11.061905456642334,
+     "radius_new": 4.211953920105546
+    },
+    {
+     "task": "task099_reverse_elements_between_index_i_and_j",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task091_all_elements_from_index_i_to_j",
+     "alike": 0.9411764705882353,
+     "same_definition": false,
+     "radius_older": 11.250607161812331,
+     "radius_new": 2.7573955705069717
+    },
+    {
+     "task": "task1216_atomic_classification_causes",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task1205_atomic_classification_isafter",
+     "alike": 0.9775280898876404,
+     "same_definition": false,
+     "radius_older": 5.335109704588084,
+     "radius_new": 1.2417917478480562
+    },
+    {
+     "task": "task1203_atomic_classification_xreact",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task1198_atomic_classification_owant",
+     "alike": 0.8432835820895522,
+     "same_definition": false,
+     "radius_older": 11.061905456642334,
+     "radius_new": 3.992868601385579
+    },
+    {
+     "task": "task847_pubmedqa_question_generation",
+     "blocked": 4,
+     "inputs": 6,
+     "older": "task917_coqa_question_generation",
+     "alike": 0.8354430379746836,
+     "same_definition": false,
+     "radius_older": 10.453270587978738,
+     "radius_new": 4.678729600283092
+    },
+    {
+     "task": "task690_mmmlu_answer_generation_college_medicine",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task713_mmmlu_answer_generation_human_aging",
+     "alike": 0.9607843137254902,
+     "same_definition": false,
+     "radius_older": 8.222679071194849,
+     "radius_new": 2.0362608792023815
+    },
+    {
+     "task": "task1210_atomic_classification_madeupof",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task1205_atomic_classification_isafter",
+     "alike": 0.925531914893617,
+     "same_definition": false,
+     "radius_older": 5.335109704588084,
+     "radius_new": 2.0175261160342597
+    },
+    {
+     "task": "task1211_atomic_classification_hassubevent",
+     "blocked": 1,
+     "inputs": 6,
+     "older": "task1198_atomic_classification_owant",
+     "alike": 0.6791044776119403,
+     "same_definition": false,
+     "radius_older": 11.061905456642334,
+     "radius_new": 2.648328506115513
+    },
+    {
+     "task": "task731_mmmlu_answer_generation_professional_psychology",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task713_mmmlu_answer_generation_human_aging",
+     "alike": 0.9607843137254902,
+     "same_definition": false,
+     "radius_older": 8.222679071194849,
+     "radius_new": 2.5514140667834364
+    },
+    {
+     "task": "task297_storycloze_incorrect_end_classification",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task296_storycloze_correct_end_classification",
+     "alike": 0.7758620689655172,
+     "same_definition": false,
+     "radius_older": 10.033897887511934,
+     "radius_new": 6.027117484482698
+    },
+    {
+     "task": "task316_crows-pairs_classification_stereotype",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task280_stereoset_classification_stereotype_type",
+     "alike": 0.859375,
+     "same_definition": false,
+     "radius_older": 14.952240621979753,
+     "radius_new": 4.718119454036499
+    },
+    {
+     "task": "task1313_amazonreview_polarity_classification",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task587_amazonfood_polarity_correction_classification",
+     "alike": 0.90625,
+     "same_definition": false,
+     "radius_older": 13.718316884160648,
+     "radius_new": 4.423997395077966
+    },
+    {
+     "task": "task067_abductivenli_answer_generation",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task072_abductivenli_answer_generation",
+     "alike": 0.8674698795180723,
+     "same_definition": false,
+     "radius_older": 9.879782842329659,
+     "radius_new": 3.0870821872788428
+    },
+    {
+     "task": "task691_mmmlu_answer_generation_college_physics",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task713_mmmlu_answer_generation_human_aging",
+     "alike": 0.9607843137254902,
+     "same_definition": false,
+     "radius_older": 8.222679071194849,
+     "radius_new": 1.8497071420970133
+    },
+    {
+     "task": "task305_jeopardy_answer_generation_normal",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task308_jeopardy_answer_generation_all",
+     "alike": 0.975609756097561,
+     "same_definition": false,
+     "radius_older": 15.385920202913061,
+     "radius_new": 3.785033876058956
+    },
+    {
+     "task": "task107_splash_question_to_sql",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task077_splash_explanation_to_sql",
+     "alike": 0.9276485788113695,
+     "same_definition": false,
+     "radius_older": 10.671840055704303,
+     "radius_new": 1.3266042048772322
+    },
+    {
+     "task": "task710_mmmlu_answer_generation_high_school_statistics",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task713_mmmlu_answer_generation_human_aging",
+     "alike": 0.9423076923076923,
+     "same_definition": false,
+     "radius_older": 8.222679071194849,
+     "radius_new": 2.587840383733221
+    },
+    {
+     "task": "task715_mmmlu_answer_generation_international_law",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task713_mmmlu_answer_generation_human_aging",
+     "alike": 0.9607843137254902,
+     "same_definition": false,
+     "radius_older": 8.222679071194849,
+     "radius_new": 2.709783835143524
+    },
+    {
+     "task": "task1168_brown_coarse_pos_tagging",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task1167_penn_treebank_coarse_pos_tagging",
+     "alike": 0.982089552238806,
+     "same_definition": false,
+     "radius_older": 7.878166899674511,
+     "radius_new": 0.5929047013203318
+    },
+    {
+     "task": "task712_mmmlu_answer_generation_high_school_world_history",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task702_mmmlu_answer_generation_high_school_european_history",
+     "alike": 0.9558823529411765,
+     "same_definition": false,
+     "radius_older": 5.009868902490489,
+     "radius_new": 2.3833883186038847
+    },
+    {
+     "task": "task729_mmmlu_answer_generation_professional_law",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task713_mmmlu_answer_generation_human_aging",
+     "alike": 0.9607843137254902,
+     "same_definition": false,
+     "radius_older": 8.222679071194849,
+     "radius_new": 2.0140080804405054
+    },
+    {
+     "task": "task152_tomqa_find_location_easy_noise",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task153_tomqa_find_location_hard_clean",
+     "alike": 0.8198198198198198,
+     "same_definition": false,
+     "radius_older": 11.992211818778822,
+     "radius_new": 4.473277813115442
+    },
+    {
+     "task": "task146_afs_argument_similarity_gun_control",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task147_afs_argument_similarity_gay_marriage",
+     "alike": 0.9759036144578314,
+     "same_definition": false,
+     "radius_older": 12.516197058500932,
+     "radius_new": 2.0787090670439556
+    },
+    {
+     "task": "task1333_check_validity_date_ddmmyyyy",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task1403_check_validity_date_mmddyyyy",
+     "alike": 0.7548387096774194,
+     "same_definition": false,
+     "radius_older": 12.077183046516533,
+     "radius_new": 4.29781579078286
+    },
+    {
+     "task": "task210_logic2text_structured_text_generation",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task110_logic2text_sentence_generation",
+     "alike": 0.8130841121495327,
+     "same_definition": false,
+     "radius_older": 13.353203255449445,
+     "radius_new": 5.172480732459565
+    },
+    {
+     "task": "task725_mmmlu_answer_generation_nutrition",
+     "blocked": 5,
+     "inputs": 6,
+     "older": "task713_mmmlu_answer_generation_human_aging",
+     "alike": 0.9607843137254902,
+     "same_definition": false,
+     "radius_older": 8.222679071194849,
+     "radius_new": 2.4227323322008516
+    },
+    {
+     "task": "task1202_atomic_classification_xneed",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task1198_atomic_classification_owant",
+     "alike": 0.746268656716418,
+     "same_definition": false,
+     "radius_older": 11.061905456642334,
+     "radius_new": 3.519450693570972
+    },
+    {
+     "task": "task1423_mathqa_geometry",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task1422_mathqa_physics",
+     "alike": 0.92,
+     "same_definition": false,
+     "radius_older": 13.790039805397962,
+     "radius_new": 5.185546059531426
+    },
+    {
+     "task": "task1489_sarcasmdetection_tweet_classification",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task1488_sarcasmdetection_headline_classification",
+     "alike": 0.9682539682539683,
+     "same_definition": false,
+     "radius_older": 13.194881885389393,
+     "radius_new": 2.8137853983973296
+    },
+    {
+     "task": "task130_scan_structured_text_generation_command_action_long",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task131_scan_long_text_generation_action_command_long",
+     "alike": 0.927461139896373,
+     "same_definition": false,
+     "radius_older": 11.487578919654101,
+     "radius_new": 0.0
+    },
+    {
+     "task": "task141_odd-man-out_classification_category",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task142_odd-man-out_classification_no_category",
+     "alike": 0.8108108108108109,
+     "same_definition": false,
+     "radius_older": 14.42858982105157,
+     "radius_new": 5.257380086267161
+    },
+    {
+     "task": "task1582_bless_hypernym_generation",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task1585_root09_hypernym_generation",
+     "alike": 1.0,
+     "same_definition": false,
+     "radius_older": 14.784102813302255,
+     "radius_new": 0.06830304930112309
+    },
+    {
+     "task": "task1385_anli_r1_entailment",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task1388_cb_entailment",
+     "alike": 0.975,
+     "same_definition": false,
+     "radius_older": 14.097338515905333,
+     "radius_new": 0.20478368640304323
+    },
+    {
+     "task": "task740_lhoestq_answer_generation_quantity",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task741_lhoestq_answer_generation_place",
+     "alike": 0.8795180722891566,
+     "same_definition": false,
+     "radius_older": 10.65454112316618,
+     "radius_new": 4.521482233383207
+    },
+    {
+     "task": "task631_dbpedia_14_incorrect_answer_generation",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task629_dbpedia_14_classification",
+     "alike": 0.717948717948718,
+     "same_definition": false,
+     "radius_older": 13.356401975883765,
+     "radius_new": 4.435218214047805
+    },
+    {
+     "task": "task698_mmmlu_answer_generation_global_facts",
+     "blocked": 4,
+     "inputs": 6,
+     "older": "task713_mmmlu_answer_generation_human_aging",
+     "alike": 0.9607843137254902,
+     "same_definition": false,
+     "radius_older": 8.222679071194849,
+     "radius_new": 2.8677439965901086
+    },
+    {
+     "task": "task845_pubmedqa_question_generation",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task847_pubmedqa_question_generation",
+     "alike": 0.926829268292683,
+     "same_definition": false,
+     "radius_older": 4.678729600283092,
+     "radius_new": 1.5940596393318665
+    },
+    {
+     "task": "task489_mwsc_question_generation",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task492_mwsc_incorrect_answer_generation",
+     "alike": 0.7935483870967742,
+     "same_definition": false,
+     "radius_older": 9.759486893787962,
+     "radius_new": 4.289141419303804
+    },
+    {
+     "task": "task700_mmmlu_answer_generation_high_school_chemistry",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task713_mmmlu_answer_generation_human_aging",
+     "alike": 0.9423076923076923,
+     "same_definition": false,
+     "radius_older": 8.222679071194849,
+     "radius_new": 1.851930539508424
+    },
+    {
+     "task": "task145_afs_argument_similarity_death_penalty",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task147_afs_argument_similarity_gay_marriage",
+     "alike": 0.9759036144578314,
+     "same_definition": false,
+     "radius_older": 12.516197058500932,
+     "radius_new": 2.4755450468415487
+    },
+    {
+     "task": "task340_winomt_classification_gender_pro",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task342_winomt_classification_profession_pro",
+     "alike": 0.7692307692307693,
+     "same_definition": false,
+     "radius_older": 17.100083634113133,
+     "radius_new": 7.344211436537818
+    },
+    {
+     "task": "task685_mmmlu_answer_generation_clinical_knowledge",
+     "blocked": 4,
+     "inputs": 6,
+     "older": "task713_mmmlu_answer_generation_human_aging",
+     "alike": 0.9607843137254902,
+     "same_definition": false,
+     "radius_older": 8.222679071194849,
+     "radius_new": 2.9168029243855025
+    },
+    {
+     "task": "task319_stereoset_classification_profession",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task321_stereoset_classification_religion",
+     "alike": 0.8780487804878049,
+     "same_definition": false,
+     "radius_older": 9.838369066295252,
+     "radius_new": 3.3595662239569877
+    },
+    {
+     "task": "task211_logic2text_classification",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task110_logic2text_sentence_generation",
+     "alike": 0.8525798525798526,
+     "same_definition": false,
+     "radius_older": 13.353203255449445,
+     "radius_new": 1.8436934111604226
+    },
+    {
+     "task": "task1446_farthest_integers",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task1445_closest_integers",
+     "alike": 0.9607843137254902,
+     "same_definition": false,
+     "radius_older": 14.945797189483441,
+     "radius_new": 3.103934224956383
+    },
+    {
+     "task": "task269_csrg_counterfactual_story_generation",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task270_csrg_counterfactual_context_generation",
+     "alike": 0.8364779874213837,
+     "same_definition": false,
+     "radius_older": 13.337874746561665,
+     "radius_new": 4.0227371993838394
+    },
+    {
+     "task": "task711_mmmlu_answer_generation_high_school_us_history",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task702_mmmlu_answer_generation_high_school_european_history",
+     "alike": 0.9705882352941176,
+     "same_definition": false,
+     "radius_older": 5.009868902490489,
+     "radius_new": 1.2462981535012962
+    },
+    {
+     "task": "task345_hybridqa_answer_generation",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task382_hybridqa_answer_generation",
+     "alike": 0.9393939393939394,
+     "same_definition": false,
+     "radius_older": 6.465702473191113,
+     "radius_new": 0.7224916898791973
+    },
+    {
+     "task": "task1509_evalution_antonyms",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task1508_wordnet_antonyms",
+     "alike": 0.6551724137931034,
+     "same_definition": false,
+     "radius_older": 22.813291544531847,
+     "radius_new": 9.186886788441694
+    },
+    {
+     "task": "task320_stereoset_classification_race",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task321_stereoset_classification_religion",
+     "alike": 0.8780487804878049,
+     "same_definition": false,
+     "radius_older": 9.838369066295252,
+     "radius_new": 1.7126027521648701
+    },
+    {
+     "task": "task1592_yahoo_answers_topics_classfication",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task1593_yahoo_answers_topics_classification",
+     "alike": 0.8431372549019608,
+     "same_definition": false,
+     "radius_older": 12.289693791628855,
+     "radius_new": 2.384655540830289
+    },
+    {
+     "task": "task318_stereoset_classification_gender",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task321_stereoset_classification_religion",
+     "alike": 0.8780487804878049,
+     "same_definition": false,
+     "radius_older": 9.838369066295252,
+     "radius_new": 1.9296123068824473
+    },
+    {
+     "task": "task307_jeopardy_answer_generation_final",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task308_jeopardy_answer_generation_all",
+     "alike": 1.0,
+     "same_definition": true,
+     "radius_older": 15.385920202913061,
+     "radius_new": 0.0
+    },
+    {
+     "task": "task864_asdiv_singleop_question_answering",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task862_asdiv_multidiv_question_answering",
+     "alike": 0.9302325581395349,
+     "same_definition": false,
+     "radius_older": 6.852923001132204,
+     "radius_new": 3.301693964626752
+    },
+    {
+     "task": "task868_cfq_mcd1_explanation_to_sql",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task077_splash_explanation_to_sql",
+     "alike": 0.9224806201550387,
+     "same_definition": false,
+     "radius_older": 10.671840055704303,
+     "radius_new": 0.7959086980401546
+    },
+    {
+     "task": "task732_mmmlu_answer_generation_public_relations",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task713_mmmlu_answer_generation_human_aging",
+     "alike": 0.9607843137254902,
+     "same_definition": false,
+     "radius_older": 8.222679071194849,
+     "radius_new": 2.961979145585807
+    },
+    {
+     "task": "task722_mmmlu_answer_generation_random_topic",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task713_mmmlu_answer_generation_human_aging",
+     "alike": 0.9423076923076923,
+     "same_definition": false,
+     "radius_older": 8.222679071194849,
+     "radius_new": 2.8268636506153992
+    },
+    {
+     "task": "task184_break_generate_question",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task176_break_decompose_questions",
+     "alike": 0.8710526315789474,
+     "same_definition": false,
+     "radius_older": 13.808717449472692,
+     "radius_new": 1.921395022312733
+    },
+    {
+     "task": "task243_count_elements_in_set_intersection",
+     "blocked": 5,
+     "inputs": 6,
+     "older": "task245_check_presence_in_set_intersection",
+     "alike": 0.8241758241758241,
+     "same_definition": false,
+     "radius_older": 11.268530659494191,
+     "radius_new": 4.555342250616713
+    },
+    {
+     "task": "task893_gap_fill_the_blank_coreference_resolution",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task892_gap_reverse_coreference_resolution",
+     "alike": 0.8367346938775511,
+     "same_definition": false,
+     "radius_older": 13.808069214491642,
+     "radius_new": 4.8730795672660765
+    },
+    {
+     "task": "task560_alt_translation_en_entk",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task547_alt_translation_entk_en",
+     "alike": 1.0,
+     "same_definition": false,
+     "radius_older": 15.288964780733885,
+     "radius_new": 0.12696835853827892
+    },
+    {
+     "task": "task1596_event2mind_text_generation_2",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task1595_event2mind_text_generation_1",
+     "alike": 0.88,
+     "same_definition": false,
+     "radius_older": 13.005337380532037,
+     "radius_new": 5.692629861184566
+    },
+    {
+     "task": "task1213_atomic_classification_desires",
+     "blocked": 2,
+     "inputs": 6,
+     "older": "task1198_atomic_classification_owant",
+     "alike": 0.7089552238805971,
+     "same_definition": false,
+     "radius_older": 11.061905456642334,
+     "radius_new": 4.243559021176604
+    },
+    {
+     "task": "task472_haspart_classification",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task471_haspart_answer_generation",
+     "alike": 0.7681159420289855,
+     "same_definition": false,
+     "radius_older": 18.009111845536385,
+     "radius_new": 6.430316901935477
+    },
+    {
+     "task": "task347_hybridqa_incorrect_answer_generation",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task382_hybridqa_answer_generation",
+     "alike": 0.9050279329608939,
+     "same_definition": false,
+     "radius_older": 6.465702473191113,
+     "radius_new": 1.2257114467534853
+    },
+    {
+     "task": "task692_mmmlu_answer_generation_computer_security",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task713_mmmlu_answer_generation_human_aging",
+     "alike": 0.9607843137254902,
+     "same_definition": false,
+     "radius_older": 8.222679071194849,
+     "radius_new": 2.307828827228831
+    },
+    {
+     "task": "task100_concatenate_all_elements_from_index_i_to_j",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task091_all_elements_from_index_i_to_j",
+     "alike": 0.9130434782608695,
+     "same_definition": false,
+     "radius_older": 11.250607161812331,
+     "radius_new": 5.269254038841698
+    },
+    {
+     "task": "task869_cfq_mcd1_sql_to_explanation",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task077_splash_explanation_to_sql",
+     "alike": 0.9121447028423773,
+     "same_definition": false,
+     "radius_older": 10.671840055704303,
+     "radius_new": 1.018602076124445
+    },
+    {
+     "task": "task350_winomt_classification_gender_identifiability_pro",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task351_winomt_classification_gender_identifiability_anti",
+     "alike": 0.94,
+     "same_definition": false,
+     "radius_older": 10.231137271402533,
+     "radius_new": 4.110760095844489
+    },
+    {
+     "task": "task154_tomqa_find_location_hard_noise",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task153_tomqa_find_location_hard_clean",
+     "alike": 0.8225806451612904,
+     "same_definition": false,
+     "radius_older": 11.992211818778822,
+     "radius_new": 2.6574372203083576
+    },
+    {
+     "task": "task1311_amazonreview_rating_classification",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task588_amazonfood_rating_classification",
+     "alike": 0.6716417910447762,
+     "same_definition": false,
+     "radius_older": 13.76334533267743,
+     "radius_new": 6.705739929145575
+    },
+    {
+     "task": "task726_mmmlu_answer_generation_philosophy",
+     "blocked": 4,
+     "inputs": 6,
+     "older": "task713_mmmlu_answer_generation_human_aging",
+     "alike": 0.9607843137254902,
+     "same_definition": false,
+     "radius_older": 8.222679071194849,
+     "radius_new": 2.483962272578413
+    },
+    {
+     "task": "task699_mmmlu_answer_generation_high_school_biology",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task713_mmmlu_answer_generation_human_aging",
+     "alike": 0.9423076923076923,
+     "same_definition": false,
+     "radius_older": 8.222679071194849,
+     "radius_new": 1.8526797799955494
+    },
+    {
+     "task": "task868_mawps_singleop_question_answering",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task752_svamp_multiplication_question_answering",
+     "alike": 0.8372093023255814,
+     "same_definition": false,
+     "radius_older": 14.604210936746464,
+     "radius_new": 1.6978598229967967
+    },
+    {
+     "task": "task1387_anli_r3_entailment",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task1388_cb_entailment",
+     "alike": 0.975,
+     "same_definition": false,
+     "radius_older": 14.097338515905333,
+     "radius_new": 0.0
+    },
+    {
+     "task": "task1312_amazonreview_polarity_classification",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task586_amazonfood_polarity_classification",
+     "alike": 0.90625,
+     "same_definition": false,
+     "radius_older": 12.081398627881262,
+     "radius_new": 3.4444680880887195
+    },
+    {
+     "task": "task866_mawps_multidiv_question_answering",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task752_svamp_multiplication_question_answering",
+     "alike": 0.9473684210526315,
+     "same_definition": false,
+     "radius_older": 14.604210936746464,
+     "radius_new": 4.773967909177057
+    },
+    {
+     "task": "task1449_disease_entity_extraction_bc5cdr_dataset",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task1448_disease_entity_extraction_ncbi_dataset",
+     "alike": 0.8947368421052632,
+     "same_definition": false,
+     "radius_older": 11.364713438951364,
+     "radius_new": 3.641748099353303
+    },
+    {
+     "task": "task170_hotpotqa_answer_generation",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task191_hotpotqa_question_generation",
+     "alike": 0.875,
+     "same_definition": false,
+     "radius_older": 14.44883798714686,
+     "radius_new": 2.003865769289019
+    },
+    {
+     "task": "task341_winomt_classification_gender_anti",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task342_winomt_classification_profession_pro",
+     "alike": 0.7692307692307693,
+     "same_definition": false,
+     "radius_older": 17.100083634113133,
+     "radius_new": 0.0
+    },
+    {
+     "task": "task1310_amazonreview_rating_classification",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task588_amazonfood_rating_classification",
+     "alike": 0.9,
+     "same_definition": false,
+     "radius_older": 13.76334533267743,
+     "radius_new": 3.5107404538516525
+    },
+    {
+     "task": "task1439_doqa_cooking_isanswerable",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task1442_doqa_movies_isanswerable",
+     "alike": 0.9848484848484849,
+     "same_definition": false,
+     "radius_older": 12.593212377018475,
+     "radius_new": 1.4960311665704322
+    },
+    {
+     "task": "task1484_gene_extraction_linnaeus_dataset",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task1480_gene_extraction_jnlpba_dataset",
+     "alike": 1.0,
+     "same_definition": true,
+     "radius_older": 12.701245183188178,
+     "radius_new": 0.0
+    },
+    {
+     "task": "task714_mmmlu_answer_generation_human_sexuality",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task713_mmmlu_answer_generation_human_aging",
+     "alike": 0.9803921568627451,
+     "same_definition": false,
+     "radius_older": 8.222679071194849,
+     "radius_new": 3.4396102355457883
+    },
+    {
+     "task": "task491_mwsc_answer_generation",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task492_mwsc_incorrect_answer_generation",
+     "alike": 0.8903225806451613,
+     "same_definition": false,
+     "radius_older": 9.759486893787962,
+     "radius_new": 2.984455649685537
+    },
+    {
+     "task": "task936_defeasible_nli_snli_classification",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task935_defeasible_nli_atomic_classification",
+     "alike": 0.9444444444444444,
+     "same_definition": false,
+     "radius_older": 10.208525498872987,
+     "radius_new": 1.49177974694261
+    },
+    {
+     "task": "task346_hybridqa_classification",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task382_hybridqa_answer_generation",
+     "alike": 0.8688524590163934,
+     "same_definition": false,
+     "radius_older": 6.465702473191113,
+     "radius_new": 1.0774166490408978
+    },
+    {
+     "task": "task1670_md_gender_bias_text_modification",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task1669_md_gender_bias_text_modification",
+     "alike": 0.9696969696969697,
+     "same_definition": false,
+     "radius_older": 15.57519149498067,
+     "radius_new": 2.1482940264171884
+    },
+    {
+     "task": "task721_mmmlu_answer_generation_medical_genetics",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task713_mmmlu_answer_generation_human_aging",
+     "alike": 0.9607843137254902,
+     "same_definition": false,
+     "radius_older": 8.222679071194849,
+     "radius_new": 3.0484649841376164
+    },
+    {
+     "task": "task703_mmmlu_answer_generation_high_school_geography",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task713_mmmlu_answer_generation_human_aging",
+     "alike": 0.9423076923076923,
+     "same_definition": false,
+     "radius_older": 8.222679071194849,
+     "radius_new": 2.3527001113757136
+    },
+    {
+     "task": "task1482_gene_extraction_chemprot_dataset",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task1480_gene_extraction_jnlpba_dataset",
+     "alike": 1.0,
+     "same_definition": true,
+     "radius_older": 12.701245183188178,
+     "radius_new": 0.0
+    },
+    {
+     "task": "task627_xlwic_word_with_same_meaning_sentence_generation",
+     "blocked": 5,
+     "inputs": 6,
+     "older": "task628_xlwic_word_with_different_meaning_sentence_generation",
+     "alike": 0.8431372549019608,
+     "same_definition": false,
+     "radius_older": 11.242008837933522,
+     "radius_new": 3.299101795183559
+    },
+    {
+     "task": "task737_mmmlu_answer_generation_world_religions",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task713_mmmlu_answer_generation_human_aging",
+     "alike": 0.9607843137254902,
+     "same_definition": false,
+     "radius_older": 8.222679071194849,
+     "radius_new": 2.4964220426530193
+    },
+    {
+     "task": "task1481_gene_extraction_bc2gm_dataset",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task1480_gene_extraction_jnlpba_dataset",
+     "alike": 1.0,
+     "same_definition": true,
+     "radius_older": 12.701245183188178,
+     "radius_new": 0.0
+    },
+    {
+     "task": "task354_casino_classification_negotiation_no_need",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task355_casino_classification_negotiation_other_need",
+     "alike": 0.6576576576576577,
+     "same_definition": false,
+     "radius_older": 10.918119691053429,
+     "radius_new": 4.978121513170781
+    },
+    {
+     "task": "task583_udeps_eng_coarse_pos_tagging",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task1167_penn_treebank_coarse_pos_tagging",
+     "alike": 0.6782608695652174,
+     "same_definition": false,
+     "radius_older": 7.878166899674511,
+     "radius_new": 3.1008815517117987
+    },
+    {
+     "task": "task001_quoref_question_generation",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task739_lhoestq_question_generation",
+     "alike": 0.9105691056910569,
+     "same_definition": false,
+     "radius_older": 9.893148955821596,
+     "radius_new": 2.1436692380353257
+    },
+    {
+     "task": "task268_casehold_legal_answer_generation",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task287_casehold_legal_incorrect_answer_generation",
+     "alike": 0.8557692307692307,
+     "same_definition": false,
+     "radius_older": 11.348650387033441,
+     "radius_new": 3.7225186713718297
+    },
+    {
+     "task": "task343_winomt_classification_profession_anti",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task342_winomt_classification_profession_pro",
+     "alike": 1.0,
+     "same_definition": true,
+     "radius_older": 17.100083634113133,
+     "radius_new": 0.0
+    },
+    {
+     "task": "task126_scan_structured_text_generation_command_action_all",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task131_scan_long_text_generation_action_command_long",
+     "alike": 0.927461139896373,
+     "same_definition": false,
+     "radius_older": 11.487578919654101,
+     "radius_new": 0.0
+    },
+    {
+     "task": "task1386_anli_r2_entailment",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task1388_cb_entailment",
+     "alike": 1.0,
+     "same_definition": true,
+     "radius_older": 14.097338515905333,
+     "radius_new": 0.0
+    },
+    {
+     "task": "task865_mawps_addsub_question_answering",
+     "blocked": 2,
+     "inputs": 6,
+     "older": "task861_asdiv_addsub_question_answering",
+     "alike": 0.868421052631579,
+     "same_definition": false,
+     "radius_older": 10.071669932143253,
+     "radius_new": 4.480598629625728
+    },
+    {
+     "task": "task1199_atomic_classification_xattr",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task1198_atomic_classification_owant",
+     "alike": 0.7070063694267515,
+     "same_definition": false,
+     "radius_older": 11.061905456642334,
+     "radius_new": 4.742164025871618
+    },
+    {
+     "task": "task719_mmmlu_answer_generation_management",
+     "blocked": 5,
+     "inputs": 6,
+     "older": "task713_mmmlu_answer_generation_human_aging",
+     "alike": 0.9607843137254902,
+     "same_definition": false,
+     "radius_older": 8.222679071194849,
+     "radius_new": 2.1382017813767105
+    },
+    {
+     "task": "task706_mmmlu_answer_generation_high_school_mathematics",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task713_mmmlu_answer_generation_human_aging",
+     "alike": 0.9423076923076923,
+     "same_definition": false,
+     "radius_older": 8.222679071194849,
+     "radius_new": 1.8521629315279864
+    },
+    {
+     "task": "task1583_bless_meronym_classification",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task1584_evalution_meronym_classification",
+     "alike": 0.7083333333333334,
+     "same_definition": false,
+     "radius_older": 13.738892809474745,
+     "radius_new": 5.945304033729237
+    },
+    {
+     "task": "task129_scan_long_text_generation_action_command_short",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task131_scan_long_text_generation_action_command_long",
+     "alike": 1.0,
+     "same_definition": true,
+     "radius_older": 11.487578919654101,
+     "radius_new": 0.0
+    },
+    {
+     "task": "task1197_atomic_classification_oreact",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task1198_atomic_classification_owant",
+     "alike": 0.8740740740740741,
+     "same_definition": false,
+     "radius_older": 11.061905456642334,
+     "radius_new": 3.627305341490424
+    },
+    {
+     "task": "task863_asdiv_multiop_question_answering",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task752_svamp_multiplication_question_answering",
+     "alike": 0.8571428571428571,
+     "same_definition": false,
+     "radius_older": 14.604210936746464,
+     "radius_new": 0.06734725217003924
+    },
+    {
+     "task": "task1206_atomic_classification_isbefore",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task1198_atomic_classification_owant",
+     "alike": 0.6343283582089553,
+     "same_definition": false,
+     "radius_older": 11.061905456642334,
+     "radius_new": 0.5926836950815273
+    },
+    {
+     "task": "task162_count_words_starting_with_letter",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task163_count_words_ending_with_letter",
+     "alike": 0.9615384615384616,
+     "same_definition": false,
+     "radius_older": 10.760538363896686,
+     "radius_new": 4.910142962692139
+    },
+    {
+     "task": "task1580_eqasc-perturbed_question_generation",
+     "blocked": 1,
+     "inputs": 6,
+     "older": "task1581_eqasc-perturbed_answer_generation",
+     "alike": 0.65,
+     "same_definition": false,
+     "radius_older": 19.87214974981006,
+     "radius_new": 3.448074728529734
+    },
+    {
+     "task": "task709_mmmlu_answer_generation_high_school_psychology",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task713_mmmlu_answer_generation_human_aging",
+     "alike": 0.9423076923076923,
+     "same_definition": false,
+     "radius_older": 8.222679071194849,
+     "radius_new": 2.197462957283521
+    },
+    {
+     "task": "task1196_atomic_classification_oeffect",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task1198_atomic_classification_owant",
+     "alike": 0.7835820895522388,
+     "same_definition": false,
+     "radius_older": 11.061905456642334,
+     "radius_new": 2.9920678284988753
+    }
+   ]
+  }
+ },
+ "random order, seed 1": {
+  "50": {
+   "tasks": 50,
+   "inputs": 300,
+   "radius_zero": 0,
+   "radius_median": 13.893406723528134,
+   "tasks_clean": 46,
+   "tasks_all_blocked": 4,
+   "tasks_some_blocked": 0,
+   "inputs_blocked": 24,
+   "certified": {
+    "right": 276,
+    "certified_own": 276,
+    "certified_other": 24,
+    "changed": 0,
+    "changed_certified": 0,
+    "tasks_with_changed": 0
+   },
+   "nearest": {
+    "right": 300,
+    "certified_own": 300,
+    "certified_other": 0,
+    "changed": 0,
+    "changed_certified": 0,
+    "tasks_with_changed": 0
+   }
+  },
+  "100": {
+   "tasks": 100,
+   "inputs": 597,
+   "radius_zero": 1,
+   "radius_median": 12.892234340684567,
+   "tasks_clean": 92,
+   "tasks_all_blocked": 8,
+   "tasks_some_blocked": 0,
+   "inputs_blocked": 48,
+   "certified": {
+    "right": 549,
+    "certified_own": 549,
+    "certified_other": 48,
+    "changed": 0,
+    "changed_certified": 0,
+    "tasks_with_changed": 0
+   },
+   "nearest": {
+    "right": 591,
+    "certified_own": 591,
+    "certified_other": 6,
+    "changed": 0,
+    "changed_certified": 0,
+    "tasks_with_changed": 0
+   }
+  },
+  "200": {
+   "tasks": 200,
+   "inputs": 1190,
+   "radius_zero": 1,
+   "radius_median": 12.587764179862145,
+   "tasks_clean": 178,
+   "tasks_all_blocked": 21,
+   "tasks_some_blocked": 1,
+   "inputs_blocked": 131,
+   "certified": {
+    "right": 1059,
+    "certified_own": 1059,
+    "certified_other": 131,
+    "changed": 0,
+    "changed_certified": 0,
+    "tasks_with_changed": 0
+   },
+   "nearest": {
+    "right": 1172,
+    "certified_own": 1172,
+    "certified_other": 18,
+    "changed": 0,
+    "changed_certified": 0,
+    "tasks_with_changed": 0
+   }
+  },
+  "400": {
+   "tasks": 400,
+   "inputs": 2390,
+   "radius_zero": 4,
+   "radius_median": 12.508148483167947,
+   "tasks_clean": 339,
+   "tasks_all_blocked": 57,
+   "tasks_some_blocked": 4,
+   "inputs_blocked": 353,
+   "certified": {
+    "right": 2037,
+    "certified_own": 2037,
+    "certified_other": 353,
+    "changed": 0,
+    "changed_certified": 0,
+    "tasks_with_changed": 0
+   },
+   "nearest": {
+    "right": 2354,
+    "certified_own": 2354,
+    "certified_other": 36,
+    "changed": 0,
+    "changed_certified": 0,
+    "tasks_with_changed": 0
+   }
+  },
+  "875": {
+   "tasks": 875,
+   "inputs": 5237,
+   "radius_zero": 14,
+   "radius_median": 11.829994864587158,
+   "tasks_clean": 718,
+   "tasks_all_blocked": 143,
+   "tasks_some_blocked": 14,
+   "inputs_blocked": 891,
+   "certified": {
+    "right": 4346,
+    "certified_own": 4346,
+    "certified_other": 891,
+    "changed": 0,
+    "changed_certified": 0,
+    "tasks_with_changed": 0
+   },
+   "nearest": {
+    "right": 5141,
+    "certified_own": 5141,
+    "certified_other": 96,
+    "changed": 0,
+    "changed_certified": 0,
+    "tasks_with_changed": 0
+   }
+  }
+ },
+ "random order, seed 2": {
+  "50": {
+   "tasks": 50,
+   "inputs": 300,
+   "radius_zero": 0,
+   "radius_median": 12.953753805992513,
+   "tasks_clean": 48,
+   "tasks_all_blocked": 2,
+   "tasks_some_blocked": 0,
+   "inputs_blocked": 12,
+   "certified": {
+    "right": 288,
+    "certified_own": 288,
+    "certified_other": 12,
+    "changed": 0,
+    "changed_certified": 0,
+    "tasks_with_changed": 0
+   },
+   "nearest": {
+    "right": 300,
+    "certified_own": 300,
+    "certified_other": 0,
+    "changed": 0,
+    "changed_certified": 0,
+    "tasks_with_changed": 0
+   }
+  },
+  "100": {
+   "tasks": 100,
+   "inputs": 600,
+   "radius_zero": 2,
+   "radius_median": 12.962568507178618,
+   "tasks_clean": 88,
+   "tasks_all_blocked": 12,
+   "tasks_some_blocked": 0,
+   "inputs_blocked": 72,
+   "certified": {
+    "right": 528,
+    "certified_own": 528,
+    "certified_other": 72,
+    "changed": 0,
+    "changed_certified": 0,
+    "tasks_with_changed": 0
+   },
+   "nearest": {
+    "right": 588,
+    "certified_own": 588,
+    "certified_other": 12,
+    "changed": 0,
+    "changed_certified": 0,
+    "tasks_with_changed": 0
+   }
+  },
+  "200": {
+   "tasks": 200,
+   "inputs": 1200,
+   "radius_zero": 2,
+   "radius_median": 12.645772785430138,
+   "tasks_clean": 178,
+   "tasks_all_blocked": 20,
+   "tasks_some_blocked": 2,
+   "inputs_blocked": 123,
+   "certified": {
+    "right": 1077,
+    "certified_own": 1077,
+    "certified_other": 123,
+    "changed": 0,
+    "changed_certified": 0,
+    "tasks_with_changed": 0
+   },
+   "nearest": {
+    "right": 1188,
+    "certified_own": 1188,
+    "certified_other": 12,
+    "changed": 0,
+    "changed_certified": 0,
+    "tasks_with_changed": 0
+   }
+  },
+  "400": {
+   "tasks": 400,
+   "inputs": 2400,
+   "radius_zero": 2,
+   "radius_median": 12.371709142276181,
+   "tasks_clean": 350,
+   "tasks_all_blocked": 45,
+   "tasks_some_blocked": 5,
+   "inputs_blocked": 282,
+   "certified": {
+    "right": 2118,
+    "certified_own": 2118,
+    "certified_other": 282,
+    "changed": 0,
+    "changed_certified": 0,
+    "tasks_with_changed": 0
+   },
+   "nearest": {
+    "right": 2388,
+    "certified_own": 2388,
+    "certified_other": 12,
+    "changed": 0,
+    "changed_certified": 0,
+    "tasks_with_changed": 0
+   }
+  },
+  "875": {
+   "tasks": 875,
+   "inputs": 5237,
+   "radius_zero": 14,
+   "radius_median": 11.832054919637244,
+   "tasks_clean": 718,
+   "tasks_all_blocked": 148,
+   "tasks_some_blocked": 9,
+   "inputs_blocked": 910,
+   "certified": {
+    "right": 4327,
+    "certified_own": 4327,
+    "certified_other": 910,
+    "changed": 0,
+    "changed_certified": 0,
+    "tasks_with_changed": 0
+   },
+   "nearest": {
+    "right": 5147,
+    "certified_own": 5147,
+    "certified_other": 90,
+    "changed": 0,
+    "changed_certified": 0,
+    "tasks_with_changed": 0
+   }
+  }
+ },
+ "random order, seed 3": {
+  "50": {
+   "tasks": 50,
+   "inputs": 300,
+   "radius_zero": 0,
+   "radius_median": 12.604690514861101,
+   "tasks_clean": 47,
+   "tasks_all_blocked": 3,
+   "tasks_some_blocked": 0,
+   "inputs_blocked": 18,
+   "certified": {
+    "right": 282,
+    "certified_own": 282,
+    "certified_other": 18,
+    "changed": 0,
+    "changed_certified": 0,
+    "tasks_with_changed": 0
+   },
+   "nearest": {
+    "right": 300,
+    "certified_own": 300,
+    "certified_other": 0,
+    "changed": 0,
+    "changed_certified": 0,
+    "tasks_with_changed": 0
+   }
+  },
+  "100": {
+   "tasks": 100,
+   "inputs": 600,
+   "radius_zero": 1,
+   "radius_median": 12.410442723709213,
+   "tasks_clean": 90,
+   "tasks_all_blocked": 10,
+   "tasks_some_blocked": 0,
+   "inputs_blocked": 60,
+   "certified": {
+    "right": 540,
+    "certified_own": 540,
+    "certified_other": 60,
+    "changed": 0,
+    "changed_certified": 0,
+    "tasks_with_changed": 0
+   },
+   "nearest": {
+    "right": 594,
+    "certified_own": 594,
+    "certified_other": 6,
+    "changed": 0,
+    "changed_certified": 0,
+    "tasks_with_changed": 0
+   }
+  },
+  "200": {
+   "tasks": 200,
+   "inputs": 1200,
+   "radius_zero": 3,
+   "radius_median": 12.604690514861101,
+   "tasks_clean": 181,
+   "tasks_all_blocked": 19,
+   "tasks_some_blocked": 0,
+   "inputs_blocked": 114,
+   "certified": {
+    "right": 1086,
+    "certified_own": 1086,
+    "certified_other": 114,
+    "changed": 0,
+    "changed_certified": 0,
+    "tasks_with_changed": 0
+   },
+   "nearest": {
+    "right": 1182,
+    "certified_own": 1182,
+    "certified_other": 18,
+    "changed": 0,
+    "changed_certified": 0,
+    "tasks_with_changed": 0
+   }
+  },
+  "400": {
+   "tasks": 400,
+   "inputs": 2387,
+   "radius_zero": 8,
+   "radius_median": 12.335048633990736,
+   "tasks_clean": 347,
+   "tasks_all_blocked": 52,
+   "tasks_some_blocked": 1,
+   "inputs_blocked": 313,
+   "certified": {
+    "right": 2074,
+    "certified_own": 2074,
+    "certified_other": 313,
+    "changed": 0,
+    "changed_certified": 0,
+    "tasks_with_changed": 0
+   },
+   "nearest": {
+    "right": 2339,
+    "certified_own": 2339,
+    "certified_other": 48,
+    "changed": 0,
+    "changed_certified": 0,
+    "tasks_with_changed": 0
+   }
+  },
+  "875": {
+   "tasks": 875,
+   "inputs": 5237,
+   "radius_zero": 14,
+   "radius_median": 11.775043848554779,
+   "tasks_clean": 724,
+   "tasks_all_blocked": 146,
+   "tasks_some_blocked": 5,
+   "inputs_blocked": 889,
+   "certified": {
+    "right": 4348,
+    "certified_own": 4348,
+    "certified_other": 889,
+    "changed": 0,
+    "changed_certified": 0,
+    "tasks_with_changed": 0
+   },
+   "nearest": {
+    "right": 5147,
+    "certified_own": 5147,
+    "certified_other": 90,
+    "changed": 0,
+    "changed_certified": 0,
+    "tasks_with_changed": 0
+   }
+  }
+ },
+ "random order, seed 4": {
+  "50": {
+   "tasks": 50,
+   "inputs": 297,
+   "radius_zero": 0,
+   "radius_median": 13.550344186982715,
+   "tasks_clean": 49,
+   "tasks_all_blocked": 1,
+   "tasks_some_blocked": 0,
+   "inputs_blocked": 6,
+   "certified": {
+    "right": 291,
+    "certified_own": 291,
+    "certified_other": 6,
+    "changed": 0,
+    "changed_certified": 0,
+    "tasks_with_changed": 0
+   },
+   "nearest": {
+    "right": 297,
+    "certified_own": 297,
+    "certified_other": 0,
+    "changed": 0,
+    "changed_certified": 0,
+    "tasks_with_changed": 0
+   }
+  },
+  "100": {
+   "tasks": 100,
+   "inputs": 597,
+   "radius_zero": 0,
+   "radius_median": 12.94043679101747,
+   "tasks_clean": 89,
+   "tasks_all_blocked": 11,
+   "tasks_some_blocked": 0,
+   "inputs_blocked": 66,
+   "certified": {
+    "right": 531,
+    "certified_own": 531,
+    "certified_other": 66,
+    "changed": 0,
+    "changed_certified": 0,
+    "tasks_with_changed": 0
+   },
+   "nearest": {
+    "right": 597,
+    "certified_own": 597,
+    "certified_other": 0,
+    "changed": 0,
+    "changed_certified": 0,
+    "tasks_with_changed": 0
+   }
+  },
+  "200": {
+   "tasks": 200,
+   "inputs": 1197,
+   "radius_zero": 0,
+   "radius_median": 12.587764179862145,
+   "tasks_clean": 171,
+   "tasks_all_blocked": 29,
+   "tasks_some_blocked": 0,
+   "inputs_blocked": 174,
+   "certified": {
+    "right": 1023,
+    "certified_own": 1023,
+    "certified_other": 174,
+    "changed": 0,
+    "changed_certified": 0,
+    "tasks_with_changed": 0
+   },
+   "nearest": {
+    "right": 1197,
+    "certified_own": 1197,
+    "certified_other": 0,
+    "changed": 0,
+    "changed_certified": 0,
+    "tasks_with_changed": 0
+   }
+  },
+  "400": {
+   "tasks": 400,
+   "inputs": 2387,
+   "radius_zero": 2,
+   "radius_median": 12.40429008907305,
+   "tasks_clean": 345,
+   "tasks_all_blocked": 53,
+   "tasks_some_blocked": 2,
+   "inputs_blocked": 321,
+   "certified": {
+    "right": 2066,
+    "certified_own": 2066,
+    "certified_other": 321,
+    "changed": 0,
+    "changed_certified": 0,
+    "tasks_with_changed": 0
+   },
+   "nearest": {
+    "right": 2375,
+    "certified_own": 2375,
+    "certified_other": 12,
+    "changed": 0,
+    "changed_certified": 0,
+    "tasks_with_changed": 0
+   }
+  },
+  "875": {
+   "tasks": 875,
+   "inputs": 5237,
+   "radius_zero": 14,
+   "radius_median": 11.832054919637244,
+   "tasks_clean": 721,
+   "tasks_all_blocked": 151,
+   "tasks_some_blocked": 3,
+   "inputs_blocked": 910,
+   "certified": {
+    "right": 4327,
+    "certified_own": 4327,
+    "certified_other": 910,
+    "changed": 0,
+    "changed_certified": 0,
+    "tasks_with_changed": 0
+   },
+   "nearest": {
+    "right": 5147,
+    "certified_own": 5147,
+    "certified_other": 90,
+    "changed": 0,
+    "changed_certified": 0,
+    "tasks_with_changed": 0
+   }
+  }
+ },
+ "order of the task numbers": {
+  "50": {
+   "tasks": 50,
+   "inputs": 300,
+   "radius_zero": 0,
+   "radius_median": 10.148943280621987,
+   "tasks_clean": 47,
+   "tasks_all_blocked": 2,
+   "tasks_some_blocked": 1,
+   "inputs_blocked": 13,
+   "certified": {
+    "right": 287,
+    "certified_own": 287,
+    "certified_other": 13,
+    "changed": 0,
+    "changed_certified": 0,
+    "tasks_with_changed": 0
+   },
+   "nearest": {
+    "right": 294,
+    "certified_own": 294,
+    "certified_other": 6,
+    "changed": 0,
+    "changed_certified": 0,
+    "tasks_with_changed": 0
+   }
+  },
+  "100": {
+   "tasks": 100,
+   "inputs": 600,
+   "radius_zero": 4,
+   "radius_median": 10.64777308041223,
+   "tasks_clean": 89,
+   "tasks_all_blocked": 10,
+   "tasks_some_blocked": 1,
+   "inputs_blocked": 61,
+   "certified": {
+    "right": 539,
+    "certified_own": 539,
+    "certified_other": 61,
+    "changed": 0,
+    "changed_certified": 0,
+    "tasks_with_changed": 0
+   },
+   "nearest": {
+    "right": 570,
+    "certified_own": 570,
+    "certified_other": 30,
+    "changed": 0,
+    "changed_certified": 0,
+    "tasks_with_changed": 0
+   }
+  },
+  "200": {
+   "tasks": 200,
+   "inputs": 1200,
+   "radius_zero": 4,
+   "radius_median": 10.64777308041223,
+   "tasks_clean": 172,
+   "tasks_all_blocked": 27,
+   "tasks_some_blocked": 1,
+   "inputs_blocked": 163,
+   "certified": {
+    "right": 1037,
+    "certified_own": 1037,
+    "certified_other": 163,
+    "changed": 0,
+    "changed_certified": 0,
+    "tasks_with_changed": 0
+   },
+   "nearest": {
+    "right": 1170,
+    "certified_own": 1170,
+    "certified_other": 30,
+    "changed": 0,
+    "changed_certified": 0,
+    "tasks_with_changed": 0
+   }
+  },
+  "400": {
+   "tasks": 400,
+   "inputs": 2391,
+   "radius_zero": 8,
+   "radius_median": 11.261963683350473,
+   "tasks_clean": 352,
+   "tasks_all_blocked": 47,
+   "tasks_some_blocked": 1,
+   "inputs_blocked": 283,
+   "certified": {
+    "right": 2108,
+    "certified_own": 2108,
+    "certified_other": 283,
+    "changed": 0,
+    "changed_certified": 0,
+    "tasks_with_changed": 0
+   },
+   "nearest": {
+    "right": 2337,
+    "certified_own": 2337,
+    "certified_other": 54,
+    "changed": 0,
+    "changed_certified": 0,
+    "tasks_with_changed": 0
+   }
+  },
+  "875": {
+   "tasks": 875,
+   "inputs": 5237,
+   "radius_zero": 14,
+   "radius_median": 11.728288092864933,
+   "tasks_clean": 777,
+   "tasks_all_blocked": 95,
+   "tasks_some_blocked": 3,
+   "inputs_blocked": 576,
+   "certified": {
+    "right": 4661,
+    "certified_own": 4661,
+    "certified_other": 576,
+    "changed": 0,
+    "changed_certified": 0,
+    "tasks_with_changed": 0
+   },
+   "nearest": {
+    "right": 5147,
+    "certified_own": 5147,
+    "certified_other": 90,
+    "changed": 0,
+    "changed_certified": 0,
+    "tasks_with_changed": 0
+   },
+   "collisions": [
+    {
+     "task": "task064_all_elements_except_first_i",
+     "blocked": 1,
+     "inputs": 6,
+     "older": "task063_first_i_elements",
+     "alike": 0.8571428571428571,
+     "same_definition": false,
+     "radius_older": 12.887182273295307,
+     "radius_new": 5.510091621577052
+    },
+    {
+     "task": "task072_abductivenli_answer_generation",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task067_abductivenli_answer_generation",
+     "alike": 0.8674698795180723,
+     "same_definition": false,
+     "radius_older": 9.330378840862668,
+     "radius_new": 3.0870821872788428
+    },
+    {
+     "task": "task077_splash_explanation_to_sql",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task076_splash_correcting_sql_mistake",
+     "alike": 0.9438775510204082,
+     "same_definition": false,
+     "radius_older": 10.64777308041223,
+     "radius_new": 1.1793654257071544
+    },
+    {
+     "task": "task099_reverse_elements_between_index_i_and_j",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task091_all_elements_from_index_i_to_j",
+     "alike": 0.9411764705882353,
+     "same_definition": false,
+     "radius_older": 10.895794373964492,
+     "radius_new": 2.7573955705069717
+    },
+    {
+     "task": "task100_concatenate_all_elements_from_index_i_to_j",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task091_all_elements_from_index_i_to_j",
+     "alike": 0.9130434782608695,
+     "same_definition": false,
+     "radius_older": 10.895794373964492,
+     "radius_new": 5.269254038841698
+    },
+    {
+     "task": "task107_splash_question_to_sql",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task076_splash_correcting_sql_mistake",
+     "alike": 0.923469387755102,
+     "same_definition": false,
+     "radius_older": 10.64777308041223,
+     "radius_new": 1.3266042048772322
+    },
+    {
+     "task": "task127_scan_long_text_generation_action_command_all",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task126_scan_structured_text_generation_command_action_all",
+     "alike": 0.927461139896373,
+     "same_definition": false,
+     "radius_older": 11.32436889152266,
+     "radius_new": 2.0040865346675303
+    },
+    {
+     "task": "task128_scan_structured_text_generation_command_action_short",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task126_scan_structured_text_generation_command_action_all",
+     "alike": 1.0,
+     "same_definition": true,
+     "radius_older": 11.32436889152266,
+     "radius_new": 0.0
+    },
+    {
+     "task": "task129_scan_long_text_generation_action_command_short",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task126_scan_structured_text_generation_command_action_all",
+     "alike": 0.927461139896373,
+     "same_definition": false,
+     "radius_older": 11.32436889152266,
+     "radius_new": 0.0
+    },
+    {
+     "task": "task130_scan_structured_text_generation_command_action_long",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task126_scan_structured_text_generation_command_action_all",
+     "alike": 1.0,
+     "same_definition": true,
+     "radius_older": 11.32436889152266,
+     "radius_new": 0.0
+    },
+    {
+     "task": "task131_scan_long_text_generation_action_command_long",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task126_scan_structured_text_generation_command_action_all",
+     "alike": 0.927461139896373,
+     "same_definition": false,
+     "radius_older": 11.32436889152266,
+     "radius_new": 0.0
+    },
+    {
+     "task": "task146_afs_argument_similarity_gun_control",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task145_afs_argument_similarity_death_penalty",
+     "alike": 0.9759036144578314,
+     "same_definition": false,
+     "radius_older": 12.22184812207413,
+     "radius_new": 2.4755450468415487
+    },
+    {
+     "task": "task147_afs_argument_similarity_gay_marriage",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task145_afs_argument_similarity_death_penalty",
+     "alike": 0.9759036144578314,
+     "same_definition": false,
+     "radius_older": 12.22184812207413,
+     "radius_new": 2.0787090670439556
+    },
+    {
+     "task": "task152_tomqa_find_location_easy_noise",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task151_tomqa_find_location_easy_clean",
+     "alike": 0.7207207207207207,
+     "same_definition": false,
+     "radius_older": 13.750782971240739,
+     "radius_new": 6.640343830486882
+    },
+    {
+     "task": "task153_tomqa_find_location_hard_clean",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task151_tomqa_find_location_easy_clean",
+     "alike": 0.7843137254901961,
+     "same_definition": false,
+     "radius_older": 13.750782971240739,
+     "radius_new": 4.473277813115442
+    },
+    {
+     "task": "task154_tomqa_find_location_hard_noise",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task151_tomqa_find_location_easy_clean",
+     "alike": 0.6451612903225806,
+     "same_definition": false,
+     "radius_older": 13.750782971240739,
+     "radius_new": 2.6574372203083576
+    },
+    {
+     "task": "task163_count_words_ending_with_letter",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task162_count_words_starting_with_letter",
+     "alike": 0.9615384615384616,
+     "same_definition": false,
+     "radius_older": 10.71573118341282,
+     "radius_new": 4.910142962692139
+    },
+    {
+     "task": "task184_break_generate_question",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task176_break_decompose_questions",
+     "alike": 0.8710526315789474,
+     "same_definition": false,
+     "radius_older": 14.059873904287443,
+     "radius_new": 1.921395022312733
+    },
+    {
+     "task": "task191_hotpotqa_question_generation",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task170_hotpotqa_answer_generation",
+     "alike": 0.875,
+     "same_definition": false,
+     "radius_older": 14.856435516389714,
+     "radius_new": 2.003865769289019
+    },
+    {
+     "task": "task210_logic2text_structured_text_generation",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task110_logic2text_sentence_generation",
+     "alike": 0.8130841121495327,
+     "same_definition": false,
+     "radius_older": 12.392945403497036,
+     "radius_new": 5.172480732459565
+    },
+    {
+     "task": "task211_logic2text_classification",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task110_logic2text_sentence_generation",
+     "alike": 0.8525798525798526,
+     "same_definition": false,
+     "radius_older": 12.392945403497036,
+     "radius_new": 1.8436934111604226
+    },
+    {
+     "task": "task229_arc_answer_generation_hard",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task228_arc_answer_generation_easy",
+     "alike": 0.9827586206896551,
+     "same_definition": false,
+     "radius_older": 7.880524376810648,
+     "radius_new": 2.5767842323596564
+    },
+    {
+     "task": "task244_count_elements_in_set_union",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task243_count_elements_in_set_intersection",
+     "alike": 0.8172043010752689,
+     "same_definition": false,
+     "radius_older": 12.892234340684567,
+     "radius_new": 6.232121182882505
+    },
+    {
+     "task": "task245_check_presence_in_set_intersection",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task243_count_elements_in_set_intersection",
+     "alike": 0.8241758241758241,
+     "same_definition": false,
+     "radius_older": 12.892234340684567,
+     "radius_new": 4.555342250616713
+    },
+    {
+     "task": "task270_csrg_counterfactual_context_generation",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task269_csrg_counterfactual_story_generation",
+     "alike": 0.8364779874213837,
+     "same_definition": false,
+     "radius_older": 13.404823212623068,
+     "radius_new": 4.0227371993838394
+    },
+    {
+     "task": "task285_imdb_answer_generation",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task196_sentiment140_answer_generation",
+     "alike": 0.8809523809523809,
+     "same_definition": false,
+     "radius_older": 15.520541233122685,
+     "radius_new": 7.545202111293879
+    },
+    {
+     "task": "task287_casehold_legal_incorrect_answer_generation",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task268_casehold_legal_answer_generation",
+     "alike": 0.8557692307692307,
+     "same_definition": false,
+     "radius_older": 12.226654114004457,
+     "radius_new": 3.7225186713718297
+    },
+    {
+     "task": "task297_storycloze_incorrect_end_classification",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task296_storycloze_correct_end_classification",
+     "alike": 0.7758620689655172,
+     "same_definition": false,
+     "radius_older": 9.977707616131141,
+     "radius_new": 6.027117484482698
+    },
+    {
+     "task": "task306_jeopardy_answer_generation_double",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task305_jeopardy_answer_generation_normal",
+     "alike": 0.975609756097561,
+     "same_definition": false,
+     "radius_older": 15.301624069317791,
+     "radius_new": 3.785033876058956
+    },
+    {
+     "task": "task307_jeopardy_answer_generation_final",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task305_jeopardy_answer_generation_normal",
+     "alike": 0.975609756097561,
+     "same_definition": false,
+     "radius_older": 15.301624069317791,
+     "radius_new": 0.0
+    },
+    {
+     "task": "task308_jeopardy_answer_generation_all",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task305_jeopardy_answer_generation_normal",
+     "alike": 0.975609756097561,
+     "same_definition": false,
+     "radius_older": 15.301624069317791,
+     "radius_new": 0.0
+    },
+    {
+     "task": "task319_stereoset_classification_profession",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task318_stereoset_classification_gender",
+     "alike": 0.975609756097561,
+     "same_definition": false,
+     "radius_older": 10.271852280292627,
+     "radius_new": 1.9296123068824473
+    },
+    {
+     "task": "task320_stereoset_classification_race",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task318_stereoset_classification_gender",
+     "alike": 0.975609756097561,
+     "same_definition": false,
+     "radius_older": 10.271852280292627,
+     "radius_new": 1.7126027521648701
+    },
+    {
+     "task": "task321_stereoset_classification_religion",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task318_stereoset_classification_gender",
+     "alike": 0.8780487804878049,
+     "same_definition": false,
+     "radius_older": 10.271852280292627,
+     "radius_new": 3.3235720238231803
+    },
+    {
+     "task": "task341_winomt_classification_gender_anti",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task340_winomt_classification_gender_pro",
+     "alike": 1.0,
+     "same_definition": false,
+     "radius_older": 15.211015529906302,
+     "radius_new": 0.0
+    },
+    {
+     "task": "task342_winomt_classification_profession_pro",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task340_winomt_classification_gender_pro",
+     "alike": 0.7692307692307693,
+     "same_definition": false,
+     "radius_older": 15.211015529906302,
+     "radius_new": 7.344211436537818
+    },
+    {
+     "task": "task343_winomt_classification_profession_anti",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task340_winomt_classification_gender_pro",
+     "alike": 0.7692307692307693,
+     "same_definition": false,
+     "radius_older": 15.211015529906302,
+     "radius_new": 0.0
+    },
+    {
+     "task": "task346_hybridqa_classification",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task345_hybridqa_answer_generation",
+     "alike": 0.8579234972677595,
+     "same_definition": false,
+     "radius_older": 10.54495631349543,
+     "radius_new": 1.3483203711847012
+    },
+    {
+     "task": "task347_hybridqa_incorrect_answer_generation",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task345_hybridqa_answer_generation",
+     "alike": 0.8715083798882681,
+     "same_definition": false,
+     "radius_older": 10.54495631349543,
+     "radius_new": 1.3941186180648686
+    },
+    {
+     "task": "task351_winomt_classification_gender_identifiability_anti",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task350_winomt_classification_gender_identifiability_pro",
+     "alike": 0.94,
+     "same_definition": false,
+     "radius_older": 10.970000061088413,
+     "radius_new": 4.110760095844489
+    },
+    {
+     "task": "task378_reverse_words_of_given_length",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task377_remove_words_of_given_length",
+     "alike": 0.9722222222222222,
+     "same_definition": false,
+     "radius_older": 14.272475195756563,
+     "radius_new": 5.122905075211053
+    },
+    {
+     "task": "task382_hybridqa_answer_generation",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task345_hybridqa_answer_generation",
+     "alike": 0.9393939393939394,
+     "same_definition": false,
+     "radius_older": 10.54495631349543,
+     "radius_new": 0.7224916898791973
+    },
+    {
+     "task": "task392_inverse_causal_relationship",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task391_causal_relationship",
+     "alike": 0.8888888888888888,
+     "same_definition": false,
+     "radius_older": 12.284111657522947,
+     "radius_new": 5.399814727262026
+    },
+    {
+     "task": "task472_haspart_classification",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task471_haspart_answer_generation",
+     "alike": 0.7681159420289855,
+     "same_definition": false,
+     "radius_older": 18.920077396994063,
+     "radius_new": 6.430316901935477
+    },
+    {
+     "task": "task478_cls_english_music_classification",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task476_cls_english_books_classification",
+     "alike": 0.9761904761904762,
+     "same_definition": false,
+     "radius_older": 9.197557052246458,
+     "radius_new": 2.687293336596478
+    },
+    {
+     "task": "task491_mwsc_answer_generation",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task489_mwsc_question_generation",
+     "alike": 0.8300653594771242,
+     "same_definition": false,
+     "radius_older": 9.398900851453341,
+     "radius_new": 3.8970911320277146
+    },
+    {
+     "task": "task492_mwsc_incorrect_answer_generation",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task489_mwsc_question_generation",
+     "alike": 0.7935483870967742,
+     "same_definition": false,
+     "radius_older": 9.398900851453341,
+     "radius_new": 2.984455649685537
+    },
+    {
+     "task": "task560_alt_translation_en_entk",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task547_alt_translation_entk_en",
+     "alike": 1.0,
+     "same_definition": false,
+     "radius_older": 17.0616813852148,
+     "radius_new": 0.12696835853827892
+    },
+    {
+     "task": "task631_dbpedia_14_incorrect_answer_generation",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task629_dbpedia_14_classification",
+     "alike": 0.717948717948718,
+     "same_definition": false,
+     "radius_older": 11.740422965413005,
+     "radius_new": 4.435218214047805
+    },
+    {
+     "task": "task675_google_wellformed_query_sentence_generation",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task674_google_wellformed_query_sentence_generation",
+     "alike": 0.7837837837837838,
+     "same_definition": false,
+     "radius_older": 14.977876821972613,
+     "radius_new": 5.473081756673217
+    },
+    {
+     "task": "task711_mmmlu_answer_generation_high_school_us_history",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task702_mmmlu_answer_generation_high_school_european_history",
+     "alike": 0.9705882352941176,
+     "same_definition": false,
+     "radius_older": 4.8093985040365625,
+     "radius_new": 2.0785967779394943
+    },
+    {
+     "task": "task739_lhoestq_question_generation",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task001_quoref_question_generation",
+     "alike": 0.9105691056910569,
+     "same_definition": false,
+     "radius_older": 10.057193677653375,
+     "radius_new": 2.1436692380353257
+    },
+    {
+     "task": "task845_pubmedqa_question_generation",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task074_squad1.1_question_generation",
+     "alike": 0.8170731707317073,
+     "same_definition": false,
+     "radius_older": 10.264709950752968,
+     "radius_new": 4.859842809505347
+    },
+    {
+     "task": "task847_pubmedqa_question_generation",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task074_squad1.1_question_generation",
+     "alike": 0.8227848101265823,
+     "same_definition": false,
+     "radius_older": 10.264709950752968,
+     "radius_new": 1.5940596393318665
+    },
+    {
+     "task": "task863_asdiv_multiop_question_answering",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task862_asdiv_multidiv_question_answering",
+     "alike": 1.0,
+     "same_definition": false,
+     "radius_older": 6.852923001132204,
+     "radius_new": 0.06734725217003924
+    },
+    {
+     "task": "task864_asdiv_singleop_question_answering",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task862_asdiv_multidiv_question_answering",
+     "alike": 0.9302325581395349,
+     "same_definition": false,
+     "radius_older": 6.852923001132204,
+     "radius_new": 3.2988461167247576
+    },
+    {
+     "task": "task865_mawps_addsub_question_answering",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task751_svamp_subtraction_question_answering",
+     "alike": 0.868421052631579,
+     "same_definition": false,
+     "radius_older": 13.886831299251458,
+     "radius_new": 4.480598629625728
+    },
+    {
+     "task": "task867_mawps_multiop_question_answering",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task862_asdiv_multidiv_question_answering",
+     "alike": 1.0,
+     "same_definition": true,
+     "radius_older": 6.852923001132204,
+     "radius_new": 0.0
+    },
+    {
+     "task": "task868_cfq_mcd1_explanation_to_sql",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task076_splash_correcting_sql_mistake",
+     "alike": 0.9056122448979592,
+     "same_definition": false,
+     "radius_older": 10.64777308041223,
+     "radius_new": 0.7959086980401546
+    },
+    {
+     "task": "task868_mawps_singleop_question_answering",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task862_asdiv_multidiv_question_answering",
+     "alike": 0.9534883720930233,
+     "same_definition": false,
+     "radius_older": 6.852923001132204,
+     "radius_new": 1.6978598229967967
+    },
+    {
+     "task": "task869_cfq_mcd1_sql_to_explanation",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task076_splash_correcting_sql_mistake",
+     "alike": 0.9132653061224489,
+     "same_definition": false,
+     "radius_older": 10.64777308041223,
+     "radius_new": 1.018602076124445
+    },
+    {
+     "task": "task893_gap_fill_the_blank_coreference_resolution",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task892_gap_reverse_coreference_resolution",
+     "alike": 0.8367346938775511,
+     "same_definition": false,
+     "radius_older": 13.67128850146621,
+     "radius_new": 4.8730795672660765
+    },
+    {
+     "task": "task917_coqa_question_generation",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task074_squad1.1_question_generation",
+     "alike": 0.9746835443037974,
+     "same_definition": false,
+     "radius_older": 10.264709950752968,
+     "radius_new": 2.7182598820234722
+    },
+    {
+     "task": "task928_yelp_positive_to_negative_style_transfer",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task927_yelp_negative_to_positive_style_transfer",
+     "alike": 0.9032258064516129,
+     "same_definition": false,
+     "radius_older": 14.706479229409435,
+     "radius_new": 4.3419667821202514
+    },
+    {
+     "task": "task936_defeasible_nli_snli_classification",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task935_defeasible_nli_atomic_classification",
+     "alike": 0.9444444444444444,
+     "same_definition": false,
+     "radius_older": 13.667120262651432,
+     "radius_new": 1.49177974694261
+    },
+    {
+     "task": "task1167_penn_treebank_coarse_pos_tagging",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task583_udeps_eng_coarse_pos_tagging",
+     "alike": 0.6782608695652174,
+     "same_definition": false,
+     "radius_older": 8.550039256466205,
+     "radius_new": 3.1887524142292456
+    },
+    {
+     "task": "task1168_brown_coarse_pos_tagging",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task583_udeps_eng_coarse_pos_tagging",
+     "alike": 0.691304347826087,
+     "same_definition": false,
+     "radius_older": 8.550039256466205,
+     "radius_new": 0.5929047013203318
+    },
+    {
+     "task": "task1197_atomic_classification_oreact",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task1196_atomic_classification_oeffect",
+     "alike": 0.7703703703703704,
+     "same_definition": false,
+     "radius_older": 8.887618151816046,
+     "radius_new": 3.7949303781723596
+    },
+    {
+     "task": "task1200_atomic_classification_xeffect",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task1196_atomic_classification_oeffect",
+     "alike": 0.856,
+     "same_definition": false,
+     "radius_older": 8.887618151816046,
+     "radius_new": 2.9920678284988753
+    },
+    {
+     "task": "task1203_atomic_classification_xreact",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task1196_atomic_classification_oeffect",
+     "alike": 0.7593984962406015,
+     "same_definition": false,
+     "radius_older": 8.887618151816046,
+     "radius_new": 3.722024520762149
+    },
+    {
+     "task": "task1205_atomic_classification_isafter",
+     "blocked": 1,
+     "inputs": 6,
+     "older": "task1196_atomic_classification_oeffect",
+     "alike": 0.688,
+     "same_definition": false,
+     "radius_older": 8.887618151816046,
+     "radius_new": 2.6858794357036095
+    },
+    {
+     "task": "task1206_atomic_classification_isbefore",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task1205_atomic_classification_isafter",
+     "alike": 0.9887640449438202,
+     "same_definition": false,
+     "radius_older": 2.6858794357036095,
+     "radius_new": 0.5926836950815273
+    },
+    {
+     "task": "task1211_atomic_classification_hassubevent",
+     "blocked": 4,
+     "inputs": 6,
+     "older": "task1196_atomic_classification_oeffect",
+     "alike": 0.728,
+     "same_definition": false,
+     "radius_older": 8.887618151816046,
+     "radius_new": 2.648328506115513
+    },
+    {
+     "task": "task1310_amazonreview_rating_classification",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task588_amazonfood_rating_classification",
+     "alike": 0.9,
+     "same_definition": false,
+     "radius_older": 13.710758111202155,
+     "radius_new": 3.5107404538516525
+    },
+    {
+     "task": "task1311_amazonreview_rating_classification",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task588_amazonfood_rating_classification",
+     "alike": 0.6716417910447762,
+     "same_definition": false,
+     "radius_older": 13.710758111202155,
+     "radius_new": 6.546277610430677
+    },
+    {
+     "task": "task1312_amazonreview_polarity_classification",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task586_amazonfood_polarity_classification",
+     "alike": 0.90625,
+     "same_definition": false,
+     "radius_older": 12.314324130615013,
+     "radius_new": 3.4444680880887195
+    },
+    {
+     "task": "task1313_amazonreview_polarity_classification",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task587_amazonfood_polarity_correction_classification",
+     "alike": 0.90625,
+     "same_definition": false,
+     "radius_older": 9.72224185488039,
+     "radius_new": 4.423997395077966
+    },
+    {
+     "task": "task1386_anli_r2_entailment",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task1385_anli_r1_entailment",
+     "alike": 0.975,
+     "same_definition": false,
+     "radius_older": 14.073031421287839,
+     "radius_new": 0.20478368640304323
+    },
+    {
+     "task": "task1387_anli_r3_entailment",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task1385_anli_r1_entailment",
+     "alike": 1.0,
+     "same_definition": true,
+     "radius_older": 14.073031421287839,
+     "radius_new": 0.0
+    },
+    {
+     "task": "task1388_cb_entailment",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task1385_anli_r1_entailment",
+     "alike": 0.975,
+     "same_definition": false,
+     "radius_older": 14.073031421287839,
+     "radius_new": 0.0
+    },
+    {
+     "task": "task1403_check_validity_date_mmddyyyy",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task1333_check_validity_date_ddmmyyyy",
+     "alike": 0.7548387096774194,
+     "same_definition": false,
+     "radius_older": 11.811064413075634,
+     "radius_new": 4.29781579078286
+    },
+    {
+     "task": "task1424_mathqa_probability",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task1421_mathqa_other",
+     "alike": 0.9,
+     "same_definition": false,
+     "radius_older": 15.64236688814081,
+     "radius_new": 6.557475774900389
+    },
+    {
+     "task": "task1442_doqa_movies_isanswerable",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task1439_doqa_cooking_isanswerable",
+     "alike": 0.9848484848484849,
+     "same_definition": false,
+     "radius_older": 12.666523354643449,
+     "radius_new": 1.4960311665704322
+    },
+    {
+     "task": "task1446_farthest_integers",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task1445_closest_integers",
+     "alike": 0.9607843137254902,
+     "same_definition": false,
+     "radius_older": 13.718342329316721,
+     "radius_new": 3.103934224956383
+    },
+    {
+     "task": "task1449_disease_entity_extraction_bc5cdr_dataset",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task1448_disease_entity_extraction_ncbi_dataset",
+     "alike": 0.8947368421052632,
+     "same_definition": false,
+     "radius_older": 11.364713438951364,
+     "radius_new": 3.641748099353303
+    },
+    {
+     "task": "task1481_gene_extraction_bc2gm_dataset",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task1480_gene_extraction_jnlpba_dataset",
+     "alike": 1.0,
+     "same_definition": true,
+     "radius_older": 7.113259824163414,
+     "radius_new": 0.0
+    },
+    {
+     "task": "task1482_gene_extraction_chemprot_dataset",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task1480_gene_extraction_jnlpba_dataset",
+     "alike": 1.0,
+     "same_definition": true,
+     "radius_older": 7.113259824163414,
+     "radius_new": 0.0
+    },
+    {
+     "task": "task1484_gene_extraction_linnaeus_dataset",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task1480_gene_extraction_jnlpba_dataset",
+     "alike": 1.0,
+     "same_definition": true,
+     "radius_older": 7.113259824163414,
+     "radius_new": 0.0
+    },
+    {
+     "task": "task1489_sarcasmdetection_tweet_classification",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task1488_sarcasmdetection_headline_classification",
+     "alike": 0.9682539682539683,
+     "same_definition": false,
+     "radius_older": 13.194881885389393,
+     "radius_new": 2.8137853983973296
+    },
+    {
+     "task": "task1501_dstc3_answer_generation",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task1499_dstc3_summarization",
+     "alike": 0.7410714285714286,
+     "same_definition": false,
+     "radius_older": 11.451847509268811,
+     "radius_new": 5.338305877144771
+    },
+    {
+     "task": "task1509_evalution_antonyms",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task1508_wordnet_antonyms",
+     "alike": 0.6551724137931034,
+     "same_definition": false,
+     "radius_older": 20.827454546968294,
+     "radius_new": 9.186886788441694
+    },
+    {
+     "task": "task1581_eqasc-perturbed_answer_generation",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task1580_eqasc-perturbed_question_generation",
+     "alike": 0.65,
+     "same_definition": false,
+     "radius_older": 18.05694390355189,
+     "radius_new": 3.448074728529734
+    },
+    {
+     "task": "task1584_evalution_meronym_classification",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task1583_bless_meronym_classification",
+     "alike": 0.7083333333333334,
+     "same_definition": false,
+     "radius_older": 13.461018765614437,
+     "radius_new": 5.945304033729237
+    },
+    {
+     "task": "task1585_root09_hypernym_generation",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task1582_bless_hypernym_generation",
+     "alike": 1.0,
+     "same_definition": false,
+     "radius_older": 14.764305523892103,
+     "radius_new": 0.06830304930112309
+    },
+    {
+     "task": "task1593_yahoo_answers_topics_classification",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task1592_yahoo_answers_topics_classfication",
+     "alike": 0.8431372549019608,
+     "same_definition": false,
+     "radius_older": 12.467056620588268,
+     "radius_new": 2.384655540830289
+    },
+    {
+     "task": "task1596_event2mind_text_generation_2",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task1595_event2mind_text_generation_1",
+     "alike": 0.88,
+     "same_definition": false,
+     "radius_older": 12.139677335146587,
+     "radius_new": 5.692629861184566
+    },
+    {
+     "task": "task1624_disfl_qa_question_yesno_classification",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task1622_disfl_qa_text_modication",
+     "alike": 0.5892857142857143,
+     "same_definition": false,
+     "radius_older": 16.76988449696031,
+     "radius_new": 8.171775332293281
+    },
+    {
+     "task": "task1670_md_gender_bias_text_modification",
+     "blocked": 6,
+     "inputs": 6,
+     "older": "task1669_md_gender_bias_text_modification",
+     "alike": 0.9696969696969697,
+     "same_definition": false,
+     "radius_older": 15.57519149498067,
+     "radius_new": 2.1482940264171884
+    }
+   ]
+  }
+ },
+ "other_radius_factors": {
+  "0.1": {
+   "tasks": 875,
+   "inputs": 5237,
+   "radius_zero": 14,
+   "radius_median": 2.3356526968024256,
+   "tasks_clean": 856,
+   "tasks_all_blocked": 19,
+   "tasks_some_blocked": 0,
+   "inputs_blocked": 114,
+   "certified": {
+    "right": 5117,
+    "certified_own": 5111,
+    "certified_other": 114,
+    "changed": 0,
+    "changed_certified": 0,
+    "tasks_with_changed": 0
+   },
+   "nearest": {
+    "right": 5147,
+    "certified_own": 5141,
+    "certified_other": 84,
+    "changed": 0,
+    "changed_certified": 0,
+    "tasks_with_changed": 0
+   }
+  },
+  "0.2": {
+   "tasks": 875,
+   "inputs": 5237,
+   "radius_zero": 14,
+   "radius_median": 4.671305393604851,
+   "tasks_clean": 843,
+   "tasks_all_blocked": 32,
+   "tasks_some_blocked": 0,
+   "inputs_blocked": 192,
+   "certified": {
+    "right": 5045,
+    "certified_own": 5045,
+    "certified_other": 192,
+    "changed": 0,
+    "changed_certified": 0,
+    "tasks_with_changed": 0
+   },
+   "nearest": {
+    "right": 5147,
+    "certified_own": 5147,
+    "certified_other": 90,
+    "changed": 0,
+    "changed_certified": 0,
+    "tasks_with_changed": 0
+   }
+  },
+  "0.3": {
+   "tasks": 875,
+   "inputs": 5237,
+   "radius_zero": 14,
+   "radius_median": 7.006958090407276,
+   "tasks_clean": 827,
+   "tasks_all_blocked": 46,
+   "tasks_some_blocked": 2,
+   "inputs_blocked": 284,
+   "certified": {
+    "right": 4953,
+    "certified_own": 4953,
+    "certified_other": 284,
+    "changed": 0,
+    "changed_certified": 0,
+    "tasks_with_changed": 0
+   },
+   "nearest": {
+    "right": 5147,
+    "certified_own": 5147,
+    "certified_other": 90,
+    "changed": 0,
+    "changed_certified": 0,
+    "tasks_with_changed": 0
+   }
+  },
+  "0.4": {
+   "tasks": 875,
+   "inputs": 5237,
+   "radius_zero": 14,
+   "radius_median": 9.342610787209702,
+   "tasks_clean": 795,
+   "tasks_all_blocked": 78,
+   "tasks_some_blocked": 2,
+   "inputs_blocked": 473,
+   "certified": {
+    "right": 4764,
+    "certified_own": 4764,
+    "certified_other": 473,
+    "changed": 0,
+    "changed_certified": 0,
+    "tasks_with_changed": 0
+   },
+   "nearest": {
+    "right": 5147,
+    "certified_own": 5147,
+    "certified_other": 90,
+    "changed": 0,
+    "changed_certified": 0,
+    "tasks_with_changed": 0
+   }
+  },
+  "0.5": {
+   "tasks": 875,
+   "inputs": 5237,
+   "radius_zero": 14,
+   "radius_median": 11.678263484012128,
+   "tasks_clean": 724,
+   "tasks_all_blocked": 129,
+   "tasks_some_blocked": 22,
+   "inputs_blocked": 849,
+   "certified": {
+    "right": 4388,
+    "certified_own": 4388,
+    "certified_other": 849,
+    "changed": 0,
+    "changed_certified": 0,
+    "tasks_with_changed": 0
+   },
+   "nearest": {
+    "right": 5147,
+    "certified_own": 5147,
+    "certified_other": 90,
+    "changed": 0,
+    "changed_certified": 0,
+    "tasks_with_changed": 0
+   }
+  }
+ },
+ "largest_holders": [
+  [
+   "task713_mmmlu_answer_generation_human_aging",
+   33
+  ],
+  [
+   "task1198_atomic_classification_owant",
+   14
+  ],
+  [
+   "task131_scan_long_text_generation_action_command_long",
+   5
+  ],
+  [
+   "task752_svamp_multiplication_question_answering",
+   5
+  ],
+  [
+   "task077_splash_explanation_to_sql",
+   4
+  ],
+  [
+   "task308_jeopardy_answer_generation_all",
+   3
+  ],
+  [
+   "task1205_atomic_classification_isafter",
+   3
+  ],
+  [
+   "task1388_cb_entailment",
+   3
+  ],
+  [
+   "task342_winomt_classification_profession_pro",
+   3
+  ],
+  [
+   "task321_stereoset_classification_religion",
+   3
+  ]
+ ]
+}

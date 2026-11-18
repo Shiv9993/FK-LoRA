@@ -1,0 +1,41 @@
+\begin{abstract}
+A language model that learns tasks one after another through adapters forgets, because every new
+adapter changes what the model computes on old inputs. FK-LoRA gives every task one frozen set of
+adapters and sends each input to one of them. An answer can then change only if its route changes,
+so retention becomes a property of the rule that sets the route, and can be proved or measured for
+that rule. Our main rule reads no instruction. It is a recogniser over all tasks, built on frozen
+states of the model itself; it does not depend on the order in which tasks arrive, and it blocks no
+task. With it come an audit, which estimates and bounds, for each task and from its held-out
+inputs, the share of its answers that have changed, and a handicap, which limits in advance what a
+later task can take from an older one. A simple bound says what cannot be avoided: without
+instructions, any method loses on two tasks together at least the share
+of inputs that they have in common with different right answers. Benchmarks hide this, because
+their inputs begin with the instruction of the task. When it is removed, the two published methods
+that we ran change \AudSeedsGainloraChanged{} and \AudSeedsInfloraChanged{} of \AudSeedsCompared{}
+answers (\FiveGainChanged{} and \FiveInfChanged{} with it). This loss was not forced: no input of
+these benchmarks occurs in two tasks, and the recogniser gives \AudDevLLamOneEnd{}\% of the test
+inputs of 15 benchmark tasks to their task (development data), \AudScaleLongThreeEnd{}\% on a second
+benchmark and \AudFreshFourthLEnd{}\% on 30 unseen tasks. Trained without instructions on one
+sequence of five of these tasks (three seeds), plain adapters behind the recogniser change
+\AudSeedsRidgeChanged{} of \AudSeedsCompared{} answers and end at \AudSeedsRidgeAPOne{} Rouge-L,
+against \AudSeedsGainloraAPOne{} and \AudSeedsInfloraAPOne{} for the published methods. In that
+comparison, with a tenth of their training epochs, most of the gap is learning. With their
+published number of epochs (one seed) the two methods learn the tasks as well as plain adapters
+and then lose them: they forget \AudFullGainloraFTInt{} and \AudFullInfloraFTInt{} points and end
+at \AudFullGainloraAPOne{} and \AudFullInfloraAPOne{}, where plain adapters behind the recogniser
+end at \AudFullOursRidgeAPOne{} with the same number of epochs (\AudOursRidgeAPOne{} with a tenth of them); with their instructions left in, the same two methods forget \AudFullDefOriginalGainloraFTOne{} and \AudFullDefOriginalInfloraFTOne{} points. When inputs do carry an instruction, a second rule gives an exact statement: each task
+claims a zone around the frozen word-vectors of its instruction, and we prove that the answer to an
+input inside a zone never changes. On SuperNI with T5-base no answer to an earlier task changed
+(\FiveCertChanged{} of \FiveCertCompared{} on five tasks, three seeds; \FifteenCertChanged{} of
+\FifteenCertCompared{} on fifteen), but reworded instructions leave the zones: on machine
+paraphrases of \WidenTasksEval{} real tasks they certify \WidenRefTfivePLow{}\% to
+\WidenRefTfivePHigh{}\% of the inputs for the right task, and five attempts to widen them missed
+their bars. The recogniser does not read the instruction, so no rewording can change its routes.
+With instructions (five tasks, three seeds, machine-written rewordings) it ends
+at \AudUThreeHeavyRidgeAPOne{} under a heavy rewording where the zones end at \AudUThreeHeavyCertAPOne{}; with
+the original instructions the zones end higher (\AudUThreeOriginalCertAPOne{} against
+\AudUThreeOriginalRidgeAPOne{}) and change no answer where the recogniser changes
+\AudUThreeOriginalRidgeChanged{} of \AudUThreeCompared{}. Inputs that occur in two tasks can at best be split between them without an
+instruction, the bound in advance is loose, and nothing here is in the published setting.
+Stand-alone code is released.
+\end{abstract}

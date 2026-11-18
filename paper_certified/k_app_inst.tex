@@ -1,0 +1,35 @@
+\section{Results with instructions: further tables}
+\label{app:instmore}
+
+\begin{table}[!htbp]
+  \caption{Numbers not printed in the other tables, behind Sections~\ref{sec:five}, \ref{sec:reworded} and \ref{sec:fifteen}. Five tasks are means over the seeds of Table~\ref{tab:fivemain}; ``plain'' is all adapters on. Learned: score of the task right after it was learned. Agreement: answers that the re-test reproduces from the official test, of all compared. Seed 42 repeated: first run / second run.}
+  \label{tab:instdetail}
+  \centering
+  \footnotesize
+  \begin{tabular}{p{0.28\linewidth}p{0.64\linewidth}}
+    \toprule
+    \multicolumn{2}{l}{\textit{Five tasks, original instructions}}\\
+    Learned, relation extraction & plain \FivePlainRelationLearned{}, InfLoRA \FiveInfRelationLearned{}, GainLoRA \FiveGainRelationLearned{}; plain after the last task \FivePlainRelationEnd{}\\
+    Learned, SST-2 & plain \FivePlainSstLearned{}, InfLoRA \FiveInfSstLearned{}, GainLoRA \FiveGainSstLearned{}\\
+    Learned, Sentiment140 & plain \FivePlainSentimentLearned{}, InfLoRA \FiveInfSentimentLearned{}, GainLoRA \FiveGainSentimentLearned{}\\
+    Learned, emotion & plain \FivePlainEmotionLearned{}, InfLoRA \FiveInfEmotionLearned{}, GainLoRA \FiveGainEmotionLearned{} (per task: Table~\ref{tab:fivepertask})\\
+    Official AP & certified \FiveCertOffAP{}, InfLoRA \FiveInfOffAP{}, GainLoRA \FiveGainOffAP{}\\
+    Agreement & certified \FiveCertSame{} of \FiveCertSameOf{}, InfLoRA \FiveInfSame{} of \FiveInfSameOf{}, GainLoRA \FiveGainSame{} of \FiveGainSameOf{}\\
+    Seed 42 repeated, AP & certified \RepeatCertFirst{} / \RepeatCertSecond{}, InfLoRA \RepeatInfFirst{} / \RepeatInfSecond{}, GainLoRA \RepeatGainFirst{} / \RepeatGainSecond{}; certified final answers the same: \RepeatCertSame{} of \RepeatCertTotal{}\\
+    \midrule
+    \multicolumn{2}{l}{\textit{Fifteen tasks}}\\
+    InfLoRA, relation extraction & learned \FifteenInfRelationLearned{}, at the end \FifteenInfRelationEnd{}\\
+    InfLoRA, SST-2 & learned 61.0, at the end 50.0\\
+    InfLoRA, SAMSum & learned \FifteenInfSamsumLearned{}, at the end \FifteenInfSamsumEnd{}\\
+    InfLoRA, Glucose & learned \FifteenInfGlucoseLearned{}, at the end \FifteenInfGlucoseEnd{}\\
+    Agreement & certified \FifteenCertSame{} of \FifteenCertSameOf{}, InfLoRA \FifteenInfSame{} of \FifteenInfSameOf{}, GainLoRA \FifteenGainSame{} of \FifteenGainSameOf{}\\
+    \midrule
+    \multicolumn{2}{l}{\textit{Fifteen tasks with reworded instructions (light, medium, heavy), the five tasks with rewordings}}\\
+    Inputs inside a zone & \FifteenCertZoneOneLight{} (light), \FifteenCertZoneOneMedium{} (medium), \FifteenCertZoneOneHeavy{} (heavy), of \FifteenCertInputsOneMedium{} per wording\\
+    Inputs given to their own task (\%) & \FifteenCertRightLight{}, \FifteenCertRightMedium{}, \FifteenCertRightHeavy{}\\
+    \centre{}, own task (\%), medium, heavy & \FifteenCentreRightMedium{}, \FifteenCentreRightHeavy{}\\
+    InfLoRA forgetting, light, heavy & \FifteenInfFTLight{}, \FifteenInfFTHeavy{}\\
+    GainLoRA forgetting, light, heavy & \FifteenGainFTLight{}, \FifteenGainFTHeavy{}\\
+    \bottomrule
+  \end{tabular}
+\end{table}

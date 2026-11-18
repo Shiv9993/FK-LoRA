@@ -1,0 +1,87 @@
+\documentclass{article}
+
+\usepackage[preprint]{neurips_2025}
+\makeatletter\renewcommand{\@noticestring}{}\makeatother % no "Preprint." line on the first page
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{url}
+\usepackage{booktabs}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{nicefrac}
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage{placeins}
+\usepackage[colorlinks=true,linkcolor=black,citecolor=blue!45!black,urlcolor=blue!45!black]{hyperref}
+\floatstyle{ruled}
+\newfloat{algorithm}{t}{loa}
+\floatname{algorithm}{Algorithm}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}
+
+\newcommand{\plain}{\textsc{Plain}}
+\newcommand{\keyswitch}{\textsc{Key}}
+\newcommand{\cert}{ClaimLoRA}
+\newcommand{\nearest}{\textsc{Nearest}}
+\newcommand{\exactfirst}{\textsc{Exact-first}}
+\newcommand{\centre}{\textsc{Centre}}
+\newcommand{\fivefull}{Appendix~\ref{sec:fivefull}}
+\newcommand{\signature}{\textsc{Signature}}
+\newcommand{\hybrid}{\textsc{Hybrid}}
+\newcommand{\scaled}{\textsc{Scaled}}
+\newcommand{\certscaled}{\textsc{Cert-scaled}}
+\newcommand{\recog}{FinderLoRA}
+\newcommand{\handicap}{KeeperLoRA}
+\newcommand{\R}{\mathbb{R}}
+
+\title{Never Forget What You Learn:\\ FK-LoRA for Continual Learning Without Forgetting}
+
+\author{%
+  Bammidi Shivkumar \\
+  EnLab \\
+  \texttt{shivkumar.bammidi@enlab.co.in} \\
+  \And
+  Abhishek Jangid \\
+  EnLab \\
+  \texttt{abhishek.r.jangid@enlab.co.in} \\
+}
+
+\input{tables/numbers}
+\input{tables/numbers_latent}
+\input{tables/numbers_widen}
+\input{tables/numbers_bound}
+\input{tables/numbers_audit}
+
+
+\begin{document}
+
+\maketitle
+
+\input{short_abstract}
+\input{short_intro}
+\input{short_related}
+\input{short_method}
+\input{short_experiments}
+\input{short_limits}
+
+\bibliographystyle{plainnat}
+\bibliography{refs}
+
+\clearpage
+\appendix
+\input{short_appendix}
+
+\end{document}

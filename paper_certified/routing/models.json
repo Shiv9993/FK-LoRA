@@ -1,0 +1,791 @@
+{
+ "a": 0.001,
+ "runs": [
+  {
+   "model": "t5-small",
+   "kappa": 0.5,
+   "vocabulary": 32128,
+   "dimensions": 512,
+   "five": {
+    "original": {
+     "zone": 1.0,
+     "wrong": 0,
+     "blocked": 0,
+     "certified": 1.0,
+     "nearest": 1.0,
+     "centre": 1.0,
+     "certified_changed": 0,
+     "nearest_changed": 0,
+     "centre_changed": 0
+    },
+    "light": {
+     "zone": 1.0,
+     "wrong": 0,
+     "blocked": 0,
+     "certified": 1.0,
+     "nearest": 1.0,
+     "centre": 1.0,
+     "certified_changed": 0,
+     "nearest_changed": 0,
+     "centre_changed": 0
+    },
+    "medium": {
+     "zone": 0.2,
+     "wrong": 0,
+     "blocked": 0,
+     "certified": 1.0,
+     "nearest": 1.0,
+     "centre": 0.994,
+     "certified_changed": 0,
+     "nearest_changed": 0,
+     "centre_changed": 0
+    },
+    "heavy": {
+     "zone": 0.2,
+     "wrong": 0,
+     "blocked": 0,
+     "certified": 0.886,
+     "nearest": 0.886,
+     "centre": 0.708,
+     "certified_changed": 0,
+     "nearest_changed": 0,
+     "centre_changed": 65
+    }
+   },
+   "fifteen": {
+    "original": {
+     "zone": 1.0,
+     "wrong": 0,
+     "blocked": 0,
+     "certified": 1.0,
+     "nearest": 1.0,
+     "centre": 0.998,
+     "certified_changed": 0,
+     "nearest_changed": 0,
+     "centre_changed": 0
+    },
+    "light": {
+     "zone": 1.0,
+     "wrong": 0,
+     "blocked": 0,
+     "certified": 1.0,
+     "nearest": 1.0,
+     "centre": 1.0,
+     "certified_changed": 0,
+     "nearest_changed": 0,
+     "centre_changed": 0
+    },
+    "medium": {
+     "zone": 0.2,
+     "wrong": 0,
+     "blocked": 0,
+     "certified": 1.0,
+     "nearest": 1.0,
+     "centre": 0.916,
+     "certified_changed": 0,
+     "nearest_changed": 0,
+     "centre_changed": 8
+    },
+    "heavy": {
+     "zone": 0.2,
+     "wrong": 0,
+     "blocked": 0,
+     "certified": 0.886,
+     "nearest": 0.886,
+     "centre": 0.604,
+     "certified_changed": 0,
+     "nearest_changed": 0,
+     "centre_changed": 100
+    }
+   }
+  },
+  {
+   "model": "t5-base",
+   "kappa": 0.5,
+   "vocabulary": 32128,
+   "dimensions": 768,
+   "five": {
+    "original": {
+     "zone": 1.0,
+     "wrong": 0,
+     "blocked": 0,
+     "certified": 1.0,
+     "nearest": 1.0,
+     "centre": 1.0,
+     "certified_changed": 0,
+     "nearest_changed": 0,
+     "centre_changed": 0
+    },
+    "light": {
+     "zone": 1.0,
+     "wrong": 0,
+     "blocked": 0,
+     "certified": 1.0,
+     "nearest": 1.0,
+     "centre": 1.0,
+     "certified_changed": 0,
+     "nearest_changed": 0,
+     "centre_changed": 0
+    },
+    "medium": {
+     "zone": 0.2,
+     "wrong": 0,
+     "blocked": 0,
+     "certified": 1.0,
+     "nearest": 1.0,
+     "centre": 0.992,
+     "certified_changed": 0,
+     "nearest_changed": 0,
+     "centre_changed": 0
+    },
+    "heavy": {
+     "zone": 0.196,
+     "wrong": 0,
+     "blocked": 0,
+     "certified": 0.938,
+     "nearest": 0.938,
+     "centre": 0.722,
+     "certified_changed": 0,
+     "nearest_changed": 0,
+     "centre_changed": 58
+    }
+   },
+   "fifteen": {
+    "original": {
+     "zone": 1.0,
+     "wrong": 0,
+     "blocked": 0,
+     "certified": 1.0,
+     "nearest": 1.0,
+     "centre": 0.995,
+     "certified_changed": 0,
+     "nearest_changed": 0,
+     "centre_changed": 2
+    },
+    "light": {
+     "zone": 1.0,
+     "wrong": 0,
+     "blocked": 0,
+     "certified": 1.0,
+     "nearest": 1.0,
+     "centre": 1.0,
+     "certified_changed": 0,
+     "nearest_changed": 0,
+     "centre_changed": 0
+    },
+    "medium": {
+     "zone": 0.2,
+     "wrong": 0,
+     "blocked": 0,
+     "certified": 1.0,
+     "nearest": 1.0,
+     "centre": 0.852,
+     "certified_changed": 0,
+     "nearest_changed": 0,
+     "centre_changed": 29
+    },
+    "heavy": {
+     "zone": 0.196,
+     "wrong": 0,
+     "blocked": 0,
+     "certified": 0.938,
+     "nearest": 0.938,
+     "centre": 0.592,
+     "certified_changed": 0,
+     "nearest_changed": 0,
+     "centre_changed": 100
+    }
+   }
+  },
+  {
+   "model": "t5-large",
+   "kappa": 0.5,
+   "vocabulary": 32128,
+   "dimensions": 1024,
+   "five": {
+    "original": {
+     "zone": 1.0,
+     "wrong": 0,
+     "blocked": 0,
+     "certified": 1.0,
+     "nearest": 1.0,
+     "centre": 1.0,
+     "certified_changed": 0,
+     "nearest_changed": 0,
+     "centre_changed": 0
+    },
+    "light": {
+     "zone": 1.0,
+     "wrong": 0,
+     "blocked": 0,
+     "certified": 1.0,
+     "nearest": 1.0,
+     "centre": 1.0,
+     "certified_changed": 0,
+     "nearest_changed": 0,
+     "centre_changed": 0
+    },
+    "medium": {
+     "zone": 0.2,
+     "wrong": 0,
+     "blocked": 0,
+     "certified": 1.0,
+     "nearest": 1.0,
+     "centre": 0.996,
+     "certified_changed": 0,
+     "nearest_changed": 0,
+     "centre_changed": 0
+    },
+    "heavy": {
+     "zone": 0.192,
+     "wrong": 0,
+     "blocked": 0,
+     "certified": 0.83,
+     "nearest": 0.83,
+     "centre": 0.658,
+     "certified_changed": 0,
+     "nearest_changed": 0,
+     "centre_changed": 85
+    }
+   },
+   "fifteen": {
+    "original": {
+     "zone": 1.0,
+     "wrong": 0,
+     "blocked": 0,
+     "certified": 1.0,
+     "nearest": 1.0,
+     "centre": 0.995,
+     "certified_changed": 0,
+     "nearest_changed": 0,
+     "centre_changed": 2
+    },
+    "light": {
+     "zone": 1.0,
+     "wrong": 0,
+     "blocked": 0,
+     "certified": 1.0,
+     "nearest": 1.0,
+     "centre": 1.0,
+     "certified_changed": 0,
+     "nearest_changed": 0,
+     "centre_changed": 0
+    },
+    "medium": {
+     "zone": 0.2,
+     "wrong": 0,
+     "blocked": 0,
+     "certified": 1.0,
+     "nearest": 1.0,
+     "centre": 0.876,
+     "certified_changed": 0,
+     "nearest_changed": 0,
+     "centre_changed": 17
+    },
+    "heavy": {
+     "zone": 0.192,
+     "wrong": 0,
+     "blocked": 0,
+     "certified": 0.83,
+     "nearest": 0.83,
+     "centre": 0.586,
+     "certified_changed": 0,
+     "nearest_changed": 0,
+     "centre_changed": 100
+    }
+   }
+  },
+  {
+   "model": "google/flan-t5-base",
+   "kappa": 0.5,
+   "vocabulary": 32128,
+   "dimensions": 768,
+   "five": {
+    "original": {
+     "zone": 1.0,
+     "wrong": 0,
+     "blocked": 0,
+     "certified": 1.0,
+     "nearest": 1.0,
+     "centre": 1.0,
+     "certified_changed": 0,
+     "nearest_changed": 0,
+     "centre_changed": 0
+    },
+    "light": {
+     "zone": 1.0,
+     "wrong": 0,
+     "blocked": 0,
+     "certified": 1.0,
+     "nearest": 1.0,
+     "centre": 1.0,
+     "certified_changed": 0,
+     "nearest_changed": 0,
+     "centre_changed": 0
+    },
+    "medium": {
+     "zone": 0.2,
+     "wrong": 0,
+     "blocked": 0,
+     "certified": 1.0,
+     "nearest": 1.0,
+     "centre": 0.996,
+     "certified_changed": 0,
+     "nearest_changed": 0,
+     "centre_changed": 0
+    },
+    "heavy": {
+     "zone": 0.136,
+     "wrong": 0,
+     "blocked": 0,
+     "certified": 0.992,
+     "nearest": 0.992,
+     "centre": 0.672,
+     "certified_changed": 1,
+     "nearest_changed": 1,
+     "centre_changed": 78
+    }
+   },
+   "fifteen": {
+    "original": {
+     "zone": 1.0,
+     "wrong": 0,
+     "blocked": 0,
+     "certified": 1.0,
+     "nearest": 1.0,
+     "centre": 0.997,
+     "certified_changed": 0,
+     "nearest_changed": 0,
+     "centre_changed": 2
+    },
+    "light": {
+     "zone": 1.0,
+     "wrong": 0,
+     "blocked": 0,
+     "certified": 1.0,
+     "nearest": 1.0,
+     "centre": 1.0,
+     "certified_changed": 0,
+     "nearest_changed": 0,
+     "centre_changed": 0
+    },
+    "medium": {
+     "zone": 0.2,
+     "wrong": 0,
+     "blocked": 0,
+     "certified": 1.0,
+     "nearest": 1.0,
+     "centre": 0.894,
+     "certified_changed": 0,
+     "nearest_changed": 0,
+     "centre_changed": 24
+    },
+    "heavy": {
+     "zone": 0.136,
+     "wrong": 0,
+     "blocked": 0,
+     "certified": 0.992,
+     "nearest": 0.992,
+     "centre": 0.578,
+     "certified_changed": 1,
+     "nearest_changed": 1,
+     "centre_changed": 100
+    }
+   }
+  },
+  {
+   "model": "gpt2",
+   "kappa": 0.5,
+   "vocabulary": 50257,
+   "dimensions": 768,
+   "five": {
+    "original": {
+     "zone": 1.0,
+     "wrong": 0,
+     "blocked": 0,
+     "certified": 1.0,
+     "nearest": 1.0,
+     "centre": 1.0,
+     "certified_changed": 0,
+     "nearest_changed": 0,
+     "centre_changed": 0
+    },
+    "light": {
+     "zone": 0.994,
+     "wrong": 0,
+     "blocked": 0,
+     "certified": 1.0,
+     "nearest": 1.0,
+     "centre": 1.0,
+     "certified_changed": 0,
+     "nearest_changed": 0,
+     "centre_changed": 0
+    },
+    "medium": {
+     "zone": 0.2,
+     "wrong": 0,
+     "blocked": 0,
+     "certified": 1.0,
+     "nearest": 1.0,
+     "centre": 0.998,
+     "certified_changed": 0,
+     "nearest_changed": 0,
+     "centre_changed": 0
+    },
+    "heavy": {
+     "zone": 0.2,
+     "wrong": 0,
+     "blocked": 0,
+     "certified": 0.868,
+     "nearest": 0.868,
+     "centre": 0.9,
+     "certified_changed": 0,
+     "nearest_changed": 0,
+     "centre_changed": 11
+    }
+   },
+   "fifteen": {
+    "original": {
+     "zone": 1.0,
+     "wrong": 0,
+     "blocked": 0,
+     "certified": 1.0,
+     "nearest": 1.0,
+     "centre": 0.996,
+     "certified_changed": 0,
+     "nearest_changed": 0,
+     "centre_changed": 1
+    },
+    "light": {
+     "zone": 0.994,
+     "wrong": 0,
+     "blocked": 0,
+     "certified": 1.0,
+     "nearest": 1.0,
+     "centre": 1.0,
+     "certified_changed": 0,
+     "nearest_changed": 0,
+     "centre_changed": 0
+    },
+    "medium": {
+     "zone": 0.2,
+     "wrong": 0,
+     "blocked": 0,
+     "certified": 1.0,
+     "nearest": 1.0,
+     "centre": 0.922,
+     "certified_changed": 0,
+     "nearest_changed": 0,
+     "centre_changed": 13
+    },
+    "heavy": {
+     "zone": 0.2,
+     "wrong": 0,
+     "blocked": 0,
+     "certified": 0.868,
+     "nearest": 0.868,
+     "centre": 0.642,
+     "certified_changed": 1,
+     "nearest_changed": 1,
+     "centre_changed": 91
+    }
+   }
+  },
+  {
+   "model": "HuggingFaceTB/SmolLM2-135M",
+   "kappa": 0.5,
+   "vocabulary": 49152,
+   "dimensions": 576,
+   "five": {
+    "original": {
+     "zone": 1.0,
+     "wrong": 0,
+     "blocked": 0,
+     "certified": 1.0,
+     "nearest": 1.0,
+     "centre": 1.0,
+     "certified_changed": 0,
+     "nearest_changed": 0,
+     "centre_changed": 0
+    },
+    "light": {
+     "zone": 0.994,
+     "wrong": 0,
+     "blocked": 0,
+     "certified": 1.0,
+     "nearest": 1.0,
+     "centre": 1.0,
+     "certified_changed": 0,
+     "nearest_changed": 0,
+     "centre_changed": 0
+    },
+    "medium": {
+     "zone": 0.2,
+     "wrong": 0,
+     "blocked": 0,
+     "certified": 1.0,
+     "nearest": 1.0,
+     "centre": 1.0,
+     "certified_changed": 0,
+     "nearest_changed": 0,
+     "centre_changed": 0
+    },
+    "heavy": {
+     "zone": 0.2,
+     "wrong": 0,
+     "blocked": 0,
+     "certified": 0.818,
+     "nearest": 0.818,
+     "centre": 0.864,
+     "certified_changed": 0,
+     "nearest_changed": 0,
+     "centre_changed": 2
+    }
+   },
+   "fifteen": {
+    "original": {
+     "zone": 1.0,
+     "wrong": 0,
+     "blocked": 0,
+     "certified": 1.0,
+     "nearest": 1.0,
+     "centre": 0.998,
+     "certified_changed": 0,
+     "nearest_changed": 0,
+     "centre_changed": 0
+    },
+    "light": {
+     "zone": 0.994,
+     "wrong": 0,
+     "blocked": 0,
+     "certified": 1.0,
+     "nearest": 1.0,
+     "centre": 1.0,
+     "certified_changed": 0,
+     "nearest_changed": 0,
+     "centre_changed": 0
+    },
+    "medium": {
+     "zone": 0.2,
+     "wrong": 0,
+     "blocked": 0,
+     "certified": 1.0,
+     "nearest": 1.0,
+     "centre": 0.9,
+     "certified_changed": 0,
+     "nearest_changed": 0,
+     "centre_changed": 4
+    },
+    "heavy": {
+     "zone": 0.2,
+     "wrong": 0,
+     "blocked": 0,
+     "certified": 0.818,
+     "nearest": 0.818,
+     "centre": 0.648,
+     "certified_changed": 0,
+     "nearest_changed": 0,
+     "centre_changed": 78
+    }
+   }
+  },
+  {
+   "model": "Qwen/Qwen2.5-0.5B",
+   "kappa": 0.5,
+   "vocabulary": 151936,
+   "dimensions": 896,
+   "five": {
+    "original": {
+     "zone": 1.0,
+     "wrong": 0,
+     "blocked": 0,
+     "certified": 1.0,
+     "nearest": 1.0,
+     "centre": 1.0,
+     "certified_changed": 0,
+     "nearest_changed": 0,
+     "centre_changed": 0
+    },
+    "light": {
+     "zone": 0.99,
+     "wrong": 0,
+     "blocked": 0,
+     "certified": 1.0,
+     "nearest": 1.0,
+     "centre": 1.0,
+     "certified_changed": 0,
+     "nearest_changed": 0,
+     "centre_changed": 0
+    },
+    "medium": {
+     "zone": 0.2,
+     "wrong": 0,
+     "blocked": 0,
+     "certified": 1.0,
+     "nearest": 1.0,
+     "centre": 0.998,
+     "certified_changed": 0,
+     "nearest_changed": 0,
+     "centre_changed": 0
+    },
+    "heavy": {
+     "zone": 0.2,
+     "wrong": 0,
+     "blocked": 0,
+     "certified": 0.8,
+     "nearest": 0.8,
+     "centre": 0.742,
+     "certified_changed": 0,
+     "nearest_changed": 0,
+     "centre_changed": 52
+    }
+   },
+   "fifteen": {
+    "original": {
+     "zone": 1.0,
+     "wrong": 0,
+     "blocked": 0,
+     "certified": 1.0,
+     "nearest": 1.0,
+     "centre": 0.996,
+     "certified_changed": 0,
+     "nearest_changed": 0,
+     "centre_changed": 1
+    },
+    "light": {
+     "zone": 0.99,
+     "wrong": 0,
+     "blocked": 0,
+     "certified": 1.0,
+     "nearest": 1.0,
+     "centre": 1.0,
+     "certified_changed": 0,
+     "nearest_changed": 0,
+     "centre_changed": 0
+    },
+    "medium": {
+     "zone": 0.2,
+     "wrong": 0,
+     "blocked": 0,
+     "certified": 1.0,
+     "nearest": 1.0,
+     "centre": 0.924,
+     "certified_changed": 0,
+     "nearest_changed": 0,
+     "centre_changed": 4
+    },
+    "heavy": {
+     "zone": 0.2,
+     "wrong": 0,
+     "blocked": 0,
+     "certified": 0.8,
+     "nearest": 0.8,
+     "centre": 0.608,
+     "certified_changed": 0,
+     "nearest_changed": 0,
+     "centre_changed": 97
+    }
+   }
+  },
+  {
+   "model": "roberta-base",
+   "kappa": 0.5,
+   "vocabulary": 50265,
+   "dimensions": 768,
+   "five": {
+    "original": {
+     "zone": 1.0,
+     "wrong": 0,
+     "blocked": 0,
+     "certified": 1.0,
+     "nearest": 1.0,
+     "centre": 1.0,
+     "certified_changed": 0,
+     "nearest_changed": 0,
+     "centre_changed": 0
+    },
+    "light": {
+     "zone": 0.99,
+     "wrong": 0,
+     "blocked": 0,
+     "certified": 1.0,
+     "nearest": 1.0,
+     "centre": 1.0,
+     "certified_changed": 0,
+     "nearest_changed": 0,
+     "centre_changed": 0
+    },
+    "medium": {
+     "zone": 0.2,
+     "wrong": 0,
+     "blocked": 0,
+     "certified": 1.0,
+     "nearest": 1.0,
+     "centre": 1.0,
+     "certified_changed": 0,
+     "nearest_changed": 0,
+     "centre_changed": 0
+    },
+    "heavy": {
+     "zone": 0.2,
+     "wrong": 0,
+     "blocked": 0,
+     "certified": 0.936,
+     "nearest": 0.936,
+     "centre": 0.814,
+     "certified_changed": 0,
+     "nearest_changed": 0,
+     "centre_changed": 27
+    }
+   },
+   "fifteen": {
+    "original": {
+     "zone": 1.0,
+     "wrong": 0,
+     "blocked": 0,
+     "certified": 1.0,
+     "nearest": 1.0,
+     "centre": 0.997,
+     "certified_changed": 0,
+     "nearest_changed": 0,
+     "centre_changed": 1
+    },
+    "light": {
+     "zone": 0.99,
+     "wrong": 0,
+     "blocked": 0,
+     "certified": 1.0,
+     "nearest": 1.0,
+     "centre": 1.0,
+     "certified_changed": 0,
+     "nearest_changed": 0,
+     "centre_changed": 0
+    },
+    "medium": {
+     "zone": 0.2,
+     "wrong": 0,
+     "blocked": 0,
+     "certified": 1.0,
+     "nearest": 1.0,
+     "centre": 0.944,
+     "certified_changed": 0,
+     "nearest_changed": 0,
+     "centre_changed": 8
+    },
+    "heavy": {
+     "zone": 0.2,
+     "wrong": 0,
+     "blocked": 0,
+     "certified": 0.934,
+     "nearest": 0.934,
+     "centre": 0.608,
+     "certified_changed": 0,
+     "nearest_changed": 0,
+     "centre_changed": 97
+    }
+   }
+  }
+ ],
+ "stress": {},
+ "note": "parsed from models_log.txt"
+}

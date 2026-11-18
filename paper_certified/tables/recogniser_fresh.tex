@@ -1,0 +1,12 @@
+{\scriptsize\setlength{\tabcolsep}{2pt}\begin{tabular}{p{0.95in}rrrrrcr}
+    \toprule
+    Fresh tasks & \shortstack[r]{Sent to\\own task\\at arrival,\\\% $\uparrow$} & \shortstack[r]{Sent to\\own task\\at the end,\\\% $\uparrow$} & \shortstack[r]{Route\\changed,\\\% $\downarrow$} & \shortstack[r]{Audit\\$H/m$, \%} & \shortstack[r]{95\% bound,\\\%} & Verdict & \shortstack[r]{Tasks below\\70\% $\downarrow$} \\
+    \midrule
+    first batch: zones, oldest wins, sentence encoder & -- & \AudShapeFreshFirstOldestEnd{} & \AudShapeFreshFirstOldestChanged{} & -- & -- & \AudShapeFreshFirstOldestUse{} / \AudShapeFreshFirstOldestClaim{} & -- \\
+    first batch: zones, newest wins, sentence encoder & \AudShapeFreshFirstNewestArrive{} & \AudShapeFreshFirstNewestEnd{} & \AudShapeFreshFirstNewestChanged{} & -- & -- & \AudShapeFreshFirstNewestUse{} / \AudShapeFreshFirstNewestGuarantee{} & -- \\
+    second batch: zones, newest wins, one boundary per older task, sentence encoder + shape numbers & \AudShapeFreshSecondArrive{} & \AudShapeFreshSecondEnd{} & \AudShapeFreshSecondChanged{} & -- & -- & \AudShapeFreshSecondUse{} / \AudShapeFreshSecondGuarantee{} & -- \\
+    third batch: sentence enc. + shape numbers, logistic reg. & \AudFreshThirdArrive{} & \AudFreshThirdEnd{} & \AudFreshThirdChanged{} & \AudFreshThirdAuditEst{} & \AudFreshThirdAuditBound{} & \AudFreshThirdUse{} / \AudFreshThirdCert{} & \AudFreshThirdLow{} \\
+    fourth batch: frozen T5-base states, \recog{} & \AudFreshFourthLArrive{} & \AudFreshFourthLEnd{} & \AudFreshFourthLChanged{} & \AudFreshFourthAuditEst{} & \AudFreshFourthAuditBound{} & \AudFreshFourthUse{} / \AudFreshFourthCert{} & \AudFreshFourthLow{} \\
+    fourth batch: frozen T5-base states, \handicap{}, $\nu = 2$ & \AudFreshFourthHArrive{} & \AudFreshFourthHEnd{} & \AudFreshFourthHChanged{} & -- & -- & -- & -- \\
+    \bottomrule
+\end{tabular}}

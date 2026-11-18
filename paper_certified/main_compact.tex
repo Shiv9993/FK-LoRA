@@ -1,0 +1,99 @@
+\documentclass{article}
+
+\usepackage[preprint]{neurips_2025}
+\makeatletter\renewcommand{\@noticestring}{}\makeatother % no "Preprint." line on the first page
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{url}
+\usepackage{booktabs}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{nicefrac}
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage{placeins}
+\usepackage[colorlinks=true,linkcolor=black,citecolor=blue!45!black,urlcolor=blue!45!black]{hyperref}
+\floatstyle{ruled}
+\newfloat{algorithm}{t}{loa}
+\floatname{algorithm}{Algorithm}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}
+
+\newcommand{\plain}{\textsc{Plain}}
+\newcommand{\keyswitch}{\textsc{Key}}
+\newcommand{\cert}{ClaimLoRA}
+\newcommand{\nearest}{\textsc{Nearest}}
+\newcommand{\exactfirst}{\textsc{Exact-first}}
+\newcommand{\centre}{\textsc{Centre}}
+\newcommand{\fivefull}{Section~\ref{sec:five}}
+\newcommand{\signature}{\textsc{Signature}}
+\newcommand{\hybrid}{\textsc{Hybrid}}
+\newcommand{\scaled}{\textsc{Scaled}}
+\newcommand{\certscaled}{\textsc{Cert-scaled}}
+\newcommand{\recog}{FinderLoRA}
+\newcommand{\handicap}{KeeperLoRA}
+\newcommand{\R}{\mathbb{R}}
+
+\title{Never Forget What You Learn:\\ FK-LoRA for Continual Learning Without Forgetting}
+
+\author{%
+  Bammidi Shivkumar \\
+  EnLab \\
+  \texttt{shivkumar.bammidi@enlab.co.in} \\
+  \And
+  Abhishek Jangid \\
+  EnLab \\
+  \texttt{abhishek.r.jangid@enlab.co.in} \\
+}
+
+\input{tables/numbers}
+\input{tables/numbers_latent}
+\input{tables/numbers_widen}
+\input{tables/numbers_bound}
+\input{tables/numbers_audit}
+
+% ---- compact layout for the long record version (not a conference submission): wider text block, floats closer together
+\AtBeginDocument{\newgeometry{textwidth=6.5in,textheight=9.25in,top=0.9in,headheight=12pt,headsep=25pt,footskip=30pt}}
+\renewcommand{\topfraction}{0.9}\renewcommand{\bottomfraction}{0.8}\renewcommand{\textfraction}{0.08}\renewcommand{\floatpagefraction}{0.85}
+\setcounter{topnumber}{4}\setcounter{bottomnumber}{3}\setcounter{totalnumber}{6}
+\setlength{\textfloatsep}{10pt plus 2pt minus 2pt}\setlength{\floatsep}{8pt plus 2pt minus 2pt}\setlength{\intextsep}{8pt plus 2pt minus 2pt}
+
+\begin{document}
+
+\maketitle
+
+\input{k_abstract}
+\input{k_method}
+\section{Results}
+\label{sec:results}
+\input{k_results_noinst}
+\input{k_results_inst}
+\input{k_results_scale}
+\input{k_intro}
+\input{k_related}
+\input{k_discussion}
+
+\bibliographystyle{plainnat}
+\bibliography{refs}
+
+\appendix
+\input{k_app_method}
+\input{k_app_noinst}
+\input{k_app_inst}
+\input{k_appendix}
+\input{k_app_widen}
+
+\end{document}

@@ -1,0 +1,17 @@
+{\footnotesize\setlength{\tabcolsep}{3pt}\begin{tabular}{lrrrr}
+    \toprule
+    Rule & \shortstack[r]{Not sent\\to own task\\at the end $\downarrow$} & \shortstack[r]{Route\\changed $\downarrow$} & \shortstack[r]{Audit\\$H/m$, \%} & \shortstack[r]{95\% bound,\\\%} \\
+    \midrule
+    \multicolumn{5}{l}{\textit{five-task sequence}} \\
+    \recog{} & \AudRouteFiveRidgeNotOwn{} of \AudRouteFiveRidgeN{} & \AudRouteFiveRidgeChanged{} of \AudRouteFiveRidgeCompared{} & \AudRouteFiveRidgeAuditEst{} & \AudRouteFiveRidgeAuditBound{} \\
+    \handicap{}, $\nu = 2$ & \AudRouteFiveHandicapNotOwn{} of \AudRouteFiveHandicapN{} & \AudRouteFiveHandicapChanged{} of \AudRouteFiveHandicapCompared{} & -- & -- \\
+    \recog{} with logistic regression & \AudRouteFiveJointNotOwn{} of \AudRouteFiveJointN{} & \AudRouteFiveJointChanged{} of \AudRouteFiveJointCompared{} & \AudRouteFiveJointAuditEst{} & \AudRouteFiveJointAuditBound{} \\
+    every input to its own task (ceiling) & \AudRouteFiveOwnNotOwn{} of \AudRouteFiveOwnN{} & \AudRouteFiveOwnChanged{} of \AudRouteFiveOwnCompared{} & \AudRouteFiveOwnAuditEst{} & \AudRouteFiveOwnAuditBound{} \\
+    \midrule
+    \multicolumn{5}{l}{\textit{15 SuperNI tasks}} \\
+    \recog{} & \AudRouteFifteenRidgeNotOwn{} of \AudRouteFifteenRidgeN{} & \AudRouteFifteenRidgeChanged{} of \AudRouteFifteenRidgeCompared{} & \AudRouteFifteenRidgeAuditEst{} & \AudRouteFifteenRidgeAuditBound{} \\
+    \handicap{}, $\nu = 2$ & \AudRouteFifteenHandicapNotOwn{} of \AudRouteFifteenHandicapN{} & \AudRouteFifteenHandicapChanged{} of \AudRouteFifteenHandicapCompared{} & -- & -- \\
+    \recog{} with logistic regression & \AudRouteFifteenJointNotOwn{} of \AudRouteFifteenJointN{} & \AudRouteFifteenJointChanged{} of \AudRouteFifteenJointCompared{} & \AudRouteFifteenJointAuditEst{} & \AudRouteFifteenJointAuditBound{} \\
+    every input to its own task (ceiling) & \AudRouteFifteenOwnNotOwn{} of \AudRouteFifteenOwnN{} & \AudRouteFifteenOwnChanged{} of \AudRouteFifteenOwnCompared{} & \AudRouteFifteenOwnAuditEst{} & \AudRouteFifteenOwnAuditBound{} \\
+    \bottomrule
+\end{tabular}}

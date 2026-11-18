@@ -1,0 +1,15 @@
+{\footnotesize\setlength{\tabcolsep}{3pt}\begin{tabular}{p{1.9in}lrrrr}
+    \toprule
+    Method & Definitions & \shortstack[r]{Score right\\after\\learning $\uparrow$} & \shortstack[r]{Final\\score $\uparrow$} & \shortstack[r]{Forgetting\\(points) $\downarrow$} & \shortstack[r]{Answers\\changed\\of \AudPubCompared{} $\downarrow$} \\
+    \midrule
+    InfLoRA & with & \AudPubInfloraDefLearned{} & \AudPubInfloraDefAP{} & \AudPubInfloraDefFT{} & \AudPubInfloraDefChanged{} \\
+    InfLoRA & none & \AudPubInfloraNoDefLearned{} & \AudPubInfloraNoDefAP{} & \AudPubInfloraNoDefFT{} & \AudPubInfloraNoDefChanged{} \\
+    GainLoRA & with & \AudPubGainloraDefLearned{} & \AudPubGainloraDefAP{} & \AudPubGainloraDefFT{} & \AudPubGainloraDefChanged{} \\
+    GainLoRA & none & \AudPubGainloraNoDefLearned{} & \AudPubGainloraNoDefAP{} & \AudPubGainloraNoDefFT{} & \AudPubGainloraNoDefChanged{} \\
+    \midrule
+    \plain{} (all adapters on) & none & \AudOursAllLearned{} & \AudOursAllAP{} & \AudOursAllFT{} & \AudOursAllChanged{} \\
+    \recog{} (ours) & none & \AudOursRidgeLearned{} & \AudOursRidgeAP{} & \AudOursRidgeFT{} & \AudOursRidgeChanged{} \\
+    \handicap{}, $\nu = 2$ (ours) & none & \AudOursHandicapLearned{} & \AudOursHandicapAP{} & \AudOursHandicapFT{} & \AudOursHandicapChanged{} \\
+    every input to its own task (ceiling) & none & \AudOursOwnLearned{} & \AudOursOwnAP{} & \AudOursOwnFT{} & \AudOursOwnChanged{} \\
+    \bottomrule
+\end{tabular}}

@@ -1,0 +1,49 @@
+\section{Limitations}
+\label{sec:limits}
+
+\begin{itemize}
+  \item \textbf{Reduced setting; baselines that learned less.} T5-base, 10 epochs (100 in a few runs), free GPUs. With 10 epochs the
+  published methods are at the level of guessing on two of five tasks right after training on them and
+  learned less on 15 tasks; one step of their code was a substitute (Appendix~\ref{app:impl}). Nothing
+  follows about these methods in their published setting.
+  \item \textbf{Without instructions: a first result.} Two published methods; one sequence of five
+  tasks with trained answers (three seeds), of development tasks; at 10 epochs most of the gap in the final score is
+  learning, and the 100-epoch runs are one seed. The bound in advance is loose, and it grows with the number of later tasks. Inputs that occur
+  in two tasks can at best be split. The audit holds per task and pair of times; the feature, the
+  floor and $\nu$ were chosen on development data. Rewordings by people are untested.
+  \item \textbf{Chosen tasks, few seeds.} The five tasks were chosen from those one published method
+  forgot most; about 100 test inputs per task.
+  \item \textbf{Zones are narrow under rewording and add the proof, not better routing}
+  (Section~\ref{sec:many}): machine paraphrases are certified for their own task in
+  \WidenRefTfivePLow{}\% to \WidenRefTfivePHigh{}\% of cases; none of five attempts to widen the zones met
+  its bar; the best rule without zones routes about five points better than with zones in front. The reworded instructions are a
+  machine-written development set.
+  \item \textbf{Older tasks have priority.} Among \ManyTasks{} real tasks \ManyCollidingPct{}\%
+  collided, mostly siblings, and \ManyAllHeld{} could not be learned under their instruction;
+  \exactfirst{} was not trained at scale.
+  \item \textbf{Certified inputs only.} Under medium and heavy rewording most inputs are uncertified and
+  kept their answers without a guarantee; sixteen typos leave 45\% on their task.
+  The zones need an instruction with a common opening.
+  \item \textbf{Several tests are about routes only} (stress, edits, orders, other models, paraphrases,
+  re-routing; one split and one order); word order is ignored; no backward transfer; one trained model
+  family; memory grows with one adapter per task; exactness presupposes the same inference set-up
+  (Appendix~\ref{app:method}).
+\end{itemize}
+
+\section{Conclusion}
+\label{sec:conclusion}
+
+With old adapters frozen, an answer changes only if its route changes, so forgetting is a question
+about the rule that sets the route. Benchmarks hide this, because their
+inputs begin with the instruction; without it the two published methods we ran changed
+\AudSeedsGainloraChanged{} and \AudSeedsInfloraChanged{} of \AudSeedsCompared{} answers, a loss that was
+not forced. Our main rule, a recogniser on frozen states, blocks no task and comes with an audit and a
+loose bound in advance; plain adapters behind it beat the two published methods in this setting, by a
+line fixed before the run; with their full epochs (one seed) those methods learned the tasks and then
+forgot \AudFullGainloraFTInt{} and \AudFullInfloraFTInt{} points.
+When inputs carry an instruction, the answer to an input inside a zone cannot change, for any model and
+any later tasks; in a reduced setting the certified switch changed no answer on five and on 15 tasks
+and learned as much as plain adapters. The zones are narrow under rewording, where the recogniser
+reached \AudUThreeHeavyRidgeAPOne{} against \AudUThreeHeavyCertAPOne{} (three seeds).
+All was measured with a small model and, in all runs but a few, a short budget.
+

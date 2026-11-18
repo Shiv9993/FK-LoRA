@@ -1,0 +1,348 @@
+% =====================================================================================
+\FloatBarrier
+\section{Notation}
+\label{app:notation}
+
+Table~\ref{tab:notation} lists the symbols used in the paper.
+
+\begin{table}[H]
+  \caption{Symbols used in the paper.}
+  \label{tab:notation}
+  \centering
+  \small
+  \begin{tabular}{lp{0.72\linewidth}}
+    \toprule
+    Symbol & Meaning \\
+    \midrule
+        $x$, $L$ & an input and its length in tokens \\
+    $E$, $d$, $\mathcal{V}$ & frozen embedding table of the base model, its dimension, the vocabulary \\
+        $\theta_0$, $W_0$ & all frozen weights of the base model; one adapted weight matrix \\
+    $\Delta W_k$, $z$, $F$ & update of adapter $k$; input of an adapted layer; the model run with greedy decoding, Eq.~\eqref{eq:answer} \\
+    $T$; $t$, $k$, $j$ & number of tasks learned so far; indices of tasks \\
+    $A_k, B_k$; $r$, $\alpha$ & low-rank adapter of task $k$; its rank and scaling \\
+    $g_k(x)$ & switch of adapter $k$ on input $x$ (0 or 1), Eq.~\eqref{eq:gates} \\
+    $\mathcal{B}$ & fixed collection of unrelated inputs (never learned; not used to test the zones) \\
+    $p(v)$, $w(v)$, $a$ & share of token $v$ in $\mathcal{B}$; its weight, Eq.~\eqref{eq:weights}; the constant $a = 10^{-3}$ \\
+            $\varphi_n(x)$ & weighted average of the word-vectors of the first $n$ tokens of $x$, Eq.~\eqref{eq:prefix} \\
+    $\varphi_\infty(x)$ & the same average over all tokens of $x$ (used by \centre{}) \\
+    $\mu$, $\hat{C}$, $\psi_n(x)$ & mean and shrunk covariance of $\varphi_{64}$ over $\mathcal{B}$; rescaled feature, Eq.~\eqref{eq:whiten} \\
+    $o_k$, $n_k$ & opening of task $k$ (longest common token prefix of its template filled with two instances) and its length in tokens \\
+    $s_k$, $R_k$, $\kappa$ & signature and radius of task $k$, Eqs.~\eqref{eq:signature}--\eqref{eq:radius}; radius factor $\kappa = \tfrac{1}{2}$ \\
+    $\mathcal{S}_k$ & signatures known when task $k$ arrives (unrelated tasks and tasks $1, \dots, k-1$) \\
+    $\delta_k(x)$, $Z_k$ & relative distance of $x$ from task $k$; protected zone of task $k$, Eq.~\eqref{eq:zone} \\
+    $c_T(x)$, $\rho_T(x)$ & certificate and route of $x$ after $T$ tasks, Eqs.~\eqref{eq:certificate}--\eqref{eq:route} \\
+    $y_T(x)$ & answer to $x$ after $T$ tasks, Eq.~\eqref{eq:answer} \\
+        $D_t$, $b_t$ & training inputs of task $t$; number of them inside an older zone (blocked) \\
+    $X_T(x)$, $\rho^{\mathrm{x}}_T(x)$ & tasks whose opening $x$ carries token for token; route of \exactfirst{}, Eq.~\eqref{eq:exactfirst} \\
+    $\mathcal{X}$ & a set of certified inputs (Corollary~\ref{cor:zero}) \\
+        $W_{\mathrm{c}}$, $W_{\mathrm{r}}$, $W_{\mathrm{a}}$ & weight of the tokens an edit keeps, removes, adds; $m_{\mathrm{c}}$, $m_{\mathrm{r}}$, $m_{\mathrm{a}}$ their weighted mean rows \\
+    $\lambda$, $\lambda'$, $D$ & weight shares removed and added by an edit; diameter of the rescaled table, Eq.~\eqref{eq:shares} \\
+        $a_{i,j}$ & Rouge-L on the test set of task $j$ after learning task $i$ \\
+    \textsf{C}, \textsf{U}, \textsf{P}, \textsf{M}, \textsf{R}, \textsf{Z} & shares measured on the machine paraphrases (Section~\ref{sec:paraphrase}); not the covariance, radius or zone \\
+    $\alpha$ (there) & level of the split-conformal radius; not the scaling factor of the adapters \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\FloatBarrier
+\section{Reworded task definitions}
+\label{app:rewordings}
+
+The three rewordings of each task definition used in the tests. They were written by machine during the development of the method, not by people; the answer format of each task is unchanged. The original
+definitions are those of SuperNI.
+
+\input{tables/rewordings}
+
+
+\FloatBarrier
+\section{How the method reached its final form}
+\label{app:history}
+
+The certified switch was developed in one day of experiments. Two choices were made after looking at where test inputs were routed, and no answer of the model was used to make a choice; this decides how much weight the results with reworded instructions can carry. The rule was frozen before the runs of Section~\ref{sec:results}.
+
+\paragraph{Shape of the zone.} Zones around the average of the whole input worked on the five short tasks but failed on the 15-task sequence, because tasks with long inputs get large regions that swallow other tasks. Between 2\% and 21\% of the test inputs reached their own task with a ball around the whole-input average (depending on the radius), 5\% to 20\% with an ellipsoid from the task's own covariance, and 28\% to 36\% with a ball around the average of the first 64 tokens; in all three cases older tasks claimed the inputs of newer ones. The shape that works is a ball around the opening with a radius tied to the nearest other task (Eq.~\ref{eq:radius}); no input of the 15 tasks then lies in a foreign zone.
+
+\paragraph{Radius factor.} With $\kappa \in \{0.3, 0.5, 0.7\}$ no test input of the two sequences lies in a foreign zone; larger factors certify more reworded inputs (Table~\ref{tab:kappa}). We chose $\kappa = 0.5$ (zones reach half-way to the nearest known task) and did not tune it.
+
+\begin{table}[h]
+  \caption{Routes for three radius factors (CPU, T5-base word-vectors, final rule), for the original / light / medium / heavy wording.}
+  \label{tab:kappa}
+  \centering
+  \footnotesize
+  \setlength{\tabcolsep}{4pt}
+  \input{tables/kappa}
+\end{table}
+
+\paragraph{First version.} An input outside every zone went to the task with the nearest centre of the whole input, all tokens weighted equally. On the five tasks it passed every check written down before its GPU run (Colab T4, seed 42): no answer changed (0 of 400 for each wording), final average score 79.33, 79.15, 77.61 and 75.32, and 100\%, 100\%, 100\% and 97.4\% of the inputs reached their own task (original and three rewordings).
+
+\paragraph{Check that changed the rule.} The routes of reworded inputs had been checked on the five short tasks only. On the 15-task sequence, checked after that run, the nearest-centre rule failed: only 70.2\% (medium) and 60.8\% (heavy) of the 500 reworded inputs reached their own task, and 72 and 100 routes changed as later tasks were added. The whole-input average of a short input moves towards the centres of long-text tasks when its instruction changes.
+
+\paragraph{Final rule.} Two changes, nothing else: an input outside every zone goes to the nearest zone (Eq.~\ref{eq:route}), and tokens are weighted by Eq.~\eqref{eq:weights}. The constant $a=10^{-3}$ is the usual one; $a = 10^{-4}$ gave nearly the same routes and no other value was tried. Now 100\% (medium) and 93.8\% (heavy) of the reworded inputs reach their own task in both sequences, and no route changes when later tasks are added in these two orders (in other orders up to 31 do; Section~\ref{sec:orders}). On the five tasks it is slightly worse than the first version under heavy rewording (93.8\% against 97.4\%) and equal otherwise; it was adopted because of the 15-task sequence. The nearest-centre rule stays in the tables as \centre{} (with the final token weights).
+
+\paragraph{After the freeze.} The tests of Sections~\ref{sec:many} to \ref{sec:background} were run with the frozen rule, each with its rules written down first, and none led to a change. The test on \ManyTasks{} real tasks showed a cost the benchmark sequences could not show, and the variant \exactfirst{} (Section~\ref{sec:exactfirst}) was designed in response. It has its own weaker guarantee, gives the same routes on the benchmark sequences, and on the collection that motivated it its numbers are not an independent test.
+
+\paragraph{Reading the results.} Original-wording inputs are not affected by these choices: each is inside its own zone under every version (Proposition~\ref{prop:own}), and the guarantee does not depend on the choices. The results with reworded instructions come from the inputs that guided the two choices and are optimistic to an unknown degree.
+
+\FloatBarrier
+\section{Implementation details}
+\label{app:impl}
+
+\paragraph{Inside the official code.} The launcher imports the official modules, replaces three functions at run time and starts the official training script unchanged.
+\begin{itemize}
+  \item Trainer creation: the opening is the longest common prefix of the token sequences of the input template filled with two different placeholder instances; signature, radius and centre are stored next to the adapter weights, and the triples of all earlier tasks are loaded. The statistics of Section~\ref{sec:features} are computed at the first task and copied unchanged.
+  \item Encoder call: the route of every input of the batch is computed from its token ids.
+  \item Every attention module: the per-example weights that combine the adapter branches (all ones in the plain-adapter mode) are multiplied by the switches of Eq.~\eqref{eq:gates}. The decoder reuses the encoder's switches.
+\end{itemize}
+The embedding table is checked to be frozen, and its checksum is compared when earlier zones are loaded.
+
+\paragraph{The re-test.} After the official test of each task step, the launcher answers every test input of all tasks learned so far again, with the original and the three reworded definitions: official collator, official generation settings (greedy decoding, at most 50 new tokens), batch size of the official test. For methods that share adapters, the route of every input under every rule is computed first, each (input, route) pair that occurs is generated once with that route forced, and each rule's answer is looked up. Scores are Rouge-L against all reference answers of the benchmark file. With the original wording the re-test reproduced the official answers on every input, for all three methods and all seeds. One earlier run used batches of 32 in the re-test and 16 in the official test, and 6 of 1{,}500 GainLoRA answers differed; batch sizes have been equal since.
+
+\paragraph{The published methods.} InfLoRA and GainLoRA run with the official script and official settings, except for the reduced setting of Section~\ref{sec:protocol}; the launcher only records the test set and answers and runs the re-test. Their singular value decomposition, delegated to CuPy in the official code, was computed with PyTorch because CuPy did not load on the free GPU machines; the two implementations were not compared number for number. A task that runs out of GPU memory is repeated with half the batch size and twice the accumulation steps (effective batch size 32).
+
+\paragraph{Cost.} The switch needs one weight per token, one mean vector and one $d \times d$ matrix, computed once (about 0.6 million numbers for T5-base; our code stores twice as much, because it also keeps the statistics of \centre{}), and $d + 2$ numbers per task (770 for T5-base). One rank-4 adapter on the query and value projections of the 36 attention modules of T5-base has $72 \cdot 4 \cdot (768 + 768) = 442{,}368$ numbers. Routing one input among fifteen tasks took 3.3\,ms on one CPU thread (unoptimised; each distinct opening length is handled separately).
+
+\paragraph{A radius of zero.} The stand-alone code follows the convention of Definition~1 (since 2026-11-18, with a test): a zone of radius zero holds only inputs at distance zero, $0/0$ counts as inside, ties go to the older task. The experiment code (\texttt{silent\_run.py}) treats $0/0$ as ``not certified''. No run reached this case; the analysis of the \ManyTasks{} tasks (\texttt{many\_tasks\_analysis.py}), which does, follows the convention.
+
+\paragraph{Stand-alone implementation.} \texttt{certified\_switch.py} implements the method for any Hugging Face model without code of another paper: a class for the zones; a wrapper that adds one low-rank adapter per task to the attention projections (linear layers, or the transposed kind of GPT-2) and switches them per input; a class that learns tasks in turn and answers inputs. The opening is estimated as the longest common prefix of the task's training inputs, so no template is needed; if all training inputs share more than the instruction, the estimate is too long and later inputs lacking the extra part are treated like edited inputs. Decoder-only models are trained with the loss on the answer tokens only and answer by greedy continuation of the prompt.
+
+\clearpage
+\section{Additional results}
+\label{app:more}
+
+\begin{table}[h]
+  \caption{Five tasks: scores written by the official script, which compares each answer with one
+  randomly picked reference answer.}
+  \label{tab:fiveofficial}
+  \centering
+  \small
+  \input{tables/five_official}
+\end{table}
+
+\begin{table}[h]
+  \caption{Five tasks: score right after learning (Learned) and forgetting (FT) for each wording.}
+  \label{tab:fivemore}
+  \centering
+  \small
+  \input{tables/five_wordings_more}
+\end{table}
+
+\begin{table}[h]
+  \caption{Five tasks, original wording: score of each task right after it was learned $\to$ after
+  the last task.}
+  \label{tab:fivepertask}
+  \centering
+  \small
+  \input{tables/five_pertask}
+\end{table}
+
+\begin{table}[h]
+  \caption{Five tasks: opening length $n_k$, radius $R_k$, and relative distance of the reworded
+  test inputs from their own signature, in units of its radius (median over 100 inputs, largest in brackets; 1 is the border of
+  the zone). Last column: the smallest relative distance of any of these inputs, in any wording
+  (the original included), from the signature of another task, in units of that task's radius. Numbers behind Figure~\ref{fig:margins}.}
+  \label{tab:geometry}
+  \centering
+    \footnotesize
+  \setlength{\tabcolsep}{3pt}
+  \input{tables/geometry}
+\end{table}
+
+\begin{table}[h]
+  \caption{Fifteen tasks: distance from the signature of each task to the nearest signature of an
+  unrelated task and to the nearest signature of another task of the sequence (in brackets: which
+  one). The smaller of the two that is known when the task arrives sets the radius
+  (Eq.~\ref{eq:radius}).}
+  \label{tab:distances}
+  \centering
+  \small
+  \input{tables/distances}
+\end{table}
+
+\begin{table}[h]
+  \caption{Routes with other choices of the unrelated inputs $\mathcal{B}$ (CPU, T5-base
+  word-vectors, final rule). Entries with four numbers are for the original / light / medium /
+  heavy wording. ``Wrong'': inputs inside a foreign zone; ``Blocked'': training inputs inside an
+  older zone; both over the two sequences. ``Radii'': smallest and largest radius in the 15-task
+  sequence. In every row all inputs of the 15-task sequence with the original wording are
+  certified.}
+  \label{tab:background}
+  \centering
+  \footnotesize
+  \setlength{\tabcolsep}{3pt}
+  \input{tables/background}
+\end{table}
+
+\begin{table}[h]
+  \caption{Fifteen tasks: scores written by the official script, which compares each answer with one
+  randomly picked reference answer. The forgetting of \FifteenCertOffFT{} of the certified switch is
+  evaluation noise: no answer changed (Table~\ref{tab:fifteenmain}).}
+  \label{tab:fifteenofficial}
+  \centering
+  \small
+  \input{tables/fifteen_official}
+\end{table}
+
+\begin{table}[h]
+  \caption{Fifteen tasks: score right after learning (Learned) and forgetting (FT) for each wording.
+  For the three rewordings the numbers are those of the five tasks that have rewordings.}
+  \label{tab:fifteenmore}
+  \centering
+  \small
+  \input{tables/fifteen_wordings_more}
+\end{table}
+
+\begin{table}[h]
+  \caption{Fifteen tasks, original wording: score of each task right after it was learned $\to$ after
+  the last task (tasks in the order of the sequence).}
+  \label{tab:fifteenpertask}
+  \centering
+  \small
+  \input{tables/fifteen_pertask}
+\end{table}
+
+\begin{table}[h]
+  \caption{Routes on the 15-task sequence: how many test inputs are certified, how many are given to
+  their own task, and how many answers change, for the certified switch and for the nearest-centre
+  rule. The rewordings are those of the five tasks that have them. Routes do not depend on the seed.}
+  \label{tab:fifteenroutes}
+  \centering
+  \small
+  \setlength{\tabcolsep}{3.5pt}
+  \input{tables/fifteen_routes}
+\end{table}
+
+\FloatBarrier
+\section{The mechanical edit test}
+\label{app:edits}
+
+Line fixed before the run (written into the repository plan and pushed before the test of Section~\ref{sec:edits}). \emph{Must hold:} without an edit, every input is inside its own zone. \emph{Expected:} with one typo or one dropped word at least 90\% of the inputs stay certified; the right task for at least 99\% of the inputs for every edit with $k \le 4$, and at least 95\% for every other edit. \emph{Against the switch:} any edited input inside another task's zone; a right-task share under 95\% for an edit with $k \le 4$; a right-task share under 80\% for any edit.
+Verdict: the condition held; the first expectation was missed for typos (87.1\% certified with one typo; 93.7\% with one dropped word), the second for four typos (98.1\%; all other edits with $k \le 4$ between 99.6\% and 100\%), the third for eight and sixteen typos, sixteen dropped or replaced words and the removed last sentence; of the three outcomes against the switch the first two did not occur and the third did (45.4\% reach their own task with sixteen typos). The rule was not changed after the test. Tables~\ref{tab:editsfull} and \ref{tab:editspertask} give all numbers.
+
+\begin{table}[h]
+  \caption{The mechanical edit test in full (fifteen tasks, 1{,}197 test inputs per row, 1{,}097 in
+  the last three rows; T5-base word-vectors). ``Worst task'': the task with the lowest share.}
+  \label{tab:editsfull}
+  \centering
+  \footnotesize
+  \input{tables/edits_full}
+\end{table}
+
+\begin{table}[h]
+  \caption{The mechanical edit test by task, ordered by the length $n_k$ of the opening in tokens.
+  $100\,R_k/D$: the share of the weight of the opening, in per cent, that an edit may remove and add
+  without any possibility of leaving the zone (Proposition~\ref{prop:edits}). ``drop.'' and
+  ``repl.'': dropped and replaced words.}
+  \label{tab:editspertask}
+  \centering
+  \footnotesize
+  \setlength{\tabcolsep}{4pt}
+  \input{tables/edits_pertask}
+\end{table}
+
+\FloatBarrier
+\section{The test on many real tasks}
+\label{app:many}
+
+Data: the Super-NaturalInstructions task files of the public repository (\url{https://github.com/allenai/natural-instructions}) at commit \texttt{55a3656}, the tasks of \texttt{splits/default/train\_tasks.txt} and \texttt{test\_tasks.txt}, \ManyTasks{} in total. Each task contributes its definition and first six instances (three tasks have fewer in the part read; their positive examples are used), in the template of Section~\ref{sec:protocol}. \ManySamePairs{} tasks repeat the definition text of another task, and \ManyZeroRadius{} tasks have an opening that is, token for token, that of an earlier task (in one pair the definitions differ by a single blank); these get radius zero and cannot be learned under \cert{}, \exactfirst{}, \nearest{} or \keyswitch{}.
+
+Line fixed before the run. \emph{Must hold:} the routes equal those of the launcher on the fifteen tasks; no certified input changes its route. \emph{Expected:} at least 80\% of the tasks arrive without a collision; most collisions are between tasks whose definitions share at least 80\% of their words; under \nearest{} some inputs of older tasks are re-routed by later tasks. \emph{Against the switch:} more than 10\% of the colliding tasks share less than half of their words with the task they collide with; fewer than 80\% of all inputs given to their own task under \cert{}.
+Verdict: both conditions held; the first two expectations were met, the first narrowly (\ManyCleanPct{}\% in the main order, \ManyCleanLow{} to \ManyCleanHigh{} tasks over five random orders); the third was wrong, \nearest{} re-routed no input; neither outcome against the switch occurred, the second narrowly (\ManyCertRightPctLow{}\% to \ManyCertRightPctHigh{}\% over the random orders). The comparison with \nearest{} on unedited inputs, not asked for by the rules, is the main finding (Section~\ref{sec:many}). In the order of the task numbers, where family members often follow each other, \ManyNumericClean{} tasks arrive without a collision. Table~\ref{tab:manykappa} was added after the run.
+
+\begin{table}[h]
+  \caption{The test on \ManyTasks{} tasks for six orders of arrival, after all tasks.}
+  \label{tab:manyorders}
+  \centering
+  \footnotesize
+  \setlength{\tabcolsep}{2.5pt}
+  \input{tables/many_orders}
+\end{table}
+
+\begin{table}[h]
+  \caption{Other radius factors on the \ManyTasks{} tasks (main order). Added after the run; the method uses $\kappa = 0.5$.}
+  \label{tab:manykappa}
+  \centering
+  \small
+  \setlength{\tabcolsep}{4pt}
+  \input{tables/many_kappa}
+\end{table}
+
+\begin{table}[h]
+  \caption{Examples of collisions (main order). Above the line: the six colliding tasks whose
+  definition is least like that of the task they collide with. Below: two members of the
+  largest family and two tasks with the same definition text as an older task. ``Common words'':
+  words shared by the two definitions, as a share of the longer one.}
+  \label{tab:manyexamples}
+  \centering
+  \scriptsize
+  \setlength{\tabcolsep}{3pt}
+  \input{tables/many_examples}
+\end{table}
+
+\FloatBarrier
+\section{A re-implementation of Latent-LoRA}
+\label{app:latent}
+
+Latent-LoRA \citep{latentlora2026} is the published method closest to our recognition step. It has no public code that we could find, so we wrote it again from the text of its paper. No rule for this run was written in the plan before it was started.
+
+\paragraph{Set-up.} Five tasks of Section~\ref{sec:five}, \LatentTrainInputs{} training and \LatentTestInputs{} test inputs per task, T5-base, \LatentEpochs{} epochs, \LatentSeeds{} seeds (42 to 44), two T4 GPUs; same stand-alone code, data, budget and test for all methods. The certified switch is the code of \texttt{certified\_switch/} (rank \LatentRank{}); all-on is its adapters all used. Latent-LoRA runs with the rule of the paper (``soft'': adapters blended by router weights) and the paper's ablation without router (``sum''). Known differences from the paper: \LatentEpochs{} epochs instead of 30, T5-base instead of T5-large, five tasks, our own Rouge-L scorer; the choices for the 20 details the paper does not state are in \texttt{latent\_lora/README.md} of the repository.
+
+\begin{table}[h]
+  \caption{Original instructions, mean over \LatentSeeds{} seeds. Answers changed: answers to old inputs that differ from those given right after learning. Sum rule and all-on use no router. Rows 3 and 4 are our re-implementation.}
+  \label{tab:latentmain}
+  \centering
+  \small
+  \input{tables/latent_main}
+\end{table}
+
+\begin{table}[h]
+  \caption{The four wordings (Appendix~\ref{app:rewordings}), mean over \LatentSeeds{} seeds. Answers changed: of \LatentCompared{} answers. Right: share of test inputs given to their own task (soft rule: the adapter with the largest router weight).}
+  \label{tab:latentwordings}
+  \centering
+  \small
+  \input{tables/latent_wordings}
+\end{table}
+
+\begin{table}[h]
+  \caption{Original instructions, mean over \LatentSeeds{} seeds: score of each task right after it was learned, and the training loss of its last epoch.}
+  \label{tab:latentpertask}
+  \centering
+  \small
+  \input{tables/latent_pertask}
+\end{table}
+
+\paragraph{Result.} The re-implementation learned the first task and almost nothing after it (Table~\ref{tab:latentpertask}). With seed 42 the scores right after learning were \LatentSeedSoftRelation{}, \LatentSeedSoftSst{}, \LatentSeedSoftGlucose{}, \LatentSeedSoftSenti{} and \LatentSeedSoftEmotion{} (relation extraction, SST-2, Glucose, Sentiment140, emotion); the other seeds are alike. The Glucose training loss ended near \LatentLossSoftGlucose{} against \LatentLossCertGlucose{} for the certified switch; Learned and AP are \LatentSoftAP{} against \LatentCertAP{}. A further sign that its adapters were barely trained: with the light rewording its average (\LatentSoftAPLight{}) is higher than with the original (\LatentSoftAP{}), because its Sentiment140 score rises from \LatentSoftSentOriginal{} to between \LatentSoftSentLightLow{} and \LatentSoftSentLightHigh{} (over seeds) and falls to \LatentSoftSentMediumMean{} with the medium rewording.
+
+Its router gave every test input to its own task in all four wordings (right task \LatentSoftRight{}\%; certified switch \LatentCertRightOriginal{}\% / \LatentCertRightLight{}\% / \LatentCertRightMedium{}\% / \LatentCertRightHeavy{}\%), and with the soft rule none of \LatentCompared{} answers changed in any wording. On these five tasks its router is as stable as ours in practice and recognises the heavy rewording better; the certified switch adds the proof and the certificate on each answer, not better recognition. Sum rule (no router): AP \LatentSumAP{}, FT \LatentSumFT{}, \LatentSumChanged{} of \LatentCompared{} answers changed.
+
+The same run reproduces the certified switch in a second, independent code base: AP \LatentCertAP{}, FT \LatentCertFT{}, \LatentCertChanged{} of \LatentCompared{} answers changed in each wording (AP \LatentCertAPLight{} / \LatentCertAPMedium{} / \LatentCertAPHeavy{} for light, medium, heavy). The same adapters all on give AP \LatentAllAP{}, FT \LatentAllFT{}, \LatentAllChanged{} of \LatentCompared{} answers changed. The main experiments use other code and another rank; their AP is \FiveCertAP{}.
+
+\paragraph{Limits.} We do not know whether the low learning comes from the reduced budget (a third of the epochs, a smaller model) or from a mistake in our re-implementation, and without public code we cannot check. The run therefore says nothing about how well Latent-LoRA learns, retains or routes as its authors built it, nor about its router outside these five tasks (it was not run in the stress test of Section~\ref{sec:stress}). The reworded instructions are the development set of Appendix~\ref{app:rewordings}.
+
+\FloatBarrier
+\section{An earlier attempt: training adapters to be silent}
+\label{app:silence}
+
+Before the certified switch we tested whether a new adapter can be \emph{trained} to change nothing on inputs that are not its task. A second loss, while task $t$ was learned, asked the model with the new adapter to reproduce the next-token distributions of the model without it on stand-in inputs (the task's own instances under definitions of unrelated tasks, and instances of unrelated tasks). On the same five tasks, setting and seed 42 (official-script scores), this cost no learning (78.96 right after learning against 78.70 for plain adapters) and protected the first task completely through one further task (99.3 against 58.1). The protection faded: the first task stood at 85.3, 57.8 and 38.7 after the third, fourth and fifth task, and the final average was 43.12 against 33.46, forgetting 44.80 against 56.55. A protection learned from examples holds only as far as the examples reach; a switch does not depend on them, which led to the present method.
+
+\FloatBarrier
+\section{Reproducibility}
+\label{app:repro}
+
+Code, notebooks, the plan with the rules written before each run, a dated log of every result, and
+the archives with every score and every answer of the runs in this paper are in the repository
+\url{https://github.com/Shiv9993/FK-LoRA} (folders
+\texttt{silent\_adapters}, \texttt{certified\_switch} and \texttt{paper\_certified}; the plan is
+\texttt{silent\_adapters/PLAN.md} and the log \texttt{RESULTS\_LOG.md}). This repository is a copy of the one
+in which the work was done; the dates in the plan and in the log are those written there at the time. The notebooks
+build a Python~3.10 environment with the library versions required by the official code
+(PyTorch 2.1.0, Transformers 4.30.2, Datasets 2.14.6), clone the official repository at commit
+\texttt{e9d0d70}, and write the launcher from the notebook itself. Every table and figure of this
+paper is produced from the result files by one script (\texttt{make\_results.py}), and so are most
+numbers in the text. The numbers of the history in Appendix~\ref{app:history} and of the earlier
+attempt in Appendix~\ref{app:silence} were copied from the dated log of the repository, which
+records each run when it was made. The route computations
+of Sections~\ref{sec:stress} to \ref{sec:models} are separate scripts in the same folder; they run
+on a CPU in minutes, and the task collection of Section~\ref{sec:many} is fetched by a script from
+the public repository at a fixed commit. One method on the five-task sequence takes about
+\FiveCertMinutes{} minutes on one NVIDIA T4. Two runs with the same seed are not identical bit for
+bit on this hardware (\fivefull{}).

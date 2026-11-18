@@ -1,0 +1,1065 @@
+{
+ "notes": {
+  "split": {
+   "calibration": 175,
+   "evaluation": 700,
+   "half_A": 88,
+   "half_B": 87
+  },
+  "texts": "one instruction text per task and wording; MiniLM distance on whole texts cut at 254 tokens; judge A cut at 128 judge tokens per text",
+  "candidates": "for each text the 20 nearest evaluation tasks inside r_w are judged, plus its own task if inside r_w and not among them (so up to 21); the own pair is always scored (also outside r_w) only for reporting",
+  "identical": "E = 1 (judge A) / S empty = 1 (judge B) for identical strings; two tasks with the same definition therefore always claim each other",
+  "tau_C": "C, U use the original definitions of the 700 evaluation tasks; own task counted as inside its own zone only for Z/P/M/R, C only looks at OLDER zones",
+  "snap": "none (MiniLM d computed in float64; identical texts give d = 0 exactly)"
+ },
+ "calibration": {
+  "m": 87,
+  "r_w": 1.1254399139094808,
+  "r_w_index": 87,
+  "r_w_index_exceeds_m_used_largest": false,
+  "k": 7,
+  "tau_minus_infinity": false,
+  "tau": {
+   "A": 0.19946733117103577,
+   "B": 0.0
+  },
+  "auc": {
+   "A": 0.9689523054564672,
+   "B": 0.676773682124455
+  },
+  "chosen_judge": "A",
+  "judge_A_share_negatives_ge_tau": 0.11494252873563218,
+  "judge_A_share_positives_ge_tau": 0.9310344827586207,
+  "judge_B_share_negatives_ge_tau": 1.0,
+  "judge_B_share_positives_ge_tau": 1.0,
+  "score_ranges_A": {
+   "pos_min_med_max": [
+    0.01463253702968359,
+    0.9917235970497131,
+    0.9963555335998535
+   ],
+   "neg_min_med_max": [
+    0.0003167972026858479,
+    0.019798191264271736,
+    0.9935799837112427
+   ]
+  },
+  "score_ranges_B": {
+   "pos_min_med_max": [
+    0.0,
+    0.001690345591155995,
+    0.24243357127739407
+   ],
+   "neg_min_med_max": [
+    0.0,
+    0.0,
+    0.023155996989720262
+   ]
+  },
+  "negatives_with_identical_text": 0,
+  "d_pos_min_med_max": [
+   0.12020105070049056,
+   0.32838095781464943,
+   1.1254399139094808
+  ],
+  "judge": "cross-encoder/nli-deberta-v3-xsmall",
+  "judge_id2label": {
+   "0": "contradiction",
+   "1": "entailment",
+   "2": "neutral"
+  },
+  "entailment_index": 1,
+  "judge_tokenizer_fast": true
+ },
+ "stage1_originals_french": {
+  "chosen": {
+   "judge": "A",
+   "tau": 0.19946733117103577,
+   "table": {
+    "C_U": {
+     "C": 0.36,
+     "U": 0.64
+    },
+    "French": {
+     "Z": 0.9057142857142857,
+     "P": 0.5885714285714285,
+     "M": 0.34714285714285714,
+     "R": 0.6471428571428571,
+     "n_texts": 700
+    }
+   }
+  },
+  "not_chosen_5a": {
+   "judge": "B",
+   "tau": 0.0,
+   "table": {
+    "C_U": {
+     "C": 0.9428571428571428,
+     "U": 0.05714285714285714
+    },
+    "French": {
+     "Z": 1.0,
+     "P": 0.06285714285714286,
+     "M": 0.9371428571428572,
+     "R": 0.06285714285714286,
+     "n_texts": 700
+    }
+   }
+  },
+  "filter_alone_5b": {
+   "r_w": 1.1254399139094808,
+   "table": {
+    "C_U": {
+     "C": 0.9714285714285714,
+     "U": 0.02857142857142857
+    },
+    "French": {
+     "Z": 1.0,
+     "P": 0.037142857142857144,
+     "M": 0.9628571428571429,
+     "R": 0.037142857142857144,
+     "n_texts": 700
+    }
+   }
+  },
+  "verdict_chosen_French": {
+   "P": 0.5885714285714285,
+   "M": 0.34714285714285714,
+   "C": 0.36,
+   "outcome": "against"
+  }
+ },
+ "limit_reached": {
+  "orig": {
+   "texts_with_more_than_20_inside_r_w": 615,
+   "texts_with_none_inside_r_w": 0
+  },
+  "fr": {
+   "texts_with_more_than_20_inside_r_w": 594,
+   "texts_with_none_inside_r_w": 0
+  },
+  "de": {
+   "texts_with_more_than_20_inside_r_w": 593,
+   "texts_with_none_inside_r_w": 0
+  }
+ },
+ "step3_final": {
+  "chosen": {
+   "judge": "A",
+   "tau": 0.19946733117103577,
+   "table": {
+    "C_U": {
+     "C": 0.36,
+     "U": 0.64
+    },
+    "French": {
+     "Z": 0.9057142857142857,
+     "P": 0.5885714285714285,
+     "M": 0.34714285714285714,
+     "R": 0.6471428571428571,
+     "n_texts": 700
+    },
+    "German": {
+     "Z": 0.95,
+     "P": 0.5628571428571428,
+     "M": 0.4114285714285714,
+     "R": 0.5871428571428572,
+     "n_texts": 700
+    },
+    "both": {
+     "Z": 0.9278571428571428,
+     "P": 0.5757142857142857,
+     "M": 0.3792857142857143,
+     "R": 0.6171428571428571,
+     "n_texts": 1400
+    }
+   }
+  },
+  "not_chosen_5a": {
+   "judge": "B",
+   "tau": 0.0,
+   "table": {
+    "C_U": {
+     "C": 0.9428571428571428,
+     "U": 0.05714285714285714
+    },
+    "French": {
+     "Z": 1.0,
+     "P": 0.06285714285714286,
+     "M": 0.9371428571428572,
+     "R": 0.06285714285714286,
+     "n_texts": 700
+    },
+    "German": {
+     "Z": 1.0,
+     "P": 0.055714285714285716,
+     "M": 0.9442857142857143,
+     "R": 0.055714285714285716,
+     "n_texts": 700
+    },
+    "both": {
+     "Z": 1.0,
+     "P": 0.05928571428571429,
+     "M": 0.9407142857142857,
+     "R": 0.05928571428571429,
+     "n_texts": 1400
+    }
+   }
+  },
+  "filter_alone_5b": {
+   "r_w": 1.1254399139094808,
+   "table": {
+    "C_U": {
+     "C": 0.9714285714285714,
+     "U": 0.02857142857142857
+    },
+    "French": {
+     "Z": 1.0,
+     "P": 0.037142857142857144,
+     "M": 0.9628571428571429,
+     "R": 0.037142857142857144,
+     "n_texts": 700
+    },
+    "German": {
+     "Z": 1.0,
+     "P": 0.03142857142857143,
+     "M": 0.9685714285714285,
+     "R": 0.03142857142857143,
+     "n_texts": 700
+    },
+    "both": {
+     "Z": 1.0,
+     "P": 0.03428571428571429,
+     "M": 0.9657142857142857,
+     "R": 0.03428571428571429,
+     "n_texts": 1400
+    }
+   }
+  },
+  "verdict_chosen_French": {
+   "P": 0.5885714285714285,
+   "M": 0.34714285714285714,
+   "C": 0.36,
+   "outcome": "against"
+  }
+ },
+ "sweep_5c": {
+  "judge": "A",
+  "range": [
+   0.01463253702968359,
+   0.9963555335998535
+  ],
+  "curve_French": [
+   {
+    "tau": 0.01463253702968359,
+    "C": 0.7885714285714286,
+    "Z": 0.9657142857142857,
+    "P": 0.22285714285714286,
+    "M": 0.7714285714285715,
+    "R": 0.22857142857142856
+   },
+   {
+    "tau": 0.10388008217242631,
+    "C": 0.4642857142857143,
+    "Z": 0.9285714285714286,
+    "P": 0.4942857142857143,
+    "M": 0.46285714285714286,
+    "R": 0.5357142857142857
+   },
+   {
+    "tau": 0.19312762731516903,
+    "C": 0.3628571428571429,
+    "Z": 0.9057142857142857,
+    "P": 0.5857142857142857,
+    "M": 0.35,
+    "R": 0.6442857142857142
+   },
+   {
+    "tau": 0.28237517245791177,
+    "C": 0.31142857142857144,
+    "Z": 0.89,
+    "P": 0.6257142857142857,
+    "M": 0.29714285714285715,
+    "R": 0.6971428571428572
+   },
+   {
+    "tau": 0.37162271760065446,
+    "C": 0.27285714285714285,
+    "Z": 0.8785714285714286,
+    "P": 0.6471428571428571,
+    "M": 0.26142857142857145,
+    "R": 0.7328571428571429
+   },
+   {
+    "tau": 0.46087026274339715,
+    "C": 0.2557142857142857,
+    "Z": 0.8742857142857143,
+    "P": 0.67,
+    "M": 0.2357142857142857,
+    "R": 0.7585714285714286
+   },
+   {
+    "tau": 0.55011780788614,
+    "C": 0.2342857142857143,
+    "Z": 0.8657142857142858,
+    "P": 0.6857142857142857,
+    "M": 0.21142857142857144,
+    "R": 0.7828571428571428
+   },
+   {
+    "tau": 0.6393653530288826,
+    "C": 0.20857142857142857,
+    "Z": 0.8557142857142858,
+    "P": 0.6871428571428572,
+    "M": 0.20142857142857143,
+    "R": 0.7928571428571428
+   },
+   {
+    "tau": 0.7286128981716253,
+    "C": 0.19,
+    "Z": 0.84,
+    "P": 0.6928571428571428,
+    "M": 0.17714285714285713,
+    "R": 0.8128571428571428
+   },
+   {
+    "tau": 0.817860443314368,
+    "C": 0.1442857142857143,
+    "Z": 0.8214285714285714,
+    "P": 0.6985714285714286,
+    "M": 0.14714285714285713,
+    "R": 0.8414285714285714
+   },
+   {
+    "tau": 0.9071079884571107,
+    "C": 0.10428571428571429,
+    "Z": 0.7971428571428572,
+    "P": 0.7042857142857143,
+    "M": 0.10571428571428572,
+    "R": 0.8828571428571429
+   },
+   {
+    "tau": 0.9963555335998535,
+    "C": 0.014285714285714285,
+    "Z": 0.005714285714285714,
+    "P": 0.005714285714285714,
+    "M": 0.0,
+    "R": 0.9642857142857143
+   }
+  ],
+  "note": "curve only; no value chosen"
+ },
+ "collisions_5d": {
+  "source": "many_tasks.json, 'random order, seed 0', 875 tasks, key 'collisions' (task, older); pair = (original of task, original of older)",
+  "listed": 151,
+  "both_in_data": 151,
+  "per_judge": {
+   "A": {
+    "tau": 0.19946733117103577,
+    "n_pairs": 151,
+    "n_ge_tau": 60,
+    "median_score": 0.09837646037340164,
+    "n_pairs_not_same_definition": 142,
+    "n_ge_tau_not_same_definition": 51,
+    "median_score_not_same_definition": 0.07793327420949936
+   },
+   "B": {
+    "tau": 0.0,
+    "n_pairs": 151,
+    "n_ge_tau": 151,
+    "median_score": 0.0050539509261364746,
+    "n_pairs_not_same_definition": 142,
+    "n_ge_tau_not_same_definition": 142,
+    "median_score_not_same_definition": 0.0050539509261364746
+   }
+  }
+ },
+ "fail_5e": {
+  "n_not_in_own_zone_French": 66,
+  "judge": "A",
+  "first_12": [
+   {
+    "pos": 0,
+    "task": "task367_synthetic_remove_floats",
+    "d": 0.41663654760886604,
+    "d_le_r_w": true,
+    "judge_score": 0.09180235862731934,
+    "judge_A_score": 0.09180235862731934,
+    "original_200": "In this task you will be given a list of numbers. You should remove any number that is not an integer (whole number). If every number is not an whole number then an empty list (\"[]\") should be returne",
+    "paraphrase_200": "In this task, you will receive a list of numbers. You must delete any number that is not an integer (integer number). If each number is not an integer, then an empty list (\"[]\") must be returned. Othe"
+   },
+   {
+    "pos": 1,
+    "task": "task1203_atomic_classification_xreact",
+    "d": 0.31387616740486646,
+    "d_le_r_w": true,
+    "judge_score": 0.09012818336486816,
+    "judge_A_score": 0.09012818336486816,
+    "original_200": "In this task, you are given two phrases: Head and Tail, separated with <sep>. The Head and the Tail events are short phrases possibly involving participants. The names of specific people have been rep",
+    "paraphrase_200": "In this task, you are given two sentences: Head and tail, separated by <sep>. Head and Tail events are short sentences that may involve participants. The names of specific individuals have been replac"
+   },
+   {
+    "pos": 3,
+    "task": "task636_extract_and_sort_unique_alphabets_in_a_list",
+    "d": 0.4318371841874017,
+    "d_le_r_w": true,
+    "judge_score": 0.0031877795699983835,
+    "judge_A_score": 0.0031877795699983835,
+    "original_200": "In this task, you are given an input list A comprising of numbers and alphabets. You need to extract and sort the unique alphabets in the list. The alphabets in the input list will only be in lowercas",
+    "paraphrase_200": "In this task, you are given a list of A entries with numbers and alphabets. You need to extract and sort the unique alphabets in the list. The alphabets in the entry list will only be in tiny. Return "
+   },
+   {
+    "pos": 15,
+    "task": "task292_storycommonsense_character_text_generation",
+    "d": 0.37298768273143285,
+    "d_le_r_w": true,
+    "judge_score": 0.0031549909617751837,
+    "judge_A_score": 0.0031549909617751837,
+    "original_200": "In this task, you're given a story (which contains five sentences only). Your task is to find all the characters which are available in the given story.",
+    "paraphrase_200": "In this task, you are given a story (which contains only five sentences). Your task is to find all the characters available in the given history."
+   },
+   {
+    "pos": 18,
+    "task": "task1308_amazonreview_category_classification",
+    "d": 0.5111624865547476,
+    "d_le_r_w": true,
+    "judge_score": 0.00960286520421505,
+    "judge_A_score": 0.00960286520421505,
+    "original_200": "In this task, you're given a review from Amazon and category of the product based on the review given by the user and your task is classify whether the given category match the review. Generate \"True\"",
+    "paraphrase_200": "In this task, you receive a review from Amazon and the product category based on the user's review and your task is to rank if the given category corresponds to the review. Generate \"True\" if the exam"
+   },
+   {
+    "pos": 32,
+    "task": "task1606_ethos_text_classification",
+    "d": 0.6274448701878648,
+    "d_le_r_w": true,
+    "judge_score": 0.0185399129986763,
+    "judge_A_score": 0.0185399129986763,
+    "original_200": "You are given a piece of text. You should find out if there are any gender specific criticized comments. Label the text as 'gender criticism' or 'not gender criticism'",
+    "paraphrase_200": "We'll give you a piece of text. You should know if there are any criticisms based on sex. Label the text as \"gender critic\" or \"non-gender critic\""
+   },
+   {
+    "pos": 36,
+    "task": "task677_ollie_sentence_answer_generation",
+    "d": 0.4988650879578738,
+    "d_le_r_w": true,
+    "judge_score": 0.014527878724038601,
+    "judge_A_score": 0.014527878724038601,
+    "original_200": "Given two noun phrases (arguments) and relationship between them, form a sentence that expresses theses arguments with the given relationship.",
+    "paraphrase_200": "Given two nominative phrases (arguments) and the relationship between them, form a sentence that expresses these arguments with the given relationship."
+   },
+   {
+    "pos": 56,
+    "task": "task1197_atomic_classification_oreact",
+    "d": 0.2737210849607247,
+    "d_le_r_w": true,
+    "judge_score": 0.16613930463790894,
+    "judge_A_score": 0.16613930463790894,
+    "original_200": "In this task, you are given a tuple, comprising Head and Tail, separated with <sep>. The Head and the Tail events are short phrases possibly involving participants. The names of specific people have b",
+    "paraphrase_200": "In this task, you are given a tuple, including Head and Tail, separated by <sep>. Head and Tail events are short sentences that may involve participants. The names of specific individuals have been re"
+   },
+   {
+    "pos": 61,
+    "task": "task1195_disflqa_disfluent_to_fluent_conversion",
+    "d": 0.8407945286319645,
+    "d_le_r_w": true,
+    "judge_score": 0.17637990415096283,
+    "judge_A_score": 0.17637990415096283,
+    "original_200": "Given a disfluent sentence, modify the sentence to it to its equivalent fluent form, preserving the meaning of the sentence.",
+    "paraphrase_200": "In view of a disciplined sentence, modify the sentence to its commonly equivalent form, preserving the meaning of the sentence."
+   },
+   {
+    "pos": 64,
+    "task": "task1215_atomic_classification_capableof",
+    "d": 0.29819618954198657,
+    "d_le_r_w": true,
+    "judge_score": 0.06355507671833038,
+    "judge_A_score": 0.06355507671833038,
+    "original_200": "In this task, you are given two phrases: Head and Tail, separated with <sep>. The Head and the Tail events are short phrases possibly involving participants. The names of specific people have been rep",
+    "paraphrase_200": "In this task, you are given two sentences: Head and tail, separated by <sep>. Head and Tail events are short sentences that may involve participants. The names of specific individuals have been replac"
+   },
+   {
+    "pos": 76,
+    "task": "task851_synthetic_multiply_evens",
+    "d": 0.47160960514840616,
+    "d_le_r_w": true,
+    "judge_score": 0.16068241000175476,
+    "judge_A_score": 0.16068241000175476,
+    "original_200": "In this task you will be given a list, of lists, of integers. For every inner list contained in the input list, you should multiply every even number in that list. The output should be a list of integ",
+    "paraphrase_200": "In this task, you will receive a list, lists, integers. For each inner list contained in the entry list, you must multiply each even number in this list. The output must be a list of integers with the"
+   },
+   {
+    "pos": 89,
+    "task": "task600_find_the_longest_common_substring_in_two_strings",
+    "d": 0.46046682853457255,
+    "d_le_r_w": true,
+    "judge_score": 0.02922716923058033,
+    "judge_A_score": 0.02922716923058033,
+    "original_200": "In this task, you are given two strings A, B. Find the longest common substring in the strings A and B.",
+    "paraphrase_200": "In this task, we give you two strings A, B. Find the longest common substring in channels A and B."
+   }
+  ]
+ },
+ "m_cases_5e": {
+  "n_M_French": 243,
+  "judge": "A",
+  "first_12": [
+   {
+    "pos": 0,
+    "task": "task367_synthetic_remove_floats",
+    "routed_to": "task369_synthetic_remove_odds",
+    "routed_pos": 327,
+    "d": 0.709348716453007,
+    "judge_score": 0.646023154258728,
+    "own_zone_holds": false,
+    "original_own_160": "In this task you will be given a list of numbers. You should remove any number that is not an integer (whole number). If every number is not an whole number the",
+    "original_routed_160": "In this task, you will be given a list of integers. You should remove all of the odd integers from the list(consider 0 an even number). If every integer in the "
+   },
+   {
+    "pos": 1,
+    "task": "task1203_atomic_classification_xreact",
+    "routed_to": "task1201_atomic_classification_xintent",
+    "routed_pos": 41,
+    "d": 0.5750308953330434,
+    "judge_score": 0.6900990009307861,
+    "own_zone_holds": false,
+    "original_own_160": "In this task, you are given two phrases: Head and Tail, separated with <sep>. The Head and the Tail events are short phrases possibly involving participants. Th",
+    "original_routed_160": "In this task, you are given two phrases: Head and Tail, separated with <sep>. The Head and the Tail events are short phrases possibly involving participants. Th"
+   },
+   {
+    "pos": 18,
+    "task": "task1308_amazonreview_category_classification",
+    "routed_to": "task1313_amazonreview_polarity_classification",
+    "routed_pos": 375,
+    "d": 0.9704782135889786,
+    "judge_score": 0.4906366467475891,
+    "own_zone_holds": false,
+    "original_own_160": "In this task, you're given a review from Amazon and category of the product based on the review given by the user and your task is classify whether the given ca",
+    "original_routed_160": "In this task, You are given an amazon review and its polarity (positive or negative). Your task is to answer \"True\" if the specified sentence and its polarity m"
+   },
+   {
+    "pos": 25,
+    "task": "task1155_bard_analogical_reasoning_trash_or_treasure",
+    "routed_to": "task1156_bard_analogical_reasoning_tools",
+    "routed_pos": 24,
+    "d": 0.9546255499153797,
+    "judge_score": 0.9337681531906128,
+    "own_zone_holds": true,
+    "original_own_160": "Two analogies that relate items to whether they are trash or treasure is given in the form \"A : B. C : ?\". Items marked as \"trash\" are considered to not have va",
+    "original_routed_160": "Two analogies that relate actions to the tools used to perform the action is given in the form \"A : B. C : ?\". \"A : B\" relates action A to tool B. Your task is "
+   },
+   {
+    "pos": 31,
+    "task": "task1157_bard_analogical_reasoning_rooms_for_containers",
+    "routed_to": "task1156_bard_analogical_reasoning_tools",
+    "routed_pos": 24,
+    "d": 0.8423852268991838,
+    "judge_score": 0.8200234770774841,
+    "own_zone_holds": true,
+    "original_own_160": "Two analogies that relate objects to the associated rooms is given in the form \"A : B. C : ?\". \"A : B\" relates object A to room B. Your task is to replace the q",
+    "original_routed_160": "Two analogies that relate actions to the tools used to perform the action is given in the form \"A : B. C : ?\". \"A : B\" relates action A to tool B. Your task is "
+   },
+   {
+    "pos": 32,
+    "task": "task1606_ethos_text_classification",
+    "routed_to": "task609_sbic_potentially_offense_binary_classification",
+    "routed_pos": 293,
+    "d": 1.0885512283787786,
+    "judge_score": 0.7369746565818787,
+    "own_zone_holds": false,
+    "original_own_160": "You are given a piece of text. You should find out if there are any gender specific criticized comments. Label the text as 'gender criticism' or 'not gender cri",
+    "original_routed_160": "In this task, you are given a text from a social media post. Your task is to classify the given post into two categories: 1) yes if the given post is potentiall"
+   },
+   {
+    "pos": 36,
+    "task": "task677_ollie_sentence_answer_generation",
+    "routed_to": "task1388_cb_entailment",
+    "routed_pos": 370,
+    "d": 1.1010805026972172,
+    "judge_score": 0.4741571545600891,
+    "own_zone_holds": false,
+    "original_own_160": "Given two noun phrases (arguments) and relationship between them, form a sentence that expresses theses arguments with the given relationship.",
+    "original_routed_160": "In this task, you will be presented with a premise and a hypothesis sentence. Determine whether the hypothesis sentence entails (implies), contradicts (opposes)"
+   },
+   {
+    "pos": 38,
+    "task": "task1403_check_validity_date_mmddyyyy",
+    "routed_to": "task1333_check_validity_date_ddmmyyyy",
+    "routed_pos": 7,
+    "d": 0.31506929129665845,
+    "judge_score": 0.4582344889640808,
+    "own_zone_holds": true,
+    "original_own_160": "In this task, you are given a date in \"mm/dd/yyyy\" format. You need to check if the date is valid or not. Return 1 if it is valid, else return 0. A date is vali",
+    "original_routed_160": "In this task, you are given a date in \"dd/mm/yyyy\" format. You need to check if the date is valid or not. Return 1 if it is valid, else return 0. A date is vali"
+   },
+   {
+    "pos": 41,
+    "task": "task1201_atomic_classification_xintent",
+    "routed_to": "task1203_atomic_classification_xreact",
+    "routed_pos": 1,
+    "d": 0.5493521530508994,
+    "judge_score": 0.9121759533882141,
+    "own_zone_holds": true,
+    "original_own_160": "In this task, you are given two phrases: Head and Tail, separated with <sep>. The Head and the Tail events are short phrases possibly involving participants. Th",
+    "original_routed_160": "In this task, you are given two phrases: Head and Tail, separated with <sep>. The Head and the Tail events are short phrases possibly involving participants. Th"
+   },
+   {
+    "pos": 42,
+    "task": "task1380_quarel_correct_option_generation",
+    "routed_to": "task329_gap_classification",
+    "routed_pos": 13,
+    "d": 0.8253524292690794,
+    "judge_score": 0.6842734813690186,
+    "own_zone_holds": true,
+    "original_own_160": "You are given a sentence, a question and two answer options ('A' and 'B'). Your task is to find the correct option for the given question. Write down the answer",
+    "original_routed_160": "In this task, you will be presented with a text, a pronoun from the text, and two candidate names. You should determine what the pronoun refers to and classify "
+   },
+   {
+    "pos": 51,
+    "task": "task064_all_elements_except_first_i",
+    "routed_to": "task063_first_i_elements",
+    "routed_pos": 48,
+    "d": 0.405474322922054,
+    "judge_score": 0.8892382979393005,
+    "own_zone_holds": true,
+    "original_own_160": "In this task, you are given inputs i and A, where i is an integer and A is a list. You need to list all the elements of A after the first i elements. i will alw",
+    "original_routed_160": "In this task, you are given inputs i and A, where i is an integer and A is a list. You need to output the first i elements of A, starting with the 1st element i"
+   },
+   {
+    "pos": 53,
+    "task": "task1196_atomic_classification_oeffect",
+    "routed_to": "task1201_atomic_classification_xintent",
+    "routed_pos": 41,
+    "d": 0.5916396834923872,
+    "judge_score": 0.6254186034202576,
+    "own_zone_holds": true,
+    "original_own_160": "In this task, you are given a tuple, comprising Head and Tail, separated with <sep>. The Head and the Tail events are short phrases possibly involving participa",
+    "original_routed_160": "In this task, you are given two phrases: Head and Tail, separated with <sep>. The Head and the Tail events are short phrases possibly involving participants. Th"
+   }
+  ]
+ },
+ "benchmark_5f": {
+  "judge": "A",
+  "r_w": 1.1254399139094808,
+  "tau": 0.19946733117103577,
+  "rows": [
+   {
+    "task": "task1510_evalution_relation_extraction",
+    "level": "original",
+    "d_own": 0.0,
+    "judge_A_score": 1.0,
+    "judge_B_score": 1.0,
+    "in_own_zone": true,
+    "route_five": {
+     "task": "task1510_evalution_relation_extraction",
+     "certified": true,
+     "correct": true
+    },
+    "route_fifteen": {
+     "task": "task1510_evalution_relation_extraction",
+     "certified": true,
+     "correct": true
+    }
+   },
+   {
+    "task": "task1510_evalution_relation_extraction",
+    "level": "light",
+    "d_own": 0.13309812571550658,
+    "judge_A_score": 0.9951163530349731,
+    "judge_B_score": 0.0033749862891182536,
+    "in_own_zone": true,
+    "route_five": {
+     "task": "task1510_evalution_relation_extraction",
+     "certified": true,
+     "correct": true
+    },
+    "route_fifteen": {
+     "task": "task1510_evalution_relation_extraction",
+     "certified": true,
+     "correct": true
+    }
+   },
+   {
+    "task": "task1510_evalution_relation_extraction",
+    "level": "medium",
+    "d_own": 0.5957036080577878,
+    "judge_A_score": 0.9581783413887024,
+    "judge_B_score": 0.001690345591155995,
+    "in_own_zone": true,
+    "route_five": {
+     "task": "task1510_evalution_relation_extraction",
+     "certified": true,
+     "correct": true
+    },
+    "route_fifteen": {
+     "task": "task1510_evalution_relation_extraction",
+     "certified": true,
+     "correct": true
+    }
+   },
+   {
+    "task": "task1510_evalution_relation_extraction",
+    "level": "heavy",
+    "d_own": 0.5861350883940835,
+    "judge_A_score": 0.743250846862793,
+    "judge_B_score": 0.0,
+    "in_own_zone": true,
+    "route_five": {
+     "task": "task1510_evalution_relation_extraction",
+     "certified": true,
+     "correct": true
+    },
+    "route_fifteen": {
+     "task": "task1510_evalution_relation_extraction",
+     "certified": true,
+     "correct": true
+    }
+   },
+   {
+    "task": "task363_sst2_polarity_classification",
+    "level": "original",
+    "d_own": 0.0,
+    "judge_A_score": 1.0,
+    "judge_B_score": 1.0,
+    "in_own_zone": true,
+    "route_five": {
+     "task": "task363_sst2_polarity_classification",
+     "certified": true,
+     "correct": true
+    },
+    "route_fifteen": {
+     "task": "task363_sst2_polarity_classification",
+     "certified": true,
+     "correct": true
+    }
+   },
+   {
+    "task": "task363_sst2_polarity_classification",
+    "level": "light",
+    "d_own": 0.1657874920445755,
+    "judge_A_score": 0.9848494529724121,
+    "judge_B_score": 0.010057073894350399,
+    "in_own_zone": true,
+    "route_five": {
+     "task": "task363_sst2_polarity_classification",
+     "certified": true,
+     "correct": true
+    },
+    "route_fifteen": {
+     "task": "task363_sst2_polarity_classification",
+     "certified": true,
+     "correct": true
+    }
+   },
+   {
+    "task": "task363_sst2_polarity_classification",
+    "level": "medium",
+    "d_own": 0.6108201160701295,
+    "judge_A_score": 0.9853702783584595,
+    "judge_B_score": 0.001690345591155995,
+    "in_own_zone": true,
+    "route_five": {
+     "task": "task363_sst2_polarity_classification",
+     "certified": true,
+     "correct": true
+    },
+    "route_fifteen": {
+     "task": "task363_sst2_polarity_classification",
+     "certified": true,
+     "correct": true
+    }
+   },
+   {
+    "task": "task363_sst2_polarity_classification",
+    "level": "heavy",
+    "d_own": 0.8625511686334016,
+    "judge_A_score": 0.9754231572151184,
+    "judge_B_score": 0.0,
+    "in_own_zone": true,
+    "route_five": {
+     "task": "task363_sst2_polarity_classification",
+     "certified": true,
+     "correct": true
+    },
+    "route_fifteen": {
+     "task": "task363_sst2_polarity_classification",
+     "certified": true,
+     "correct": true
+    }
+   },
+   {
+    "task": "task748_glucose_reverse_cause_event_detection",
+    "level": "original",
+    "d_own": 0.0,
+    "judge_A_score": 1.0,
+    "judge_B_score": 1.0,
+    "in_own_zone": true,
+    "route_five": {
+     "task": "task748_glucose_reverse_cause_event_detection",
+     "certified": true,
+     "correct": true
+    },
+    "route_fifteen": {
+     "task": "task748_glucose_reverse_cause_event_detection",
+     "certified": true,
+     "correct": true
+    }
+   },
+   {
+    "task": "task748_glucose_reverse_cause_event_detection",
+    "level": "light",
+    "d_own": 0.2271889238897563,
+    "judge_A_score": 0.9854438900947571,
+    "judge_B_score": 0.001690345591155995,
+    "in_own_zone": true,
+    "route_five": {
+     "task": "task748_glucose_reverse_cause_event_detection",
+     "certified": true,
+     "correct": true
+    },
+    "route_fifteen": {
+     "task": "task748_glucose_reverse_cause_event_detection",
+     "certified": true,
+     "correct": true
+    }
+   },
+   {
+    "task": "task748_glucose_reverse_cause_event_detection",
+    "level": "medium",
+    "d_own": 0.625695244940752,
+    "judge_A_score": 0.977226734161377,
+    "judge_B_score": 0.0,
+    "in_own_zone": true,
+    "route_five": {
+     "task": "task748_glucose_reverse_cause_event_detection",
+     "certified": true,
+     "correct": true
+    },
+    "route_fifteen": {
+     "task": "task748_glucose_reverse_cause_event_detection",
+     "certified": true,
+     "correct": true
+    }
+   },
+   {
+    "task": "task748_glucose_reverse_cause_event_detection",
+    "level": "heavy",
+    "d_own": 0.7441977427818043,
+    "judge_A_score": 0.7221009731292725,
+    "judge_B_score": 0.001690345591155995,
+    "in_own_zone": true,
+    "route_five": {
+     "task": "task748_glucose_reverse_cause_event_detection",
+     "certified": true,
+     "correct": true
+    },
+    "route_fifteen": {
+     "task": "task748_glucose_reverse_cause_event_detection",
+     "certified": true,
+     "correct": true
+    }
+   },
+   {
+    "task": "task1687_sentiment140_classification",
+    "level": "original",
+    "d_own": 0.0,
+    "judge_A_score": 1.0,
+    "judge_B_score": 1.0,
+    "in_own_zone": true,
+    "route_five": {
+     "task": "task1687_sentiment140_classification",
+     "certified": true,
+     "correct": true
+    },
+    "route_fifteen": {
+     "task": "task1687_sentiment140_classification",
+     "certified": true,
+     "correct": true
+    }
+   },
+   {
+    "task": "task1687_sentiment140_classification",
+    "level": "light",
+    "d_own": 0.13597417697569408,
+    "judge_A_score": 0.951453447341919,
+    "judge_B_score": 0.7951168998766736,
+    "in_own_zone": true,
+    "route_five": {
+     "task": "task1687_sentiment140_classification",
+     "certified": true,
+     "correct": true
+    },
+    "route_fifteen": {
+     "task": "task1687_sentiment140_classification",
+     "certified": true,
+     "correct": true
+    }
+   },
+   {
+    "task": "task1687_sentiment140_classification",
+    "level": "medium",
+    "d_own": 0.7142819340473002,
+    "judge_A_score": 0.33843934535980225,
+    "judge_B_score": 0.001690345591155995,
+    "in_own_zone": true,
+    "route_five": {
+     "task": "task1687_sentiment140_classification",
+     "certified": true,
+     "correct": true
+    },
+    "route_fifteen": {
+     "task": "task1687_sentiment140_classification",
+     "certified": true,
+     "correct": true
+    }
+   },
+   {
+    "task": "task1687_sentiment140_classification",
+    "level": "heavy",
+    "d_own": 0.9950665256920108,
+    "judge_A_score": 0.02348094992339611,
+    "judge_B_score": 0.0,
+    "in_own_zone": false,
+    "route_five": {
+     "task": "task1687_sentiment140_classification",
+     "certified": false,
+     "correct": true
+    },
+    "route_fifteen": {
+     "task": "task1687_sentiment140_classification",
+     "certified": false,
+     "correct": true
+    }
+   },
+   {
+    "task": "task875_emotion_classification",
+    "level": "original",
+    "d_own": 0.0,
+    "judge_A_score": 1.0,
+    "judge_B_score": 1.0,
+    "in_own_zone": true,
+    "route_five": {
+     "task": "task875_emotion_classification",
+     "certified": true,
+     "correct": true
+    },
+    "route_fifteen": {
+     "task": "task875_emotion_classification",
+     "certified": true,
+     "correct": true
+    }
+   },
+   {
+    "task": "task875_emotion_classification",
+    "level": "light",
+    "d_own": 0.3435633482326817,
+    "judge_A_score": 0.9198773503303528,
+    "judge_B_score": 0.019913872501431396,
+    "in_own_zone": true,
+    "route_five": {
+     "task": "task875_emotion_classification",
+     "certified": true,
+     "correct": true
+    },
+    "route_fifteen": {
+     "task": "task875_emotion_classification",
+     "certified": true,
+     "correct": true
+    }
+   },
+   {
+    "task": "task875_emotion_classification",
+    "level": "medium",
+    "d_own": 0.6029138236555688,
+    "judge_A_score": 0.9750248789787292,
+    "judge_B_score": 0.008394966378159618,
+    "in_own_zone": true,
+    "route_five": {
+     "task": "task875_emotion_classification",
+     "certified": true,
+     "correct": true
+    },
+    "route_fifteen": {
+     "task": "task875_emotion_classification",
+     "certified": true,
+     "correct": true
+    }
+   },
+   {
+    "task": "task875_emotion_classification",
+    "level": "heavy",
+    "d_own": 0.7314354647489986,
+    "judge_A_score": 0.8593573570251465,
+    "judge_B_score": 0.0033749862891182536,
+    "in_own_zone": true,
+    "route_five": {
+     "task": "task875_emotion_classification",
+     "certified": true,
+     "correct": true
+    },
+    "route_fifteen": {
+     "task": "task875_emotion_classification",
+     "certified": true,
+     "correct": true
+    }
+   }
+  ],
+  "summary": {
+   "all": {
+    "original": {
+     "n": 5,
+     "in_own_zone": 5,
+     "routed_correct_five": 5,
+     "routed_correct_fifteen": 5,
+     "certified_wrong_five": 0,
+     "certified_wrong_fifteen": 0
+    },
+    "light": {
+     "n": 5,
+     "in_own_zone": 5,
+     "routed_correct_five": 5,
+     "routed_correct_fifteen": 5,
+     "certified_wrong_five": 0,
+     "certified_wrong_fifteen": 0
+    },
+    "medium": {
+     "n": 5,
+     "in_own_zone": 5,
+     "routed_correct_five": 5,
+     "routed_correct_fifteen": 5,
+     "certified_wrong_five": 0,
+     "certified_wrong_fifteen": 0
+    },
+    "heavy": {
+     "n": 5,
+     "in_own_zone": 4,
+     "routed_correct_five": 5,
+     "routed_correct_fifteen": 5,
+     "certified_wrong_five": 0,
+     "certified_wrong_fifteen": 0
+    }
+   }
+  }
+ },
+ "cost_5g": {
+  "mean_candidates_per_text_all": 18.72190476190476,
+  "mean_judged_pairs_per_text_all_non_identical": 18.371904761904762,
+  "per_kind_mean_candidates": {
+   "orig": 18.982857142857142,
+   "fr": 18.66,
+   "de": 18.52285714285714
+  },
+  "per_kind_mean_judged_non_identical": {
+   "orig": 17.94,
+   "fr": 18.654285714285713,
+   "de": 18.521428571428572
+  },
+  "timing_sample_texts": 126,
+  "chosen_judge_timed": "A",
+  "mean_ms_per_text_filter_plus_judge": 3531.8045542300088,
+  "median_ms": 3623.2957749998604,
+  "p90_ms": 5098.2453229989915,
+  "mean_judged_pairs_in_sample": 17.849206349206348,
+  "note": "sequential, one text at a time, 2 threads, no cache; MiniLM encode + distances to 700 originals + judge both directions on candidates + route; originals/French/German sampled every 17th task"
+ }
+}

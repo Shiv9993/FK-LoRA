@@ -1,0 +1,13 @@
+{\scriptsize\setlength{\tabcolsep}{2pt}\begin{tabular}{p{1.2in}rrrrrrrr}
+    \toprule
+    & \multicolumn{4}{c}{Final score $\uparrow$} & \multicolumn{4}{c}{\shortstack{Answers changed\\of \AudFullDefCompared{} $\downarrow$}} \\
+    \cmidrule(lr){2-5}\cmidrule(l){6-9}
+    & original & light & medium & heavy & original & light & medium & heavy \\
+    \midrule
+    InfLoRA, 100 epochs & \AudFullDefOriginalInfloraAP{} & \AudFullDefLightInfloraAP{} & \AudFullDefMediumInfloraAP{} & \AudFullDefHeavyInfloraAP{} & \AudFullDefOriginalInfloraChanged{} & \AudFullDefLightInfloraChanged{} & \AudFullDefMediumInfloraChanged{} & \AudFullDefHeavyInfloraChanged{} \\
+    GainLoRA, 100 epochs & \AudFullDefOriginalGainloraAP{} & \AudFullDefLightGainloraAP{} & \AudFullDefMediumGainloraAP{} & \AudFullDefHeavyGainloraAP{} & \AudFullDefOriginalGainloraChanged{} & \AudFullDefLightGainloraChanged{} & \AudFullDefMediumGainloraChanged{} & \AudFullDefHeavyGainloraChanged{} \\
+    \midrule
+    \cert{}, 10 epochs & \AudUOriginalCertAP{} & \AudULightCertAP{} & \AudUMediumCertAP{} & \AudUHeavyCertAP{} & \AudUOriginalCertChanged{} & \AudULightCertChanged{} & \AudUMediumCertChanged{} & \AudUHeavyCertChanged{} \\
+    \recog{}, 10 epochs & \AudUOriginalRidgeAP{} & \AudULightRidgeAP{} & \AudUMediumRidgeAP{} & \AudUHeavyRidgeAP{} & \AudUOriginalRidgeChanged{} & \AudULightRidgeChanged{} & \AudUMediumRidgeChanged{} & \AudUHeavyRidgeChanged{} \\
+    \bottomrule
+\end{tabular}}

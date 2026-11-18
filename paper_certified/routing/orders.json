@@ -1,0 +1,456 @@
+{
+ "five_all_120": {
+  "orders": 120,
+  "blocked_max": 0,
+  "orders_with_blocked": 0,
+  "original|right": {
+   "min": 1.0,
+   "median": 1.0,
+   "max": 1.0,
+   "mean": 1.0
+  },
+  "original|own_zone": {
+   "min": 1.0,
+   "median": 1.0,
+   "max": 1.0,
+   "mean": 1.0
+  },
+  "original|wrong_zone": {
+   "min": 0,
+   "median": 0,
+   "max": 0,
+   "mean": 0.0
+  },
+  "original|changed": {
+   "min": 0,
+   "median": 0,
+   "max": 0,
+   "mean": 0.0
+  },
+  "light|right": {
+   "min": 1.0,
+   "median": 1.0,
+   "max": 1.0,
+   "mean": 1.0
+  },
+  "light|own_zone": {
+   "min": 1.0,
+   "median": 1.0,
+   "max": 1.0,
+   "mean": 1.0
+  },
+  "light|wrong_zone": {
+   "min": 0,
+   "median": 0,
+   "max": 0,
+   "mean": 0.0
+  },
+  "light|changed": {
+   "min": 0,
+   "median": 0,
+   "max": 0,
+   "mean": 0.0
+  },
+  "medium|right": {
+   "min": 1.0,
+   "median": 1.0,
+   "max": 1.0,
+   "mean": 1.0
+  },
+  "medium|own_zone": {
+   "min": 0.2,
+   "median": 0.2,
+   "max": 0.2,
+   "mean": 0.19999999999999957
+  },
+  "medium|wrong_zone": {
+   "min": 0,
+   "median": 0,
+   "max": 0,
+   "mean": 0.0
+  },
+  "medium|changed": {
+   "min": 0,
+   "median": 0,
+   "max": 0,
+   "mean": 0.0
+  },
+  "heavy|right": {
+   "min": 0.938,
+   "median": 0.938,
+   "max": 0.938,
+   "mean": 0.9380000000000016
+  },
+  "heavy|own_zone": {
+   "min": 0.196,
+   "median": 0.196,
+   "max": 0.196,
+   "mean": 0.19600000000000034
+  },
+  "heavy|wrong_zone": {
+   "min": 0,
+   "median": 0,
+   "max": 0,
+   "mean": 0.0
+  },
+  "heavy|changed": {
+   "min": 0,
+   "median": 31,
+   "max": 31,
+   "mean": 15.5
+  }
+ },
+ "five_official": {
+  "radius_min": 10.088901723979893,
+  "blocked": 0,
+  "original": {
+   "inputs": 500,
+   "right": 1.0,
+   "own_zone": 1.0,
+   "wrong_zone": 0,
+   "changed": 0
+  },
+  "light": {
+   "inputs": 500,
+   "right": 1.0,
+   "own_zone": 1.0,
+   "wrong_zone": 0,
+   "changed": 0
+  },
+  "medium": {
+   "inputs": 500,
+   "right": 1.0,
+   "own_zone": 0.2,
+   "wrong_zone": 0,
+   "changed": 0
+  },
+  "heavy": {
+   "inputs": 500,
+   "right": 0.938,
+   "own_zone": 0.196,
+   "wrong_zone": 0,
+   "changed": 0
+  }
+ },
+ "fifteen_order1": {
+  "radius_min": 10.088901723979893,
+  "blocked": 0,
+  "original": {
+   "inputs": 1197,
+   "right": 1.0,
+   "own_zone": 1.0,
+   "wrong_zone": 0,
+   "changed": 0
+  },
+  "light": {
+   "inputs": 500,
+   "right": 1.0,
+   "own_zone": 1.0,
+   "wrong_zone": 0,
+   "changed": 0
+  },
+  "medium": {
+   "inputs": 500,
+   "right": 1.0,
+   "own_zone": 0.2,
+   "wrong_zone": 0,
+   "changed": 0
+  },
+  "heavy": {
+   "inputs": 500,
+   "right": 0.938,
+   "own_zone": 0.196,
+   "wrong_zone": 0,
+   "changed": 0
+  }
+ },
+ "five_distances": [
+  {
+   "task": "task1510_evalution_relation_extraction",
+   "nearest_unrelated": 26.971444877784787,
+   "nearest_task": 32.36218348814106,
+   "which": "task748_glucose_reverse_cause_event_detection"
+  },
+  {
+   "task": "task363_sst2_polarity_classification",
+   "nearest_unrelated": 30.964388616641653,
+   "nearest_task": 34.39593690907461,
+   "which": "task748_glucose_reverse_cause_event_detection"
+  },
+  {
+   "task": "task748_glucose_reverse_cause_event_detection",
+   "nearest_unrelated": 20.177803447959786,
+   "nearest_task": 31.474649868088747,
+   "which": "task875_emotion_classification"
+  },
+  {
+   "task": "task1687_sentiment140_classification",
+   "nearest_unrelated": 33.118193020806586,
+   "nearest_task": 34.672705209500315,
+   "which": "task748_glucose_reverse_cause_event_detection"
+  },
+  {
+   "task": "task875_emotion_classification",
+   "nearest_unrelated": 27.924338477023706,
+   "nearest_task": 31.474649868088747,
+   "which": "task748_glucose_reverse_cause_event_detection"
+  }
+ ],
+ "fifteen_distances": [
+  {
+   "task": "task1572_samsum_summary",
+   "nearest_unrelated": 32.67710941693583,
+   "nearest_task": 30.540746033329224,
+   "which": "task511_reddit_tifu_long_text_summarization"
+  },
+  {
+   "task": "task363_sst2_polarity_classification",
+   "nearest_unrelated": 30.964388616641653,
+   "nearest_task": 33.57367208844865,
+   "which": "task181_outcome_extraction"
+  },
+  {
+   "task": "task1290_xsum_summarization",
+   "nearest_unrelated": 43.62543478028196,
+   "nearest_task": 37.95556403070323,
+   "which": "task511_reddit_tifu_long_text_summarization"
+  },
+  {
+   "task": "task181_outcome_extraction",
+   "nearest_unrelated": 21.746975841127874,
+   "nearest_task": 25.309221422344148,
+   "which": "task748_glucose_reverse_cause_event_detection"
+  },
+  {
+   "task": "task002_quoref_answer_generation",
+   "nearest_unrelated": 26.05879396646969,
+   "nearest_task": 29.21129566912767,
+   "which": "task748_glucose_reverse_cause_event_detection"
+  },
+  {
+   "task": "task1510_evalution_relation_extraction",
+   "nearest_unrelated": 26.971444877784787,
+   "nearest_task": 29.293825316530857,
+   "which": "task073_commonsenseqa_answer_generation"
+  },
+  {
+   "task": "task639_multi_woz_user_utterance_generation",
+   "nearest_unrelated": 31.140749411584842,
+   "nearest_task": 34.35489130324816,
+   "which": "task748_glucose_reverse_cause_event_detection"
+  },
+  {
+   "task": "task1729_personachat_generate_next",
+   "nearest_unrelated": 28.03850125623517,
+   "nearest_task": 30.13288275313788,
+   "which": "task1590_diplomacy_text_generation"
+  },
+  {
+   "task": "task073_commonsenseqa_answer_generation",
+   "nearest_unrelated": 22.35919721009919,
+   "nearest_task": 24.896661634567277,
+   "which": "task748_glucose_reverse_cause_event_detection"
+  },
+  {
+   "task": "task1590_diplomacy_text_generation",
+   "nearest_unrelated": 23.830483365240887,
+   "nearest_task": 28.22909814859987,
+   "which": "task748_glucose_reverse_cause_event_detection"
+  },
+  {
+   "task": "task748_glucose_reverse_cause_event_detection",
+   "nearest_unrelated": 20.177803447959786,
+   "nearest_task": 24.896661634567277,
+   "which": "task073_commonsenseqa_answer_generation"
+  },
+  {
+   "task": "task511_reddit_tifu_long_text_summarization",
+   "nearest_unrelated": 28.363209399739354,
+   "nearest_task": 29.55736848853705,
+   "which": "task748_glucose_reverse_cause_event_detection"
+  },
+  {
+   "task": "task591_sciq_answer_generation",
+   "nearest_unrelated": 40.96970229215691,
+   "nearest_task": 42.327142631083625,
+   "which": "task073_commonsenseqa_answer_generation"
+  },
+  {
+   "task": "task1687_sentiment140_classification",
+   "nearest_unrelated": 33.118193020806586,
+   "nearest_task": 34.672705209500315,
+   "which": "task748_glucose_reverse_cause_event_detection"
+  },
+  {
+   "task": "task875_emotion_classification",
+   "nearest_unrelated": 27.924338477023706,
+   "nearest_task": 31.474649868088747,
+   "which": "task748_glucose_reverse_cause_event_detection"
+  }
+ ],
+ "fifteen_order2": {
+  "radius_min": 10.088901723979893,
+  "blocked": 0,
+  "original": {
+   "inputs": 1197,
+   "right": 1.0,
+   "own_zone": 1.0,
+   "wrong_zone": 0,
+   "changed": 0
+  },
+  "light": {
+   "inputs": 500,
+   "right": 1.0,
+   "own_zone": 1.0,
+   "wrong_zone": 0,
+   "changed": 0
+  },
+  "medium": {
+   "inputs": 500,
+   "right": 1.0,
+   "own_zone": 0.2,
+   "wrong_zone": 0,
+   "changed": 0
+  },
+  "heavy": {
+   "inputs": 500,
+   "right": 0.938,
+   "own_zone": 0.196,
+   "wrong_zone": 0,
+   "changed": 31
+  }
+ },
+ "fifteen_random_1000": {
+  "orders": 1000,
+  "blocked_max": 0,
+  "orders_with_blocked": 0,
+  "original|right": {
+   "min": 1.0,
+   "median": 1.0,
+   "max": 1.0,
+   "mean": 1.0
+  },
+  "original|own_zone": {
+   "min": 1.0,
+   "median": 1.0,
+   "max": 1.0,
+   "mean": 1.0
+  },
+  "original|wrong_zone": {
+   "min": 0,
+   "median": 0,
+   "max": 0,
+   "mean": 0.0
+  },
+  "original|changed": {
+   "min": 0,
+   "median": 0,
+   "max": 0,
+   "mean": 0.0
+  },
+  "light|right": {
+   "min": 1.0,
+   "median": 1.0,
+   "max": 1.0,
+   "mean": 1.0
+  },
+  "light|own_zone": {
+   "min": 1.0,
+   "median": 1.0,
+   "max": 1.0,
+   "mean": 1.0
+  },
+  "light|wrong_zone": {
+   "min": 0,
+   "median": 0,
+   "max": 0,
+   "mean": 0.0
+  },
+  "light|changed": {
+   "min": 0,
+   "median": 0,
+   "max": 0,
+   "mean": 0.0
+  },
+  "medium|right": {
+   "min": 1.0,
+   "median": 1.0,
+   "max": 1.0,
+   "mean": 1.0
+  },
+  "medium|own_zone": {
+   "min": 0.2,
+   "median": 0.2,
+   "max": 0.2,
+   "mean": 0.19999999999999718
+  },
+  "medium|wrong_zone": {
+   "min": 0,
+   "median": 0,
+   "max": 0,
+   "mean": 0.0
+  },
+  "medium|changed": {
+   "min": 0,
+   "median": 0,
+   "max": 0,
+   "mean": 0.0
+  },
+  "heavy|right": {
+   "min": 0.938,
+   "median": 0.938,
+   "max": 0.938,
+   "mean": 0.9379999999999901
+  },
+  "heavy|own_zone": {
+   "min": 0.196,
+   "median": 0.196,
+   "max": 0.196,
+   "mean": 0.1959999999999984
+  },
+  "heavy|wrong_zone": {
+   "min": 0,
+   "median": 0,
+   "max": 0,
+   "mean": 0.0
+  },
+  "heavy|changed": {
+   "min": 0,
+   "median": 31,
+   "max": 31,
+   "mean": 15.779
+  }
+ },
+ "fifteen_worst_heavy": {
+  "radius_min": 10.088901723979893,
+  "blocked": 0,
+  "original": {
+   "inputs": 1197,
+   "right": 1.0,
+   "own_zone": 1.0,
+   "wrong_zone": 0,
+   "changed": 0
+  },
+  "light": {
+   "inputs": 500,
+   "right": 1.0,
+   "own_zone": 1.0,
+   "wrong_zone": 0,
+   "changed": 0
+  },
+  "medium": {
+   "inputs": 500,
+   "right": 1.0,
+   "own_zone": 0.2,
+   "wrong_zone": 0,
+   "changed": 0
+  },
+  "heavy": {
+   "inputs": 500,
+   "right": 0.938,
+   "own_zone": 0.196,
+   "wrong_zone": 0,
+   "changed": 0
+  }
+ }
+}

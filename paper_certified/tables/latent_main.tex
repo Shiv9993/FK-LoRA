@@ -1,0 +1,11 @@
+\begin{tabular}{lccccc}
+    \toprule
+    Method & \shortstack[c]{Score\\right after\\learning $\uparrow$} & \shortstack[c]{Final\\score $\uparrow$} & \shortstack[c]{Forgetting\\(points) $\downarrow$} & \shortstack[c]{Answers\\changed (of\\1{,}200) $\downarrow$} & \shortstack[c]{Sent to own\\task, \% $\uparrow$} \\
+    \midrule
+    \cert{} (ours) & 76.49 & 76.49 & 0.00 & 0 & 100.0 \\
+    \plain{} (same adapters, all on) & 76.49 & 36.04 & 50.56 & 970 & -- \\
+    \midrule
+    Latent-LoRA, soft rule & 42.55 & 42.55 & 0.00 & 0 & 100.0 \\
+    Latent-LoRA, sum rule & 48.71 & 47.66 & 1.31 & 429 & -- \\
+    \bottomrule
+\end{tabular}

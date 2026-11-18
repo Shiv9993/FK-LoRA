@@ -1,0 +1,17 @@
+\begin{tabular}{llcrrrrl}
+    \toprule
+    & Features and zone & Pivot & \textsf{C} & \textsf{P} & \textsf{M} & \textsf{R} & Verdict \\
+    \midrule
+    Paper & T5-base word-vectors, weighted mean & both & 16.9 & 40.5 & 7.6 & 75.4 & reference \\
+    Paper & T5-base word-vectors, weighted mean & French & 16.9 & 39.8 & 9.2 & 75.4 & ref. for (2)--(4) \\
+    \midrule
+    (1) & SmolLM2 word-vectors & both & 18.9 & 42.1 & 8.9 & 75.6 & ref. for (1) \\
+    (1) & SmolLM2 last layer & both & 25.7 & 64.9 & 13.7 & 83.2 & against \\
+    (2) & T5-base, paraphrase ruler & French & 16.9 & 42.0 & 10.7 & 84.4 & against \\
+    (3) & MiniLM, ruler, $\alpha = 0.1$ & French & 16.6 & 71.2 & 11.6 & 86.1 & against \\
+    (4) & MiniLM and NLI judge & French & 36.0 & 58.9 & 34.7 & 64.7 & against \\
+    (5) & MiniLM, sentence-wise NLI judge & Italian & 12.4 & 76.1 & 10.9 & 88.7 & against \\
+    \midrule
+    Bar (3)--(5) & \multicolumn{2}{l}{fixed in advance} & $\le 19$ & $\ge 75$ & $\le 5$ & & \\
+    \bottomrule
+\end{tabular}

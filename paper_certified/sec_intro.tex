@@ -1,0 +1,179 @@
+% =====================================================================================
+\section{Introduction}
+\label{sec:intro}
+
+A language model that is used over a long period has to learn new tasks without losing old ones.
+When a network is simply trained on one task after another, it forgets: the weights that carried the
+old tasks are overwritten. Low-rank adapters \citep{hu2022lora} remove half of the problem. The
+pretrained weights stay frozen, each task adds a small trainable update, and an old adapter can be
+kept unchanged for ever. What remains is the question which adapters should act on a given input.
+If the model is told the task, the answer is trivial and nothing is forgotten, but in practice it is
+not told. If all adapters are simply left on, each new adapter changes what the model computes on
+the inputs of earlier tasks, and much of the old tasks is lost
+(Section~\ref{sec:results}: with five tasks, plain adapters keep \FivePlainAP{} of \FivePlainLearned{}
+Rouge-L points).
+
+Published methods for continual learning with adapters handle this in two ways. One family
+restricts what a new adapter may learn, so that it disturbs old inputs as little as possible:
+orthogonal or interference-free subspaces \citep{wang2023olora,liang2024inflora,spacelora2026}. The
+other family adds modules that decide, per input, how much each adapter contributes: learned gates
+or attention over adapters \citep{liang2025gainlora,zhao2024sapt}, or a mixture model over frozen
+embeddings \citep{latentlora2026}. Both families reduce forgetting, often to a small number. These
+methods are evaluated on benchmarks whose inputs begin with the instruction of the task. To our
+knowledge none of them comes with a statement that, for a given input, its answer \emph{will not}
+change when the next task is learned: a restriction is approximate, a learned gate has to be
+protected against forgetting itself, and a router that picks the best match can re-decide an old
+input when a new task appears (on machine paraphrases of real tasks this proved rare:
+Section~\ref{sec:paraphrase}).
+
+The principle of this paper is simple. We give every task one frozen set of adapters and a switch
+sends each input to one task; we call this system FK-LoRA, after the rule \emph{finders keepers}. An answer can then change only if its route changes
+(Lemma~\ref{lem:route}), so retention becomes a property of the rule that sets the route, and it
+can be proved or measured for that rule. The paper gives three rules (the first with a variant,
+\handicap{}) and tests them
+(Section~\ref{sec:method}).
+
+The instruction gives the task away. Without it, the two published methods that we ran lose
+retention: over three seeds they changed \AudSeedsGainloraChanged{} (GainLoRA) and
+\AudSeedsInfloraChanged{} (InfLoRA) of \AudSeedsCompared{} answers, against \FiveGainChanged{} and
+\FiveInfChanged{} of \FiveGainCompared{} with it (Section~\ref{sec:nodefpublished}). This loss was not forced:
+no input of these benchmarks occurs in two tasks, and the recogniser below gives all but
+\AudRouteFiveRidgeNotOwn{} of the \AudRouteFiveRidgeN{} test inputs of these five tasks to their own
+task without reading an instruction. What is forced is this: without instructions, every method
+loses at least the conflict between two tasks, that is, the inputs that occur in both with
+different right answers. The conflict is zero when inputs carry the instruction and no instruction
+begins another (Proposition~\ref{prop:noinstructionprice}).
+
+Our main rule reads no instruction. We call it \recog{}, and its variant \handicap{}: \recog{} finds the
+task of an input, and under \handicap{} an older task keeps what it found. \recog{} is a recogniser on the frozen model's own states, with
+one vector per task and one matrix for all tasks. It is the same for every order of arrival and it blocks no
+task. With it come an audit, which estimates from held-out inputs the share of answers that
+changed (Proposition~\ref{prop:audit}), and a handicap, a bound known in advance on what later tasks
+can take (Theorem~\ref{thm:handicap}). On the 15 benchmark tasks, which were development data, it
+gives \AudDevLLamOneEnd{}\% of the test inputs to their own task; it gives \AudScaleLongThreeEnd{}\%
+on the 15 tasks of a second benchmark (read once, against a line fixed in advance),
+\AudFreshFourthLEnd{}\% on 30 unseen tasks and
+\AudScaleAllHundredTwentyEnd{}\% with 120 tasks (routes only; Section~\ref{sec:recogniser}). With
+trained answers, on one sequence of five tasks (three seeds), plain adapters behind it end at
+\AudSeedsRidgeAPOne{} Rouge-L against \AudSeedsGainloraAPOne{} and \AudSeedsInfloraAPOne{} for the
+two published methods without their instructions, and change \AudSeedsRidgeChanged{} of
+\AudSeedsCompared{} answers against \AudSeedsGainloraChanged{} and \AudSeedsInfloraChanged{}
+(Section~\ref{sec:nodeftrained}). This beats the published methods in this setting by a line fixed
+before the run. The caveats belong to the result: in these runs the published methods had a tenth
+of their epochs, and most of the gap in the final score is learning and not retention; and the five
+tasks are among the 15 development tasks on which the recogniser was chosen. With their published
+number of epochs (one seed), the two methods learn the five tasks as well as plain adapters do and
+then lose them: they forget \AudFullGainloraFT{} and \AudFullInfloraFT{} points, change
+\AudFullGainloraChanged{} and \AudFullInfloraChanged{} of \AudFullCompared{} answers and end at
+\AudFullGainloraAP{} and \AudFullInfloraAP{}, against \AudFullOursRidgeAP{} for plain adapters behind
+\recog{} with the same number of epochs (\AudOursRidgeAP{} with a tenth of them), with \AudFullOursRidgeChanged{} changed answers. There the gap is forgetting. With their definitions left in, the same two methods at the same number of epochs forget \AudFullDefOriginalGainloraFT{} and \AudFullDefOriginalInfloraFT{} points and change \AudFullDefOriginalGainloraChanged{} and \AudFullDefOriginalInfloraChanged{} answers: in this setting it is the instruction that held their answers. On fifteen tasks without instructions (one seed, our rules only) plain adapters behind \recog{} end \AudFifteenNoDefRidgeBelowOwn{} points below the ceiling, with \AudFifteenNoDefRidgeChanged{} of \AudFifteenNoDefCompared{} changed answers.
+
+When inputs do carry an instruction, an exact statement is possible. The idea is the rule children
+use for things found on the playground: \emph{finders keepers}. Each task claims a region of input
+space, its protected zone, at the moment it is learned. The zone is computed from the frozen
+word-vectors of the task's instruction, nothing is trained for it, and it is never changed. An input
+inside a zone belongs to the oldest task that claims it, for ever, and is answered with the adapters
+that existed when that task was learned. Because later tasks can only add newer claims, the answer
+to such an input cannot change, and the system can return a certificate with the answer. Inputs
+outside every zone are given to the nearest zone, without a certificate. We call this rule \cert{}.
+
+This guarantee has a price, and the price is paid in the open. A new task whose inputs fall inside
+an older zone cannot be learned on those inputs; this is counted and reported when the task
+arrives, instead of appearing later as silent damage to an old task. A certified answer can also
+never \emph{improve} through later tasks. And the guarantee covers only the inputs inside a zone,
+which in our experiments are all inputs with the original instruction, all lightly reworded inputs of the benchmark tasks, about a fifth of the medium and heavy ones, and two fifths to one half of the machine paraphrases at scale (\WidenRefTfivePLow{}\% to \WidenRefTfivePHigh{}\% are certified for their own task; Section~\ref{sec:paraphrase}). How large the price is depends on how alike the tasks are. In our benchmark sequences no
+task collided with another. In a collection of \ManyTasks{} real tasks, which contains many
+families of nearly identical instructions, about one task in six did (Section~\ref{sec:many}). On
+SuperNI with T5-base no answer to an earlier task changed (\FiveCertChanged{} of \FiveCertCompared{}
+on five tasks, three seeds; \FifteenCertChanged{} of \FifteenCertCompared{} on fifteen), and five
+attempts to widen the zones for reworded instructions missed their bars
+(Section~\ref{sec:paraphrase}).
+
+The two rules complement each other. The zones are exact, but they read the instruction, and a
+reworded instruction can leave them. \recog{} reads only the example, so its routes are the same
+for every wording. With instructions on the five tasks (three seeds), plain adapters behind
+\recog{} end at \AudUThreeHeavyRidgeAPOne{} under a heavy rewording where the zones end at
+\AudUThreeHeavyCertAPOne{}, and in every seed and at every wording they change at most \AudUThreeMaxChangedPerSeed{} of
+\AudUCompared{} answers where the zones change none (Section~\ref{sec:exampleroutes}).
+
+The third rule builds the zones from the inputs of a task and not from its instruction
+(Theorem~\ref{thm:bound}). Its bound does not grow with the number of later tasks, but in our first
+tests frozen word-vector features made it block most later tasks
+(Section~\ref{sec:noinstruction}).
+
+\paragraph{Contributions.}
+\begin{itemize}
+  \item \textbf{The principle and the price.} With one frozen set of adapters per task, an answer
+  changes only if its route changes (Lemma~\ref{lem:route}), so retention is a property of the rule
+  that sets the route. Without instructions, every method loses at least the conflict of the inputs
+  of two tasks (Proposition~\ref{prop:noinstructionprice}).
+  \item \textbf{A rule without instructions that blocks no task, with two guarantees.} \recog{} is
+  a recogniser on the frozen model's own states. An audit estimates and bounds, from held-out
+  inputs, the share of answers that have changed (Proposition~\ref{prop:audit}), and the handicap
+  bounds in advance what later tasks can take (Theorem~\ref{thm:handicap}; this bound is loose:
+  \AudDevHPrimeTTwoBound{}\% on average against \AudDevHPrimeTTwoChanged{}\% measured). \recog{}
+  gives \AudDevLLamOneEnd{}\% of the test inputs of the 15 benchmark tasks to their own task
+  (development data), \AudScaleLongThreeEnd{}\% on a second benchmark, \AudFreshFourthLEnd{}\% on 30
+  unseen tasks, where it passed the line fixed in advance, and \AudScaleAllHundredTwentyEnd{}\% with
+  120 tasks. Two tasks built on the same texts split their inputs (\AudScalePairOlderLEnd{}\% and
+  \AudScalePairNewerLEnd{}\% reach their own task)
+  (Sections~\ref{sec:audit} and~\ref{sec:recogniser}).
+  \item \textbf{The published methods without their instructions, and ours.} We removed the task
+  definitions for InfLoRA and GainLoRA on five tasks (T5-base, a tenth of the published number of
+  epochs, three seeds). Both hold their answers less well than with the definitions, and plain
+  adapters behind \recog{} or \handicap{} beat them in this setting; both verdicts follow lines
+  fixed before the runs. With a tenth of the epochs most of the gap in the final score is
+  learning; with their published number of epochs (one seed) the two methods learn the tasks and
+  then forget \AudFullGainloraFTInt{} and \AudFullInfloraFTInt{} points
+  (Sections~\ref{sec:nodefpublished} and~\ref{sec:nodeftrained}).
+  \item \textbf{A switch with a proof, for inputs that carry an instruction.} The answer to every
+  certified input is the same after any number of later tasks, for any model that learns through
+  adapters and without an assumption about later tasks (Theorem~\ref{thm:writeonce}). A second
+  result bounds how far an instruction can be edited before an input can leave its zone
+  (Proposition~\ref{prop:edits}). On SuperNI with T5-base the switch kept every answer on five
+  tasks and on fifteen, at the full learning of plain adapters (Sections~\ref{sec:five}
+  and~\ref{sec:fifteen}).
+  \item \textbf{What the proof costs, measured.} Among \ManyTasks{} real tasks about one in six
+  arrives inside the zone of an older look-alike and is blocked (Section~\ref{sec:many}). On machine
+  paraphrases of \WidenTasksEval{} real tasks the zones certify \WidenRefTfivePLow{}\% to
+  \WidenRefTfivePHigh{}\% of the inputs for the right task, and none of five attempts to widen them
+  met the bar set for it in advance (Section~\ref{sec:paraphrase}, Appendix~\ref{app:widen}). On the
+  benchmarks, simpler rules that recognise the instruction reach the same scores: the switch adds
+  the proof and the certificate, not points.
+  \item \textbf{The two rules together.} With instructions and routes from the example alone,
+  \recog{} keeps its routes under every rewording: \AudUThreeHeavyRidgeAPOne{} against
+  \AudUThreeHeavyCertAPOne{} for the zones under a heavy rewording, and at most \AudUThreeMaxChangedPerSeed{} of
+  \AudUCompared{} changed answers per seed against none (five tasks, three seeds;
+  Section~\ref{sec:exampleroutes}).
+  \item \textbf{An evaluation that can show the difference.} We count answers that change, test
+  every method with reworded instructions or without them, compare rules on the same trained
+  adapters, report learning and forgetting separately, and fix the line for a verdict before the
+  run; missed lines and wrong guesses are reported (Section~\ref{sec:protocol}).
+  \item \textbf{Further tests of the zones.} A constructed case in which a later look-alike task
+  takes old inputs (Section~\ref{sec:stress}), mechanical edits of the instruction
+  (Section~\ref{sec:edits}), other orders of arrival (Section~\ref{sec:orders}), unrelated inputs
+  (Section~\ref{sec:background}), the embedding tables of eight models and stand-alone code on small
+  models (Section~\ref{sec:models}), a variant for sibling tasks (Section~\ref{sec:exactfirst}), and
+  zones built from the inputs of a task, whose bound held and which blocked most later tasks
+  (Theorem~\ref{thm:bound}, Section~\ref{sec:noinstruction}).
+\end{itemize}
+
+\paragraph{What the comparison can and cannot show.} On these benchmarks the unedited instruction identifies the task: a rule without any training recognises the task of every benchmark test input and of \ManyNearRightPct{}\% of the inputs of \ManyTasks{} real tasks, so with one adapter per task ``no forgetting'' follows from recognising the instruction. These benchmarks, with unedited instructions, cannot tell retention from recognition; a test of retention has to take the instruction away or reword it. We do the first for two published methods in a reduced setting (Section~\ref{sec:nodefpublished}): without it they held their answers less well, by a line fixed before the run. We do the second at scale by machine (Section~\ref{sec:paraphrase}). The first is a first look. It covers two methods, with a tenth of their training budget on three seeds and with their published number of epochs on one, on a smaller model than in their papers, and without the matching run with instructions at that number of epochs; it cannot show what other methods do. We still do not claim that published methods in general only look good because of the instruction; rewordings written by people remain the open experiment.
+
+\paragraph{What we do not claim.} We do not claim that forgetting is solved for every input: an
+input outside all zones has no guarantee, and under \recog{} the share of changed answers is
+estimated and bounded per task, not ruled out. We do not claim state-of-the-art results. We do not claim
+that the gap in final scores at a tenth of the epochs is retention: most of it is learning; with the published number of epochs it is forgetting, in one seed. We do not claim the
+recogniser as new: it is a known kind of classifier on frozen features, and what is new is what is
+said and measured about its routes. We do not claim that the certified switch routes reworded inputs better than simpler rules: at scale a plain nearest-signature rule gave more of them to the right task, because the fallback of our rule, chosen on the benchmark, routes worse there; a variant of the fallback found at the end closes most of the gap, with the same benchmark routes and so the same GPU scores, but the best rule without zones is still about five points better. We do not claim that the guarantee is free: in a large
+collection it refuses tasks that resemble older ones. We do not claim a result in the published setting: all
+GPU experiments use a smaller model than the papers we compare with, and all but a few a shorter training budget,
+on free GPUs; the five-task comparison uses three seeds and the 15-task comparison one. Recognising a task from frozen word-vectors without a trained
+router is not new \citep{latentlora2026}; for the zones, what we add is the rule that what has been
+claimed cannot be taken away, its proof, and the certificate. The reworded instructions of the five benchmark tasks were written by
+machine and were looked at during development. The other rewording test
+uses machine paraphrases of another kind (back-translation through German, French, Spanish and Italian) of \WidenTasksEval{} real tasks, with routes only
+(Section~\ref{sec:paraphrase}); it is not a test with rewordings by people, and there the zones certify only \WidenRefTfivePLow{}\% to \WidenRefTfivePHigh{}\% of the
+paraphrased inputs for their own task. The closest published method, Latent-LoRA, has no public code; we
+re-implemented it from its paper. In our reduced setting it learned only the first of the five tasks,
+so we compare only its router (Appendix~\ref{app:latent}).

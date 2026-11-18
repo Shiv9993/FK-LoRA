@@ -1,0 +1,45 @@
+\section{Results without instructions: further tables}\label{app:noinstmore}
+
+Per-task and secondary tables of Sections~\ref{sec:nodefpublished}, \ref{sec:recogniser} and~\ref{sec:nodeftrained}.
+
+\begin{table}[t]
+  \caption{Per-task scores of the five-task run of Table~\ref{tab:noinstpublished} (re-test): score right after the task was learned $\to$ score at the end, Rouge-L. Columns: the two published methods with the definitions in the inputs and with none, and our \recog{} with none (plain adapters). Rows: the five tasks in their order. The last task cannot be forgotten.}
+  \label{tab:noinstpertask}
+  \centering
+  \input{tables/noinst_published_pertask}
+\end{table}
+
+\begin{table}[t]
+  \caption{\recog{} (ridge $1\times$) and \handicap{} ($\nu = 2$) on other orders of the same 15 SuperNI tasks, development data: the second official order and five random orders. Columns as in Table~\ref{tab:recogniserdev}; $(c{+}1)/(m{+}1)$ is the line against which the changed routes were read, and the 95\% bound is the audit's.}
+  \label{tab:recogniserorders}
+  \centering
+  \input{tables/recogniser_orders}
+\end{table}
+
+\begin{table}[t]
+  \caption{\recog{} (ridge $1\times$) per task, development data: the 15 SuperNI tasks of order 1 in the order of arrival, frozen T5-base states. Own task at arrival and at the end, route changed: \% of the test inputs of the task. Held-out: held-out inputs of the task whose route changed, of all its held-out inputs. Audit $H/m$ and 95\% bound: Proposition~\ref{prop:audit}, in \%.}
+  \label{tab:recogniserpertask}
+  \centering
+  \input{tables/recogniser_pertask}
+\end{table}
+
+\begin{table}[t]
+  \caption{\recog{} per task on the 15 Long Sequence tasks in order 3, all official test inputs, routes only: own task at arrival and at the end, route changed (\% of the test inputs of the task); held-out inputs whose route changed, of all; audit $H/m$ and 95\% bound (Proposition~\ref{prop:audit}); last column: own task at the end under \handicap{} ($\nu = 2$).}
+  \label{tab:recogniserlongpertask}
+  \centering
+  \input{tables/recogniser_long_pertask}
+\end{table}
+
+\begin{table}[t]
+  \caption{The two published methods without definitions with \AudFullEpochs{} epochs per task, seed 42, official test (one random reference answer): score of each task right after it was learned and after the last task.}
+  \label{tab:noinstfullpertask}
+  \centering
+  \input{tables/noinst_e100_pertask}
+\end{table}
+
+\begin{table}[t]
+  \caption{The two published methods with their definitions and \AudFullEpochs{} epochs per task under the four wordings of the definition (seed 42, re-test); below, for reference, \cert{} and \recog{} with definitions and 10 epochs (Table~\ref{tab:instanceroutes}).}
+  \label{tab:fullwordings}
+  \centering
+  \input{tables/e100_wordings}
+\end{table}

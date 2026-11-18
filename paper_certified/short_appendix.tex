@@ -1,0 +1,18 @@
+% New appendix sections: material cut from the main text of the short version, then the appendix of the long version.
+\input{short_app_method}
+\input{short_app_figures}
+\input{short_app_experiments}
+\input{short_app_discussion}
+
+% The long version has this text as a subsection; here it is a section of the appendix.
+\begingroup
+\let\subsection\section
+\input{sec_results_nodef_published}
+\input{sec_results_recognition}
+\input{sec_results_nodef_trained}
+\input{sec_results_fifteen}
+\input{sec_results_paraphrase}
+\input{sec_results_noinstruction}
+\endgroup
+
+\input{sec_appendix}

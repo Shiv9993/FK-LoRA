@@ -1,0 +1,177 @@
+\section{Experiments}
+\label{sec:results}
+
+\subsection{Protocol}
+\label{sec:protocol}
+
+\paragraph{Set-up.} All GPU experiments use the official GainLoRA code on SuperNI
+\citep{wang2022superni}; a launcher sets the switches of Eq.~\eqref{eq:gates} and leaves the published
+methods InfLoRA \citep{liang2024inflora} and GainLoRA \citep{liang2025gainlora} unchanged. We use T5-base
+\citep{raffel2020t5} and 10 epochs per task instead of T5-large and 100, to fit free GPUs; a few runs use 100.
+\textbf{Because of the reduced setting, none of our numbers can be compared with the tables of the
+published papers.} Runs without definitions replace the definition of every task by the empty string,
+for training and for testing. Before each run we fixed its rules and a \emph{line}: what would count
+for or against the method.
+
+\paragraph{Sequences and inputs.} The five tasks (relation extraction, SST-2, cause-event detection,
+Sentiment140, emotion classification) have 800 training and 100 test examples each; a 15-task run (one
+seed) is in Section~\ref{sec:fifteen} of the appendix. \textbf{They were not drawn at random}: the first
+three are short-input tasks that InfLoRA had forgotten most. The unrelated inputs $\mathcal{B}$ are
+4{,}000 inputs from ten tasks of another benchmark (Section~\ref{sec:background}). Each task has three
+reworded definitions (\emph{light}, \emph{medium}, \emph{heavy}), \textbf{written by machine during
+development; two design choices were made while looking at where they were routed}
+(Appendix~\ref{app:history}). They are a development set, not an independent test.
+
+\paragraph{Metrics.} AP is the average Rouge-L after the last task, FT the forgetting, and Learned the
+score right after each task was learned, so that forgetting and little learning can be told apart.
+\emph{Answers changed} counts test inputs of earlier tasks whose final answer differs, as a string,
+from the answer right after their task was learned. Besides the official test (one random reference)
+we report a \emph{re-test} against all references (Appendix~\ref{app:cut}).
+
+\subsection{Without instructions}
+\label{sec:noinst}
+
+\paragraph{The published methods without their definitions.} We run InfLoRA and GainLoRA again on the
+five tasks without definitions (three seeds, Table~\ref{tab:noinstseedsshort}). Both hold their answers
+less well, by a line fixed before the run: they change \AudSeedsGainloraChanged{} (GainLoRA) and
+\AudSeedsInfloraChanged{} (InfLoRA) of \AudSeedsCompared{} answers, against \FiveGainChanged{} and
+\FiveInfChanged{} with definitions, and forgetting is \AudSeedsGainloraFT{} and \AudSeedsInfloraFT{}
+points against \FiveGainFT{} and \FiveInfFT{}. No benchmark input occurs in two tasks
+(\AudConfOneShared{} of \AudConfOneInputs{} inputs of the 15 SuperNI tasks; Table~\ref{tab:conflictcount},
+appendix), so no loss is forced by shared texts. The line, written before: a method that
+learned (a score right after learning of at least 60\% of its score with definitions) ``holds its
+answers less well'' if forgetting rises by at least five points, or the changed answers at least double.
+This is a first look at two methods with a tenth of their epochs; it says nothing about other methods.
+
+\begin{table}[t]
+  \caption{The five tasks without definitions, T5-base, 10 epochs, means over \AudSeedsN{} seeds (changed answers summed), re-test (all references). Answers changed: answers to test inputs of the first four tasks that differ at the end. The 100-epoch rows are one seed.}
+  \label{tab:noinstseedsshort}
+  \centering
+  \input{tables/noinst_seeds_e100}
+\end{table}
+
+\paragraph{Recognition.} The feature matters: with the zones built from inputs
+(Section~\ref{sec:boundmain}) on the 15 SuperNI tasks, frozen
+T5-base states give \AudZoneFrozenTOwn{}\% of the test inputs to their own task and block
+\AudZoneFrozenTBlocked{}\%, a sentence encoder \AudZoneSentenceOwn{}\% and \AudZoneSentenceBlocked{}\%.
+Table~\ref{tab:recognisershort} gives the routes of \recog{} and \handicap{}: the
+first row is development data on which the rule was chosen; the Long Sequence and the 30 unseen
+tasks were read once against a line fixed before; the 120 tasks include the first row.
+On the 15 tasks the audit says \AudDevLLamOneAuditEst{}\% for the average task
+(95\% bound \AudDevLLamOneAuditBound{}\%), next to the \AudDevLLamOneChanged{}\% that changed. The floor at zero of \handicap{} was added after seeing numbers on
+these 15 tasks, so its numbers there are development numbers. Two
+tasks built on the same texts split their inputs under \recog{} (\AudScalePairOlderLEnd{}\% and
+\AudScalePairNewerLEnd{}\% reach their own task); under \handicap{} the older keeps
+\AudScalePairOlderHEnd{}\% and the newer gets \AudScalePairNewerHEnd{}\%. \AudConfPairShare{}\% of
+their texts are the same word for word, and there no rule without instructions can do better.
+
+\begin{table}[t]
+  \caption{Routes of \recog{} and \handicap{} (\%, means over tasks): test inputs at their own task after their task arrived and after the last task; routes changed; the audit's 95\% bound. Routes only; the first row is development data.}
+  \label{tab:recognisershort}
+  \centering
+  \input{tables/recogniser_short}
+\end{table}
+
+\paragraph{Trained answers.} Adapters trained as usual, behind \recog{} and \handicap{} ($\nu = 2$), were run on the
+five tasks without definitions, with routes written down before the run. The line: the final score at
+least two points above the better published method, forgetting below two points, and at most a
+quarter of the answers that GainLoRA changes. \recog{} and \handicap{} change \AudSeedsRidgeChanged{} and
+\AudSeedsHandicapChanged{} of \AudSeedsCompared{} answers and end above both published methods in
+\AudSeedsRidgeAboveInAll{} of \AudSeedsN{} seeds. By this line fixed before the run, read on the re-test (the official script
+cannot apply routes), they beat the published methods in this setting. The audit estimated
+\AudRouteFiveRidgeFirstFourAuditEst{}\% changed routes; \AudRouteFiveRidgeChangedShare{}\% changed,
+within the 95\% bound of each task. \recog{} and \handicap{} end at \AudSeedsRidgeAPOne{} and
+\AudSeedsHandicapAPOne{}, with forgetting of \AudSeedsRidgeFT{} and \AudSeedsHandicapFT{} points. Caveats: at 10 epochs most of that gap is learning; even \centre{} ends at \AudSeedsCentreAPOne{}; it is one
+sequence of five development tasks. On fifteen tasks (one seed, our rules only;
+Section~\ref{sec:nodeftrained}) \recog{} ends \AudFifteenNoDefRidgeBelowOwn{} points below the ceiling, with
+\AudFifteenNoDefRidgeChanged{} of \AudFifteenNoDefCompared{} changed answers.
+
+\paragraph{The published methods with their published epochs.} With \AudFullEpochs{} epochs per
+task (seed 42; lines fixed before the run) the two methods learn the five tasks without definitions:
+\AudFullInfloraLearnedOne{} and \AudFullGainloraLearnedOne{} right after learning, against
+\AudOursRidgeLearnedOne{} for ours with 10. Then they lose them: they forget \AudFullInfloraFTInt{}
+and \AudFullGainloraFTInt{} points and end at \AudFullInfloraAPOne{} and \AudFullGainloraAPOne{}, against
+\AudFullOursRidgeAPOne{} for \recog{} with the same \AudFullEpochs{} epochs (Table~\ref{tab:noinstseedsshort}; Figures~\ref{fig:answergrid}--\ref{fig:learnkeep}, Appendix~\ref{app:pictures}). By a line fixed before, \recog{} beats them at equal epochs.
+Here the gap is forgetting. With their definitions left in, the same methods at \AudFullEpochs{} epochs forget \AudFullDefOriginalInfloraFTOne{} and
+\AudFullDefOriginalGainloraFTOne{} points and change \AudFullDefOriginalInfloraChanged{} and \AudFullDefOriginalGainloraChanged{} answers: the instruction was what held their answers.
+
+\subsection{With instructions: the certified switch}
+\label{sec:withinstr}
+
+\begin{table}[!htbp]
+  \caption{Five tasks, original instructions (T5-base, 10 epochs; re-test). Answers changed: test inputs of the first four tasks whose
+  final answer differs from the answer right after learning; certified inputs: inputs inside a zone. Means over
+  \FiveCertSeeds{} seeds (lowest and highest in brackets); counts summed over seeds.}
+  \label{tab:fivemain}
+  \centering
+  \footnotesize
+  \setlength{\tabcolsep}{3pt}
+  \input{tables/five_main}
+\end{table}
+
+\paragraph{Five tasks.}\label{sec:five} The certified switch keeps every answer: after the fifth task the average score
+equals the score right after learning, \FiveCertAP{} Rouge-L, forgetting is \FiveCertFT{}, and none of
+the \FiveCertCompared{} answers to the test inputs of the first four tasks differs from the answer
+given right after the task was learned (Table~\ref{tab:fivemain}). All \FiveCertInputsOne{} test inputs
+lie inside their own zone (Proposition~\ref{prop:own}), and no training input lay inside an older zone
+(\FiveCertBlocked{} of \FiveCertTrainInputs{}). This follows from Theorem~\ref{thm:writeonce}; the
+experiment confirms the implementation. \nearest{}, \centre{} and \keyswitch{} give the same numbers.
+The same adapters with all switches on (\plain{}) fall from \FivePlainLearned{} to \FivePlainAP{}, and
+\FivePlainChanged{} of \FivePlainCompared{} answers change. InfLoRA and GainLoRA change \FiveInfChanged{}
+and \FiveGainChanged{} of \FiveInfCompared{} answers, with forgetting near zero (\FiveInfFT{} and
+\FiveGainFT{}); they end at \FiveInfAP{} and \FiveGainAP{} because they start lower
+(\FiveInfLearned{} and \FiveGainLearned{} right after learning, against \FiveCertLearned{}).
+\textbf{With 10 epochs they are at the level of guessing on the two two-label tasks, so this comparison
+cannot show how well they retain what they learn} (Appendix~\ref{app:impl}). On 15 tasks (one seed; Section~\ref{sec:fifteen}) the switch changed
+\FifteenCertChanged{} of \FifteenCertCompared{} answers (AP \FifteenCertAP{}, plain adapters
+\FifteenPlainAP{}); the published methods learned less and forgot \FifteenInfFT{} and \FifteenGainFT{} points.
+
+\paragraph{Reworded instructions.}\label{sec:reworded} A benchmark input carries its definition word for
+word, so any rule that recognises it looks perfect; the test is to ask the same task in other words
+(Appendix~\ref{sec:fivefull}). No answer changes under any wording. With the light rewording this is
+guaranteed (all \FiveCertZoneOneLight{} inputs are still certified). With the medium and heavy rewording it
+is \emph{not}: only \FiveCertZoneOneMedium{} and \FiveCertZoneOneHeavy{} of the \FiveCertInputsOne{}
+inputs are inside a zone. The others kept their answers because no later task came nearer
+(Proposition~\ref{prop:uncertified}); in another order of tasks 31 routes of heavily reworded inputs
+would change (Section~\ref{sec:orders}). The average falls from \FiveCertAP{} to \FiveCertAPLight{},
+\FiveCertAPMedium{}, \FiveCertAPHeavy{}: routing, not forgetting.
+
+\paragraph{Routes from the example alone.}\label{sec:fromexample} With instructions, \recog{} reads
+the example alone, so its routes are the same at every wording (Table~\ref{tab:instanceroutesshort}).
+With the original wording \recog{} ends at \AudUThreeOriginalRidgeAPOne{} against \AudUThreeOriginalCertAPOne{}
+for \cert{}, and \AudUThreeOriginalRidgeChanged{} and \AudUThreeOriginalHandicapChanged{} of \AudUThreeCompared{}
+answers change (\recog{} and \handicap{}) where the zones change none. With heavy rewording \recog{} ends
+at \AudUThreeHeavyRidgeAPOne{} and \handicap{} at \AudUThreeHeavyHandicapAPOne{}, against \AudUThreeHeavyCertAPOne{} for
+\cert{}, with a ceiling of \AudUThreeHeavyOwnAPOne{}. By lines fixed before the runs it repairs the weak
+spot of the zones. Three seeds, machine-written rewordings, and the benchmark gives the example
+apart from the instruction (Appendix~\ref{sec:exampleroutes}).
+
+\begin{table}[t]
+  \caption{Five tasks with instructions, original and heavily reworded; re-test, means over three seeds (changed answers summed). Zones read the instruction, \recog{} and \handicap{} the example alone. Last rows: the published methods.}
+  \label{tab:instanceroutesshort}
+  \centering
+  \input{tables/instance_routes_short}
+\end{table}
+
+\paragraph{What the zones add, and what they cost.}\label{sec:stress}\label{sec:many} In a constructed case
+where a sixth task arrives with SST-2 sentences and a rewording of task 2's definition, \nearest{} sends
+all 100 old inputs with the light rewording to the new task, and nothing announces it; under \cert{} no
+old input changes its route. The certified inputs of task 2
+keep their route in every case (routes only; Appendix~\ref{app:fulltext}). The price is measured on the
+\ManyTasks{} tasks of the default English split of Super-NaturalInstructions, in random order, with
+zones only and no training. No certified input changed its route. But \ManyColliding{} tasks
+(\ManyCollidingPct{}\%; \ManyCollidingPctLow{}\% to \ManyCollidingPctHigh{}\% in four other orders)
+collided with an older task, and \ManyAllHeld{} were blocked on every input; most are families of
+nearly identical definitions. On unedited instructions \nearest{} gives
+\ManyNearRightPct{}\% of the inputs to their own task, \cert{} \ManyCertRightPct{}\%. A variant that serves
+the siblings, \exactfirst{}, was designed after this result, and serves all but \ExactTasksNone{} tasks
+(not an independent test). On machine paraphrases of \WidenTasksEval{} tasks the zones certify only
+\WidenRefTfivePLow{}\% to \WidenRefTfivePHigh{}\% of inputs for their own task, none of five attempts to
+widen them met the bar set for it, and \nearest{} changed \RerouteNearNChanged{} of \RerouteInputs{} routes
+after all tasks had arrived (we had expected \RerouteExpectNearLow{}\% to \RerouteExpectNearHigh{}\%),
+the same as \cert{}. A plain nearest signature gives \RerouteSigOwnEnd{}\% of these inputs to their own task,
+\cert{} \RerouteCertOwnEnd{}\%; a fallback found at the end, scaled by the distance to unrelated text,
+gives \RerouteCertFourItOwn{}\% behind the zones and \RerouteBgItOwn{}\% alone (fourth pivot language; routes only). There the zones add the proof, not better routing (Appendices~\ref{app:many},
+\ref{app:widen} and~\ref{app:reroute}).\label{sec:edits}\label{sec:models} Large mechanical edits of the instruction lose the
+certificate (with sixteen typos only 45.4\% of the inputs reach their own task; Appendix~\ref{app:edits});
+routes with other models are in Appendix~\ref{app:models}.

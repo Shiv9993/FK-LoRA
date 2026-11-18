@@ -1,0 +1,504 @@
+{
+ "five": [
+  {
+   "task": "task1510_evalution_relation_extraction",
+   "opening": 129,
+   "radius": 13.48572243889239,
+   "wordings": {
+    "original": {
+     "own_median": 1.5361897048738423e-15,
+     "own_max": 1.5361897048738423e-15,
+     "other_min": 2.618482477205851,
+     "other_median": 2.618482477205851,
+     "inputs": 100
+    },
+    "light": {
+     "own_median": 0.3368533637554285,
+     "own_max": 0.3368533637554285,
+     "other_min": 2.5762815791283367,
+     "other_median": 2.5762815791283367,
+     "inputs": 100
+    },
+    "medium": {
+     "own_median": 0.8475173054855903,
+     "own_max": 0.8475173054855903,
+     "other_min": 2.5268407648003186,
+     "other_median": 2.5268407648003186,
+     "inputs": 100
+    },
+    "heavy": {
+     "own_median": 0.942638207873299,
+     "own_max": 1.0315022474898101,
+     "other_min": 2.574608591165402,
+     "other_median": 2.574608591165402,
+     "inputs": 100
+    }
+   }
+  },
+  {
+   "task": "task363_sst2_polarity_classification",
+   "opening": 61,
+   "radius": 15.482194308320821,
+   "wordings": {
+    "original": {
+     "own_median": 1.3725606637043808e-15,
+     "own_max": 1.3725606637043808e-15,
+     "other_min": 2.1554148145699705,
+     "other_median": 2.1554148145699705,
+     "inputs": 100
+    },
+    "light": {
+     "own_median": 0.7818214595892674,
+     "own_max": 0.9329884153209564,
+     "other_min": 2.0713814269178874,
+     "other_median": 2.0713814269178874,
+     "inputs": 100
+    },
+    "medium": {
+     "own_median": 1.9421232830902098,
+     "own_max": 2.0864178277495076,
+     "other_min": 2.3121393812244007,
+     "other_median": 2.4730141995189308,
+     "inputs": 100
+    },
+    "heavy": {
+     "own_median": 2.0838287579605392,
+     "own_max": 2.2760232934205384,
+     "other_min": 2.1898694242609764,
+     "other_median": 2.383994392093979,
+     "inputs": 100
+    }
+   }
+  },
+  {
+   "task": "task748_glucose_reverse_cause_event_detection",
+   "opening": 105,
+   "radius": 10.088901723979891,
+   "wordings": {
+    "original": {
+     "own_median": 1.3584731178641015e-15,
+     "own_max": 1.3584731178641015e-15,
+     "other_min": 2.258985231212314,
+     "other_median": 2.26840588298764,
+     "inputs": 100
+    },
+    "light": {
+     "own_median": 0.7579369495305631,
+     "own_max": 0.9035630598343073,
+     "other_min": 2.2756613643675734,
+     "other_median": 2.282023753562815,
+     "inputs": 100
+    },
+    "medium": {
+     "own_median": 1.854931096417495,
+     "own_max": 2.0142733830842157,
+     "other_min": 2.2969696869651908,
+     "other_median": 2.358705135125035,
+     "inputs": 100
+    },
+    "heavy": {
+     "own_median": 2.057937816697971,
+     "own_max": 2.2915446689347645,
+     "other_min": 2.3031965963627448,
+     "other_median": 2.4166134056635875,
+     "inputs": 100
+    }
+   }
+  },
+  {
+   "task": "task1687_sentiment140_classification",
+   "opening": 51,
+   "radius": 16.559096510403286,
+   "wordings": {
+    "original": {
+     "own_median": 1.721970474828899e-15,
+     "own_max": 1.721970474828899e-15,
+     "other_min": 2.0547579334440984,
+     "other_median": 2.158017005140349,
+     "inputs": 100
+    },
+    "light": {
+     "own_median": 0.1083715005370354,
+     "own_max": 0.1083715005370354,
+     "other_min": 2.071739366578681,
+     "other_median": 2.1641138080450153,
+     "inputs": 100
+    },
+    "medium": {
+     "own_median": 1.8392150877562514,
+     "own_max": 2.002152176567908,
+     "other_min": 2.205909254525418,
+     "other_median": 2.3331196879394107,
+     "inputs": 100
+    },
+    "heavy": {
+     "own_median": 2.2850332896130854,
+     "own_max": 2.5958583726489284,
+     "other_min": 2.1289371291333876,
+     "other_median": 2.310911424217796,
+     "inputs": 100
+    }
+   }
+  },
+  {
+   "task": "task875_emotion_classification",
+   "opening": 74,
+   "radius": 13.962169238511851,
+   "wordings": {
+    "original": {
+     "own_median": 1.5396035146377426e-15,
+     "own_max": 1.5396035146377426e-15,
+     "other_min": 2.211364981417436,
+     "other_median": 2.290509441002699,
+     "inputs": 100
+    },
+    "light": {
+     "own_median": 0.5259819320254381,
+     "own_max": 0.6105545253204105,
+     "other_min": 2.2131909798652094,
+     "other_median": 2.3293164702430866,
+     "inputs": 100
+    },
+    "medium": {
+     "own_median": 1.5198894599472366,
+     "own_max": 1.6466505575012862,
+     "other_min": 2.253177050223097,
+     "other_median": 2.4878567996951904,
+     "inputs": 100
+    },
+    "heavy": {
+     "own_median": 1.7330815636357748,
+     "own_max": 1.932456391028159,
+     "other_min": 2.3060287970805087,
+     "other_median": 2.558451455832877,
+     "inputs": 100
+    }
+   }
+  }
+ ],
+ "fifteen": [
+  {
+   "task": "task1572_samsum_summary",
+   "opening": 71,
+   "radius": 16.33855470846791,
+   "wordings": {
+    "original": {
+     "own_median": 1.424073345641454e-15,
+     "own_max": 1.424073345641454e-15,
+     "other_min": 1.859044162619042,
+     "other_median": 1.859044162619042,
+     "inputs": 20
+    }
+   }
+  },
+  {
+   "task": "task363_sst2_polarity_classification",
+   "opening": 61,
+   "radius": 15.482194308320821,
+   "wordings": {
+    "original": {
+     "own_median": 1.3725606637043808e-15,
+     "own_max": 1.3725606637043808e-15,
+     "other_min": 1.8350736094638411,
+     "other_median": 1.8350736094638411,
+     "inputs": 100
+    },
+    "light": {
+     "own_median": 0.7818214595892674,
+     "own_max": 0.9329884153209564,
+     "other_min": 1.727769376109647,
+     "other_median": 1.727769376109647,
+     "inputs": 100
+    },
+    "medium": {
+     "own_median": 1.9421232830902098,
+     "own_max": 2.0864178277495076,
+     "other_min": 2.3121393812244007,
+     "other_median": 2.4730141995189308,
+     "inputs": 100
+    },
+    "heavy": {
+     "own_median": 2.0838287579605392,
+     "own_max": 2.2760232934205384,
+     "other_min": 2.1898694242609764,
+     "other_median": 2.3634300689979346,
+     "inputs": 100
+    }
+   }
+  },
+  {
+   "task": "task1290_xsum_summarization",
+   "opening": 34,
+   "radius": 21.323301045450112,
+   "wordings": {
+    "original": {
+     "own_median": 1.4860893286559614e-15,
+     "own_max": 1.4860893286559614e-15,
+     "other_min": 2.020856301167053,
+     "other_median": 2.16091033198533,
+     "inputs": 100
+    }
+   }
+  },
+  {
+   "task": "task181_outcome_extraction",
+   "opening": 192,
+   "radius": 10.873487920563937,
+   "wordings": {
+    "original": {
+     "own_median": 1.4697026728519977e-15,
+     "own_max": 1.4697026728519977e-15,
+     "other_min": 2.3641255176894904,
+     "other_median": 2.3641255176894904,
+     "inputs": 43
+    }
+   }
+  },
+  {
+   "task": "task002_quoref_answer_generation",
+   "opening": 61,
+   "radius": 13.029396983234845,
+   "wordings": {
+    "original": {
+     "own_median": 1.604499872772548e-15,
+     "own_max": 1.604499872772548e-15,
+     "other_min": 2.0729966079954094,
+     "other_median": 2.2066701198300613,
+     "inputs": 100
+    }
+   }
+  },
+  {
+   "task": "task1510_evalution_relation_extraction",
+   "opening": 129,
+   "radius": 13.48572243889239,
+   "wordings": {
+    "original": {
+     "own_median": 1.5361897048738423e-15,
+     "own_max": 1.5361897048738423e-15,
+     "other_min": 2.5703827379084387,
+     "other_median": 2.5703827379084387,
+     "inputs": 100
+    },
+    "light": {
+     "own_median": 0.3368533637554285,
+     "own_max": 0.3368533637554285,
+     "other_min": 2.528732300068442,
+     "other_median": 2.528732300068442,
+     "inputs": 100
+    },
+    "medium": {
+     "own_median": 0.8475173054855903,
+     "own_max": 0.8475173054855903,
+     "other_min": 2.496434989727733,
+     "other_median": 2.496434989727733,
+     "inputs": 100
+    },
+    "heavy": {
+     "own_median": 0.942638207873299,
+     "own_max": 1.0315022474898101,
+     "other_min": 2.4634980925942163,
+     "other_median": 2.5128557568868928,
+     "inputs": 100
+    }
+   }
+  },
+  {
+   "task": "task639_multi_woz_user_utterance_generation",
+   "opening": 43,
+   "radius": 15.570374705792421,
+   "wordings": {
+    "original": {
+     "own_median": 1.4030542890424386e-15,
+     "own_max": 1.4030542890424386e-15,
+     "other_min": 2.1725069479009593,
+     "other_median": 2.240101879098936,
+     "inputs": 18
+    }
+   }
+  },
+  {
+   "task": "task1729_personachat_generate_next",
+   "opening": 76,
+   "radius": 14.019250628117579,
+   "wordings": {
+    "original": {
+     "own_median": 1.5371100867455526e-15,
+     "own_max": 1.5371100867455526e-15,
+     "other_min": 2.0050308277901467,
+     "other_median": 2.0050308277901467,
+     "inputs": 100
+    }
+   }
+  },
+  {
+   "task": "task073_commonsenseqa_answer_generation",
+   "opening": 119,
+   "radius": 11.179598605049595,
+   "wordings": {
+    "original": {
+     "own_median": 1.3871832068313887e-15,
+     "own_max": 1.3871832068313887e-15,
+     "other_min": 2.0701790623348764,
+     "other_median": 2.1256246829140717,
+     "inputs": 100
+    }
+   }
+  },
+  {
+   "task": "task1590_diplomacy_text_generation",
+   "opening": 91,
+   "radius": 11.915241682620442,
+   "wordings": {
+    "original": {
+     "own_median": 1.5099066149025742e-15,
+     "own_max": 1.5099066149025742e-15,
+     "other_min": 2.04891890244095,
+     "other_median": 2.04891890244095,
+     "inputs": 16
+    }
+   }
+  },
+  {
+   "task": "task748_glucose_reverse_cause_event_detection",
+   "opening": 105,
+   "radius": 10.088901723979891,
+   "wordings": {
+    "original": {
+     "own_median": 1.3584731178641015e-15,
+     "own_max": 1.3584731178641015e-15,
+     "other_min": 2.0611968753914507,
+     "other_median": 2.0611968753914507,
+     "inputs": 100
+    },
+    "light": {
+     "own_median": 0.7579369495305631,
+     "own_max": 0.9035630598343073,
+     "other_min": 2.070844412463293,
+     "other_median": 2.070844412463293,
+     "inputs": 100
+    },
+    "medium": {
+     "own_median": 1.854931096417495,
+     "own_max": 2.0142733830842157,
+     "other_min": 2.241269641914815,
+     "other_median": 2.3379609083720485,
+     "inputs": 100
+    },
+    "heavy": {
+     "own_median": 2.057937816697971,
+     "own_max": 2.2915446689347645,
+     "other_min": 2.3031965963627448,
+     "other_median": 2.414396781777994,
+     "inputs": 100
+    }
+   }
+  },
+  {
+   "task": "task511_reddit_tifu_long_text_summarization",
+   "opening": 64,
+   "radius": 14.181604699869673,
+   "wordings": {
+    "original": {
+     "own_median": 1.4096584816388958e-15,
+     "own_max": 1.4096584816388958e-15,
+     "other_min": 1.732894665518246,
+     "other_median": 1.732894665518246,
+     "inputs": 100
+    }
+   }
+  },
+  {
+   "task": "task591_sciq_answer_generation",
+   "opening": 26,
+   "radius": 20.484851146078466,
+   "wordings": {
+    "original": {
+     "own_median": 1.4251404828293426e-15,
+     "own_max": 1.4251404828293426e-15,
+     "other_min": 2.27621585856031,
+     "other_median": 2.4633295779846063,
+     "inputs": 100
+    }
+   }
+  },
+  {
+   "task": "task1687_sentiment140_classification",
+   "opening": 51,
+   "radius": 16.559096510403286,
+   "wordings": {
+    "original": {
+     "own_median": 1.721970474828899e-15,
+     "own_max": 1.721970474828899e-15,
+     "other_min": 2.0547579334440984,
+     "other_median": 2.1339183075223964,
+     "inputs": 100
+    },
+    "light": {
+     "own_median": 0.1083715005370354,
+     "own_max": 0.1083715005370354,
+     "other_min": 2.0512498571984668,
+     "other_median": 2.0512498571984668,
+     "inputs": 100
+    },
+    "medium": {
+     "own_median": 1.8392150877562514,
+     "own_max": 2.002152176567908,
+     "other_min": 2.205909254525418,
+     "other_median": 2.3331196879394107,
+     "inputs": 100
+    },
+    "heavy": {
+     "own_median": 2.2850332896130854,
+     "own_max": 2.5958583726489284,
+     "other_min": 2.1289371291333876,
+     "other_median": 2.310911424217796,
+     "inputs": 100
+    }
+   }
+  },
+  {
+   "task": "task875_emotion_classification",
+   "opening": 74,
+   "radius": 13.962169238511851,
+   "wordings": {
+    "original": {
+     "own_median": 1.5396035146377426e-15,
+     "own_max": 1.5396035146377426e-15,
+     "other_min": 2.1224407025297367,
+     "other_median": 2.1224407025297367,
+     "inputs": 100
+    },
+    "light": {
+     "own_median": 0.5259819320254381,
+     "own_max": 0.6105545253204105,
+     "other_min": 2.0833706541757397,
+     "other_median": 2.0833706541757397,
+     "inputs": 100
+    },
+    "medium": {
+     "own_median": 1.5198894599472366,
+     "own_max": 1.6466505575012862,
+     "other_min": 2.253177050223097,
+     "other_median": 2.4552991965785824,
+     "inputs": 100
+    },
+    "heavy": {
+     "own_median": 1.7330815636357748,
+     "own_max": 1.932456391028159,
+     "other_min": 2.3060287970805087,
+     "other_median": 2.4917373740858486,
+     "inputs": 100
+    }
+   }
+  }
+ ],
+ "cost": {
+  "seconds_per_input_cpu": 0.0032647339145788984,
+  "inputs_timed": 534,
+  "tasks": 15,
+  "dimensions": 768,
+  "numbers_per_task": 770,
+  "numbers_once": 1213312
+ }
+}

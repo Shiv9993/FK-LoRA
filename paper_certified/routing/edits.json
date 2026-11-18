@@ -1,0 +1,2558 @@
+{
+ "edits": [
+  {
+   "edit": "none",
+   "tasks": 15,
+   "inputs": 1197,
+   "own_zone": 1.0,
+   "foreign_zone": 0,
+   "right": 1.0,
+   "worst_task": "task1572_samsum_summary",
+   "worst_right": 1.0,
+   "worst_own": 1.0,
+   "per_task": [
+    {
+     "task": "task1572_samsum_summary",
+     "inputs": 20,
+     "own": 20,
+     "foreign": 0,
+     "right": 20
+    },
+    {
+     "task": "task363_sst2_polarity_classification",
+     "inputs": 100,
+     "own": 100,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task1290_xsum_summarization",
+     "inputs": 100,
+     "own": 100,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task181_outcome_extraction",
+     "inputs": 43,
+     "own": 43,
+     "foreign": 0,
+     "right": 43
+    },
+    {
+     "task": "task002_quoref_answer_generation",
+     "inputs": 100,
+     "own": 100,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task1510_evalution_relation_extraction",
+     "inputs": 100,
+     "own": 100,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task639_multi_woz_user_utterance_generation",
+     "inputs": 18,
+     "own": 18,
+     "foreign": 0,
+     "right": 18
+    },
+    {
+     "task": "task1729_personachat_generate_next",
+     "inputs": 100,
+     "own": 100,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task073_commonsenseqa_answer_generation",
+     "inputs": 100,
+     "own": 100,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task1590_diplomacy_text_generation",
+     "inputs": 16,
+     "own": 16,
+     "foreign": 0,
+     "right": 16
+    },
+    {
+     "task": "task748_glucose_reverse_cause_event_detection",
+     "inputs": 100,
+     "own": 100,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task511_reddit_tifu_long_text_summarization",
+     "inputs": 100,
+     "own": 100,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task591_sciq_answer_generation",
+     "inputs": 100,
+     "own": 100,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task1687_sentiment140_classification",
+     "inputs": 100,
+     "own": 100,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task875_emotion_classification",
+     "inputs": 100,
+     "own": 100,
+     "foreign": 0,
+     "right": 100
+    }
+   ]
+  },
+  {
+   "edit": "typo-1",
+   "tasks": 15,
+   "inputs": 1197,
+   "own_zone": 0.8705096073517126,
+   "foreign_zone": 0,
+   "right": 1.0,
+   "worst_task": "task1572_samsum_summary",
+   "worst_right": 1.0,
+   "worst_own": 0.09,
+   "per_task": [
+    {
+     "task": "task1572_samsum_summary",
+     "inputs": 20,
+     "own": 20,
+     "foreign": 0,
+     "right": 20
+    },
+    {
+     "task": "task363_sst2_polarity_classification",
+     "inputs": 100,
+     "own": 100,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task1290_xsum_summarization",
+     "inputs": 100,
+     "own": 41,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task181_outcome_extraction",
+     "inputs": 43,
+     "own": 43,
+     "foreign": 0,
+     "right": 43
+    },
+    {
+     "task": "task002_quoref_answer_generation",
+     "inputs": 100,
+     "own": 96,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task1510_evalution_relation_extraction",
+     "inputs": 100,
+     "own": 100,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task639_multi_woz_user_utterance_generation",
+     "inputs": 18,
+     "own": 17,
+     "foreign": 0,
+     "right": 18
+    },
+    {
+     "task": "task1729_personachat_generate_next",
+     "inputs": 100,
+     "own": 100,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task073_commonsenseqa_answer_generation",
+     "inputs": 100,
+     "own": 100,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task1590_diplomacy_text_generation",
+     "inputs": 16,
+     "own": 16,
+     "foreign": 0,
+     "right": 16
+    },
+    {
+     "task": "task748_glucose_reverse_cause_event_detection",
+     "inputs": 100,
+     "own": 100,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task511_reddit_tifu_long_text_summarization",
+     "inputs": 100,
+     "own": 100,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task591_sciq_answer_generation",
+     "inputs": 100,
+     "own": 9,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task1687_sentiment140_classification",
+     "inputs": 100,
+     "own": 100,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task875_emotion_classification",
+     "inputs": 100,
+     "own": 100,
+     "foreign": 0,
+     "right": 100
+    }
+   ]
+  },
+  {
+   "edit": "typo-2",
+   "tasks": 15,
+   "inputs": 1197,
+   "own_zone": 0.7443609022556391,
+   "foreign_zone": 0,
+   "right": 0.9991645781119465,
+   "worst_task": "task591_sciq_answer_generation",
+   "worst_right": 0.99,
+   "worst_own": 0.0,
+   "per_task": [
+    {
+     "task": "task1572_samsum_summary",
+     "inputs": 20,
+     "own": 20,
+     "foreign": 0,
+     "right": 20
+    },
+    {
+     "task": "task363_sst2_polarity_classification",
+     "inputs": 100,
+     "own": 72,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task1290_xsum_summarization",
+     "inputs": 100,
+     "own": 1,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task181_outcome_extraction",
+     "inputs": 43,
+     "own": 43,
+     "foreign": 0,
+     "right": 43
+    },
+    {
+     "task": "task002_quoref_answer_generation",
+     "inputs": 100,
+     "own": 70,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task1510_evalution_relation_extraction",
+     "inputs": 100,
+     "own": 100,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task639_multi_woz_user_utterance_generation",
+     "inputs": 18,
+     "own": 7,
+     "foreign": 0,
+     "right": 18
+    },
+    {
+     "task": "task1729_personachat_generate_next",
+     "inputs": 100,
+     "own": 98,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task073_commonsenseqa_answer_generation",
+     "inputs": 100,
+     "own": 100,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task1590_diplomacy_text_generation",
+     "inputs": 16,
+     "own": 16,
+     "foreign": 0,
+     "right": 16
+    },
+    {
+     "task": "task748_glucose_reverse_cause_event_detection",
+     "inputs": 100,
+     "own": 100,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task511_reddit_tifu_long_text_summarization",
+     "inputs": 100,
+     "own": 97,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task591_sciq_answer_generation",
+     "inputs": 100,
+     "own": 0,
+     "foreign": 0,
+     "right": 99
+    },
+    {
+     "task": "task1687_sentiment140_classification",
+     "inputs": 100,
+     "own": 96,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task875_emotion_classification",
+     "inputs": 100,
+     "own": 71,
+     "foreign": 0,
+     "right": 100
+    }
+   ]
+  },
+  {
+   "edit": "typo-4",
+   "tasks": 15,
+   "inputs": 1197,
+   "own_zone": 0.37761069340016706,
+   "foreign_zone": 0,
+   "right": 0.9807852965747702,
+   "worst_task": "task591_sciq_answer_generation",
+   "worst_right": 0.83,
+   "worst_own": 0.0,
+   "per_task": [
+    {
+     "task": "task1572_samsum_summary",
+     "inputs": 20,
+     "own": 14,
+     "foreign": 0,
+     "right": 20
+    },
+    {
+     "task": "task363_sst2_polarity_classification",
+     "inputs": 100,
+     "own": 3,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task1290_xsum_summarization",
+     "inputs": 100,
+     "own": 0,
+     "foreign": 0,
+     "right": 94
+    },
+    {
+     "task": "task181_outcome_extraction",
+     "inputs": 43,
+     "own": 43,
+     "foreign": 0,
+     "right": 43
+    },
+    {
+     "task": "task002_quoref_answer_generation",
+     "inputs": 100,
+     "own": 6,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task1510_evalution_relation_extraction",
+     "inputs": 100,
+     "own": 100,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task639_multi_woz_user_utterance_generation",
+     "inputs": 18,
+     "own": 0,
+     "foreign": 0,
+     "right": 18
+    },
+    {
+     "task": "task1729_personachat_generate_next",
+     "inputs": 100,
+     "own": 28,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task073_commonsenseqa_answer_generation",
+     "inputs": 100,
+     "own": 100,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task1590_diplomacy_text_generation",
+     "inputs": 16,
+     "own": 14,
+     "foreign": 0,
+     "right": 16
+    },
+    {
+     "task": "task748_glucose_reverse_cause_event_detection",
+     "inputs": 100,
+     "own": 97,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task511_reddit_tifu_long_text_summarization",
+     "inputs": 100,
+     "own": 24,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task591_sciq_answer_generation",
+     "inputs": 100,
+     "own": 0,
+     "foreign": 0,
+     "right": 83
+    },
+    {
+     "task": "task1687_sentiment140_classification",
+     "inputs": 100,
+     "own": 18,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task875_emotion_classification",
+     "inputs": 100,
+     "own": 5,
+     "foreign": 0,
+     "right": 100
+    }
+   ]
+  },
+  {
+   "edit": "typo-8",
+   "tasks": 15,
+   "inputs": 1197,
+   "own_zone": 0.10693400167084377,
+   "foreign_zone": 0,
+   "right": 0.8270676691729323,
+   "worst_task": "task591_sciq_answer_generation",
+   "worst_right": 0.03,
+   "worst_own": 0.0,
+   "per_task": [
+    {
+     "task": "task1572_samsum_summary",
+     "inputs": 20,
+     "own": 0,
+     "foreign": 0,
+     "right": 20
+    },
+    {
+     "task": "task363_sst2_polarity_classification",
+     "inputs": 100,
+     "own": 0,
+     "foreign": 0,
+     "right": 93
+    },
+    {
+     "task": "task1290_xsum_summarization",
+     "inputs": 100,
+     "own": 0,
+     "foreign": 0,
+     "right": 18
+    },
+    {
+     "task": "task181_outcome_extraction",
+     "inputs": 43,
+     "own": 43,
+     "foreign": 0,
+     "right": 43
+    },
+    {
+     "task": "task002_quoref_answer_generation",
+     "inputs": 100,
+     "own": 0,
+     "foreign": 0,
+     "right": 95
+    },
+    {
+     "task": "task1510_evalution_relation_extraction",
+     "inputs": 100,
+     "own": 47,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task639_multi_woz_user_utterance_generation",
+     "inputs": 18,
+     "own": 0,
+     "foreign": 0,
+     "right": 15
+    },
+    {
+     "task": "task1729_personachat_generate_next",
+     "inputs": 100,
+     "own": 0,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task073_commonsenseqa_answer_generation",
+     "inputs": 100,
+     "own": 33,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task1590_diplomacy_text_generation",
+     "inputs": 16,
+     "own": 0,
+     "foreign": 0,
+     "right": 16
+    },
+    {
+     "task": "task748_glucose_reverse_cause_event_detection",
+     "inputs": 100,
+     "own": 5,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task511_reddit_tifu_long_text_summarization",
+     "inputs": 100,
+     "own": 0,
+     "foreign": 0,
+     "right": 97
+    },
+    {
+     "task": "task591_sciq_answer_generation",
+     "inputs": 100,
+     "own": 0,
+     "foreign": 0,
+     "right": 3
+    },
+    {
+     "task": "task1687_sentiment140_classification",
+     "inputs": 100,
+     "own": 0,
+     "foreign": 0,
+     "right": 90
+    },
+    {
+     "task": "task875_emotion_classification",
+     "inputs": 100,
+     "own": 0,
+     "foreign": 0,
+     "right": 100
+    }
+   ]
+  },
+  {
+   "edit": "typo-16",
+   "tasks": 15,
+   "inputs": 1197,
+   "own_zone": 0.002506265664160401,
+   "foreign_zone": 0,
+   "right": 0.454469507101086,
+   "worst_task": "task1290_xsum_summarization",
+   "worst_right": 0.0,
+   "worst_own": 0.0,
+   "per_task": [
+    {
+     "task": "task1572_samsum_summary",
+     "inputs": 20,
+     "own": 0,
+     "foreign": 0,
+     "right": 18
+    },
+    {
+     "task": "task363_sst2_polarity_classification",
+     "inputs": 100,
+     "own": 0,
+     "foreign": 0,
+     "right": 9
+    },
+    {
+     "task": "task1290_xsum_summarization",
+     "inputs": 100,
+     "own": 0,
+     "foreign": 0,
+     "right": 0
+    },
+    {
+     "task": "task181_outcome_extraction",
+     "inputs": 43,
+     "own": 3,
+     "foreign": 0,
+     "right": 43
+    },
+    {
+     "task": "task002_quoref_answer_generation",
+     "inputs": 100,
+     "own": 0,
+     "foreign": 0,
+     "right": 6
+    },
+    {
+     "task": "task1510_evalution_relation_extraction",
+     "inputs": 100,
+     "own": 0,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task639_multi_woz_user_utterance_generation",
+     "inputs": 18,
+     "own": 0,
+     "foreign": 0,
+     "right": 0
+    },
+    {
+     "task": "task1729_personachat_generate_next",
+     "inputs": 100,
+     "own": 0,
+     "foreign": 0,
+     "right": 88
+    },
+    {
+     "task": "task073_commonsenseqa_answer_generation",
+     "inputs": 100,
+     "own": 0,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task1590_diplomacy_text_generation",
+     "inputs": 16,
+     "own": 0,
+     "foreign": 0,
+     "right": 16
+    },
+    {
+     "task": "task748_glucose_reverse_cause_event_detection",
+     "inputs": 100,
+     "own": 0,
+     "foreign": 0,
+     "right": 98
+    },
+    {
+     "task": "task511_reddit_tifu_long_text_summarization",
+     "inputs": 100,
+     "own": 0,
+     "foreign": 0,
+     "right": 44
+    },
+    {
+     "task": "task591_sciq_answer_generation",
+     "inputs": 100,
+     "own": 0,
+     "foreign": 0,
+     "right": 5
+    },
+    {
+     "task": "task1687_sentiment140_classification",
+     "inputs": 100,
+     "own": 0,
+     "foreign": 0,
+     "right": 1
+    },
+    {
+     "task": "task875_emotion_classification",
+     "inputs": 100,
+     "own": 0,
+     "foreign": 0,
+     "right": 16
+    }
+   ]
+  },
+  {
+   "edit": "drop-1",
+   "tasks": 15,
+   "inputs": 1197,
+   "own_zone": 0.9365079365079365,
+   "foreign_zone": 0,
+   "right": 1.0,
+   "worst_task": "task1572_samsum_summary",
+   "worst_right": 1.0,
+   "worst_own": 0.4,
+   "per_task": [
+    {
+     "task": "task1572_samsum_summary",
+     "inputs": 20,
+     "own": 20,
+     "foreign": 0,
+     "right": 20
+    },
+    {
+     "task": "task363_sst2_polarity_classification",
+     "inputs": 100,
+     "own": 100,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task1290_xsum_summarization",
+     "inputs": 100,
+     "own": 92,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task181_outcome_extraction",
+     "inputs": 43,
+     "own": 43,
+     "foreign": 0,
+     "right": 43
+    },
+    {
+     "task": "task002_quoref_answer_generation",
+     "inputs": 100,
+     "own": 95,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task1510_evalution_relation_extraction",
+     "inputs": 100,
+     "own": 100,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task639_multi_woz_user_utterance_generation",
+     "inputs": 18,
+     "own": 18,
+     "foreign": 0,
+     "right": 18
+    },
+    {
+     "task": "task1729_personachat_generate_next",
+     "inputs": 100,
+     "own": 100,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task073_commonsenseqa_answer_generation",
+     "inputs": 100,
+     "own": 100,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task1590_diplomacy_text_generation",
+     "inputs": 16,
+     "own": 16,
+     "foreign": 0,
+     "right": 16
+    },
+    {
+     "task": "task748_glucose_reverse_cause_event_detection",
+     "inputs": 100,
+     "own": 99,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task511_reddit_tifu_long_text_summarization",
+     "inputs": 100,
+     "own": 100,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task591_sciq_answer_generation",
+     "inputs": 100,
+     "own": 40,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task1687_sentiment140_classification",
+     "inputs": 100,
+     "own": 100,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task875_emotion_classification",
+     "inputs": 100,
+     "own": 98,
+     "foreign": 0,
+     "right": 100
+    }
+   ]
+  },
+  {
+   "edit": "drop-2",
+   "tasks": 15,
+   "inputs": 1197,
+   "own_zone": 0.8763575605680869,
+   "foreign_zone": 0,
+   "right": 1.0,
+   "worst_task": "task1572_samsum_summary",
+   "worst_right": 1.0,
+   "worst_own": 0.11,
+   "per_task": [
+    {
+     "task": "task1572_samsum_summary",
+     "inputs": 20,
+     "own": 20,
+     "foreign": 0,
+     "right": 20
+    },
+    {
+     "task": "task363_sst2_polarity_classification",
+     "inputs": 100,
+     "own": 100,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task1290_xsum_summarization",
+     "inputs": 100,
+     "own": 65,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task181_outcome_extraction",
+     "inputs": 43,
+     "own": 43,
+     "foreign": 0,
+     "right": 43
+    },
+    {
+     "task": "task002_quoref_answer_generation",
+     "inputs": 100,
+     "own": 93,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task1510_evalution_relation_extraction",
+     "inputs": 100,
+     "own": 100,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task639_multi_woz_user_utterance_generation",
+     "inputs": 18,
+     "own": 17,
+     "foreign": 0,
+     "right": 18
+    },
+    {
+     "task": "task1729_personachat_generate_next",
+     "inputs": 100,
+     "own": 100,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task073_commonsenseqa_answer_generation",
+     "inputs": 100,
+     "own": 100,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task1590_diplomacy_text_generation",
+     "inputs": 16,
+     "own": 16,
+     "foreign": 0,
+     "right": 16
+    },
+    {
+     "task": "task748_glucose_reverse_cause_event_detection",
+     "inputs": 100,
+     "own": 97,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task511_reddit_tifu_long_text_summarization",
+     "inputs": 100,
+     "own": 100,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task591_sciq_answer_generation",
+     "inputs": 100,
+     "own": 11,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task1687_sentiment140_classification",
+     "inputs": 100,
+     "own": 100,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task875_emotion_classification",
+     "inputs": 100,
+     "own": 87,
+     "foreign": 0,
+     "right": 100
+    }
+   ]
+  },
+  {
+   "edit": "drop-4",
+   "tasks": 15,
+   "inputs": 1197,
+   "own_zone": 0.7309941520467836,
+   "foreign_zone": 0,
+   "right": 0.9958228905597326,
+   "worst_task": "task591_sciq_answer_generation",
+   "worst_right": 0.95,
+   "worst_own": 0.01,
+   "per_task": [
+    {
+     "task": "task1572_samsum_summary",
+     "inputs": 20,
+     "own": 20,
+     "foreign": 0,
+     "right": 20
+    },
+    {
+     "task": "task363_sst2_polarity_classification",
+     "inputs": 100,
+     "own": 81,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task1290_xsum_summarization",
+     "inputs": 100,
+     "own": 13,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task181_outcome_extraction",
+     "inputs": 43,
+     "own": 43,
+     "foreign": 0,
+     "right": 43
+    },
+    {
+     "task": "task002_quoref_answer_generation",
+     "inputs": 100,
+     "own": 65,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task1510_evalution_relation_extraction",
+     "inputs": 100,
+     "own": 100,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task639_multi_woz_user_utterance_generation",
+     "inputs": 18,
+     "own": 11,
+     "foreign": 0,
+     "right": 18
+    },
+    {
+     "task": "task1729_personachat_generate_next",
+     "inputs": 100,
+     "own": 100,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task073_commonsenseqa_answer_generation",
+     "inputs": 100,
+     "own": 100,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task1590_diplomacy_text_generation",
+     "inputs": 16,
+     "own": 16,
+     "foreign": 0,
+     "right": 16
+    },
+    {
+     "task": "task748_glucose_reverse_cause_event_detection",
+     "inputs": 100,
+     "own": 94,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task511_reddit_tifu_long_text_summarization",
+     "inputs": 100,
+     "own": 100,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task591_sciq_answer_generation",
+     "inputs": 100,
+     "own": 1,
+     "foreign": 0,
+     "right": 95
+    },
+    {
+     "task": "task1687_sentiment140_classification",
+     "inputs": 100,
+     "own": 80,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task875_emotion_classification",
+     "inputs": 100,
+     "own": 51,
+     "foreign": 0,
+     "right": 100
+    }
+   ]
+  },
+  {
+   "edit": "drop-8",
+   "tasks": 15,
+   "inputs": 1197,
+   "own_zone": 0.47451963241436923,
+   "foreign_zone": 0,
+   "right": 0.9548872180451128,
+   "worst_task": "task591_sciq_answer_generation",
+   "worst_right": 0.51,
+   "worst_own": 0.0,
+   "per_task": [
+    {
+     "task": "task1572_samsum_summary",
+     "inputs": 20,
+     "own": 15,
+     "foreign": 0,
+     "right": 20
+    },
+    {
+     "task": "task363_sst2_polarity_classification",
+     "inputs": 100,
+     "own": 26,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task1290_xsum_summarization",
+     "inputs": 100,
+     "own": 0,
+     "foreign": 0,
+     "right": 95
+    },
+    {
+     "task": "task181_outcome_extraction",
+     "inputs": 43,
+     "own": 43,
+     "foreign": 0,
+     "right": 43
+    },
+    {
+     "task": "task002_quoref_answer_generation",
+     "inputs": 100,
+     "own": 1,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task1510_evalution_relation_extraction",
+     "inputs": 100,
+     "own": 99,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task639_multi_woz_user_utterance_generation",
+     "inputs": 18,
+     "own": 0,
+     "foreign": 0,
+     "right": 18
+    },
+    {
+     "task": "task1729_personachat_generate_next",
+     "inputs": 100,
+     "own": 80,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task073_commonsenseqa_answer_generation",
+     "inputs": 100,
+     "own": 100,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task1590_diplomacy_text_generation",
+     "inputs": 16,
+     "own": 15,
+     "foreign": 0,
+     "right": 16
+    },
+    {
+     "task": "task748_glucose_reverse_cause_event_detection",
+     "inputs": 100,
+     "own": 90,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task511_reddit_tifu_long_text_summarization",
+     "inputs": 100,
+     "own": 77,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task591_sciq_answer_generation",
+     "inputs": 100,
+     "own": 0,
+     "foreign": 0,
+     "right": 51
+    },
+    {
+     "task": "task1687_sentiment140_classification",
+     "inputs": 100,
+     "own": 10,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task875_emotion_classification",
+     "inputs": 100,
+     "own": 12,
+     "foreign": 0,
+     "right": 100
+    }
+   ]
+  },
+  {
+   "edit": "drop-16",
+   "tasks": 15,
+   "inputs": 1197,
+   "own_zone": 0.17042606516290726,
+   "foreign_zone": 0,
+   "right": 0.8696741854636592,
+   "worst_task": "task1290_xsum_summarization",
+   "worst_right": 0.25,
+   "worst_own": 0.0,
+   "per_task": [
+    {
+     "task": "task1572_samsum_summary",
+     "inputs": 20,
+     "own": 0,
+     "foreign": 0,
+     "right": 20
+    },
+    {
+     "task": "task363_sst2_polarity_classification",
+     "inputs": 100,
+     "own": 0,
+     "foreign": 0,
+     "right": 98
+    },
+    {
+     "task": "task1290_xsum_summarization",
+     "inputs": 100,
+     "own": 0,
+     "foreign": 0,
+     "right": 25
+    },
+    {
+     "task": "task181_outcome_extraction",
+     "inputs": 43,
+     "own": 43,
+     "foreign": 0,
+     "right": 43
+    },
+    {
+     "task": "task002_quoref_answer_generation",
+     "inputs": 100,
+     "own": 0,
+     "foreign": 0,
+     "right": 94
+    },
+    {
+     "task": "task1510_evalution_relation_extraction",
+     "inputs": 100,
+     "own": 54,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task639_multi_woz_user_utterance_generation",
+     "inputs": 18,
+     "own": 0,
+     "foreign": 0,
+     "right": 17
+    },
+    {
+     "task": "task1729_personachat_generate_next",
+     "inputs": 100,
+     "own": 1,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task073_commonsenseqa_answer_generation",
+     "inputs": 100,
+     "own": 61,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task1590_diplomacy_text_generation",
+     "inputs": 16,
+     "own": 6,
+     "foreign": 0,
+     "right": 16
+    },
+    {
+     "task": "task748_glucose_reverse_cause_event_detection",
+     "inputs": 100,
+     "own": 38,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task511_reddit_tifu_long_text_summarization",
+     "inputs": 100,
+     "own": 1,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task591_sciq_answer_generation",
+     "inputs": 100,
+     "own": 0,
+     "foreign": 0,
+     "right": 35
+    },
+    {
+     "task": "task1687_sentiment140_classification",
+     "inputs": 100,
+     "own": 0,
+     "foreign": 0,
+     "right": 98
+    },
+    {
+     "task": "task875_emotion_classification",
+     "inputs": 100,
+     "own": 0,
+     "foreign": 0,
+     "right": 95
+    }
+   ]
+  },
+  {
+   "edit": "replace-1",
+   "tasks": 15,
+   "inputs": 1197,
+   "own_zone": 0.9456975772765246,
+   "foreign_zone": 0,
+   "right": 1.0,
+   "worst_task": "task1572_samsum_summary",
+   "worst_right": 1.0,
+   "worst_own": 0.45,
+   "per_task": [
+    {
+     "task": "task1572_samsum_summary",
+     "inputs": 20,
+     "own": 20,
+     "foreign": 0,
+     "right": 20
+    },
+    {
+     "task": "task363_sst2_polarity_classification",
+     "inputs": 100,
+     "own": 100,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task1290_xsum_summarization",
+     "inputs": 100,
+     "own": 93,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task181_outcome_extraction",
+     "inputs": 43,
+     "own": 43,
+     "foreign": 0,
+     "right": 43
+    },
+    {
+     "task": "task002_quoref_answer_generation",
+     "inputs": 100,
+     "own": 99,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task1510_evalution_relation_extraction",
+     "inputs": 100,
+     "own": 100,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task639_multi_woz_user_utterance_generation",
+     "inputs": 18,
+     "own": 18,
+     "foreign": 0,
+     "right": 18
+    },
+    {
+     "task": "task1729_personachat_generate_next",
+     "inputs": 100,
+     "own": 100,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task073_commonsenseqa_answer_generation",
+     "inputs": 100,
+     "own": 100,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task1590_diplomacy_text_generation",
+     "inputs": 16,
+     "own": 16,
+     "foreign": 0,
+     "right": 16
+    },
+    {
+     "task": "task748_glucose_reverse_cause_event_detection",
+     "inputs": 100,
+     "own": 100,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task511_reddit_tifu_long_text_summarization",
+     "inputs": 100,
+     "own": 100,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task591_sciq_answer_generation",
+     "inputs": 100,
+     "own": 45,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task1687_sentiment140_classification",
+     "inputs": 100,
+     "own": 100,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task875_emotion_classification",
+     "inputs": 100,
+     "own": 98,
+     "foreign": 0,
+     "right": 100
+    }
+   ]
+  },
+  {
+   "edit": "replace-2",
+   "tasks": 15,
+   "inputs": 1197,
+   "own_zone": 0.8897243107769424,
+   "foreign_zone": 0,
+   "right": 1.0,
+   "worst_task": "task1572_samsum_summary",
+   "worst_right": 1.0,
+   "worst_own": 0.15,
+   "per_task": [
+    {
+     "task": "task1572_samsum_summary",
+     "inputs": 20,
+     "own": 20,
+     "foreign": 0,
+     "right": 20
+    },
+    {
+     "task": "task363_sst2_polarity_classification",
+     "inputs": 100,
+     "own": 97,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task1290_xsum_summarization",
+     "inputs": 100,
+     "own": 77,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task181_outcome_extraction",
+     "inputs": 43,
+     "own": 43,
+     "foreign": 0,
+     "right": 43
+    },
+    {
+     "task": "task002_quoref_answer_generation",
+     "inputs": 100,
+     "own": 95,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task1510_evalution_relation_extraction",
+     "inputs": 100,
+     "own": 100,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task639_multi_woz_user_utterance_generation",
+     "inputs": 18,
+     "own": 16,
+     "foreign": 0,
+     "right": 18
+    },
+    {
+     "task": "task1729_personachat_generate_next",
+     "inputs": 100,
+     "own": 100,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task073_commonsenseqa_answer_generation",
+     "inputs": 100,
+     "own": 100,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task1590_diplomacy_text_generation",
+     "inputs": 16,
+     "own": 16,
+     "foreign": 0,
+     "right": 16
+    },
+    {
+     "task": "task748_glucose_reverse_cause_event_detection",
+     "inputs": 100,
+     "own": 98,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task511_reddit_tifu_long_text_summarization",
+     "inputs": 100,
+     "own": 100,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task591_sciq_answer_generation",
+     "inputs": 100,
+     "own": 15,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task1687_sentiment140_classification",
+     "inputs": 100,
+     "own": 100,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task875_emotion_classification",
+     "inputs": 100,
+     "own": 88,
+     "foreign": 0,
+     "right": 100
+    }
+   ]
+  },
+  {
+   "edit": "replace-4",
+   "tasks": 15,
+   "inputs": 1197,
+   "own_zone": 0.7744360902255639,
+   "foreign_zone": 0,
+   "right": 0.9974937343358395,
+   "worst_task": "task591_sciq_answer_generation",
+   "worst_right": 0.97,
+   "worst_own": 0.02,
+   "per_task": [
+    {
+     "task": "task1572_samsum_summary",
+     "inputs": 20,
+     "own": 19,
+     "foreign": 0,
+     "right": 20
+    },
+    {
+     "task": "task363_sst2_polarity_classification",
+     "inputs": 100,
+     "own": 90,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task1290_xsum_summarization",
+     "inputs": 100,
+     "own": 27,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task181_outcome_extraction",
+     "inputs": 43,
+     "own": 43,
+     "foreign": 0,
+     "right": 43
+    },
+    {
+     "task": "task002_quoref_answer_generation",
+     "inputs": 100,
+     "own": 79,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task1510_evalution_relation_extraction",
+     "inputs": 100,
+     "own": 100,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task639_multi_woz_user_utterance_generation",
+     "inputs": 18,
+     "own": 3,
+     "foreign": 0,
+     "right": 18
+    },
+    {
+     "task": "task1729_personachat_generate_next",
+     "inputs": 100,
+     "own": 99,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task073_commonsenseqa_answer_generation",
+     "inputs": 100,
+     "own": 100,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task1590_diplomacy_text_generation",
+     "inputs": 16,
+     "own": 16,
+     "foreign": 0,
+     "right": 16
+    },
+    {
+     "task": "task748_glucose_reverse_cause_event_detection",
+     "inputs": 100,
+     "own": 95,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task511_reddit_tifu_long_text_summarization",
+     "inputs": 100,
+     "own": 99,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task591_sciq_answer_generation",
+     "inputs": 100,
+     "own": 2,
+     "foreign": 0,
+     "right": 97
+    },
+    {
+     "task": "task1687_sentiment140_classification",
+     "inputs": 100,
+     "own": 88,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task875_emotion_classification",
+     "inputs": 100,
+     "own": 67,
+     "foreign": 0,
+     "right": 100
+    }
+   ]
+  },
+  {
+   "edit": "replace-8",
+   "tasks": 15,
+   "inputs": 1197,
+   "own_zone": 0.4928989139515455,
+   "foreign_zone": 0,
+   "right": 0.9573934837092731,
+   "worst_task": "task591_sciq_answer_generation",
+   "worst_right": 0.51,
+   "worst_own": 0.0,
+   "per_task": [
+    {
+     "task": "task1572_samsum_summary",
+     "inputs": 20,
+     "own": 16,
+     "foreign": 0,
+     "right": 20
+    },
+    {
+     "task": "task363_sst2_polarity_classification",
+     "inputs": 100,
+     "own": 27,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task1290_xsum_summarization",
+     "inputs": 100,
+     "own": 0,
+     "foreign": 0,
+     "right": 98
+    },
+    {
+     "task": "task181_outcome_extraction",
+     "inputs": 43,
+     "own": 43,
+     "foreign": 0,
+     "right": 43
+    },
+    {
+     "task": "task002_quoref_answer_generation",
+     "inputs": 100,
+     "own": 24,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task1510_evalution_relation_extraction",
+     "inputs": 100,
+     "own": 91,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task639_multi_woz_user_utterance_generation",
+     "inputs": 18,
+     "own": 0,
+     "foreign": 0,
+     "right": 18
+    },
+    {
+     "task": "task1729_personachat_generate_next",
+     "inputs": 100,
+     "own": 83,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task073_commonsenseqa_answer_generation",
+     "inputs": 100,
+     "own": 99,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task1590_diplomacy_text_generation",
+     "inputs": 16,
+     "own": 15,
+     "foreign": 0,
+     "right": 16
+    },
+    {
+     "task": "task748_glucose_reverse_cause_event_detection",
+     "inputs": 100,
+     "own": 92,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task511_reddit_tifu_long_text_summarization",
+     "inputs": 100,
+     "own": 62,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task591_sciq_answer_generation",
+     "inputs": 100,
+     "own": 0,
+     "foreign": 0,
+     "right": 51
+    },
+    {
+     "task": "task1687_sentiment140_classification",
+     "inputs": 100,
+     "own": 25,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task875_emotion_classification",
+     "inputs": 100,
+     "own": 13,
+     "foreign": 0,
+     "right": 100
+    }
+   ]
+  },
+  {
+   "edit": "replace-16",
+   "tasks": 15,
+   "inputs": 1197,
+   "own_zone": 0.164578111946533,
+   "foreign_zone": 0,
+   "right": 0.858813700918964,
+   "worst_task": "task591_sciq_answer_generation",
+   "worst_right": 0.11,
+   "worst_own": 0.0,
+   "per_task": [
+    {
+     "task": "task1572_samsum_summary",
+     "inputs": 20,
+     "own": 2,
+     "foreign": 0,
+     "right": 20
+    },
+    {
+     "task": "task363_sst2_polarity_classification",
+     "inputs": 100,
+     "own": 0,
+     "foreign": 0,
+     "right": 95
+    },
+    {
+     "task": "task1290_xsum_summarization",
+     "inputs": 100,
+     "own": 0,
+     "foreign": 0,
+     "right": 48
+    },
+    {
+     "task": "task181_outcome_extraction",
+     "inputs": 43,
+     "own": 43,
+     "foreign": 0,
+     "right": 43
+    },
+    {
+     "task": "task002_quoref_answer_generation",
+     "inputs": 100,
+     "own": 0,
+     "foreign": 0,
+     "right": 99
+    },
+    {
+     "task": "task1510_evalution_relation_extraction",
+     "inputs": 100,
+     "own": 26,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task639_multi_woz_user_utterance_generation",
+     "inputs": 18,
+     "own": 0,
+     "foreign": 0,
+     "right": 12
+    },
+    {
+     "task": "task1729_personachat_generate_next",
+     "inputs": 100,
+     "own": 14,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task073_commonsenseqa_answer_generation",
+     "inputs": 100,
+     "own": 61,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task1590_diplomacy_text_generation",
+     "inputs": 16,
+     "own": 7,
+     "foreign": 0,
+     "right": 16
+    },
+    {
+     "task": "task748_glucose_reverse_cause_event_detection",
+     "inputs": 100,
+     "own": 42,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task511_reddit_tifu_long_text_summarization",
+     "inputs": 100,
+     "own": 2,
+     "foreign": 0,
+     "right": 98
+    },
+    {
+     "task": "task591_sciq_answer_generation",
+     "inputs": 100,
+     "own": 0,
+     "foreign": 0,
+     "right": 11
+    },
+    {
+     "task": "task1687_sentiment140_classification",
+     "inputs": 100,
+     "own": 0,
+     "foreign": 0,
+     "right": 95
+    },
+    {
+     "task": "task875_emotion_classification",
+     "inputs": 100,
+     "own": 0,
+     "foreign": 0,
+     "right": 91
+    }
+   ]
+  },
+  {
+   "edit": "lower",
+   "tasks": 15,
+   "inputs": 1197,
+   "own_zone": 0.9139515455304928,
+   "foreign_zone": 0,
+   "right": 1.0,
+   "worst_task": "task1572_samsum_summary",
+   "worst_right": 1.0,
+   "worst_own": 0.0,
+   "per_task": [
+    {
+     "task": "task1572_samsum_summary",
+     "inputs": 20,
+     "own": 20,
+     "foreign": 0,
+     "right": 20
+    },
+    {
+     "task": "task363_sst2_polarity_classification",
+     "inputs": 100,
+     "own": 100,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task1290_xsum_summarization",
+     "inputs": 100,
+     "own": 100,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task181_outcome_extraction",
+     "inputs": 43,
+     "own": 43,
+     "foreign": 0,
+     "right": 43
+    },
+    {
+     "task": "task002_quoref_answer_generation",
+     "inputs": 100,
+     "own": 100,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task1510_evalution_relation_extraction",
+     "inputs": 100,
+     "own": 0,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task639_multi_woz_user_utterance_generation",
+     "inputs": 18,
+     "own": 15,
+     "foreign": 0,
+     "right": 18
+    },
+    {
+     "task": "task1729_personachat_generate_next",
+     "inputs": 100,
+     "own": 100,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task073_commonsenseqa_answer_generation",
+     "inputs": 100,
+     "own": 100,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task1590_diplomacy_text_generation",
+     "inputs": 16,
+     "own": 16,
+     "foreign": 0,
+     "right": 16
+    },
+    {
+     "task": "task748_glucose_reverse_cause_event_detection",
+     "inputs": 100,
+     "own": 100,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task511_reddit_tifu_long_text_summarization",
+     "inputs": 100,
+     "own": 100,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task591_sciq_answer_generation",
+     "inputs": 100,
+     "own": 100,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task1687_sentiment140_classification",
+     "inputs": 100,
+     "own": 100,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task875_emotion_classification",
+     "inputs": 100,
+     "own": 100,
+     "foreign": 0,
+     "right": 100
+    }
+   ]
+  },
+  {
+   "edit": "polite",
+   "tasks": 15,
+   "inputs": 1197,
+   "own_zone": 0.9164578111946533,
+   "foreign_zone": 0,
+   "right": 1.0,
+   "worst_task": "task1572_samsum_summary",
+   "worst_right": 1.0,
+   "worst_own": 0.0,
+   "per_task": [
+    {
+     "task": "task1572_samsum_summary",
+     "inputs": 20,
+     "own": 20,
+     "foreign": 0,
+     "right": 20
+    },
+    {
+     "task": "task363_sst2_polarity_classification",
+     "inputs": 100,
+     "own": 100,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task1290_xsum_summarization",
+     "inputs": 100,
+     "own": 100,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task181_outcome_extraction",
+     "inputs": 43,
+     "own": 43,
+     "foreign": 0,
+     "right": 43
+    },
+    {
+     "task": "task002_quoref_answer_generation",
+     "inputs": 100,
+     "own": 100,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task1510_evalution_relation_extraction",
+     "inputs": 100,
+     "own": 100,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task639_multi_woz_user_utterance_generation",
+     "inputs": 18,
+     "own": 18,
+     "foreign": 0,
+     "right": 18
+    },
+    {
+     "task": "task1729_personachat_generate_next",
+     "inputs": 100,
+     "own": 100,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task073_commonsenseqa_answer_generation",
+     "inputs": 100,
+     "own": 100,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task1590_diplomacy_text_generation",
+     "inputs": 16,
+     "own": 16,
+     "foreign": 0,
+     "right": 16
+    },
+    {
+     "task": "task748_glucose_reverse_cause_event_detection",
+     "inputs": 100,
+     "own": 100,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task511_reddit_tifu_long_text_summarization",
+     "inputs": 100,
+     "own": 100,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task591_sciq_answer_generation",
+     "inputs": 100,
+     "own": 0,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task1687_sentiment140_classification",
+     "inputs": 100,
+     "own": 100,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task875_emotion_classification",
+     "inputs": 100,
+     "own": 100,
+     "foreign": 0,
+     "right": 100
+    }
+   ]
+  },
+  {
+   "edit": "no-first",
+   "tasks": 14,
+   "inputs": 1097,
+   "own_zone": 0.24703737465815861,
+   "foreign_zone": 0,
+   "right": 1.0,
+   "worst_task": "task1572_samsum_summary",
+   "worst_right": 1.0,
+   "worst_own": 0.0,
+   "per_task": [
+    {
+     "task": "task1572_samsum_summary",
+     "inputs": 20,
+     "own": 0,
+     "foreign": 0,
+     "right": 20
+    },
+    {
+     "task": "task363_sst2_polarity_classification",
+     "inputs": 100,
+     "own": 5,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task1290_xsum_summarization",
+     "inputs": 100,
+     "own": 0,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task181_outcome_extraction",
+     "inputs": 43,
+     "own": 43,
+     "foreign": 0,
+     "right": 43
+    },
+    {
+     "task": "task002_quoref_answer_generation",
+     "inputs": 100,
+     "own": 0,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task1510_evalution_relation_extraction",
+     "inputs": 100,
+     "own": 100,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task639_multi_woz_user_utterance_generation",
+     "inputs": 18,
+     "own": 0,
+     "foreign": 0,
+     "right": 18
+    },
+    {
+     "task": "task1729_personachat_generate_next",
+     "inputs": 100,
+     "own": 0,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task073_commonsenseqa_answer_generation",
+     "inputs": 100,
+     "own": 0,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task1590_diplomacy_text_generation",
+     "inputs": 16,
+     "own": 0,
+     "foreign": 0,
+     "right": 16
+    },
+    {
+     "task": "task748_glucose_reverse_cause_event_detection",
+     "inputs": 100,
+     "own": 100,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task511_reddit_tifu_long_text_summarization",
+     "inputs": 100,
+     "own": 15,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task1687_sentiment140_classification",
+     "inputs": 100,
+     "own": 8,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task875_emotion_classification",
+     "inputs": 100,
+     "own": 0,
+     "foreign": 0,
+     "right": 100
+    }
+   ]
+  },
+  {
+   "edit": "no-last",
+   "tasks": 14,
+   "inputs": 1097,
+   "own_zone": 0.3281677301731996,
+   "foreign_zone": 0,
+   "right": 0.8149498632634458,
+   "worst_task": "task363_sst2_polarity_classification",
+   "worst_right": 0.02,
+   "worst_own": 0.0,
+   "per_task": [
+    {
+     "task": "task1572_samsum_summary",
+     "inputs": 20,
+     "own": 16,
+     "foreign": 0,
+     "right": 20
+    },
+    {
+     "task": "task363_sst2_polarity_classification",
+     "inputs": 100,
+     "own": 0,
+     "foreign": 0,
+     "right": 2
+    },
+    {
+     "task": "task1290_xsum_summarization",
+     "inputs": 100,
+     "own": 0,
+     "foreign": 0,
+     "right": 97
+    },
+    {
+     "task": "task181_outcome_extraction",
+     "inputs": 43,
+     "own": 43,
+     "foreign": 0,
+     "right": 43
+    },
+    {
+     "task": "task002_quoref_answer_generation",
+     "inputs": 100,
+     "own": 0,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task1510_evalution_relation_extraction",
+     "inputs": 100,
+     "own": 100,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task639_multi_woz_user_utterance_generation",
+     "inputs": 18,
+     "own": 0,
+     "foreign": 0,
+     "right": 18
+    },
+    {
+     "task": "task1729_personachat_generate_next",
+     "inputs": 100,
+     "own": 1,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task073_commonsenseqa_answer_generation",
+     "inputs": 100,
+     "own": 0,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task1590_diplomacy_text_generation",
+     "inputs": 16,
+     "own": 0,
+     "foreign": 0,
+     "right": 16
+    },
+    {
+     "task": "task748_glucose_reverse_cause_event_detection",
+     "inputs": 100,
+     "own": 100,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task511_reddit_tifu_long_text_summarization",
+     "inputs": 100,
+     "own": 100,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task1687_sentiment140_classification",
+     "inputs": 100,
+     "own": 0,
+     "foreign": 0,
+     "right": 90
+    },
+    {
+     "task": "task875_emotion_classification",
+     "inputs": 100,
+     "own": 0,
+     "foreign": 0,
+     "right": 8
+    }
+   ]
+  },
+  {
+   "edit": "shuffle",
+   "tasks": 14,
+   "inputs": 1097,
+   "own_zone": 1.0,
+   "foreign_zone": 0,
+   "right": 1.0,
+   "worst_task": "task1572_samsum_summary",
+   "worst_right": 1.0,
+   "worst_own": 1.0,
+   "per_task": [
+    {
+     "task": "task1572_samsum_summary",
+     "inputs": 20,
+     "own": 20,
+     "foreign": 0,
+     "right": 20
+    },
+    {
+     "task": "task363_sst2_polarity_classification",
+     "inputs": 100,
+     "own": 100,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task1290_xsum_summarization",
+     "inputs": 100,
+     "own": 100,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task181_outcome_extraction",
+     "inputs": 43,
+     "own": 43,
+     "foreign": 0,
+     "right": 43
+    },
+    {
+     "task": "task002_quoref_answer_generation",
+     "inputs": 100,
+     "own": 100,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task1510_evalution_relation_extraction",
+     "inputs": 100,
+     "own": 100,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task639_multi_woz_user_utterance_generation",
+     "inputs": 18,
+     "own": 18,
+     "foreign": 0,
+     "right": 18
+    },
+    {
+     "task": "task1729_personachat_generate_next",
+     "inputs": 100,
+     "own": 100,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task073_commonsenseqa_answer_generation",
+     "inputs": 100,
+     "own": 100,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task1590_diplomacy_text_generation",
+     "inputs": 16,
+     "own": 16,
+     "foreign": 0,
+     "right": 16
+    },
+    {
+     "task": "task748_glucose_reverse_cause_event_detection",
+     "inputs": 100,
+     "own": 100,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task511_reddit_tifu_long_text_summarization",
+     "inputs": 100,
+     "own": 100,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task1687_sentiment140_classification",
+     "inputs": 100,
+     "own": 100,
+     "foreign": 0,
+     "right": 100
+    },
+    {
+     "task": "task875_emotion_classification",
+     "inputs": 100,
+     "own": 100,
+     "foreign": 0,
+     "right": 100
+    }
+   ]
+  }
+ ],
+ "bound": {
+  "diameter": 509.59630162021386,
+  "largest_norm": 352.6326904296875,
+  "median_norm": 143.85267639160156,
+  "tasks": [
+   {
+    "task": "task1572_samsum_summary",
+    "opening": 71,
+    "radius": 16.338554708467914,
+    "share": 0.032061760763414104
+   },
+   {
+    "task": "task363_sst2_polarity_classification",
+    "opening": 61,
+    "radius": 15.482194308320826,
+    "share": 0.030381292523310382
+   },
+   {
+    "task": "task1290_xsum_summarization",
+    "opening": 34,
+    "radius": 21.32330104545012,
+    "share": 0.04184351608843054
+   },
+   {
+    "task": "task181_outcome_extraction",
+    "opening": 192,
+    "radius": 10.873487920563937,
+    "share": 0.021337454541943687
+   },
+   {
+    "task": "task002_quoref_answer_generation",
+    "opening": 61,
+    "radius": 13.029396983234845,
+    "share": 0.025568076027649912
+   },
+   {
+    "task": "task1510_evalution_relation_extraction",
+    "opening": 129,
+    "radius": 13.485722438892394,
+    "share": 0.02646354064190772
+   },
+   {
+    "task": "task639_multi_woz_user_utterance_generation",
+    "opening": 43,
+    "radius": 15.570374705792421,
+    "share": 0.030554332235708675
+   },
+   {
+    "task": "task1729_personachat_generate_next",
+    "opening": 76,
+    "radius": 14.019250628117584,
+    "share": 0.027510503085569276
+   },
+   {
+    "task": "task073_commonsenseqa_answer_generation",
+    "opening": 119,
+    "radius": 11.179598605049595,
+    "share": 0.02193814705778889
+   },
+   {
+    "task": "task1590_diplomacy_text_generation",
+    "opening": 91,
+    "radius": 11.915241682620444,
+    "share": 0.023381727152918978
+   },
+   {
+    "task": "task748_glucose_reverse_cause_event_detection",
+    "opening": 105,
+    "radius": 10.088901723979893,
+    "share": 0.01979783152252709
+   },
+   {
+    "task": "task511_reddit_tifu_long_text_summarization",
+    "opening": 64,
+    "radius": 14.181604699869677,
+    "share": 0.02782909659034139
+   },
+   {
+    "task": "task591_sciq_answer_generation",
+    "opening": 26,
+    "radius": 20.484851146078455,
+    "share": 0.04019819429801351
+   },
+   {
+    "task": "task1687_sentiment140_classification",
+    "opening": 51,
+    "radius": 16.559096510403293,
+    "share": 0.03249453824086869
+   },
+   {
+    "task": "task875_emotion_classification",
+    "opening": 74,
+    "radius": 13.962169238511853,
+    "share": 0.027398490126636397
+   }
+  ]
+ }
+}

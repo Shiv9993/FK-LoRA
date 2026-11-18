@@ -1,0 +1,2570 @@
+{
+ "notes": {
+  "rule": "certified/nearest/exactfirst as in many_tasks_analysis.py and exact_first_analysis.py; radii in arrival order, kappa 0.5, snap 1e-3 (as ruler_study.py); old ruler (whitening) with T5-base word-vectors",
+  "arrival": "route at arrival of task j uses only tasks 1..j and their radii (radii depend only on earlier tasks); end = all 700",
+  "items": "unedited inputs[:6], paraphrased inputs[:3] per pivot, as ruler_study.py / spanish_check.py; paraphrases identical to the original are kept",
+  "primary": "French+German together",
+  "ties": "older task first (argmin / argmax over arrival order)",
+  "own_at_arrival_nearest_note": "under nearest the own task at arrival may be chosen by distance; under certified the oldest containing zone wins",
+  "examples": "15 inputs, French/German, changed under nearest and certified for their own task under certified (certified at arrival, routed to own), spaced evenly along the list ordered by task arrival",
+  "tasks_arrived_in_between": "tasks that arrived after the own task and before the task that takes the input at the end (exclusive of both)",
+  "by_arrival_group": "five equal groups of 140 arrival positions"
+ },
+ "reproduced": {
+  "C": 0.16857142857142857,
+  "U": 0.8313856427378965,
+  "P": 0.40519294902334446,
+  "M": 0.07551214864221058,
+  "R": 0.7541686517389233,
+  "n_paraphrased": 4198,
+  "reference": {
+   "C": 0.1686,
+   "U": 0.8314,
+   "P": 0.4052,
+   "M": 0.0755,
+   "R": 0.7542
+  },
+  "ok": true
+ },
+ "rules": {
+  "certified": {
+   "unedited": {
+    "n": 4193,
+    "own_at_arrival": 0.8313856427378965,
+    "own_at_end": 0.8313856427378965,
+    "lost": 0.0,
+    "changed": 0.0,
+    "n_own_at_arrival": 3486,
+    "n_own_at_end": 3486,
+    "n_lost": 0,
+    "n_changed": 0,
+    "tasks_with_changed": 0,
+    "certified_at_arrival": 1.0,
+    "changed_among_certified": 0,
+    "changed_among_uncertified": 0.0
+   },
+   "French": {
+    "n": 2099,
+    "own_at_arrival": 0.7546450690805145,
+    "own_at_end": 0.753692234397332,
+    "lost": 0.0009528346831824678,
+    "changed": 0.003811338732729871,
+    "n_own_at_arrival": 1584,
+    "n_own_at_end": 1582,
+    "n_lost": 2,
+    "n_changed": 8,
+    "tasks_with_changed": 5,
+    "certified_at_arrival": 0.4907098618389709,
+    "changed_among_certified": 0,
+    "changed_among_uncertified": 0.003811338732729871
+   },
+   "German": {
+    "n": 2099,
+    "own_at_arrival": 0.7546450690805145,
+    "own_at_end": 0.7546450690805145,
+    "lost": 0.0,
+    "changed": 0.0023820867079561697,
+    "n_own_at_arrival": 1584,
+    "n_own_at_end": 1584,
+    "n_lost": 0,
+    "n_changed": 5,
+    "tasks_with_changed": 2,
+    "certified_at_arrival": 0.47070033349213913,
+    "changed_among_certified": 0,
+    "changed_among_uncertified": 0.0023820867079561697
+   },
+   "French+German": {
+    "n": 4198,
+    "own_at_arrival": 0.7546450690805145,
+    "own_at_end": 0.7541686517389233,
+    "lost": 0.0004764173415912339,
+    "changed": 0.0030967127203430206,
+    "n_own_at_arrival": 3168,
+    "n_own_at_end": 3166,
+    "n_lost": 2,
+    "n_changed": 13,
+    "tasks_with_changed": 7,
+    "certified_at_arrival": 0.480705097665555,
+    "changed_among_certified": 0,
+    "changed_among_uncertified": 0.0030967127203430206
+   },
+   "Spanish": {
+    "n": 2099,
+    "own_at_arrival": 0.7746545974273463,
+    "own_at_end": 0.7746545974273463,
+    "lost": 0.0,
+    "changed": 0.0033349213911386373,
+    "n_own_at_arrival": 1626,
+    "n_own_at_end": 1626,
+    "n_lost": 0,
+    "n_changed": 7,
+    "tasks_with_changed": 3,
+    "certified_at_arrival": 0.6002858504049547,
+    "changed_among_certified": 0,
+    "changed_among_uncertified": 0.0033349213911386373
+   },
+   "Italian": {
+    "n": 2099,
+    "own_at_arrival": 0.7689375893282515,
+    "own_at_end": 0.7684611719866603,
+    "lost": 0.0004764173415912339,
+    "changed": 0.0009528346831824678,
+    "n_own_at_arrival": 1614,
+    "n_own_at_end": 1613,
+    "n_lost": 1,
+    "n_changed": 2,
+    "tasks_with_changed": 2,
+    "certified_at_arrival": 0.5292996665078609,
+    "changed_among_certified": 0,
+    "changed_among_uncertified": 0.0009528346831824678
+   }
+  },
+  "nearest": {
+   "unedited": {
+    "n": 4193,
+    "own_at_arrival": 0.9842594800858574,
+    "own_at_end": 0.9842594800858574,
+    "lost": 0.0,
+    "changed": 0.0,
+    "n_own_at_arrival": 4127,
+    "n_own_at_end": 4127,
+    "n_lost": 0,
+    "n_changed": 0,
+    "tasks_with_changed": 0
+   },
+   "French": {
+    "n": 2099,
+    "own_at_arrival": 0.7546450690805145,
+    "own_at_end": 0.753692234397332,
+    "lost": 0.0009528346831824678,
+    "changed": 0.003811338732729871,
+    "n_own_at_arrival": 1584,
+    "n_own_at_end": 1582,
+    "n_lost": 2,
+    "n_changed": 8,
+    "tasks_with_changed": 5
+   },
+   "German": {
+    "n": 2099,
+    "own_at_arrival": 0.7546450690805145,
+    "own_at_end": 0.7546450690805145,
+    "lost": 0.0,
+    "changed": 0.0023820867079561697,
+    "n_own_at_arrival": 1584,
+    "n_own_at_end": 1584,
+    "n_lost": 0,
+    "n_changed": 5,
+    "tasks_with_changed": 2
+   },
+   "French+German": {
+    "n": 4198,
+    "own_at_arrival": 0.7546450690805145,
+    "own_at_end": 0.7541686517389233,
+    "lost": 0.0004764173415912339,
+    "changed": 0.0030967127203430206,
+    "n_own_at_arrival": 3168,
+    "n_own_at_end": 3166,
+    "n_lost": 2,
+    "n_changed": 13,
+    "tasks_with_changed": 7
+   },
+   "Spanish": {
+    "n": 2099,
+    "own_at_arrival": 0.7760838494521201,
+    "own_at_end": 0.7760838494521201,
+    "lost": 0.0,
+    "changed": 0.0033349213911386373,
+    "n_own_at_arrival": 1629,
+    "n_own_at_end": 1629,
+    "n_lost": 0,
+    "n_changed": 7,
+    "tasks_with_changed": 3
+   },
+   "Italian": {
+    "n": 2099,
+    "own_at_arrival": 0.7703668413530252,
+    "own_at_end": 0.769890424011434,
+    "lost": 0.0004764173415912339,
+    "changed": 0.0009528346831824678,
+    "n_own_at_arrival": 1617,
+    "n_own_at_end": 1616,
+    "n_lost": 1,
+    "n_changed": 2,
+    "tasks_with_changed": 2
+   }
+  },
+  "exactfirst": {
+   "unedited": {
+    "n": 4193,
+    "own_at_arrival": 0.9842594800858574,
+    "own_at_end": 0.9842594800858574,
+    "lost": 0.0,
+    "changed": 0.0,
+    "n_own_at_arrival": 4127,
+    "n_own_at_end": 4127,
+    "n_lost": 0,
+    "n_changed": 0,
+    "tasks_with_changed": 0
+   },
+   "French": {
+    "n": 2099,
+    "own_at_arrival": 0.7546450690805145,
+    "own_at_end": 0.753692234397332,
+    "lost": 0.0009528346831824678,
+    "changed": 0.003811338732729871,
+    "n_own_at_arrival": 1584,
+    "n_own_at_end": 1582,
+    "n_lost": 2,
+    "n_changed": 8,
+    "tasks_with_changed": 5
+   },
+   "German": {
+    "n": 2099,
+    "own_at_arrival": 0.7546450690805145,
+    "own_at_end": 0.7546450690805145,
+    "lost": 0.0,
+    "changed": 0.0023820867079561697,
+    "n_own_at_arrival": 1584,
+    "n_own_at_end": 1584,
+    "n_lost": 0,
+    "n_changed": 5,
+    "tasks_with_changed": 2
+   },
+   "French+German": {
+    "n": 4198,
+    "own_at_arrival": 0.7546450690805145,
+    "own_at_end": 0.7541686517389233,
+    "lost": 0.0004764173415912339,
+    "changed": 0.0030967127203430206,
+    "n_own_at_arrival": 3168,
+    "n_own_at_end": 3166,
+    "n_lost": 2,
+    "n_changed": 13,
+    "tasks_with_changed": 7
+   },
+   "Spanish": {
+    "n": 2099,
+    "own_at_arrival": 0.7746545974273463,
+    "own_at_end": 0.7746545974273463,
+    "lost": 0.0,
+    "changed": 0.0033349213911386373,
+    "n_own_at_arrival": 1626,
+    "n_own_at_end": 1626,
+    "n_lost": 0,
+    "n_changed": 7,
+    "tasks_with_changed": 3
+   },
+   "Italian": {
+    "n": 2099,
+    "own_at_arrival": 0.7689375893282515,
+    "own_at_end": 0.7684611719866603,
+    "lost": 0.0004764173415912339,
+    "changed": 0.0009528346831824678,
+    "n_own_at_arrival": 1614,
+    "n_own_at_end": 1613,
+    "n_lost": 1,
+    "n_changed": 2,
+    "tasks_with_changed": 2
+   }
+  },
+  "signature": {
+   "unedited": {
+    "n": 4193,
+    "own_at_arrival": 0.9842594800858574,
+    "own_at_end": 0.9842594800858574,
+    "lost": 0.0,
+    "changed": 0.0,
+    "n_own_at_arrival": 4127,
+    "n_own_at_end": 4127,
+    "n_lost": 0,
+    "n_changed": 0,
+    "tasks_with_changed": 0
+   },
+   "French": {
+    "n": 2099,
+    "own_at_arrival": 0.9180562172463078,
+    "own_at_end": 0.9094807050976655,
+    "lost": 0.00857551214864221,
+    "changed": 0.02048594568842306,
+    "n_own_at_arrival": 1927,
+    "n_own_at_end": 1909,
+    "n_lost": 18,
+    "n_changed": 43,
+    "tasks_with_changed": 21
+   },
+   "German": {
+    "n": 2099,
+    "own_at_arrival": 0.9290138161029061,
+    "own_at_end": 0.9166269652215341,
+    "lost": 0.012386850881372083,
+    "changed": 0.023820867079561697,
+    "n_own_at_arrival": 1950,
+    "n_own_at_end": 1924,
+    "n_lost": 26,
+    "n_changed": 50,
+    "tasks_with_changed": 28
+   },
+   "French+German": {
+    "n": 4198,
+    "own_at_arrival": 0.9235350166746069,
+    "own_at_end": 0.9130538351595998,
+    "lost": 0.010481181515007145,
+    "changed": 0.022153406383992377,
+    "n_own_at_arrival": 3877,
+    "n_own_at_end": 3833,
+    "n_lost": 44,
+    "n_changed": 93,
+    "tasks_with_changed": 41
+   },
+   "Spanish": {
+    "n": 2099,
+    "own_at_arrival": 0.9375893282515484,
+    "own_at_end": 0.9304430681276799,
+    "lost": 0.007146260123868509,
+    "changed": 0.023344449737970462,
+    "n_own_at_arrival": 1968,
+    "n_own_at_end": 1953,
+    "n_lost": 15,
+    "n_changed": 49,
+    "tasks_with_changed": 22
+   },
+   "Italian": {
+    "n": 2099,
+    "own_at_arrival": 0.9437827536922344,
+    "own_at_end": 0.9309194854692711,
+    "lost": 0.012863268222963315,
+    "changed": 0.022391615054787994,
+    "n_own_at_arrival": 1981,
+    "n_own_at_end": 1954,
+    "n_lost": 27,
+    "n_changed": 47,
+    "tasks_with_changed": 25
+   }
+  },
+  "hybrid": {
+   "unedited": {
+    "n": 4193,
+    "own_at_arrival": 0.8313856427378965,
+    "own_at_end": 0.8313856427378965,
+    "lost": 0.0,
+    "changed": 0.0,
+    "n_own_at_arrival": 3486,
+    "n_own_at_end": 3486,
+    "n_lost": 0,
+    "n_changed": 0,
+    "tasks_with_changed": 0,
+    "certified_at_arrival": 1.0,
+    "changed_among_certified": 0,
+    "changed_among_uncertified": 0.0
+   },
+   "French": {
+    "n": 2099,
+    "own_at_arrival": 0.8380181038589805,
+    "own_at_end": 0.8313482610767032,
+    "lost": 0.006669842782277275,
+    "changed": 0.018580276322058123,
+    "n_own_at_arrival": 1759,
+    "n_own_at_end": 1745,
+    "n_lost": 14,
+    "n_changed": 39,
+    "tasks_with_changed": 19,
+    "certified_at_arrival": 0.4907098618389709,
+    "changed_among_certified": 0,
+    "changed_among_uncertified": 0.018580276322058123
+   },
+   "German": {
+    "n": 2099,
+    "own_at_arrival": 0.8894711767508338,
+    "own_at_end": 0.8804192472606003,
+    "lost": 0.009051929490233444,
+    "changed": 0.02048594568842306,
+    "n_own_at_arrival": 1867,
+    "n_own_at_end": 1848,
+    "n_lost": 19,
+    "n_changed": 43,
+    "tasks_with_changed": 24,
+    "certified_at_arrival": 0.47070033349213913,
+    "changed_among_certified": 0,
+    "changed_among_uncertified": 0.02048594568842306
+   },
+   "French+German": {
+    "n": 4198,
+    "own_at_arrival": 0.863744640304907,
+    "own_at_end": 0.8558837541686517,
+    "lost": 0.00786088613625536,
+    "changed": 0.01953311100524059,
+    "n_own_at_arrival": 3626,
+    "n_own_at_end": 3593,
+    "n_lost": 33,
+    "n_changed": 82,
+    "tasks_with_changed": 37,
+    "certified_at_arrival": 0.480705097665555,
+    "changed_among_certified": 0,
+    "changed_among_uncertified": 0.01953311100524059
+   },
+   "Spanish": {
+    "n": 2099,
+    "own_at_arrival": 0.8508813720819438,
+    "own_at_end": 0.8442115292996665,
+    "lost": 0.006669842782277275,
+    "changed": 0.022868032396379228,
+    "n_own_at_arrival": 1786,
+    "n_own_at_end": 1772,
+    "n_lost": 14,
+    "n_changed": 48,
+    "tasks_with_changed": 21,
+    "certified_at_arrival": 0.6002858504049547,
+    "changed_among_certified": 0,
+    "changed_among_uncertified": 0.022868032396379228
+   },
+   "Italian": {
+    "n": 2099,
+    "own_at_arrival": 0.8980466888994759,
+    "own_at_end": 0.8851834206765127,
+    "lost": 0.012863268222963315,
+    "changed": 0.022391615054787994,
+    "n_own_at_arrival": 1885,
+    "n_own_at_end": 1858,
+    "n_lost": 27,
+    "n_changed": 47,
+    "tasks_with_changed": 25,
+    "certified_at_arrival": 0.5292996665078609,
+    "changed_among_certified": 0,
+    "changed_among_uncertified": 0.022391615054787994
+   }
+  },
+  "exactfirst_hybrid": {
+   "unedited": {
+    "n": 4193,
+    "own_at_arrival": 0.9842594800858574,
+    "own_at_end": 0.9842594800858574,
+    "lost": 0.0,
+    "changed": 0.0,
+    "n_own_at_arrival": 4127,
+    "n_own_at_end": 4127,
+    "n_lost": 0,
+    "n_changed": 0,
+    "tasks_with_changed": 0,
+    "certified_at_arrival": 1.0,
+    "changed_among_certified": 0,
+    "changed_among_uncertified": 0.0
+   },
+   "French": {
+    "n": 2099,
+    "own_at_arrival": 0.8380181038589805,
+    "own_at_end": 0.8313482610767032,
+    "lost": 0.006669842782277275,
+    "changed": 0.018580276322058123,
+    "n_own_at_arrival": 1759,
+    "n_own_at_end": 1745,
+    "n_lost": 14,
+    "n_changed": 39,
+    "tasks_with_changed": 19,
+    "certified_at_arrival": 0.4907098618389709,
+    "changed_among_certified": 0,
+    "changed_among_uncertified": 0.018580276322058123
+   },
+   "German": {
+    "n": 2099,
+    "own_at_arrival": 0.8894711767508338,
+    "own_at_end": 0.8804192472606003,
+    "lost": 0.009051929490233444,
+    "changed": 0.02048594568842306,
+    "n_own_at_arrival": 1867,
+    "n_own_at_end": 1848,
+    "n_lost": 19,
+    "n_changed": 43,
+    "tasks_with_changed": 24,
+    "certified_at_arrival": 0.47070033349213913,
+    "changed_among_certified": 0,
+    "changed_among_uncertified": 0.02048594568842306
+   },
+   "French+German": {
+    "n": 4198,
+    "own_at_arrival": 0.863744640304907,
+    "own_at_end": 0.8558837541686517,
+    "lost": 0.00786088613625536,
+    "changed": 0.01953311100524059,
+    "n_own_at_arrival": 3626,
+    "n_own_at_end": 3593,
+    "n_lost": 33,
+    "n_changed": 82,
+    "tasks_with_changed": 37,
+    "certified_at_arrival": 0.480705097665555,
+    "changed_among_certified": 0,
+    "changed_among_uncertified": 0.01953311100524059
+   },
+   "Spanish": {
+    "n": 2099,
+    "own_at_arrival": 0.8508813720819438,
+    "own_at_end": 0.8442115292996665,
+    "lost": 0.006669842782277275,
+    "changed": 0.022868032396379228,
+    "n_own_at_arrival": 1786,
+    "n_own_at_end": 1772,
+    "n_lost": 14,
+    "n_changed": 48,
+    "tasks_with_changed": 21,
+    "certified_at_arrival": 0.6002858504049547,
+    "changed_among_certified": 0,
+    "changed_among_uncertified": 0.022868032396379228
+   },
+   "Italian": {
+    "n": 2099,
+    "own_at_arrival": 0.8980466888994759,
+    "own_at_end": 0.8851834206765127,
+    "lost": 0.012863268222963315,
+    "changed": 0.022391615054787994,
+    "n_own_at_arrival": 1885,
+    "n_own_at_end": 1858,
+    "n_lost": 27,
+    "n_changed": 47,
+    "tasks_with_changed": 25,
+    "certified_at_arrival": 0.5292996665078609,
+    "changed_among_certified": 0,
+    "changed_among_uncertified": 0.022391615054787994
+   }
+  },
+  "normalised": {
+   "unedited": {
+    "n": 4193,
+    "own_at_arrival": 0.9842594800858574,
+    "own_at_end": 0.9842594800858574,
+    "lost": 0.0,
+    "changed": 0.0,
+    "n_own_at_arrival": 4127,
+    "n_own_at_end": 4127,
+    "n_lost": 0,
+    "n_changed": 0,
+    "tasks_with_changed": 0
+   },
+   "French": {
+    "n": 2099,
+    "own_at_arrival": 0.9228203906622201,
+    "own_at_end": 0.9128156264888042,
+    "lost": 0.010004764173415913,
+    "changed": 0.022391615054787994,
+    "n_own_at_arrival": 1937,
+    "n_own_at_end": 1916,
+    "n_lost": 21,
+    "n_changed": 47,
+    "tasks_with_changed": 22
+   },
+   "German": {
+    "n": 2099,
+    "own_at_arrival": 0.932825154835636,
+    "own_at_end": 0.9223439733206289,
+    "lost": 0.010481181515007145,
+    "changed": 0.021438780371605525,
+    "n_own_at_arrival": 1958,
+    "n_own_at_end": 1936,
+    "n_lost": 22,
+    "n_changed": 45,
+    "tasks_with_changed": 24
+   },
+   "French+German": {
+    "n": 4198,
+    "own_at_arrival": 0.9278227727489281,
+    "own_at_end": 0.9175797999047165,
+    "lost": 0.01024297284421153,
+    "changed": 0.02191519771319676,
+    "n_own_at_arrival": 3895,
+    "n_own_at_end": 3852,
+    "n_lost": 43,
+    "n_changed": 92,
+    "tasks_with_changed": 36
+   },
+   "Spanish": {
+    "n": 2099,
+    "own_at_arrival": 0.9418770843258695,
+    "own_at_end": 0.9333015721772272,
+    "lost": 0.00857551214864221,
+    "changed": 0.02191519771319676,
+    "n_own_at_arrival": 1977,
+    "n_own_at_end": 1959,
+    "n_lost": 18,
+    "n_changed": 46,
+    "tasks_with_changed": 19
+   },
+   "Italian": {
+    "n": 2099,
+    "own_at_arrival": 0.9499761791329204,
+    "own_at_end": 0.9394949976179133,
+    "lost": 0.010481181515007145,
+    "changed": 0.016674606955693186,
+    "n_own_at_arrival": 1994,
+    "n_own_at_end": 1972,
+    "n_lost": 22,
+    "n_changed": 35,
+    "tasks_with_changed": 17
+   }
+  },
+  "certified3": {
+   "unedited": {
+    "n": 4193,
+    "own_at_arrival": 0.8313856427378965,
+    "own_at_end": 0.8313856427378965,
+    "lost": 0.0,
+    "changed": 0.0,
+    "n_own_at_arrival": 3486,
+    "n_own_at_end": 3486,
+    "n_lost": 0,
+    "n_changed": 0,
+    "tasks_with_changed": 0,
+    "certified_at_arrival": 1.0,
+    "changed_among_certified": 0,
+    "changed_among_uncertified": 0.0
+   },
+   "French": {
+    "n": 2099,
+    "own_at_arrival": 0.8427822772748929,
+    "own_at_end": 0.8346831824678418,
+    "lost": 0.008099094807050978,
+    "changed": 0.02048594568842306,
+    "n_own_at_arrival": 1769,
+    "n_own_at_end": 1752,
+    "n_lost": 17,
+    "n_changed": 43,
+    "tasks_with_changed": 20,
+    "certified_at_arrival": 0.4907098618389709,
+    "changed_among_certified": 0,
+    "changed_among_uncertified": 0.02048594568842306
+   },
+   "German": {
+    "n": 2099,
+    "own_at_arrival": 0.8923296808003811,
+    "own_at_end": 0.8851834206765127,
+    "lost": 0.007146260123868509,
+    "changed": 0.01810385898046689,
+    "n_own_at_arrival": 1873,
+    "n_own_at_end": 1858,
+    "n_lost": 15,
+    "n_changed": 38,
+    "tasks_with_changed": 20,
+    "certified_at_arrival": 0.47070033349213913,
+    "changed_among_certified": 0,
+    "changed_among_uncertified": 0.01810385898046689
+   },
+   "French+German": {
+    "n": 4198,
+    "own_at_arrival": 0.8675559790376369,
+    "own_at_end": 0.8599333015721772,
+    "lost": 0.007622677465459742,
+    "changed": 0.019294902334444974,
+    "n_own_at_arrival": 3642,
+    "n_own_at_end": 3610,
+    "n_lost": 32,
+    "n_changed": 81,
+    "tasks_with_changed": 32,
+    "certified_at_arrival": 0.480705097665555,
+    "changed_among_certified": 0,
+    "changed_among_uncertified": 0.019294902334444974
+   },
+   "Spanish": {
+    "n": 2099,
+    "own_at_arrival": 0.8556455454978561,
+    "own_at_end": 0.8475464506908051,
+    "lost": 0.008099094807050978,
+    "changed": 0.021438780371605525,
+    "n_own_at_arrival": 1796,
+    "n_own_at_end": 1779,
+    "n_lost": 17,
+    "n_changed": 45,
+    "tasks_with_changed": 18,
+    "certified_at_arrival": 0.6002858504049547,
+    "changed_among_certified": 0,
+    "changed_among_uncertified": 0.021438780371605525
+   },
+   "Italian": {
+    "n": 2099,
+    "own_at_arrival": 0.9042401143401619,
+    "own_at_end": 0.8937589328251548,
+    "lost": 0.010481181515007145,
+    "changed": 0.016674606955693186,
+    "n_own_at_arrival": 1898,
+    "n_own_at_end": 1876,
+    "n_lost": 22,
+    "n_changed": 35,
+    "tasks_with_changed": 17,
+    "certified_at_arrival": 0.5292996665078609,
+    "changed_among_certified": 0,
+    "changed_among_uncertified": 0.016674606955693186
+   }
+  },
+  "background": {
+   "unedited": {
+    "n": 4193,
+    "own_at_arrival": 0.9842594800858574,
+    "own_at_end": 0.9842594800858574,
+    "lost": 0.0,
+    "changed": 0.0,
+    "n_own_at_arrival": 4127,
+    "n_own_at_end": 4127,
+    "n_lost": 0,
+    "n_changed": 0,
+    "tasks_with_changed": 0
+   },
+   "French": {
+    "n": 2099,
+    "own_at_arrival": 0.9623630300142926,
+    "own_at_end": 0.9523582658408766,
+    "lost": 0.010004764173415913,
+    "changed": 0.012863268222963315,
+    "n_own_at_arrival": 2020,
+    "n_own_at_end": 1999,
+    "n_lost": 21,
+    "n_changed": 27,
+    "tasks_with_changed": 11
+   },
+   "German": {
+    "n": 2099,
+    "own_at_arrival": 0.949023344449738,
+    "own_at_end": 0.9356836588851835,
+    "lost": 0.01333968556455455,
+    "changed": 0.019056693663649357,
+    "n_own_at_arrival": 1992,
+    "n_own_at_end": 1964,
+    "n_lost": 28,
+    "n_changed": 40,
+    "tasks_with_changed": 19
+   },
+   "French+German": {
+    "n": 4198,
+    "own_at_arrival": 0.9556931872320152,
+    "own_at_end": 0.94402096236303,
+    "lost": 0.011672224868985231,
+    "changed": 0.015959980943306338,
+    "n_own_at_arrival": 4012,
+    "n_own_at_end": 3963,
+    "n_lost": 49,
+    "n_changed": 67,
+    "tasks_with_changed": 24
+   },
+   "Spanish": {
+    "n": 2099,
+    "own_at_arrival": 0.9661743687470223,
+    "own_at_end": 0.9528346831824679,
+    "lost": 0.01333968556455455,
+    "changed": 0.01953311100524059,
+    "n_own_at_arrival": 2028,
+    "n_own_at_end": 2000,
+    "n_lost": 28,
+    "n_changed": 41,
+    "tasks_with_changed": 15
+   },
+   "Italian": {
+    "n": 2099,
+    "own_at_arrival": 0.9714149595045259,
+    "own_at_end": 0.9585516912815627,
+    "lost": 0.012863268222963315,
+    "changed": 0.012863268222963315,
+    "n_own_at_arrival": 2039,
+    "n_own_at_end": 2012,
+    "n_lost": 27,
+    "n_changed": 27,
+    "tasks_with_changed": 10
+   }
+  },
+  "certified4": {
+   "unedited": {
+    "n": 4193,
+    "own_at_arrival": 0.8313856427378965,
+    "own_at_end": 0.8313856427378965,
+    "lost": 0.0,
+    "changed": 0.0,
+    "n_own_at_arrival": 3486,
+    "n_own_at_end": 3486,
+    "n_lost": 0,
+    "n_changed": 0,
+    "tasks_with_changed": 0,
+    "certified_at_arrival": 1.0,
+    "changed_among_certified": 0,
+    "changed_among_uncertified": 0.0
+   },
+   "French": {
+    "n": 2099,
+    "own_at_arrival": 0.8804192472606003,
+    "own_at_end": 0.8718437351119581,
+    "lost": 0.00857551214864221,
+    "changed": 0.011434016198189614,
+    "n_own_at_arrival": 1848,
+    "n_own_at_end": 1830,
+    "n_lost": 18,
+    "n_changed": 24,
+    "tasks_with_changed": 10,
+    "certified_at_arrival": 0.4907098618389709,
+    "changed_among_certified": 0,
+    "changed_among_uncertified": 0.011434016198189614
+   },
+   "German": {
+    "n": 2099,
+    "own_at_arrival": 0.9094807050976655,
+    "own_at_end": 0.8999523582658409,
+    "lost": 0.009528346831824679,
+    "changed": 0.015245354930919485,
+    "n_own_at_arrival": 1909,
+    "n_own_at_end": 1889,
+    "n_lost": 20,
+    "n_changed": 32,
+    "tasks_with_changed": 15,
+    "certified_at_arrival": 0.47070033349213913,
+    "changed_among_certified": 0,
+    "changed_among_uncertified": 0.015245354930919485
+   },
+   "French+German": {
+    "n": 4198,
+    "own_at_arrival": 0.894949976179133,
+    "own_at_end": 0.8858980466888995,
+    "lost": 0.009051929490233444,
+    "changed": 0.01333968556455455,
+    "n_own_at_arrival": 3757,
+    "n_own_at_end": 3719,
+    "n_lost": 38,
+    "n_changed": 56,
+    "tasks_with_changed": 21,
+    "certified_at_arrival": 0.480705097665555,
+    "changed_among_certified": 0,
+    "changed_among_uncertified": 0.01333968556455455
+   },
+   "Spanish": {
+    "n": 2099,
+    "own_at_arrival": 0.8789899952358265,
+    "own_at_end": 0.8661267270128633,
+    "lost": 0.012863268222963315,
+    "changed": 0.019056693663649357,
+    "n_own_at_arrival": 1845,
+    "n_own_at_end": 1818,
+    "n_lost": 27,
+    "n_changed": 40,
+    "tasks_with_changed": 14,
+    "certified_at_arrival": 0.6002858504049547,
+    "changed_among_certified": 0,
+    "changed_among_uncertified": 0.019056693663649357
+   },
+   "Italian": {
+    "n": 2099,
+    "own_at_arrival": 0.9261553120533588,
+    "own_at_end": 0.9132920438303954,
+    "lost": 0.012863268222963315,
+    "changed": 0.012863268222963315,
+    "n_own_at_arrival": 1944,
+    "n_own_at_end": 1917,
+    "n_lost": 27,
+    "n_changed": 27,
+    "tasks_with_changed": 10,
+    "certified_at_arrival": 0.5292996665078609,
+    "changed_among_certified": 0,
+    "changed_among_uncertified": 0.012863268222963315
+   }
+  }
+ },
+ "protected": {
+  "French+German": {
+   "n_certified_own": 1701,
+   "lost_by_nearest": 0,
+   "share_lost_by_nearest": 0.0,
+   "share_other_task_at_end_under_nearest": 0.0,
+   "n_other_task_at_end_under_nearest": 0
+  },
+  "Spanish": {
+   "n_certified_own": 1057,
+   "lost_by_nearest": 0,
+   "share_lost_by_nearest": 0.0,
+   "share_other_task_at_end_under_nearest": 0.0,
+   "n_other_task_at_end_under_nearest": 0
+  }
+ },
+ "verdict": {
+  "G_nearest": 0.0030967127203430206,
+  "G_certified": 0.0030967127203430206,
+  "G_exactfirst": 0.0030967127203430206,
+  "ratio_certified_to_nearest": 1.0,
+  "outcome": "adds little here"
+ },
+ "examples": [],
+ "n_examples_candidates": 0,
+ "by_arrival_group": {
+  "group1": {
+   "arrival_positions": "1-140",
+   "French+German": {
+    "n": 840,
+    "changed_nearest": 0.0035714285714285713,
+    "n_changed_nearest": 3,
+    "changed_certified": 0.0035714285714285713,
+    "changed_exactfirst": 0.0035714285714285713
+   },
+   "Spanish": {
+    "n": 420,
+    "changed_nearest": 0.007142857142857143,
+    "n_changed_nearest": 3,
+    "changed_certified": 0.007142857142857143,
+    "changed_exactfirst": 0.007142857142857143
+   }
+  },
+  "group2": {
+   "arrival_positions": "141-280",
+   "French+German": {
+    "n": 840,
+    "changed_nearest": 0.0,
+    "n_changed_nearest": 0,
+    "changed_certified": 0.0,
+    "changed_exactfirst": 0.0
+   },
+   "Spanish": {
+    "n": 420,
+    "changed_nearest": 0.0,
+    "n_changed_nearest": 0,
+    "changed_certified": 0.0,
+    "changed_exactfirst": 0.0
+   }
+  },
+  "group3": {
+   "arrival_positions": "281-420",
+   "French+German": {
+    "n": 838,
+    "changed_nearest": 0.010739856801909307,
+    "n_changed_nearest": 9,
+    "changed_certified": 0.010739856801909307,
+    "changed_exactfirst": 0.010739856801909307
+   },
+   "Spanish": {
+    "n": 419,
+    "changed_nearest": 0.00954653937947494,
+    "n_changed_nearest": 4,
+    "changed_certified": 0.00954653937947494,
+    "changed_exactfirst": 0.00954653937947494
+   }
+  },
+  "group4": {
+   "arrival_positions": "421-560",
+   "French+German": {
+    "n": 840,
+    "changed_nearest": 0.0,
+    "n_changed_nearest": 0,
+    "changed_certified": 0.0,
+    "changed_exactfirst": 0.0
+   },
+   "Spanish": {
+    "n": 420,
+    "changed_nearest": 0.0,
+    "n_changed_nearest": 0,
+    "changed_certified": 0.0,
+    "changed_exactfirst": 0.0
+   }
+  },
+  "group5": {
+   "arrival_positions": "561-700",
+   "French+German": {
+    "n": 840,
+    "changed_nearest": 0.0011904761904761906,
+    "n_changed_nearest": 1,
+    "changed_certified": 0.0011904761904761906,
+    "changed_exactfirst": 0.0011904761904761906
+   },
+   "Spanish": {
+    "n": 420,
+    "changed_nearest": 0.0,
+    "n_changed_nearest": 0,
+    "changed_certified": 0.0,
+    "changed_exactfirst": 0.0
+   }
+  }
+ },
+ "siblings": {
+  "measure": "word overlap of the two task definitions, as alike() in many_tasks_analysis.py; threshold 0.8",
+  "French+German": {
+   "n_changed_nearest": 13,
+   "n_to_sibling": 0,
+   "share_of_changed": 0.0
+  },
+  "Spanish": {
+   "n_changed_nearest": 7,
+   "n_to_sibling": 0,
+   "share_of_changed": 0.0
+  },
+  "unedited": {
+   "n_changed_nearest": 0,
+   "n_to_sibling": 0,
+   "share_of_changed": null
+  }
+ },
+ "verdict_followup": {
+  "G_signature": 0.022153406383992377,
+  "outcome": "some"
+ },
+ "protected_signature": {
+  "French+German": {
+   "n_certified_own": 1701,
+   "lost_by_signature": 11,
+   "share_lost_by_signature": 0.006466784244562022,
+   "n_other_task_at_end": 11,
+   "share_other_task_at_end": 0.006466784244562022
+  },
+  "Spanish": {
+   "n_certified_own": 1057,
+   "lost_by_signature": 1,
+   "share_lost_by_signature": 0.000946073793755913,
+   "n_other_task_at_end": 1,
+   "share_other_task_at_end": 0.000946073793755913
+  }
+ },
+ "examples_signature": [
+  {
+   "task": "task1161_coda19_title_generation",
+   "pivot": "French",
+   "task_at_end": "task583_udeps_eng_coarse_pos_tagging",
+   "tasks_arrived_in_between": 408,
+   "own_position": 9,
+   "end_position": 418,
+   "word_share_of_definitions": 0.03695652173913044
+  },
+  {
+   "task": "task1622_disfl_qa_text_modication",
+   "pivot": "French",
+   "task_at_end": "task108_contextualabusedetection_classification",
+   "tasks_arrived_in_between": 460,
+   "own_position": 44,
+   "end_position": 505,
+   "word_share_of_definitions": 0.07920792079207921
+  },
+  {
+   "task": "task1195_disflqa_disfluent_to_fluent_conversion",
+   "pivot": "French",
+   "task_at_end": "task375_classify_type_of_sentence_in_debate",
+   "tasks_arrived_in_between": 24,
+   "own_position": 62,
+   "end_position": 87,
+   "word_share_of_definitions": 0.05825242718446602
+  },
+  {
+   "task": "task1585_root09_hypernym_generation",
+   "pivot": "German",
+   "task_at_end": "task1582_bless_hypernym_generation",
+   "tasks_arrived_in_between": 143,
+   "own_position": 99,
+   "end_position": 243,
+   "word_share_of_definitions": 1.0
+  },
+  {
+   "task": "task1723_civil_comments_sexuallyexplicit_classification",
+   "pivot": "German",
+   "task_at_end": "task108_contextualabusedetection_classification",
+   "tasks_arrived_in_between": 392,
+   "own_position": 112,
+   "end_position": 505,
+   "word_share_of_definitions": 0.04455445544554455
+  },
+  {
+   "task": "task345_hybridqa_answer_generation",
+   "pivot": "German",
+   "task_at_end": "task584_udeps_eng_fine_pos_tagging",
+   "tasks_arrived_in_between": 182,
+   "own_position": 151,
+   "end_position": 334,
+   "word_share_of_definitions": 0.6462264150943396
+  },
+  {
+   "task": "task1722_civil_comments_threat_classification",
+   "pivot": "German",
+   "task_at_end": "task304_numeric_fused_head_resolution",
+   "tasks_arrived_in_between": 278,
+   "own_position": 216,
+   "end_position": 495,
+   "word_share_of_definitions": 0.033816425120772944
+  },
+  {
+   "task": "task1385_anli_r1_entailment",
+   "pivot": "French",
+   "task_at_end": "task1388_cb_entailment",
+   "tasks_arrived_in_between": 145,
+   "own_position": 225,
+   "end_position": 371,
+   "word_share_of_definitions": 0.975
+  },
+  {
+   "task": "task560_alt_translation_en_entk",
+   "pivot": "French",
+   "task_at_end": "task547_alt_translation_entk_en",
+   "tasks_arrived_in_between": 345,
+   "own_position": 263,
+   "end_position": 609,
+   "word_share_of_definitions": 1.0
+  },
+  {
+   "task": "task138_detoxifying-lms_classification_fluency",
+   "pivot": "German",
+   "task_at_end": "task583_udeps_eng_coarse_pos_tagging",
+   "tasks_arrived_in_between": 56,
+   "own_position": 361,
+   "end_position": 418,
+   "word_share_of_definitions": 0.043478260869565216
+  },
+  {
+   "task": "task870_msmarco_answer_generation",
+   "pivot": "German",
+   "task_at_end": "task304_numeric_fused_head_resolution",
+   "tasks_arrived_in_between": 95,
+   "own_position": 399,
+   "end_position": 495,
+   "word_share_of_definitions": 0.0821256038647343
+  },
+  {
+   "task": "task963_librispeech_asr_next_word_prediction",
+   "pivot": "French",
+   "task_at_end": "task304_numeric_fused_head_resolution",
+   "tasks_arrived_in_between": 71,
+   "own_position": 423,
+   "end_position": 495,
+   "word_share_of_definitions": 0.01932367149758454
+  },
+  {
+   "task": "task863_asdiv_multiop_question_answering",
+   "pivot": "German",
+   "task_at_end": "task867_mawps_multiop_question_answering",
+   "tasks_arrived_in_between": 234,
+   "own_position": 442,
+   "end_position": 677,
+   "word_share_of_definitions": 1.0
+  },
+  {
+   "task": "task1207_atomic_classification_atlocation",
+   "pivot": "German",
+   "task_at_end": "task1205_atomic_classification_isafter",
+   "tasks_arrived_in_between": 80,
+   "own_position": 477,
+   "end_position": 558,
+   "word_share_of_definitions": 0.90625
+  },
+  {
+   "task": "task702_mmmlu_answer_generation_high_school_european_history",
+   "pivot": "German",
+   "task_at_end": "task711_mmmlu_answer_generation_high_school_us_history",
+   "tasks_arrived_in_between": 1,
+   "own_position": 644,
+   "end_position": 646,
+   "word_share_of_definitions": 0.9705882352941176
+  }
+ ],
+ "siblings_signature": {
+  "measure": "word overlap of the two task definitions, as alike() in many_tasks_analysis.py; threshold 0.8",
+  "French+German": {
+   "n_changed_signature": 93,
+   "n_to_sibling": 34,
+   "share_of_changed": 0.3655913978494624
+  },
+  "Spanish": {
+   "n_changed_signature": 49,
+   "n_to_sibling": 18,
+   "share_of_changed": 0.3673469387755102
+  },
+  "unedited": {
+   "n_changed_signature": 0,
+   "n_to_sibling": 0,
+   "share_of_changed": null
+  }
+ },
+ "by_arrival_group_signature": {
+  "group1": {
+   "arrival_positions": "1-140",
+   "French+German": {
+    "n": 840,
+    "changed_signature": 0.0380952380952381,
+    "n_changed_signature": 32
+   },
+   "Spanish": {
+    "n": 420,
+    "changed_signature": 0.023809523809523808,
+    "n_changed_signature": 10
+   }
+  },
+  "group2": {
+   "arrival_positions": "141-280",
+   "French+German": {
+    "n": 840,
+    "changed_signature": 0.02738095238095238,
+    "n_changed_signature": 23
+   },
+   "Spanish": {
+    "n": 420,
+    "changed_signature": 0.023809523809523808,
+    "n_changed_signature": 10
+   }
+  },
+  "group3": {
+   "arrival_positions": "281-420",
+   "French+German": {
+    "n": 838,
+    "changed_signature": 0.02028639618138425,
+    "n_changed_signature": 17
+   },
+   "Spanish": {
+    "n": 419,
+    "changed_signature": 0.03341288782816229,
+    "n_changed_signature": 14
+   }
+  },
+  "group4": {
+   "arrival_positions": "421-560",
+   "French+German": {
+    "n": 840,
+    "changed_signature": 0.02023809523809524,
+    "n_changed_signature": 17
+   },
+   "Spanish": {
+    "n": 420,
+    "changed_signature": 0.02142857142857143,
+    "n_changed_signature": 9
+   }
+  },
+  "group5": {
+   "arrival_positions": "561-700",
+   "French+German": {
+    "n": 840,
+    "changed_signature": 0.004761904761904762,
+    "n_changed_signature": 4
+   },
+   "Spanish": {
+    "n": 420,
+    "changed_signature": 0.014285714285714285,
+    "n_changed_signature": 6
+   }
+  }
+ },
+ "summary_table": {
+  "French+German": {
+   "signature": {
+    "own_at_end": 0.9130538351595998,
+    "changed": 0.022153406383992377,
+    "lost": 0.010481181515007145,
+    "certified_at_arrival": 0.0
+   },
+   "nearest": {
+    "own_at_end": 0.7541686517389233,
+    "changed": 0.0030967127203430206,
+    "lost": 0.0004764173415912339,
+    "certified_at_arrival": 0.0
+   },
+   "certified": {
+    "own_at_end": 0.7541686517389233,
+    "changed": 0.0030967127203430206,
+    "lost": 0.0004764173415912339,
+    "certified_at_arrival": 0.480705097665555
+   },
+   "exactfirst": {
+    "own_at_end": 0.7541686517389233,
+    "changed": 0.0030967127203430206,
+    "lost": 0.0004764173415912339,
+    "certified_at_arrival": 0.0
+   },
+   "hybrid": {
+    "own_at_end": 0.8558837541686517,
+    "changed": 0.01953311100524059,
+    "lost": 0.00786088613625536,
+    "certified_at_arrival": 0.480705097665555
+   },
+   "exactfirst_hybrid": {
+    "own_at_end": 0.8558837541686517,
+    "changed": 0.01953311100524059,
+    "lost": 0.00786088613625536,
+    "certified_at_arrival": 0.480705097665555
+   },
+   "normalised": {
+    "own_at_end": 0.9175797999047165,
+    "changed": 0.02191519771319676,
+    "lost": 0.01024297284421153,
+    "certified_at_arrival": 0.0
+   },
+   "certified3": {
+    "own_at_end": 0.8599333015721772,
+    "changed": 0.019294902334444974,
+    "lost": 0.007622677465459742,
+    "certified_at_arrival": 0.480705097665555
+   },
+   "background": {
+    "own_at_end": 0.94402096236303,
+    "changed": 0.015959980943306338,
+    "lost": 0.011672224868985231,
+    "certified_at_arrival": 0.0
+   },
+   "certified4": {
+    "own_at_end": 0.8858980466888995,
+    "changed": 0.01333968556455455,
+    "lost": 0.009051929490233444,
+    "certified_at_arrival": 0.480705097665555
+   }
+  },
+  "Spanish": {
+   "signature": {
+    "own_at_end": 0.9304430681276799,
+    "changed": 0.023344449737970462,
+    "lost": 0.007146260123868509,
+    "certified_at_arrival": 0.0
+   },
+   "nearest": {
+    "own_at_end": 0.7760838494521201,
+    "changed": 0.0033349213911386373,
+    "lost": 0.0,
+    "certified_at_arrival": 0.0
+   },
+   "certified": {
+    "own_at_end": 0.7746545974273463,
+    "changed": 0.0033349213911386373,
+    "lost": 0.0,
+    "certified_at_arrival": 0.6002858504049547
+   },
+   "exactfirst": {
+    "own_at_end": 0.7746545974273463,
+    "changed": 0.0033349213911386373,
+    "lost": 0.0,
+    "certified_at_arrival": 0.0
+   },
+   "hybrid": {
+    "own_at_end": 0.8442115292996665,
+    "changed": 0.022868032396379228,
+    "lost": 0.006669842782277275,
+    "certified_at_arrival": 0.6002858504049547
+   },
+   "exactfirst_hybrid": {
+    "own_at_end": 0.8442115292996665,
+    "changed": 0.022868032396379228,
+    "lost": 0.006669842782277275,
+    "certified_at_arrival": 0.6002858504049547
+   },
+   "normalised": {
+    "own_at_end": 0.9333015721772272,
+    "changed": 0.02191519771319676,
+    "lost": 0.00857551214864221,
+    "certified_at_arrival": 0.0
+   },
+   "certified3": {
+    "own_at_end": 0.8475464506908051,
+    "changed": 0.021438780371605525,
+    "lost": 0.008099094807050978,
+    "certified_at_arrival": 0.6002858504049547
+   },
+   "background": {
+    "own_at_end": 0.9528346831824679,
+    "changed": 0.01953311100524059,
+    "lost": 0.01333968556455455,
+    "certified_at_arrival": 0.0
+   },
+   "certified4": {
+    "own_at_end": 0.8661267270128633,
+    "changed": 0.019056693663649357,
+    "lost": 0.012863268222963315,
+    "certified_at_arrival": 0.6002858504049547
+   }
+  },
+  "Italian": {
+   "signature": {
+    "own_at_end": 0.9309194854692711,
+    "changed": 0.022391615054787994,
+    "lost": 0.012863268222963315,
+    "certified_at_arrival": 0.0
+   },
+   "nearest": {
+    "own_at_end": 0.769890424011434,
+    "changed": 0.0009528346831824678,
+    "lost": 0.0004764173415912339,
+    "certified_at_arrival": 0.0
+   },
+   "certified": {
+    "own_at_end": 0.7684611719866603,
+    "changed": 0.0009528346831824678,
+    "lost": 0.0004764173415912339,
+    "certified_at_arrival": 0.5292996665078609
+   },
+   "exactfirst": {
+    "own_at_end": 0.7684611719866603,
+    "changed": 0.0009528346831824678,
+    "lost": 0.0004764173415912339,
+    "certified_at_arrival": 0.0
+   },
+   "hybrid": {
+    "own_at_end": 0.8851834206765127,
+    "changed": 0.022391615054787994,
+    "lost": 0.012863268222963315,
+    "certified_at_arrival": 0.5292996665078609
+   },
+   "exactfirst_hybrid": {
+    "own_at_end": 0.8851834206765127,
+    "changed": 0.022391615054787994,
+    "lost": 0.012863268222963315,
+    "certified_at_arrival": 0.5292996665078609
+   },
+   "normalised": {
+    "own_at_end": 0.9394949976179133,
+    "changed": 0.016674606955693186,
+    "lost": 0.010481181515007145,
+    "certified_at_arrival": 0.0
+   },
+   "certified3": {
+    "own_at_end": 0.8937589328251548,
+    "changed": 0.016674606955693186,
+    "lost": 0.010481181515007145,
+    "certified_at_arrival": 0.5292996665078609
+   },
+   "background": {
+    "own_at_end": 0.9585516912815627,
+    "changed": 0.012863268222963315,
+    "lost": 0.012863268222963315,
+    "certified_at_arrival": 0.0
+   },
+   "certified4": {
+    "own_at_end": 0.9132920438303954,
+    "changed": 0.012863268222963315,
+    "lost": 0.012863268222963315,
+    "certified_at_arrival": 0.5292996665078609
+   }
+  },
+  "unedited": {
+   "signature": {
+    "own_at_end": 0.9842594800858574
+   },
+   "nearest": {
+    "own_at_end": 0.9842594800858574
+   },
+   "certified": {
+    "own_at_end": 0.8313856427378965
+   },
+   "exactfirst": {
+    "own_at_end": 0.9842594800858574
+   },
+   "hybrid": {
+    "own_at_end": 0.8313856427378965
+   },
+   "exactfirst_hybrid": {
+    "own_at_end": 0.9842594800858574
+   },
+   "normalised": {
+    "own_at_end": 0.9842594800858574
+   },
+   "certified3": {
+    "own_at_end": 0.8313856427378965
+   },
+   "background": {
+    "own_at_end": 0.9842594800858574
+   },
+   "certified4": {
+    "own_at_end": 0.8313856427378965
+   }
+  },
+  "note": "certified_at_arrival is 0 for signature and nearest (no zone certificate); exactfirst has no certificate of its own and is also given 0"
+ },
+ "benchmark": {
+  "five": {
+   "original": {
+    "certified": {
+     "n": 500,
+     "own_at_end": 1.0,
+     "own_at_arrival": 1.0,
+     "changed": 0,
+     "inside_zone_at_end": 1.0,
+     "inside_zone_at_arrival": 1.0
+    },
+    "nearest": {
+     "n": 500,
+     "own_at_end": 1.0,
+     "own_at_arrival": 1.0,
+     "changed": 0,
+     "inside_zone_at_end": 1.0,
+     "inside_zone_at_arrival": 1.0
+    },
+    "signature": {
+     "n": 500,
+     "own_at_end": 1.0,
+     "own_at_arrival": 1.0,
+     "changed": 0,
+     "inside_zone_at_end": 1.0,
+     "inside_zone_at_arrival": 1.0
+    },
+    "hybrid": {
+     "n": 500,
+     "own_at_end": 1.0,
+     "own_at_arrival": 1.0,
+     "changed": 0,
+     "inside_zone_at_end": 1.0,
+     "inside_zone_at_arrival": 1.0
+    },
+    "normalised": {
+     "n": 500,
+     "own_at_end": 1.0,
+     "own_at_arrival": 1.0,
+     "changed": 0,
+     "inside_zone_at_end": 1.0,
+     "inside_zone_at_arrival": 1.0
+    },
+    "certified3": {
+     "n": 500,
+     "own_at_end": 1.0,
+     "own_at_arrival": 1.0,
+     "changed": 0,
+     "inside_zone_at_end": 1.0,
+     "inside_zone_at_arrival": 1.0
+    },
+    "background": {
+     "n": 500,
+     "own_at_end": 1.0,
+     "own_at_arrival": 1.0,
+     "changed": 0,
+     "inside_zone_at_end": 1.0,
+     "inside_zone_at_arrival": 1.0
+    },
+    "certified4": {
+     "n": 500,
+     "own_at_end": 1.0,
+     "own_at_arrival": 1.0,
+     "changed": 0,
+     "inside_zone_at_end": 1.0,
+     "inside_zone_at_arrival": 1.0
+    }
+   },
+   "light": {
+    "certified": {
+     "n": 500,
+     "own_at_end": 1.0,
+     "own_at_arrival": 1.0,
+     "changed": 0,
+     "inside_zone_at_end": 1.0,
+     "inside_zone_at_arrival": 1.0
+    },
+    "nearest": {
+     "n": 500,
+     "own_at_end": 1.0,
+     "own_at_arrival": 1.0,
+     "changed": 0,
+     "inside_zone_at_end": 1.0,
+     "inside_zone_at_arrival": 1.0
+    },
+    "signature": {
+     "n": 500,
+     "own_at_end": 1.0,
+     "own_at_arrival": 1.0,
+     "changed": 0,
+     "inside_zone_at_end": 1.0,
+     "inside_zone_at_arrival": 1.0
+    },
+    "hybrid": {
+     "n": 500,
+     "own_at_end": 1.0,
+     "own_at_arrival": 1.0,
+     "changed": 0,
+     "inside_zone_at_end": 1.0,
+     "inside_zone_at_arrival": 1.0
+    },
+    "normalised": {
+     "n": 500,
+     "own_at_end": 1.0,
+     "own_at_arrival": 1.0,
+     "changed": 0,
+     "inside_zone_at_end": 1.0,
+     "inside_zone_at_arrival": 1.0
+    },
+    "certified3": {
+     "n": 500,
+     "own_at_end": 1.0,
+     "own_at_arrival": 1.0,
+     "changed": 0,
+     "inside_zone_at_end": 1.0,
+     "inside_zone_at_arrival": 1.0
+    },
+    "background": {
+     "n": 500,
+     "own_at_end": 1.0,
+     "own_at_arrival": 1.0,
+     "changed": 0,
+     "inside_zone_at_end": 1.0,
+     "inside_zone_at_arrival": 1.0
+    },
+    "certified4": {
+     "n": 500,
+     "own_at_end": 1.0,
+     "own_at_arrival": 1.0,
+     "changed": 0,
+     "inside_zone_at_end": 1.0,
+     "inside_zone_at_arrival": 1.0
+    }
+   },
+   "medium": {
+    "certified": {
+     "n": 500,
+     "own_at_end": 1.0,
+     "own_at_arrival": 1.0,
+     "changed": 0,
+     "inside_zone_at_end": 0.2,
+     "inside_zone_at_arrival": 0.2
+    },
+    "nearest": {
+     "n": 500,
+     "own_at_end": 1.0,
+     "own_at_arrival": 1.0,
+     "changed": 0,
+     "inside_zone_at_end": 0.2,
+     "inside_zone_at_arrival": 0.2
+    },
+    "signature": {
+     "n": 500,
+     "own_at_end": 0.768,
+     "own_at_arrival": 0.878,
+     "changed": 55,
+     "inside_zone_at_end": 0.2,
+     "inside_zone_at_arrival": 0.2
+    },
+    "hybrid": {
+     "n": 500,
+     "own_at_end": 0.768,
+     "own_at_arrival": 0.878,
+     "changed": 55,
+     "inside_zone_at_end": 0.2,
+     "inside_zone_at_arrival": 0.2
+    },
+    "normalised": {
+     "n": 500,
+     "own_at_end": 0.94,
+     "own_at_arrival": 0.974,
+     "changed": 17,
+     "inside_zone_at_end": 0.2,
+     "inside_zone_at_arrival": 0.2
+    },
+    "certified3": {
+     "n": 500,
+     "own_at_end": 0.94,
+     "own_at_arrival": 0.974,
+     "changed": 17,
+     "inside_zone_at_end": 0.2,
+     "inside_zone_at_arrival": 0.2
+    },
+    "background": {
+     "n": 500,
+     "own_at_end": 1.0,
+     "own_at_arrival": 1.0,
+     "changed": 0,
+     "inside_zone_at_end": 0.2,
+     "inside_zone_at_arrival": 0.2
+    },
+    "certified4": {
+     "n": 500,
+     "own_at_end": 1.0,
+     "own_at_arrival": 1.0,
+     "changed": 0,
+     "inside_zone_at_end": 0.2,
+     "inside_zone_at_arrival": 0.2
+    }
+   },
+   "heavy": {
+    "certified": {
+     "n": 500,
+     "own_at_end": 0.938,
+     "own_at_arrival": 0.938,
+     "changed": 0,
+     "inside_zone_at_end": 0.196,
+     "inside_zone_at_arrival": 0.196
+    },
+    "nearest": {
+     "n": 500,
+     "own_at_end": 0.938,
+     "own_at_arrival": 0.938,
+     "changed": 0,
+     "inside_zone_at_end": 0.196,
+     "inside_zone_at_arrival": 0.196
+    },
+    "signature": {
+     "n": 500,
+     "own_at_end": 0.6,
+     "own_at_arrival": 0.702,
+     "changed": 100,
+     "inside_zone_at_end": 0.196,
+     "inside_zone_at_arrival": 0.196
+    },
+    "hybrid": {
+     "n": 500,
+     "own_at_end": 0.6,
+     "own_at_arrival": 0.702,
+     "changed": 100,
+     "inside_zone_at_end": 0.196,
+     "inside_zone_at_arrival": 0.196
+    },
+    "normalised": {
+     "n": 500,
+     "own_at_end": 0.63,
+     "own_at_arrival": 0.808,
+     "changed": 90,
+     "inside_zone_at_end": 0.196,
+     "inside_zone_at_arrival": 0.196
+    },
+    "certified3": {
+     "n": 500,
+     "own_at_end": 0.63,
+     "own_at_arrival": 0.808,
+     "changed": 90,
+     "inside_zone_at_end": 0.196,
+     "inside_zone_at_arrival": 0.196
+    },
+    "background": {
+     "n": 500,
+     "own_at_end": 0.938,
+     "own_at_arrival": 0.938,
+     "changed": 0,
+     "inside_zone_at_end": 0.196,
+     "inside_zone_at_arrival": 0.196
+    },
+    "certified4": {
+     "n": 500,
+     "own_at_end": 0.938,
+     "own_at_arrival": 0.938,
+     "changed": 0,
+     "inside_zone_at_end": 0.196,
+     "inside_zone_at_arrival": 0.196
+    }
+   }
+  },
+  "fifteen": {
+   "original": {
+    "certified": {
+     "n": 1197,
+     "own_at_end": 1.0,
+     "own_at_arrival": 1.0,
+     "changed": 0,
+     "inside_zone_at_end": 1.0,
+     "inside_zone_at_arrival": 1.0
+    },
+    "nearest": {
+     "n": 1197,
+     "own_at_end": 1.0,
+     "own_at_arrival": 1.0,
+     "changed": 0,
+     "inside_zone_at_end": 1.0,
+     "inside_zone_at_arrival": 1.0
+    },
+    "signature": {
+     "n": 1197,
+     "own_at_end": 1.0,
+     "own_at_arrival": 1.0,
+     "changed": 0,
+     "inside_zone_at_end": 1.0,
+     "inside_zone_at_arrival": 1.0
+    },
+    "hybrid": {
+     "n": 1197,
+     "own_at_end": 1.0,
+     "own_at_arrival": 1.0,
+     "changed": 0,
+     "inside_zone_at_end": 1.0,
+     "inside_zone_at_arrival": 1.0
+    },
+    "normalised": {
+     "n": 1197,
+     "own_at_end": 1.0,
+     "own_at_arrival": 1.0,
+     "changed": 0,
+     "inside_zone_at_end": 1.0,
+     "inside_zone_at_arrival": 1.0
+    },
+    "certified3": {
+     "n": 1197,
+     "own_at_end": 1.0,
+     "own_at_arrival": 1.0,
+     "changed": 0,
+     "inside_zone_at_end": 1.0,
+     "inside_zone_at_arrival": 1.0
+    },
+    "background": {
+     "n": 1197,
+     "own_at_end": 1.0,
+     "own_at_arrival": 1.0,
+     "changed": 0,
+     "inside_zone_at_end": 1.0,
+     "inside_zone_at_arrival": 1.0
+    },
+    "certified4": {
+     "n": 1197,
+     "own_at_end": 1.0,
+     "own_at_arrival": 1.0,
+     "changed": 0,
+     "inside_zone_at_end": 1.0,
+     "inside_zone_at_arrival": 1.0
+    }
+   },
+   "light": {
+    "certified": {
+     "n": 500,
+     "own_at_end": 1.0,
+     "own_at_arrival": 1.0,
+     "changed": 0,
+     "inside_zone_at_end": 1.0,
+     "inside_zone_at_arrival": 1.0
+    },
+    "nearest": {
+     "n": 500,
+     "own_at_end": 1.0,
+     "own_at_arrival": 1.0,
+     "changed": 0,
+     "inside_zone_at_end": 1.0,
+     "inside_zone_at_arrival": 1.0
+    },
+    "signature": {
+     "n": 500,
+     "own_at_end": 1.0,
+     "own_at_arrival": 1.0,
+     "changed": 0,
+     "inside_zone_at_end": 1.0,
+     "inside_zone_at_arrival": 1.0
+    },
+    "hybrid": {
+     "n": 500,
+     "own_at_end": 1.0,
+     "own_at_arrival": 1.0,
+     "changed": 0,
+     "inside_zone_at_end": 1.0,
+     "inside_zone_at_arrival": 1.0
+    },
+    "normalised": {
+     "n": 500,
+     "own_at_end": 1.0,
+     "own_at_arrival": 1.0,
+     "changed": 0,
+     "inside_zone_at_end": 1.0,
+     "inside_zone_at_arrival": 1.0
+    },
+    "certified3": {
+     "n": 500,
+     "own_at_end": 1.0,
+     "own_at_arrival": 1.0,
+     "changed": 0,
+     "inside_zone_at_end": 1.0,
+     "inside_zone_at_arrival": 1.0
+    },
+    "background": {
+     "n": 500,
+     "own_at_end": 1.0,
+     "own_at_arrival": 1.0,
+     "changed": 0,
+     "inside_zone_at_end": 1.0,
+     "inside_zone_at_arrival": 1.0
+    },
+    "certified4": {
+     "n": 500,
+     "own_at_end": 1.0,
+     "own_at_arrival": 1.0,
+     "changed": 0,
+     "inside_zone_at_end": 1.0,
+     "inside_zone_at_arrival": 1.0
+    }
+   },
+   "medium": {
+    "certified": {
+     "n": 500,
+     "own_at_end": 1.0,
+     "own_at_arrival": 1.0,
+     "changed": 0,
+     "inside_zone_at_end": 0.2,
+     "inside_zone_at_arrival": 0.2
+    },
+    "nearest": {
+     "n": 500,
+     "own_at_end": 1.0,
+     "own_at_arrival": 1.0,
+     "changed": 0,
+     "inside_zone_at_end": 0.2,
+     "inside_zone_at_arrival": 0.2
+    },
+    "signature": {
+     "n": 500,
+     "own_at_end": 0.716,
+     "own_at_arrival": 0.864,
+     "changed": 74,
+     "inside_zone_at_end": 0.2,
+     "inside_zone_at_arrival": 0.2
+    },
+    "hybrid": {
+     "n": 500,
+     "own_at_end": 0.716,
+     "own_at_arrival": 0.864,
+     "changed": 74,
+     "inside_zone_at_end": 0.2,
+     "inside_zone_at_arrival": 0.2
+    },
+    "normalised": {
+     "n": 500,
+     "own_at_end": 0.934,
+     "own_at_arrival": 0.974,
+     "changed": 20,
+     "inside_zone_at_end": 0.2,
+     "inside_zone_at_arrival": 0.2
+    },
+    "certified3": {
+     "n": 500,
+     "own_at_end": 0.934,
+     "own_at_arrival": 0.974,
+     "changed": 20,
+     "inside_zone_at_end": 0.2,
+     "inside_zone_at_arrival": 0.2
+    },
+    "background": {
+     "n": 500,
+     "own_at_end": 1.0,
+     "own_at_arrival": 1.0,
+     "changed": 0,
+     "inside_zone_at_end": 0.2,
+     "inside_zone_at_arrival": 0.2
+    },
+    "certified4": {
+     "n": 500,
+     "own_at_end": 1.0,
+     "own_at_arrival": 1.0,
+     "changed": 0,
+     "inside_zone_at_end": 0.2,
+     "inside_zone_at_arrival": 0.2
+    }
+   },
+   "heavy": {
+    "certified": {
+     "n": 500,
+     "own_at_end": 0.938,
+     "own_at_arrival": 0.938,
+     "changed": 0,
+     "inside_zone_at_end": 0.196,
+     "inside_zone_at_arrival": 0.196
+    },
+    "nearest": {
+     "n": 500,
+     "own_at_end": 0.938,
+     "own_at_arrival": 0.938,
+     "changed": 0,
+     "inside_zone_at_end": 0.196,
+     "inside_zone_at_arrival": 0.196
+    },
+    "signature": {
+     "n": 500,
+     "own_at_end": 0.6,
+     "own_at_arrival": 0.8,
+     "changed": 100,
+     "inside_zone_at_end": 0.196,
+     "inside_zone_at_arrival": 0.196
+    },
+    "hybrid": {
+     "n": 500,
+     "own_at_end": 0.6,
+     "own_at_arrival": 0.8,
+     "changed": 100,
+     "inside_zone_at_end": 0.196,
+     "inside_zone_at_arrival": 0.196
+    },
+    "normalised": {
+     "n": 500,
+     "own_at_end": 0.63,
+     "own_at_arrival": 0.81,
+     "changed": 90,
+     "inside_zone_at_end": 0.196,
+     "inside_zone_at_arrival": 0.196
+    },
+    "certified3": {
+     "n": 500,
+     "own_at_end": 0.63,
+     "own_at_arrival": 0.81,
+     "changed": 90,
+     "inside_zone_at_end": 0.196,
+     "inside_zone_at_arrival": 0.196
+    },
+    "background": {
+     "n": 500,
+     "own_at_end": 0.938,
+     "own_at_arrival": 0.938,
+     "changed": 0,
+     "inside_zone_at_end": 0.196,
+     "inside_zone_at_arrival": 0.196
+    },
+    "certified4": {
+     "n": 500,
+     "own_at_end": 0.938,
+     "own_at_arrival": 0.938,
+     "changed": 0,
+     "inside_zone_at_end": 0.196,
+     "inside_zone_at_arrival": 0.196
+    }
+   }
+  }
+ },
+ "sigma": {
+  "by_length": {
+   "25": 19.16946538217002,
+   "26": 18.67232518681471,
+   "28": 18.281861014667193,
+   "29": 18.267725092744474,
+   "30": 18.120446056241192,
+   "31": 18.46106516590731,
+   "32": 18.92065510767825,
+   "33": 19.332277925004846,
+   "34": 19.392072100356494,
+   "35": 19.599377747278027,
+   "36": 20.453961308538066,
+   "37": 21.291615874039778,
+   "38": 22.000196815768437,
+   "39": 22.51889530426607,
+   "40": 22.79459663916285,
+   "41": 22.97754157541375,
+   "42": 23.163315655119305,
+   "43": 23.27641692153322,
+   "44": 23.34968114717616,
+   "45": 23.397094140408505,
+   "46": 23.43207897349092,
+   "47": 23.565996705527372,
+   "48": 23.60702037970915,
+   "49": 23.647899720119483,
+   "50": 23.654736542902818,
+   "51": 23.61545935786328,
+   "52": 23.55745288307183,
+   "53": 23.48289471220488,
+   "54": 23.37946966228599,
+   "55": 23.343193919095956,
+   "56": 23.33116727577526,
+   "57": 23.284458318246205,
+   "58": 23.242685604423443,
+   "59": 23.179143056084648,
+   "60": 23.1427489988277,
+   "61": 23.100730949104367,
+   "62": 23.048463398357995,
+   "63": 22.988778086057817,
+   "64": 22.933682015798148,
+   "65": 22.908344485260116,
+   "66": 22.888777483630502,
+   "67": 22.855674336313253,
+   "68": 22.84853305707084,
+   "69": 22.822490624549427,
+   "70": 22.780644871754646,
+   "71": 22.73733436715928,
+   "72": 22.70715150031327,
+   "73": 22.66742985450112,
+   "74": 22.635902584531156,
+   "75": 22.599149816108,
+   "76": 22.55395932053971,
+   "77": 22.5143146906671,
+   "78": 22.478988147239544,
+   "79": 22.43838796853747,
+   "80": 22.401580204285285,
+   "81": 22.36155759005377,
+   "82": 22.318919499776932,
+   "83": 22.28466015050459,
+   "84": 22.249727266971014,
+   "85": 22.216398027589307,
+   "86": 22.183623750282734,
+   "87": 22.153808765255953,
+   "88": 22.124812761172016,
+   "89": 22.090023524128053,
+   "90": 22.05646603441746,
+   "91": 22.020203617698932,
+   "92": 21.987953759338062,
+   "93": 21.958214839350788,
+   "94": 21.932092485983986,
+   "95": 21.90175026409987,
+   "96": 21.875885792153703,
+   "97": 21.85391432026804,
+   "98": 21.824945484875926,
+   "99": 21.802661184652898,
+   "100": 21.78464208491497,
+   "101": 21.76703100085541,
+   "102": 21.74917533387695,
+   "103": 21.727402260827766,
+   "104": 21.71478937815193,
+   "105": 21.691901080205923,
+   "106": 21.670273205592565,
+   "107": 21.649886773009754,
+   "108": 21.628416688435394,
+   "109": 21.609665618616415,
+   "110": 21.59297856100376,
+   "111": 21.573076860054424,
+   "112": 21.55713488141657,
+   "113": 21.539462851888644,
+   "114": 21.523308604925163,
+   "115": 21.510032063948266,
+   "116": 21.495143276054517,
+   "117": 21.475863580108527,
+   "118": 21.458419583917046,
+   "119": 21.442596940135527,
+   "120": 21.43076296516812,
+   "121": 21.41897760846524,
+   "122": 21.404223164280175,
+   "123": 21.391503400713862,
+   "124": 21.37918341784072,
+   "126": 21.350346228031675,
+   "127": 21.33899797961058,
+   "128": 21.32816805938305,
+   "129": 21.319075251355397,
+   "130": 21.309647420700873,
+   "131": 21.299388831881856,
+   "132": 21.287986548438266,
+   "133": 21.28050595772263,
+   "134": 21.269488965771533,
+   "136": 21.246190173328834,
+   "139": 21.21485624677642,
+   "140": 21.2038903910458,
+   "141": 21.195022294952558,
+   "142": 21.18330356031548,
+   "143": 21.174835349780302,
+   "144": 21.16350582402703,
+   "146": 21.144676517366683,
+   "147": 21.138292466580342,
+   "148": 21.129610783142017,
+   "149": 21.121107332493416,
+   "151": 21.106672869996558,
+   "152": 21.10020355552577,
+   "153": 21.09432847136893,
+   "154": 21.089784458278977,
+   "156": 21.07589982262647,
+   "160": 21.051735621838404,
+   "162": 21.037935409490725,
+   "163": 21.035361299184565,
+   "166": 21.020129499691958,
+   "168": 21.012159654627965,
+   "170": 21.000561466678555,
+   "171": 20.995863652685145,
+   "172": 20.991879275283587,
+   "173": 20.98825967554758,
+   "176": 20.975467458044832,
+   "177": 20.969267535857664,
+   "178": 20.96383492994447,
+   "180": 20.953026830091392,
+   "181": 20.949420180091042,
+   "183": 20.93916498507156,
+   "184": 20.935838700756424,
+   "187": 20.922960784571085,
+   "188": 20.919025928149445,
+   "189": 20.9145350654533,
+   "190": 20.908955573336893,
+   "191": 20.90617876734128,
+   "192": 20.90236312026347,
+   "193": 20.898713250120863,
+   "194": 20.894808541333322,
+   "198": 20.885176680502052,
+   "199": 20.882986141308013,
+   "200": 20.880704102817376,
+   "203": 20.874267733568754,
+   "207": 20.867393447698937,
+   "209": 20.86273386310225,
+   "210": 20.86013204705965,
+   "214": 20.849739170968586,
+   "217": 20.843987905929744,
+   "224": 20.831421506811736,
+   "226": 20.827846899990647,
+   "227": 20.826896611007303,
+   "228": 20.824910884319582,
+   "229": 20.82317389787693,
+   "235": 20.816002299348373,
+   "238": 20.811276177429825,
+   "239": 20.810462935924374,
+   "243": 20.80575081728394,
+   "247": 20.801334062698828,
+   "249": 20.798426219687926,
+   "255": 20.794255836698166,
+   "283": 20.766024146069732,
+   "285": 20.765280963287594,
+   "308": 20.750558171342675,
+   "309": 20.74986414965671,
+   "324": 20.741781884307652,
+   "330": 20.737603694042175,
+   "331": 20.737463809915358,
+   "333": 20.736534508931523,
+   "363": 20.724823336471704,
+   "384": 20.71898499913954,
+   "391": 20.71656029566801,
+   "413": 20.71071592657994,
+   "416": 20.7108894017972,
+   "501": 20.698606222647193,
+   "504": 20.69764826645868,
+   "510": 20.696678683409374,
+   "512": 20.69643580147396
+  },
+  "evaluation_lengths": {
+   "n_distinct": 185,
+   "min": 18.120446056241192,
+   "median": 21.291615874039778,
+   "max": 23.654736542902818
+  },
+  "corr_sigma_radius_700_tasks": 0.0644150825561641,
+  "corr_sigma_radius_700_tasks_spearman": 0.20577949867536172,
+  "definition": "RMS distance of the 4000 unrelated inputs (the paper's token-weight inputs) from their own mean in psi_n = (token-weighted average of the first n tokens - mu) W; shorter inputs use all tokens"
+ },
+ "stress": {
+  "light": {
+   "certified3": {
+    "changed_per_wording": {
+     "original": 0,
+     "light": 0,
+     "medium": 78,
+     "heavy": 23
+    },
+    "n_old_inputs_per_wording": 100,
+    "new_task_own": 1,
+    "new_task_inputs": 800
+   },
+   "normalised": {
+    "changed_per_wording": {
+     "original": 0,
+     "light": 100,
+     "medium": 78,
+     "heavy": 23
+    },
+    "n_old_inputs_per_wording": 100,
+    "new_task_own": 800,
+    "new_task_inputs": 800
+   },
+   "certified4": {
+    "changed_per_wording": {
+     "original": 0,
+     "light": 0,
+     "medium": 2,
+     "heavy": 20
+    },
+    "n_old_inputs_per_wording": 100,
+    "new_task_own": 1,
+    "new_task_inputs": 800
+   },
+   "background": {
+    "changed_per_wording": {
+     "original": 0,
+     "light": 100,
+     "medium": 2,
+     "heavy": 20
+    },
+    "n_old_inputs_per_wording": 100,
+    "new_task_own": 800,
+    "new_task_inputs": 800
+   },
+   "certified": {
+    "changed_per_wording": {
+     "original": 0,
+     "light": 0,
+     "medium": 0,
+     "heavy": 0
+    },
+    "n_old_inputs_per_wording": 100,
+    "new_task_own": 1,
+    "new_task_inputs": 800
+   },
+   "nearest": {
+    "changed_per_wording": {
+     "original": 0,
+     "light": 100,
+     "medium": 0,
+     "heavy": 0
+    },
+    "n_old_inputs_per_wording": 100,
+    "new_task_own": 800,
+    "new_task_inputs": 800
+   }
+  },
+  "medium": {
+   "certified3": {
+    "changed_per_wording": {
+     "original": 0,
+     "light": 0,
+     "medium": 100,
+     "heavy": 1
+    },
+    "n_old_inputs_per_wording": 100,
+    "new_task_own": 800,
+    "new_task_inputs": 800
+   },
+   "normalised": {
+    "changed_per_wording": {
+     "original": 0,
+     "light": 0,
+     "medium": 100,
+     "heavy": 1
+    },
+    "n_old_inputs_per_wording": 100,
+    "new_task_own": 800,
+    "new_task_inputs": 800
+   },
+   "certified4": {
+    "changed_per_wording": {
+     "original": 0,
+     "light": 0,
+     "medium": 100,
+     "heavy": 80
+    },
+    "n_old_inputs_per_wording": 100,
+    "new_task_own": 800,
+    "new_task_inputs": 800
+   },
+   "background": {
+    "changed_per_wording": {
+     "original": 0,
+     "light": 0,
+     "medium": 100,
+     "heavy": 80
+    },
+    "n_old_inputs_per_wording": 100,
+    "new_task_own": 800,
+    "new_task_inputs": 800
+   },
+   "certified": {
+    "changed_per_wording": {
+     "original": 0,
+     "light": 0,
+     "medium": 100,
+     "heavy": 2
+    },
+    "n_old_inputs_per_wording": 100,
+    "new_task_own": 800,
+    "new_task_inputs": 800
+   },
+   "nearest": {
+    "changed_per_wording": {
+     "original": 0,
+     "light": 0,
+     "medium": 100,
+     "heavy": 2
+    },
+    "n_old_inputs_per_wording": 100,
+    "new_task_own": 800,
+    "new_task_inputs": 800
+   }
+  },
+  "heavy": {
+   "certified3": {
+    "changed_per_wording": {
+     "original": 0,
+     "light": 0,
+     "medium": 0,
+     "heavy": 100
+    },
+    "n_old_inputs_per_wording": 100,
+    "new_task_own": 800,
+    "new_task_inputs": 800
+   },
+   "normalised": {
+    "changed_per_wording": {
+     "original": 0,
+     "light": 0,
+     "medium": 0,
+     "heavy": 100
+    },
+    "n_old_inputs_per_wording": 100,
+    "new_task_own": 800,
+    "new_task_inputs": 800
+   },
+   "certified4": {
+    "changed_per_wording": {
+     "original": 0,
+     "light": 0,
+     "medium": 0,
+     "heavy": 100
+    },
+    "n_old_inputs_per_wording": 100,
+    "new_task_own": 800,
+    "new_task_inputs": 800
+   },
+   "background": {
+    "changed_per_wording": {
+     "original": 0,
+     "light": 0,
+     "medium": 0,
+     "heavy": 100
+    },
+    "n_old_inputs_per_wording": 100,
+    "new_task_own": 800,
+    "new_task_inputs": 800
+   },
+   "certified": {
+    "changed_per_wording": {
+     "original": 0,
+     "light": 0,
+     "medium": 0,
+     "heavy": 100
+    },
+    "n_old_inputs_per_wording": 100,
+    "new_task_own": 800,
+    "new_task_inputs": 800
+   },
+   "nearest": {
+    "changed_per_wording": {
+     "original": 0,
+     "light": 0,
+     "medium": 0,
+     "heavy": 100
+    },
+    "n_old_inputs_per_wording": 100,
+    "new_task_own": 800,
+    "new_task_inputs": 800
+   }
+  }
+ },
+ "benchmark_identity": {
+  "five": {
+   "original": {
+    "certified_vs_certified4": {
+     "n": 500,
+     "differ_after_last_task": 0,
+     "differ_at_any_arrival_from_own_task_on": 0,
+     "differ_at_any_arrival_incl_before_own_task": 0
+    },
+    "nearest_vs_background": {
+     "n": 500,
+     "differ_after_last_task": 0,
+     "differ_at_any_arrival_from_own_task_on": 0,
+     "differ_at_any_arrival_incl_before_own_task": 0
+    }
+   },
+   "light": {
+    "certified_vs_certified4": {
+     "n": 500,
+     "differ_after_last_task": 0,
+     "differ_at_any_arrival_from_own_task_on": 0,
+     "differ_at_any_arrival_incl_before_own_task": 0
+    },
+    "nearest_vs_background": {
+     "n": 500,
+     "differ_after_last_task": 0,
+     "differ_at_any_arrival_from_own_task_on": 0,
+     "differ_at_any_arrival_incl_before_own_task": 0
+    }
+   },
+   "medium": {
+    "certified_vs_certified4": {
+     "n": 500,
+     "differ_after_last_task": 0,
+     "differ_at_any_arrival_from_own_task_on": 0,
+     "differ_at_any_arrival_incl_before_own_task": 0
+    },
+    "nearest_vs_background": {
+     "n": 500,
+     "differ_after_last_task": 0,
+     "differ_at_any_arrival_from_own_task_on": 0,
+     "differ_at_any_arrival_incl_before_own_task": 0
+    }
+   },
+   "heavy": {
+    "certified_vs_certified4": {
+     "n": 500,
+     "differ_after_last_task": 0,
+     "differ_at_any_arrival_from_own_task_on": 0,
+     "differ_at_any_arrival_incl_before_own_task": 0
+    },
+    "nearest_vs_background": {
+     "n": 500,
+     "differ_after_last_task": 0,
+     "differ_at_any_arrival_from_own_task_on": 0,
+     "differ_at_any_arrival_incl_before_own_task": 0
+    }
+   }
+  },
+  "fifteen_radius_not_half_B": [
+   {
+    "task": "task1290_xsum_summarization",
+    "position": 3,
+    "radius": 21.323301045450112,
+    "half_B": 21.812717390140975,
+    "nearest_earlier_task": "task1572_samsum_summary",
+    "distance_to_it": 42.646602090900224,
+    "B": 43.62543478028195,
+    "half_distance_to_it": 21.323301045450112
+   }
+  ],
+  "fifteen": {
+   "original": {
+    "certified_vs_certified4": {
+     "n": 1197,
+     "differ_after_last_task": 0,
+     "differ_at_any_arrival_from_own_task_on": 0,
+     "differ_at_any_arrival_incl_before_own_task": 110
+    },
+    "nearest_vs_background": {
+     "n": 1197,
+     "differ_after_last_task": 0,
+     "differ_at_any_arrival_from_own_task_on": 0,
+     "differ_at_any_arrival_incl_before_own_task": 110
+    }
+   },
+   "light": {
+    "certified_vs_certified4": {
+     "n": 500,
+     "differ_after_last_task": 0,
+     "differ_at_any_arrival_from_own_task_on": 0,
+     "differ_at_any_arrival_incl_before_own_task": 0
+    },
+    "nearest_vs_background": {
+     "n": 500,
+     "differ_after_last_task": 0,
+     "differ_at_any_arrival_from_own_task_on": 0,
+     "differ_at_any_arrival_incl_before_own_task": 0
+    }
+   },
+   "medium": {
+    "certified_vs_certified4": {
+     "n": 500,
+     "differ_after_last_task": 0,
+     "differ_at_any_arrival_from_own_task_on": 0,
+     "differ_at_any_arrival_incl_before_own_task": 223
+    },
+    "nearest_vs_background": {
+     "n": 500,
+     "differ_after_last_task": 0,
+     "differ_at_any_arrival_from_own_task_on": 0,
+     "differ_at_any_arrival_incl_before_own_task": 223
+    }
+   },
+   "heavy": {
+    "certified_vs_certified4": {
+     "n": 500,
+     "differ_after_last_task": 0,
+     "differ_at_any_arrival_from_own_task_on": 0,
+     "differ_at_any_arrival_incl_before_own_task": 7
+    },
+    "nearest_vs_background": {
+     "n": 500,
+     "differ_after_last_task": 0,
+     "differ_at_any_arrival_from_own_task_on": 0,
+     "differ_at_any_arrival_incl_before_own_task": 7
+    }
+   }
+  }
+ },
+ "B": {
+  "definition": "B_k = distance from the signature of task k to the nearest signature of the unrelated tasks only (d_bg of the radius rule)",
+  "700_tasks": {
+   "min": 16.491056316680748,
+   "median": 27.200581379490046,
+   "max": 48.068767848485585,
+   "corr_B_radius": 0.5236302253225621,
+   "share_radius_equals_half_B": 0.2857142857142857,
+   "n_B_zero": 0
+  },
+  "benchmark": {
+   "five": {
+    "B_min": 20.17780344795978,
+    "B_median": 27.924338477023717,
+    "B_max": 33.11819302080659,
+    "share_radius_equals_half_B": 1.0
+   },
+   "fifteen": {
+    "B_min": 20.17780344795978,
+    "B_median": 28.038501256235165,
+    "B_max": 43.62543478028195,
+    "share_radius_equals_half_B": 0.9333333333333333
+   }
+  }
+ },
+ "italian_paper_measures_certified": {
+  "P": 0.47022391615054787,
+  "M": 0.05907575035731301,
+  "R": 0.7684611719866603,
+  "n": 2099
+ },
+ "verdict_background": {
+  "heavy_five": 0.938,
+  "heavy_fifteen": 0.938,
+  "medium_five": 1.0,
+  "medium_fifteen": 1.0,
+  "italian_own_at_end": 0.9585516912815627,
+  "outcome": "success"
+ },
+ "verdict_normalised": {
+  "heavy_five": 0.63,
+  "heavy_fifteen": 0.63,
+  "medium_five": 0.94,
+  "medium_fifteen": 0.934,
+  "italian_own_at_end": 0.9394949976179133,
+  "outcome": "against"
+ }
+}

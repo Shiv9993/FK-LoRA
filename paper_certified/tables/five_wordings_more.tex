@@ -1,0 +1,16 @@
+\setlength{\tabcolsep}{3pt}%
+\begin{tabular}{lcccccccc}
+    \toprule
+    & \multicolumn{2}{c}{original} & \multicolumn{2}{c}{light} & \multicolumn{2}{c}{medium} & \multicolumn{2}{c}{heavy} \\
+    \cmidrule(lr){2-3} \cmidrule(lr){4-5} \cmidrule(lr){6-7} \cmidrule(lr){8-9}
+    Method & \shortstack[c]{Score\\right\\after\\learning\\$\uparrow$} & \shortstack[c]{Forgetting\\(points)\\$\downarrow$} & \shortstack[c]{Score\\right\\after\\learning\\$\uparrow$} & \shortstack[c]{Forgetting\\(points)\\$\downarrow$} & \shortstack[c]{Score\\right\\after\\learning\\$\uparrow$} & \shortstack[c]{Forgetting\\(points)\\$\downarrow$} & \shortstack[c]{Score\\right\\after\\learning\\$\uparrow$} & \shortstack[c]{Forgetting\\(points)\\$\downarrow$} \\
+    \midrule
+    \cert{} (ours) & 79.7 & 0.0 & 79.6 & 0.0 & 79.0 & 0.0 & 74.1 & 0.0 \\
+    \nearest{} & 79.7 & 0.0 & 79.6 & 0.0 & 79.0 & 0.0 & 74.1 & 0.0 \\
+    \centre{} & 79.7 & 0.0 & 79.6 & 0.0 & 78.4 & 0.0 & 67.8 & 10.5 \\
+    \keyswitch{} & 79.7 & 0.0 & 79.6 & 54.0 & 79.0 & 53.8 & 78.4 & 54.1 \\
+    \plain{} & 79.7 & 54.6 & 79.6 & 54.0 & 79.0 & 53.8 & 78.4 & 54.1 \\
+    InfLoRA & 60.0 & $-$3.1 & 63.6 & $-$0.6 & 58.5 & 1.0 & 53.2 & $-$0.3 \\
+    GainLoRA & 61.4 & $-$0.5 & 64.5 & 0.1 & 60.0 & 1.6 & 51.0 & $-$0.5 \\
+    \bottomrule
+\end{tabular}

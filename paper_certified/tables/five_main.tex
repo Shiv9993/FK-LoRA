@@ -1,0 +1,14 @@
+\begin{tabular}{lccccc}
+    \toprule
+    Method & \shortstack[c]{Score\\right after\\learning $\uparrow$} & \shortstack[c]{Final\\score $\uparrow$} & \shortstack[c]{Forgetting\\(points) $\downarrow$} & \shortstack[c]{Answers\\changed $\downarrow$} & Certified inputs \\
+    \midrule
+    \cert{} (ours) & 79.74 {\scriptsize(79.2--80.8)} & 79.74 {\scriptsize(79.2--80.8)} & 0.00 & 0 of 1{,}200 & 1{,}500 of 1{,}500 \\
+    \nearest{} & 79.74 {\scriptsize(79.2--80.8)} & 79.74 {\scriptsize(79.2--80.8)} & 0.00 & 0 of 1{,}200 &  \\
+    \centre{} & 79.74 {\scriptsize(79.2--80.8)} & 79.74 {\scriptsize(79.2--80.8)} & 0.00 & 0 of 1{,}200 &  \\
+    \keyswitch{} & 79.74 {\scriptsize(79.2--80.8)} & 79.74 {\scriptsize(79.2--80.8)} & 0.00 & 0 of 1{,}200 &  \\
+    \plain{} & 79.74 {\scriptsize(79.2--80.8)} & 36.08 {\scriptsize(32.3--39.5)} & 54.58 {\scriptsize(51.6--58.6)} & 994 of 1{,}200 &  \\
+    \midrule
+    InfLoRA & 60.02 {\scriptsize(56.6--63.3)} & 62.93 {\scriptsize(59.0--65.4)} & $-$3.14 {\scriptsize($-$5.3 to $-$1.7)} & 370 of 1{,}200 &  \\
+    GainLoRA & 61.42 {\scriptsize(59.1--64.4)} & 61.96 {\scriptsize(60.9--63.9)} & $-$0.51 {\scriptsize($-$2.6 to 0.7)} & 65 of 1{,}200 &  \\
+    \bottomrule
+\end{tabular}

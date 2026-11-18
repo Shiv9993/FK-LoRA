@@ -1,0 +1,16 @@
+\begin{tabular}{lcccccc}
+    \toprule
+    & & \multicolumn{2}{c}{Five tasks} & Fifteen tasks & & \\
+    \cmidrule(lr){3-4} \cmidrule(lr){5-5}
+    Embedding table of & \shortstack[c]{Embedding\\dimension\\$d$} & \shortstack[c]{certified\\inputs, \%} & \shortstack[c]{sent to\\own task,\\\% $\uparrow$} & \shortstack[c]{sent to\\own task,\\\% $\uparrow$} & Wrong zone & \shortstack[c]{Routes\\changed\\$\downarrow$} \\
+    \midrule
+    \texttt{t5-small} & 512 & 100/100/20/20 & 100/100/100/89 & 100/100/100/89 & 0 & 0 \\
+    \texttt{t5-base} & 768 & 100/100/20/20 & 100/100/100/94 & 100/100/100/94 & 0 & 0 \\
+    \texttt{t5-large} & 1024 & 100/100/20/19 & 100/100/100/83 & 100/100/100/83 & 0 & 0 \\
+    \texttt{flan-t5-base} & 768 & 100/100/20/14 & 100/100/100/99 & 100/100/100/99 & 0 & 2 \\
+    \texttt{gpt2} & 768 & 100/99/20/20 & 100/100/100/87 & 100/100/100/87 & 0 & 1 \\
+    \texttt{SmolLM2-135M} & 576 & 100/99/20/20 & 100/100/100/82 & 100/100/100/82 & 0 & 0 \\
+    \texttt{Qwen2.5-0.5B} & 896 & 100/99/20/20 & 100/100/100/80 & 100/100/100/80 & 0 & 0 \\
+    \texttt{roberta-base} & 768 & 100/99/20/20 & 100/100/100/94 & 100/100/100/93 & 0 & 0 \\
+    \bottomrule
+\end{tabular}

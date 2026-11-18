@@ -1,0 +1,181 @@
+\section{Method}
+\label{sec:method}
+
+A frozen language model learns $T$ tasks one after another, each with its own low-rank adapter, never
+changed afterwards. A switch sends every input to one task (Figure~\ref{fig:overview}, Appendix~\ref{app:pictures}). We give three rules: a recogniser that
+reads no instruction (Section~\ref{sec:recogmain}), a certified switch for inputs that carry one
+(Section~\ref{sec:features}), and zones built from the inputs of a task (Section~\ref{sec:boundmain}).
+
+\subsection{Setting: adapters, routes and answers}
+\label{sec:setting}
+
+Let $E$ be the input embedding table of the base model; $E$ and all other base weights $\theta_0$ are
+frozen. Task $k$ adds a LoRA adapter \citep{hu2022lora} $\Delta W_k = \tfrac{\alpha}{r} B_k A_k$ to
+every adapted weight matrix $W_0$. After $T$ tasks an adapted layer with input $z$ computes
+\begin{align}
+  h &\;=\; \Bigl( W_0 + \sum_{k=1}^{T} g_k(x)\, \Delta W_k \Bigr) z , \qquad g_k(x) \in \{0, 1\},
+  \label{eq:layer}\\
+  g_k(x) &\;=\; \mathbf{1}\bigl[\, k \le \rho_T(x) \,\bigr] , \label{eq:gates}\\
+  y_T(x) &\;=\; F\bigl(x;\; \theta_0,\; \{A_k, B_k\}_{k \le \rho_T(x)}\bigr),
+  \label{eq:answer}
+\end{align}
+where $F$ runs the model with greedy decoding. The methods differ only in the \emph{route}
+$\rho_T(x) \in \{1, \dots, T\}$: an input with route $j$ is processed with the adapters of tasks
+$1, \dots, j$, the model as it was right after task $j$ was learned.
+
+\begin{lemma}[An answer changes only with its route]
+\label{lem:route}
+Assume that adapters are never changed after their task was learned, that the base model, its
+tokenizer, the input template and truncation are fixed, and that decoding is deterministic. Then for
+every rule that sets the route, every input $x$ and all $T' > T$: if $\rho_{T'}(x) = \rho_T(x)$, then
+$y_{T'}(x) = y_T(x)$.
+\end{lemma}
+
+\begin{proof}
+Let $j = \rho_T(x) = \rho_{T'}(x) \le T$. By Eq.~\eqref{eq:answer} both answers are
+$F(x; \theta_0, \{A_k, B_k\}_{k \le j})$; these adapters are the same at both times, and $F$ is
+deterministic.
+\end{proof}
+
+\subsection{Without instructions: a recogniser, an audit, and a handicap}
+\label{sec:recogmain}
+
+\paragraph{The price.} Let $\ell_i(T)$ be what a system has lost on task $i$ at time $T$ against the
+best possible answers, and $p_i(x)$ the probability of input $x$ under task $i$. For two tasks
+$j < k$ and every system whose answer depends on the input alone,
+\begin{equation}
+  \ell_j(T) + \ell_k(T) \;\ge\; \Omega_{jk} \;=\; \sum_x \min\bigl(p_j(x), p_k(x)\bigr)\, \gamma_{jk}(x),
+  \label{eq:priceshort}
+\end{equation}
+where $\gamma_{jk}(x)$ is the least combined loss of one answer to $x$ under the two tasks: together
+the two tasks lose at least the share of inputs that they have in common, weighted by how far their
+right answers differ. This is zero when no input belongs to two tasks, as when every input begins
+with its task's instruction and no instruction begins another
+(Proposition~\ref{prop:noinstructionprice}, Appendix~\ref{sec:audit}).
+
+\paragraph{The recogniser.} Let $u(x)$ be a frozen feature of the whole input (the mean of the
+last-layer states of the frozen encoder of the base model, without any adapter, standardised with
+the statistics of unrelated inputs) and $\bar u(x) = (u(x), 1)$. When task $k$ arrives, its training
+inputs are split at random into fit inputs $D_k^{\mathrm{f}}$ and $m$ held-out inputs. The fit inputs
+add one matrix and one vector to the store:
+$G_k = \operatorname{mean}_{x \in D_k^{\mathrm{f}}} \bar u(x)\bar u(x)^{\!\top}$ and
+$v_k = \operatorname{mean}_{x \in D_k^{\mathrm{f}}} \bar u(x)$, and after $T$ tasks, with a fixed $\varepsilon > 0$,
+\begin{equation}
+  V_T = \Bigl(\sum_{k \le T} G_k + \varepsilon I\Bigr)^{-1} [\,v_1, \dots, v_T\,], \qquad
+  \rho_T(x) = \arg\max_{k \le T} \bigl(\bar u(x)^{\!\top} V_T\bigr)_k ,
+  \label{eq:recogniserShort}
+\end{equation}
+the older task in a tie. $V_T$ is the ridge regression of the task labels on the features of all
+tasks so far. The sums are only added, so no input is stored, $V_T$ does not depend on the order of
+arrival, and every task has a column of its own and its adapter trains on all its inputs: no task
+is \emph{blocked}. A recogniser of this kind is known from
+class-incremental learning on frozen features \citep{mcdonnell2023ranpac,zhuang2022acil}; what we add is
+what is said about its routes.
+
+\paragraph{The audit.} For a task $j$ and two times $T < T'$, let $H$ be the number of its $m$
+held-out inputs, which the rule never uses, whose route differs between $T$ and $T'$. Then $H/m$
+estimates, for inputs drawn like the held-out ones, the share of changed routes, an upper limit for
+changed answers (Lemma~\ref{lem:route}), and the Clopper--Pearson bound of $H$ in $m$ gives a
+confidence bound for it (Proposition~\ref{prop:audit}). It needs later tasks that were not chosen by
+looking at the held-out inputs, and it holds for one task and one pair of times. It can be read
+before the newcomer's adapter is trained.
+
+\paragraph{The handicap.} When task $k$ arrives, let $\xi_k(x)$ be the margin of the newcomer over
+the best older task in $V_k$. Fix an integer $\nu \ge 0$. The threshold $\eta_k$ is the largest, over
+older tasks $j$, of the $(\nu+1)$-th largest margin among the held-out inputs of task $j$, and never
+below zero. The newcomer \emph{takes} an input if $\xi_k(x) > \eta_k$, and the route is the newest task
+that took it (task 1 if none did). Both $V_k$ and $\eta_k$ are stored and never changed. The
+newcomer pays: it may lose some of its own inputs. If later tasks are fixed without looking at them,
+a new input of task $j$ drawn like its held-out inputs ever changes its route with probability at
+most $(T_{\mathrm{end}}-j)(\nu+1)/(m+1)$ (Theorem~\ref{thm:handicap}, Appendix~\ref{sec:audit}).
+
+These statements bound change, not quality: an input given to the wrong task from the start does not
+change. The bound in advance is loose and grows with the number of later tasks (on the 15
+development tasks, \AudDevHPrimeTTwoBound{}\% against \AudDevHPrimeTTwoChanged{}\% measured), and the audit is not valid
+for the same held-out inputs that set the thresholds.
+
+\subsection{With instructions: protected zones and the certified switch}
+\label{sec:features}\label{sec:zones}\label{sec:switch}\label{sec:guarantee}
+
+When every input carries the instruction of its task, a second rule gives an exact statement. In
+instruction tuning every input of task $k$ is the task's instruction followed by the instance; the
+part before the instance is the \emph{opening} $o_k$, of $n_k$ tokens (Appendix~\ref{app:impl}), and
+an input that begins with it carries the \emph{original wording}, or is \emph{unedited}. The rule
+reads an input through the frozen embedding table: $\psi_n(x)$ is the weighted average
+\citep{arora2017simple} of the embeddings of its first $n$ tokens, rescaled with the mean and
+covariance of a fixed collection $\mathcal{B}$ of unrelated inputs (Eqs.~\eqref{eq:weights}
+to~\eqref{eq:whiten}, Appendix~\ref{app:method}). It depends only on the base model and on
+$\mathcal{B}$, and never changes.
+
+\begin{definition}[Signature, radius, zone]
+When task $k$ is learned, it stores its \emph{signature} $s_k = \psi_{n_k}(o_k)$, which equals
+$\psi_{n_k}(x)$ for every unedited input $x$ of task $k$. Let $\mathcal{S}_k$ be the signatures known
+then: those of the unrelated tasks that $\mathcal{B}$ is drawn from, and $s_1, \dots, s_{k-1}$. The
+\emph{radius}, the \emph{protected zone} and the \emph{relative distance} are
+\begin{align}
+  s_k &= \psi_{n_k}(o_k), \label{eq:signature}\\
+  R_k &\;=\; \kappa \cdot \min_{s \in \mathcal{S}_k} \lVert s_k - s \rVert_2 , \quad \kappa = \tfrac{1}{2}, \label{eq:radius}\\
+  Z_k &= \{\, x : \delta_k(x) \le 1 \,\} , \qquad
+  \delta_k(x) \;=\; \lVert \psi_{n_k}(x) - s_k \rVert_2 \,/\, R_k . \label{eq:zone}
+\end{align}
+If $R_k = 0$, then $\delta_k(x) = 0$ at distance zero and $\infty$ elsewhere.
+\end{definition}
+
+Only $(n_k, s_k, R_k)$ is kept per task; the zone reaches half-way to the nearest task known.
+
+\begin{definition}[Route and certificate]
+After $T$ tasks, the \emph{certificate} of an input and its \emph{route} are
+\begin{align}
+  c_T(x) &\;=\; \mathbf{1}\bigl[\, x \in Z_1 \cup \dots \cup Z_T \,\bigr] , \label{eq:certificate}\\[2pt]
+  \rho_T(x) &\;=\;
+  \begin{cases}
+    \min \{\, k \le T : x \in Z_k \,\} & \text{if } c_T(x) = 1 \quad \text{(the oldest zone that contains } x \text{)}, \\[2pt]
+    \arg\min_{k \le T}\; \delta_k(x) & \text{if } c_T(x) = 0 \quad \text{(the nearest zone)} .
+  \end{cases}
+  \label{eq:route}
+\end{align}
+Ties go to the older task.
+\end{definition}
+
+An input inside a zone is \emph{certified}; one outside every zone goes to the nearest zone, without a
+certificate. This rule is \cert{}. When task $t$ is learned, its training inputs inside an older zone
+are \emph{blocked}: they go to the older task and give no gradient to the new adapter; their number
+is $b_t$. Otherwise training is that of plain adapters. For comparison, \plain{}
+switches all adapters on; \keyswitch{} goes to the task with the longest opening that matches token
+for token (all on if none); \nearest{} uses $\arg\min_k \delta_k(x)$ for every input; \centre{} picks
+the nearest centre, the centre of a task being the mean word-vector feature of its whole training
+inputs
+(Algorithm~\ref{alg:switch} and Table~\ref{tab:methods}, Appendix~\ref{app:method}).
+
+\begin{theorem}[Write-once answers]
+\label{thm:writeonce}
+Assume that zones and adapters are never changed once created, that the base model, its tokenizer,
+the input template and truncation, and the quantities above are fixed, and that decoding is
+deterministic. Let $c_T(x) = 1$. Then for every later time $T' \ge T$ and every choice of tasks
+$T+1, \dots, T'$: $c_{T'}(x) = 1$, $\rho_{T'}(x) = \rho_T(x)$ and $y_{T'}(x) = y_T(x)$.
+\end{theorem}
+
+\begin{proof}
+Let $j = \rho_T(x)$. The zones $Z_1, \dots, Z_T$ are the same sets at time $T'$, so
+$\{k \le T' : x \in Z_k\}$ is the union of $\{k \le T : x \in Z_k\}$, non-empty with minimum $j$, and
+indices larger than $T$. Its minimum is $j$, so $c_{T'}(x) = 1$ and $\rho_{T'}(x) = j$, and
+Lemma~\ref{lem:route} gives $y_{T'}(x) = y_T(x)$.
+\end{proof}
+
+The proof uses only determinism, nothing else about the model or later tasks (floating point:
+Appendix~\ref{app:method}). Four more statements are proved in Appendix~\ref{app:method}. Every input
+that begins with the opening of task $k$ lies in $Z_k$ (Proposition~\ref{prop:own}). An edit that
+removes or adds at most the share $R_k/D$ of the weight of the opening ($D$: the largest distance between rescaled
+embedding rows) keeps an input in its zone, a worst-case bound (Proposition~\ref{prop:edits}). The training inputs of a new task inside an older
+zone are known before it is trained, and if there are none, training is plain training
+(Proposition~\ref{prop:price}). An input outside every zone changes its route only if the newest zone
+is nearer to it than all older ones (Proposition~\ref{prop:uncertified}). A zone variant for tasks with
+nearly identical instructions, \exactfirst{}, is in Appendix~\ref{sec:exactfirst}.
+
+\subsection{Zones from the inputs of a task}
+\label{sec:boundmain}
+
+A third rule builds each zone from the inputs of its task, calibrated on held-out inputs, and needs no
+instruction. Its bound does not grow with the number of later tasks (Theorem~\ref{thm:bound},
+Appendix~\ref{sec:bound}). In our tests it held, but with frozen word-vector features the zones of
+early tasks held inputs of later tasks, which were then blocked.

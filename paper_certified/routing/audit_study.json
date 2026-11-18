@@ -1,0 +1,4763 @@
+{
+ "notes": [
+  "Instances only (the 'input' text); task definitions are never read. Features: cached all-MiniLM-L6-v2 (noinstruction cache). Split per task: seed 0 shuffle, 200 calibration (half if < 400 training inputs), rest fit; calibration inputs are held out and used only for the certificate and held-out measures.",
+  "At most 1500 fit inputs per task are used (random.Random(0).sample, kept in original order); tasks with more fit inputs than that are subsampled for both recognisers.",
+  "Routing: argmax; ties to the older task (lowest index). At T = 1 everything goes to task 1. 'lr': sklearn LogisticRegression(C, max_iter=3000, class_weight='balanced'), retrained from scratch at each arrival.",
+  "'analytic': D=4096 random cosine features, sigma = median pairwise Euclidean distance of 2,000 pool features (default_rng(0).choice), W ~ N(0, 1/sigma^2), b ~ U[0, 2 pi], default_rng(0); running G and Cmat; weights = cho_solve(G + lam I, Cmat).",
+  "minilm+shape: the plan names 16 shape numbers (while saying 15); all 16 listed are used, standardised with pool mean/std, clipped to [-5, 5], times 0.5. minilm+char: minilm (dense, unit norm) hstacked with l2-normalised tf-idf (fitted on pool texts only) of hashed char_wb 1-3-grams of the text cut at 2,000 characters (l2 normalisation applied to the tf-idf block, the minilm block is already unit norm).",
+  "Pool for development: the 5,165 pool inputs of the earlier studies (ni_tasks.json without the 15 SuperNI tasks of order 1); used for shape standardisation, tf-idf and sigma.",
+  "Means and standard errors (std ddof=1 / sqrt(#tasks)) over all tasks of the sequence, including task 1 and the last task (changed = 0 by construction there; its certificate is 1/(m+1)).",
+  "certificate = (c + 1) / (m + 1) per task, c = held-out inputs routed differently by R_T than by R_j."
+ ],
+ "dev": {
+  "superni": {
+   "lr|minilm|1": {
+    "mean": {
+     "own_at_arrival": 0.9793333333333334,
+     "own_at_end": 0.9604496124031008,
+     "changed": 0.020217054263565893,
+     "certificate": 0.035401833019549384,
+     "heldout_own_at_arrival": 0.97831569664903,
+     "heldout_own_at_end": 0.9529764109347443,
+     "apriori_bound": 0.060217054263565904
+    },
+    "se": {
+     "own_at_arrival": 0.008477795460673478,
+     "own_at_end": 0.012184559998829286,
+     "changed": 0.007306192297405365,
+     "certificate": 0.010425232544820856,
+     "heldout_own_at_arrival": 0.006256658189962944,
+     "heldout_own_at_end": 0.010610953312051431,
+     "apriori_bound": 0.019730255775128793
+    }
+   },
+   "lr|minilm|10": {
+    "mean": {
+     "own_at_arrival": 0.984,
+     "own_at_end": 0.964962962962963,
+     "changed": 0.019703703703703706,
+     "certificate": 0.0372522301566708,
+     "heldout_own_at_arrival": 0.9776014109347442,
+     "heldout_own_at_end": 0.9525478395061726,
+     "apriori_bound": 0.05103703703703704
+    },
+    "se": {
+     "own_at_arrival": 0.0068173448259707696,
+     "own_at_end": 0.009752291620328658,
+     "changed": 0.007323439426947725,
+     "certificate": 0.010939784500752005,
+     "heldout_own_at_arrival": 0.006627617456691243,
+     "heldout_own_at_end": 0.011529908783457861,
+     "apriori_bound": 0.0151994255076722
+    }
+   },
+   "lr|minilm|100": {
+    "mean": {
+     "own_at_arrival": 0.9826666666666666,
+     "own_at_end": 0.9622962962962964,
+     "changed": 0.02770370370370371,
+     "certificate": 0.042275427261564684,
+     "heldout_own_at_arrival": 0.9746014109347441,
+     "heldout_own_at_end": 0.9475061728395061,
+     "apriori_bound": 0.05503703703703706
+    },
+    "se": {
+     "own_at_arrival": 0.006434036477735062,
+     "own_at_end": 0.01038838193973858,
+     "changed": 0.008500417852347675,
+     "certificate": 0.012730623709847051,
+     "heldout_own_at_arrival": 0.008149917541533505,
+     "heldout_own_at_end": 0.012386790455420129,
+     "apriori_bound": 0.014695365007188268
+    }
+   },
+   "lr|minilm+shape|1": {
+    "mean": {
+     "own_at_arrival": 0.9973333333333334,
+     "own_at_end": 0.988,
+     "changed": 0.009333333333333334,
+     "certificate": 0.023922447380466876,
+     "heldout_own_at_arrival": 0.9911552028218692,
+     "heldout_own_at_end": 0.9785244708994708,
+     "apriori_bound": 0.01466666666666668
+    },
+    "se": {
+     "own_at_arrival": 0.0020625150312102605,
+     "own_at_end": 0.005623081683476389,
+     "changed": 0.00472749472228223,
+     "certificate": 0.008389863859267118,
+     "heldout_own_at_arrival": 0.005633614982611363,
+     "heldout_own_at_end": 0.009028244386840599,
+     "apriori_bound": 0.0070282875152362315
+    }
+   },
+   "lr|minilm+shape|10": {
+    "mean": {
+     "own_at_arrival": 0.998,
+     "own_at_end": 0.9926666666666666,
+     "changed": 0.006,
+     "certificate": 0.022406610276394477,
+     "heldout_own_at_arrival": 0.9933156966490297,
+     "heldout_own_at_end": 0.9790123456790122,
+     "apriori_bound": 0.009333333333333341
+    },
+    "se": {
+     "own_at_arrival": 0.001447493728911493,
+     "own_at_end": 0.0045215533220835154,
+     "changed": 0.004117326918327102,
+     "certificate": 0.008212021036718675,
+     "heldout_own_at_arrival": 0.00401102561768534,
+     "heldout_own_at_end": 0.009439595993558746,
+     "apriori_bound": 0.0055606326007600045
+    }
+   },
+   "lr|minilm+shape|100": {
+    "mean": {
+     "own_at_arrival": 0.998,
+     "own_at_end": 0.9904496124031007,
+     "changed": 0.008217054263565891,
+     "certificate": 0.02145536112404556,
+     "heldout_own_at_arrival": 0.9923156966490299,
+     "heldout_own_at_end": 0.9799766313932979,
+     "apriori_bound": 0.011550387596899237
+    },
+    "se": {
+     "own_at_arrival": 0.001447493728911493,
+     "own_at_end": 0.005058083739291646,
+     "changed": 0.004744938742684255,
+     "certificate": 0.006344373310117479,
+     "heldout_own_at_arrival": 0.0037720901529862925,
+     "heldout_own_at_end": 0.00744150223508719,
+     "apriori_bound": 0.00595205489848443
+    }
+   },
+   "lr|minilm+char|1": {
+    "mean": {
+     "own_at_arrival": 0.994,
+     "own_at_end": 0.9817829457364342,
+     "changed": 0.012217054263565891,
+     "certificate": 0.020436712602740045,
+     "heldout_own_at_arrival": 0.9906490299823633,
+     "heldout_own_at_end": 0.978410934744268,
+     "apriori_bound": 0.024217054263565914
+    },
+    "se": {
+     "own_at_arrival": 0.0027255405754769897,
+     "own_at_end": 0.004712150905101219,
+     "changed": 0.004630122213472681,
+     "certificate": 0.006533211141393791,
+     "heldout_own_at_arrival": 0.0038650679975898807,
+     "heldout_own_at_end": 0.007603443587512571,
+     "apriori_bound": 0.006150434411514536
+    }
+   },
+   "lr|minilm+char|10": {
+    "mean": {
+     "own_at_arrival": 0.994,
+     "own_at_end": 0.9844496124031008,
+     "changed": 0.010883720930232559,
+     "certificate": 0.024670066749684142,
+     "heldout_own_at_arrival": 0.9907918871252204,
+     "heldout_own_at_end": 0.9793276014109346,
+     "apriori_bound": 0.021550387596899246
+    },
+    "se": {
+     "own_at_arrival": 0.0027255405754769897,
+     "own_at_end": 0.004261463289054992,
+     "changed": 0.00388158176111819,
+     "certificate": 0.00859841306986907,
+     "heldout_own_at_arrival": 0.0034733953114802576,
+     "heldout_own_at_end": 0.006573124229788201,
+     "apriori_bound": 0.005845040550998059
+    }
+   },
+   "lr|minilm+char|100": {
+    "mean": {
+     "own_at_arrival": 0.994,
+     "own_at_end": 0.9816296296296297,
+     "changed": 0.013703703703703706,
+     "certificate": 0.02564558133362716,
+     "heldout_own_at_arrival": 0.9904585537918871,
+     "heldout_own_at_end": 0.9759466490299823,
+     "apriori_bound": 0.02437037037037039
+    },
+    "se": {
+     "own_at_arrival": 0.0027255405754769897,
+     "own_at_end": 0.005175198243231941,
+     "changed": 0.004961541295232705,
+     "certificate": 0.008261829982795673,
+     "heldout_own_at_arrival": 0.0033200630748786595,
+     "heldout_own_at_end": 0.007732913153999067,
+     "apriori_bound": 0.006428246992488195
+    }
+   },
+   "analytic|minilm|0.01": {
+    "mean": {
+     "own_at_arrival": 0.9756296296296296,
+     "own_at_end": 0.935867355727821,
+     "changed": 0.04709560723514213,
+     "certificate": 0.06757696197902288,
+     "heldout_own_at_arrival": 0.9752151675485009,
+     "heldout_own_at_end": 0.924305114638448,
+     "apriori_bound": 0.08850301464254953
+    },
+    "se": {
+     "own_at_arrival": 0.008417016628250356,
+     "own_at_end": 0.016014170967497146,
+     "changed": 0.01317922795788339,
+     "certificate": 0.024027027368954124,
+     "heldout_own_at_arrival": 0.009775622740847924,
+     "heldout_own_at_end": 0.024289767759175858,
+     "apriori_bound": 0.021262109799742447
+    }
+   },
+   "analytic|minilm|0.1": {
+    "mean": {
+     "own_at_arrival": 0.9782962962962962,
+     "own_at_end": 0.9489043927648579,
+     "changed": 0.037762273901808786,
+     "certificate": 0.06340919835213074,
+     "heldout_own_at_arrival": 0.9812151675485009,
+     "heldout_own_at_end": 0.9329651675485009,
+     "apriori_bound": 0.07279931093884583
+    },
+    "se": {
+     "own_at_arrival": 0.0076596215361602205,
+     "own_at_end": 0.013090137607158504,
+     "changed": 0.012527195894951479,
+     "certificate": 0.024840041987414106,
+     "heldout_own_at_arrival": 0.00840619324842172,
+     "heldout_own_at_end": 0.02614296467622962,
+     "apriori_bound": 0.01866421542947827
+    }
+   },
+   "analytic|minilm|1": {
+    "mean": {
+     "own_at_arrival": 0.978962962962963,
+     "own_at_end": 0.9105391903531437,
+     "changed": 0.0767941429801895,
+     "certificate": 0.10251431182580391,
+     "heldout_own_at_arrival": 0.9776613756613756,
+     "heldout_own_at_end": 0.8864660493827159,
+     "apriori_bound": 0.11049784668389322
+    },
+    "se": {
+     "own_at_arrival": 0.007637023180851541,
+     "own_at_end": 0.03618993197821192,
+     "changed": 0.036795948798910946,
+     "certificate": 0.04910199506903787,
+     "heldout_own_at_arrival": 0.009932337365937412,
+     "heldout_own_at_end": 0.05296455927210005,
+     "apriori_bound": 0.03874443606710034
+    }
+   },
+   "analytic|minilm+shape|0.01": {
+    "mean": {
+     "own_at_arrival": 0.9986666666666667,
+     "own_at_end": 0.9856296296296297,
+     "changed": 0.014370370370370372,
+     "certificate": 0.029518056301014575,
+     "heldout_own_at_arrival": 0.9907742504409172,
+     "heldout_own_at_end": 0.9753458994708993,
+     "apriori_bound": 0.01570370370370371
+    },
+    "se": {
+     "own_at_arrival": 0.0009085135251589966,
+     "own_at_end": 0.0072337853439070525,
+     "changed": 0.0073642659041133485,
+     "certificate": 0.012593011858274536,
+     "heldout_own_at_arrival": 0.004288778199461586,
+     "heldout_own_at_end": 0.011370974813650585,
+     "apriori_bound": 0.007298833926072307
+    }
+   },
+   "analytic|minilm+shape|0.1": {
+    "mean": {
+     "own_at_arrival": 0.998,
+     "own_at_end": 0.9725185185185186,
+     "changed": 0.025481481481481483,
+     "certificate": 0.03247046106294754,
+     "heldout_own_at_arrival": 0.9900776014109347,
+     "heldout_own_at_end": 0.9685956790123456,
+     "apriori_bound": 0.029481481481481487
+    },
+    "se": {
+     "own_at_arrival": 0.0010690449676496983,
+     "own_at_end": 0.015546280933780788,
+     "changed": 0.015651430418733594,
+     "certificate": 0.014961469027010616,
+     "heldout_own_at_arrival": 0.005402865463023426,
+     "heldout_own_at_end": 0.017102989238526593,
+     "apriori_bound": 0.015514256085205215
+    }
+   },
+   "analytic|minilm+shape|1": {
+    "mean": {
+     "own_at_arrival": 0.9922962962962963,
+     "own_at_end": 0.9376296296296297,
+     "changed": 0.05533333333333333,
+     "certificate": 0.057024040707789124,
+     "heldout_own_at_arrival": 0.97994708994709,
+     "heldout_own_at_end": 0.9405723104056437,
+     "apriori_bound": 0.07007407407407408
+    },
+    "se": {
+     "own_at_arrival": 0.004362291878932205,
+     "own_at_end": 0.03820315549212085,
+     "changed": 0.03465292768043411,
+     "certificate": 0.03424283141277786,
+     "heldout_own_at_arrival": 0.01216939843539702,
+     "heldout_own_at_end": 0.03879844521034108,
+     "apriori_bound": 0.04185013809292655
+    }
+   }
+  },
+  "long": {
+   "lr|minilm|1": {
+    "mean": {
+     "own_at_arrival": 0.9349377908779973,
+     "own_at_end": 0.8960815220235973,
+     "changed": 0.0599357521699991,
+     "certificate": 0.06486800158647552,
+     "heldout_own_at_arrival": 0.9473333333333335,
+     "heldout_own_at_end": 0.9028333333333333,
+     "apriori_bound": 0.16898068709840525
+    },
+    "se": {
+     "own_at_arrival": 0.02208866517067004,
+     "own_at_end": 0.022030303543104188,
+     "changed": 0.01692214335682398,
+     "certificate": 0.016722655142001292,
+     "heldout_own_at_arrival": 0.018250027179801457,
+     "heldout_own_at_end": 0.021751938428490124,
+     "apriori_bound": 0.04115872559625747
+    }
+   },
+   "lr|minilm|10": {
+    "mean": {
+     "own_at_arrival": 0.9383591121567338,
+     "own_at_end": 0.9044662816617595,
+     "changed": 0.053199725984087405,
+     "certificate": 0.06418166429603005,
+     "heldout_own_at_arrival": 0.942,
+     "heldout_own_at_end": 0.9108333333333333,
+     "apriori_bound": 0.15717460618150683
+    },
+    "se": {
+     "own_at_arrival": 0.022971909159988615,
+     "own_at_end": 0.023456740874504195,
+     "changed": 0.014343256098955648,
+     "certificate": 0.017339755670444778,
+     "heldout_own_at_arrival": 0.027149497934496652,
+     "heldout_own_at_end": 0.02420358428133098,
+     "apriori_bound": 0.04481078275503994
+    }
+   },
+   "lr|minilm|100": {
+    "mean": {
+     "own_at_arrival": 0.9293042553855979,
+     "own_at_end": 0.8939198972020488,
+     "changed": 0.0649787709219821,
+     "certificate": 0.07487109886477664,
+     "heldout_own_at_arrival": 0.9325833333333335,
+     "heldout_own_at_end": 0.8967500000000002,
+     "apriori_bound": 0.17677584741235342
+    },
+    "se": {
+     "own_at_arrival": 0.027017129814172314,
+     "own_at_end": 0.026696961743343326,
+     "changed": 0.013672045670314067,
+     "certificate": 0.018659811404149126,
+     "heldout_own_at_arrival": 0.0315125793728498,
+     "heldout_own_at_end": 0.02949117099517526,
+     "apriori_bound": 0.052420907023951725
+    }
+   },
+   "lr|minilm+shape|1": {
+    "mean": {
+     "own_at_arrival": 0.9775176002253579,
+     "own_at_end": 0.95291915386053,
+     "changed": 0.03267905704821135,
+     "certificate": 0.030560376886858982,
+     "heldout_own_at_arrival": 0.9776666666666665,
+     "heldout_own_at_end": 0.9603333333333333,
+     "apriori_bound": 0.06956324591411196
+    },
+    "se": {
+     "own_at_arrival": 0.011595619880210063,
+     "own_at_end": 0.017692712811523934,
+     "changed": 0.015038772572737695,
+     "certificate": 0.012585237581772992,
+     "heldout_own_at_arrival": 0.011840876200955282,
+     "heldout_own_at_end": 0.01609840769016396,
+     "apriori_bound": 0.027212160541830253
+    }
+   },
+   "lr|minilm+shape|10": {
+    "mean": {
+     "own_at_arrival": 0.9748045845342749,
+     "own_at_end": 0.9535118037743164,
+     "changed": 0.02759854517098615,
+     "certificate": 0.027903693308053333,
+     "heldout_own_at_arrival": 0.974,
+     "heldout_own_at_end": 0.9593333333333334,
+     "apriori_bound": 0.07168361169140874
+    },
+    "se": {
+     "own_at_arrival": 0.014389341058693453,
+     "own_at_end": 0.020657550778723395,
+     "changed": 0.013221106938744915,
+     "certificate": 0.010894633830793202,
+     "heldout_own_at_arrival": 0.01674173570110681,
+     "heldout_own_at_end": 0.0200764412200841,
+     "apriori_bound": 0.034032744619854234
+    }
+   },
+   "lr|minilm+shape|100": {
+    "mean": {
+     "own_at_arrival": 0.9680030004279542,
+     "own_at_end": 0.9479680047128017,
+     "changed": 0.0288499478847453,
+     "certificate": 0.0318640893476573,
+     "heldout_own_at_arrival": 0.968,
+     "heldout_own_at_end": 0.956,
+     "apriori_bound": 0.08402899485924409
+    },
+    "se": {
+     "own_at_arrival": 0.01886195603362538,
+     "own_at_end": 0.02398673058495369,
+     "changed": 0.01310429785591347,
+     "certificate": 0.013271999622649201,
+     "heldout_own_at_arrival": 0.020735293124341914,
+     "heldout_own_at_end": 0.021806508421198693,
+     "apriori_bound": 0.04200021445862334
+    }
+   },
+   "lr|minilm+char|1": {
+    "mean": {
+     "own_at_arrival": 0.9685145196338446,
+     "own_at_end": 0.9502461778816571,
+     "changed": 0.028598532049668366,
+     "certificate": 0.03454376029982715,
+     "heldout_own_at_arrival": 0.973333333333333,
+     "heldout_own_at_end": 0.9513333333333333,
+     "apriori_bound": 0.08123930248449822
+    },
+    "se": {
+     "own_at_arrival": 0.014653421946381478,
+     "own_at_end": 0.01630131401228615,
+     "changed": 0.010551886042499226,
+     "certificate": 0.010733602234841245,
+     "heldout_own_at_arrival": 0.01181873680570558,
+     "heldout_own_at_end": 0.015426219691429714,
+     "apriori_bound": 0.02966079021627899
+    }
+   },
+   "lr|minilm+char|10": {
+    "mean": {
+     "own_at_arrival": 0.9716764175533449,
+     "own_at_end": 0.9555547448517527,
+     "changed": 0.022840401731148145,
+     "certificate": 0.027243627301452675,
+     "heldout_own_at_arrival": 0.9729999999999998,
+     "heldout_own_at_end": 0.9569999999999996,
+     "apriori_bound": 0.07276883759490257
+    },
+    "se": {
+     "own_at_arrival": 0.01594268679167245,
+     "own_at_end": 0.018505387912684745,
+     "changed": 0.00928539305197556,
+     "certificate": 0.009818992377959601,
+     "heldout_own_at_arrival": 0.016386696113732308,
+     "heldout_own_at_end": 0.019455688359032934,
+     "apriori_bound": 0.03377066517702333
+    }
+   },
+   "lr|minilm+char|100": {
+    "mean": {
+     "own_at_arrival": 0.9662175913675483,
+     "own_at_end": 0.9551583510961931,
+     "changed": 0.02865716468519578,
+     "certificate": 0.03121059116201784,
+     "heldout_own_at_arrival": 0.9733333333333332,
+     "heldout_own_at_end": 0.9559999999999998,
+     "apriori_bound": 0.07862405753625885
+    },
+    "se": {
+     "own_at_arrival": 0.01920292879273083,
+     "own_at_end": 0.018136581327750947,
+     "changed": 0.011780838892264235,
+     "certificate": 0.011004073970418892,
+     "heldout_own_at_arrival": 0.016559177189895313,
+     "heldout_own_at_end": 0.020072487686003494,
+     "apriori_bound": 0.036528919909504444
+    }
+   },
+   "analytic|minilm|0.01": {
+    "mean": {
+     "own_at_arrival": 0.8989940410528795,
+     "own_at_end": 0.8587201850085383,
+     "changed": 0.07727449128161785,
+     "certificate": 0.0790840500569942,
+     "heldout_own_at_arrival": 0.9116666666666666,
+     "heldout_own_at_end": 0.8628333333333331,
+     "apriori_bound": 0.24228577393858203
+    },
+    "se": {
+     "own_at_arrival": 0.05395296632934507,
+     "own_at_end": 0.06158517332649239,
+     "changed": 0.018802220516042998,
+     "certificate": 0.020521208969098204,
+     "heldout_own_at_arrival": 0.051340753947259246,
+     "heldout_own_at_end": 0.0628967723198414,
+     "apriori_bound": 0.11499010205118734
+    }
+   },
+   "analytic|minilm|0.1": {
+    "mean": {
+     "own_at_arrival": 0.9023531617208637,
+     "own_at_end": 0.8632033300055859,
+     "changed": 0.05903977432397988,
+     "certificate": 0.06089446990494914,
+     "heldout_own_at_arrival": 0.9059999999999999,
+     "heldout_own_at_end": 0.8671666666666664,
+     "apriori_bound": 0.2344435082735502
+    },
+    "se": {
+     "own_at_arrival": 0.05903090056038757,
+     "own_at_end": 0.06312258788075628,
+     "changed": 0.013121195769841441,
+     "certificate": 0.013180625749668292,
+     "heldout_own_at_arrival": 0.05982951970868084,
+     "heldout_own_at_end": 0.06346299384130556,
+     "apriori_bound": 0.12167668764939667
+    }
+   },
+   "analytic|minilm|1": {
+    "mean": {
+     "own_at_arrival": 0.891731702063278,
+     "own_at_end": 0.85702161116739,
+     "changed": 0.058091687603237865,
+     "certificate": 0.05660239890680455,
+     "heldout_own_at_arrival": 0.89725,
+     "heldout_own_at_end": 0.8635,
+     "apriori_bound": 0.25124668676933204
+    },
+    "se": {
+     "own_at_arrival": 0.0647963619524162,
+     "own_at_end": 0.06311878051830894,
+     "changed": 0.013345011494150065,
+     "certificate": 0.011252486914042022,
+     "heldout_own_at_arrival": 0.06512992966444257,
+     "heldout_own_at_end": 0.06348031190849648,
+     "apriori_bound": 0.12727360163342968
+    }
+   },
+   "analytic|minilm+shape|0.01": {
+    "mean": {
+     "own_at_arrival": 0.958643433753354,
+     "own_at_end": 0.9219192308371724,
+     "changed": 0.048412112880056014,
+     "certificate": 0.05134424631857828,
+     "heldout_own_at_arrival": 0.9619999999999997,
+     "heldout_own_at_end": 0.9293333333333333,
+     "apriori_bound": 0.11943733540947339
+    },
+    "se": {
+     "own_at_arrival": 0.02959904672852761,
+     "own_at_end": 0.05042754413294724,
+     "changed": 0.030826877410911585,
+     "certificate": 0.02933287493671512,
+     "heldout_own_at_arrival": 0.029096718846272806,
+     "heldout_own_at_end": 0.04926813581158927,
+     "apriori_bound": 0.07972470650578392
+    }
+   },
+   "analytic|minilm+shape|0.1": {
+    "mean": {
+     "own_at_arrival": 0.9504238152416752,
+     "own_at_end": 0.914726699049233,
+     "changed": 0.0490133399648697,
+     "certificate": 0.0516693534561577,
+     "heldout_own_at_arrival": 0.9533333333333331,
+     "heldout_own_at_end": 0.9169999999999998,
+     "apriori_bound": 0.13484948570909178
+    },
+    "se": {
+     "own_at_arrival": 0.03795132464219629,
+     "own_at_end": 0.0575648830270433,
+     "changed": 0.030979798258279616,
+     "certificate": 0.030847678577429236,
+     "heldout_own_at_arrival": 0.03898615953028247,
+     "heldout_own_at_end": 0.060511313385341804,
+     "apriori_bound": 0.09521042992077636
+    }
+   },
+   "analytic|minilm+shape|1": {
+    "mean": {
+     "own_at_arrival": 0.9219466971854886,
+     "own_at_end": 0.8998386452028053,
+     "changed": 0.036718165238068264,
+     "certificate": 0.036254983614612504,
+     "heldout_own_at_arrival": 0.9246666666666666,
+     "heldout_own_at_end": 0.9062499999999999,
+     "apriori_bound": 0.17821465761170596
+    },
+    "se": {
+     "own_at_arrival": 0.0626449048266476,
+     "own_at_end": 0.06542607329578058,
+     "changed": 0.01622210549788817,
+     "certificate": 0.014330777616134707,
+     "heldout_own_at_arrival": 0.06404884049109685,
+     "heldout_own_at_end": 0.06549275223441213,
+     "apriori_bound": 0.12767251292177584
+    }
+   }
+  }
+ },
+ "dev_meta": {
+  "superni": {
+   "lr|minilm|1": {
+    "max_iter_per_arrival": [
+     16,
+     20,
+     17,
+     32,
+     28,
+     30,
+     31,
+     33,
+     32,
+     29,
+     35,
+     32,
+     28,
+     38
+    ]
+   },
+   "lr|minilm|10": {
+    "max_iter_per_arrival": [
+     16,
+     28,
+     29,
+     43,
+     42,
+     42,
+     40,
+     42,
+     41,
+     40,
+     42,
+     38,
+     47,
+     57
+    ]
+   },
+   "lr|minilm|100": {
+    "max_iter_per_arrival": [
+     13,
+     24,
+     28,
+     40,
+     37,
+     41,
+     39,
+     38,
+     42,
+     47,
+     38,
+     59,
+     48,
+     62
+    ]
+   },
+   "lr|minilm+shape|1": {
+    "max_iter_per_arrival": [
+     10,
+     12,
+     18,
+     22,
+     23,
+     29,
+     29,
+     30,
+     29,
+     33,
+     40,
+     31,
+     42,
+     42
+    ]
+   },
+   "lr|minilm+shape|10": {
+    "max_iter_per_arrival": [
+     10,
+     11,
+     18,
+     20,
+     28,
+     32,
+     33,
+     31,
+     35,
+     29,
+     32,
+     35,
+     47,
+     47
+    ]
+   },
+   "lr|minilm+shape|100": {
+    "max_iter_per_arrival": [
+     11,
+     14,
+     14,
+     28,
+     20,
+     26,
+     27,
+     23,
+     26,
+     25,
+     26,
+     28,
+     39,
+     39
+    ]
+   },
+   "lr|minilm+char|1": {
+    "max_iter_per_arrival": [
+     12,
+     22,
+     24,
+     36,
+     34,
+     37,
+     33,
+     32,
+     35,
+     34,
+     28,
+     41,
+     34,
+     37
+    ]
+   },
+   "lr|minilm+char|10": {
+    "max_iter_per_arrival": [
+     14,
+     18,
+     29,
+     33,
+     38,
+     45,
+     40,
+     30,
+     40,
+     34,
+     38,
+     41,
+     38,
+     43
+    ]
+   },
+   "lr|minilm+char|100": {
+    "max_iter_per_arrival": [
+     19,
+     17,
+     24,
+     27,
+     26,
+     28,
+     36,
+     34,
+     32,
+     29,
+     25,
+     35,
+     39,
+     40
+    ]
+   },
+   "analytic|minilm|0.01": {
+    "sigma": 1.3866728561842705
+   },
+   "analytic|minilm|0.1": {
+    "sigma": 1.3866728561842705
+   },
+   "analytic|minilm|1": {
+    "sigma": 1.3866728561842705
+   },
+   "analytic|minilm+shape|0.01": {
+    "sigma": 2.305225112366575
+   },
+   "analytic|minilm+shape|0.1": {
+    "sigma": 2.305225112366575
+   },
+   "analytic|minilm+shape|1": {
+    "sigma": 2.305225112366575
+   }
+  },
+  "long": {
+   "lr|minilm|1": {
+    "max_iter_per_arrival": [
+     9,
+     24,
+     29,
+     32,
+     48,
+     50,
+     49,
+     51,
+     60,
+     57,
+     53,
+     65,
+     60,
+     62
+    ]
+   },
+   "lr|minilm|10": {
+    "max_iter_per_arrival": [
+     17,
+     18,
+     36,
+     33,
+     62,
+     67,
+     86,
+     93,
+     99,
+     99,
+     77,
+     109,
+     109,
+     106
+    ]
+   },
+   "lr|minilm|100": {
+    "max_iter_per_arrival": [
+     14,
+     26,
+     51,
+     47,
+     72,
+     108,
+     106,
+     81,
+     125,
+     136,
+     91,
+     113,
+     161,
+     176
+    ]
+   },
+   "lr|minilm+shape|1": {
+    "max_iter_per_arrival": [
+     19,
+     23,
+     37,
+     34,
+     33,
+     47,
+     46,
+     45,
+     49,
+     54,
+     53,
+     58,
+     60,
+     60
+    ]
+   },
+   "lr|minilm+shape|10": {
+    "max_iter_per_arrival": [
+     20,
+     18,
+     40,
+     41,
+     45,
+     80,
+     74,
+     65,
+     68,
+     78,
+     77,
+     87,
+     84,
+     74
+    ]
+   },
+   "lr|minilm+shape|100": {
+    "max_iter_per_arrival": [
+     15,
+     16,
+     37,
+     37,
+     43,
+     97,
+     86,
+     61,
+     70,
+     82,
+     79,
+     95,
+     80,
+     77
+    ]
+   },
+   "lr|minilm+char|1": {
+    "max_iter_per_arrival": [
+     9,
+     16,
+     29,
+     38,
+     42,
+     48,
+     47,
+     51,
+     55,
+     64,
+     60,
+     69,
+     61,
+     55
+    ]
+   },
+   "lr|minilm+char|10": {
+    "max_iter_per_arrival": [
+     15,
+     18,
+     30,
+     45,
+     48,
+     68,
+     70,
+     60,
+     79,
+     77,
+     84,
+     75,
+     86,
+     80
+    ]
+   },
+   "lr|minilm+char|100": {
+    "max_iter_per_arrival": [
+     13,
+     16,
+     18,
+     27,
+     29,
+     71,
+     49,
+     71,
+     88,
+     76,
+     76,
+     71,
+     85,
+     83
+    ]
+   },
+   "analytic|minilm|0.01": {
+    "sigma": 1.3866728561842705
+   },
+   "analytic|minilm|0.1": {
+    "sigma": 1.3866728561842705
+   },
+   "analytic|minilm|1": {
+    "sigma": 1.3866728561842705
+   },
+   "analytic|minilm+shape|0.01": {
+    "sigma": 2.305225112366575
+   },
+   "analytic|minilm+shape|0.1": {
+    "sigma": 2.305225112366575
+   },
+   "analytic|minilm+shape|1": {
+    "sigma": 2.305225112366575
+   }
+  }
+ },
+ "order_check": {
+  "setting": "SuperNI order 1, minilm, D=4096, arrival order reversed; weights (columns matched by task)",
+  "per_lam": {
+   "0.01": {
+    "max_abs_diff": 2.938344012548555e-12,
+    "max_abs_weight": 2.3593970199775542
+   },
+   "0.1": {
+    "max_abs_diff": 4.053979374418759e-13,
+    "max_abs_weight": 1.323145339490228
+   },
+   "1": {
+    "max_abs_diff": 3.9069008445080655e-14,
+    "max_abs_weight": 0.6424405606199205
+   }
+  },
+  "largest_abs_difference": 2.938344012548555e-12
+ },
+ "chosen": {
+  "variant": "lr|minilm+shape|10",
+  "recogniser": "lr",
+  "feature": "minilm+shape",
+  "parameter": 10,
+  "n_candidates": 11,
+  "superni": {
+   "per_task": {
+    "SuperNI/task1572_samsum_summary": {
+     "own_at_arrival": 1.0,
+     "own_at_end": 1.0,
+     "changed": 0.0,
+     "c": 0,
+     "m": 64,
+     "certificate": 0.015384615384615385,
+     "heldout_own_at_arrival": 1.0,
+     "heldout_own_at_end": 1.0,
+     "apriori_bound": 0.0
+    },
+    "SuperNI/task363_sst2_polarity_classification": {
+     "own_at_arrival": 1.0,
+     "own_at_end": 0.95,
+     "changed": 0.05,
+     "c": 4,
+     "m": 200,
+     "certificate": 0.024875621890547265,
+     "heldout_own_at_arrival": 1.0,
+     "heldout_own_at_end": 0.98,
+     "apriori_bound": 0.050000000000000044,
+     "top_wrong_task": "SuperNI/task1687_sentiment140_classification",
+     "top_wrong_share": 0.8
+    },
+    "SuperNI/task1290_xsum_summarization": {
+     "own_at_arrival": 1.0,
+     "own_at_end": 1.0,
+     "changed": 0.0,
+     "c": 2,
+     "m": 200,
+     "certificate": 0.014925373134328358,
+     "heldout_own_at_arrival": 1.0,
+     "heldout_own_at_end": 0.99,
+     "apriori_bound": 0.0
+    },
+    "SuperNI/task181_outcome_extraction": {
+     "own_at_arrival": 1.0,
+     "own_at_end": 1.0,
+     "changed": 0.0,
+     "c": 1,
+     "m": 135,
+     "certificate": 0.014705882352941176,
+     "heldout_own_at_arrival": 0.9925925925925926,
+     "heldout_own_at_end": 0.9851851851851852,
+     "apriori_bound": 0.0
+    },
+    "SuperNI/task002_quoref_answer_generation": {
+     "own_at_arrival": 1.0,
+     "own_at_end": 1.0,
+     "changed": 0.0,
+     "c": 0,
+     "m": 200,
+     "certificate": 0.004975124378109453,
+     "heldout_own_at_arrival": 1.0,
+     "heldout_own_at_end": 1.0,
+     "apriori_bound": 0.0
+    },
+    "SuperNI/task1510_evalution_relation_extraction": {
+     "own_at_arrival": 1.0,
+     "own_at_end": 1.0,
+     "changed": 0.0,
+     "c": 0,
+     "m": 200,
+     "certificate": 0.004975124378109453,
+     "heldout_own_at_arrival": 1.0,
+     "heldout_own_at_end": 1.0,
+     "apriori_bound": 0.0
+    },
+    "SuperNI/task639_multi_woz_user_utterance_generation": {
+     "own_at_arrival": 1.0,
+     "own_at_end": 1.0,
+     "changed": 0.0,
+     "c": 6,
+     "m": 56,
+     "certificate": 0.12280701754385964,
+     "heldout_own_at_arrival": 0.9821428571428571,
+     "heldout_own_at_end": 0.875,
+     "apriori_bound": 0.0
+    },
+    "SuperNI/task1729_personachat_generate_next": {
+     "own_at_arrival": 1.0,
+     "own_at_end": 1.0,
+     "changed": 0.0,
+     "c": 0,
+     "m": 200,
+     "certificate": 0.004975124378109453,
+     "heldout_own_at_arrival": 1.0,
+     "heldout_own_at_end": 1.0,
+     "apriori_bound": 0.0
+    },
+    "SuperNI/task073_commonsenseqa_answer_generation": {
+     "own_at_arrival": 1.0,
+     "own_at_end": 1.0,
+     "changed": 0.0,
+     "c": 0,
+     "m": 200,
+     "certificate": 0.004975124378109453,
+     "heldout_own_at_arrival": 1.0,
+     "heldout_own_at_end": 1.0,
+     "apriori_bound": 0.0
+    },
+    "SuperNI/task1590_diplomacy_text_generation": {
+     "own_at_arrival": 1.0,
+     "own_at_end": 1.0,
+     "changed": 0.0,
+     "c": 2,
+     "m": 50,
+     "certificate": 0.058823529411764705,
+     "heldout_own_at_arrival": 1.0,
+     "heldout_own_at_end": 0.96,
+     "apriori_bound": 0.0
+    },
+    "SuperNI/task748_glucose_reverse_cause_event_detection": {
+     "own_at_arrival": 1.0,
+     "own_at_end": 1.0,
+     "changed": 0.0,
+     "c": 0,
+     "m": 200,
+     "certificate": 0.004975124378109453,
+     "heldout_own_at_arrival": 0.995,
+     "heldout_own_at_end": 0.995,
+     "apriori_bound": 0.0
+    },
+    "SuperNI/task511_reddit_tifu_long_text_summarization": {
+     "own_at_arrival": 1.0,
+     "own_at_end": 1.0,
+     "changed": 0.0,
+     "c": 0,
+     "m": 200,
+     "certificate": 0.004975124378109453,
+     "heldout_own_at_arrival": 0.995,
+     "heldout_own_at_end": 0.995,
+     "apriori_bound": 0.0
+    },
+    "SuperNI/task591_sciq_answer_generation": {
+     "own_at_arrival": 0.99,
+     "own_at_end": 0.99,
+     "changed": 0.0,
+     "c": 1,
+     "m": 200,
+     "certificate": 0.009950248756218905,
+     "heldout_own_at_arrival": 0.995,
+     "heldout_own_at_end": 0.99,
+     "apriori_bound": 0.020000000000000018,
+     "top_wrong_task": "SuperNI/task181_outcome_extraction",
+     "top_wrong_share": 1.0
+    },
+    "SuperNI/task1687_sentiment140_classification": {
+     "own_at_arrival": 0.98,
+     "own_at_end": 0.95,
+     "changed": 0.04,
+     "c": 7,
+     "m": 200,
+     "certificate": 0.03980099502487562,
+     "heldout_own_at_arrival": 0.94,
+     "heldout_own_at_end": 0.915,
+     "apriori_bound": 0.07000000000000006,
+     "top_wrong_task": "SuperNI/task875_emotion_classification",
+     "top_wrong_share": 0.8
+    },
+    "SuperNI/task875_emotion_classification": {
+     "own_at_arrival": 1.0,
+     "own_at_end": 1.0,
+     "changed": 0.0,
+     "c": 0,
+     "m": 200,
+     "certificate": 0.004975124378109453,
+     "heldout_own_at_arrival": 1.0,
+     "heldout_own_at_end": 1.0,
+     "apriori_bound": 0.0
+    }
+   },
+   "mean": {
+    "own_at_arrival": 0.998,
+    "own_at_end": 0.9926666666666666,
+    "changed": 0.006,
+    "certificate": 0.022406610276394477,
+    "heldout_own_at_arrival": 0.9933156966490297,
+    "heldout_own_at_end": 0.9790123456790122,
+    "apriori_bound": 0.009333333333333341
+   },
+   "se": {
+    "own_at_arrival": 0.001447493728911493,
+    "own_at_end": 0.0045215533220835154,
+    "changed": 0.004117326918327102,
+    "certificate": 0.008212021036718675,
+    "heldout_own_at_arrival": 0.00401102561768534,
+    "heldout_own_at_end": 0.009439595993558746,
+    "apriori_bound": 0.0055606326007600045
+   }
+  },
+  "long": {
+   "per_task": {
+    "Long_Sequence/yelp": {
+     "own_at_arrival": 1.0,
+     "own_at_end": 0.9914473684210526,
+     "changed": 0.008552631578947369,
+     "c": 1,
+     "m": 200,
+     "certificate": 0.009950248756218905,
+     "heldout_own_at_arrival": 1.0,
+     "heldout_own_at_end": 0.995,
+     "apriori_bound": 0.008552631578947367,
+     "top_wrong_task": "Long_Sequence/multirc",
+     "top_wrong_share": 0.18461538461538463
+    },
+    "Long_Sequence/amazon": {
+     "own_at_arrival": 1.0,
+     "own_at_end": 0.9698684210526316,
+     "changed": 0.030131578947368422,
+     "c": 5,
+     "m": 200,
+     "certificate": 0.029850746268656716,
+     "heldout_own_at_arrival": 1.0,
+     "heldout_own_at_end": 0.975,
+     "apriori_bound": 0.030131578947368398,
+     "top_wrong_task": "Long_Sequence/agnews",
+     "top_wrong_share": 0.36681222707423583
+    },
+    "Long_Sequence/mnli": {
+     "own_at_arrival": 1.0,
+     "own_at_end": 0.8576315789473684,
+     "changed": 0.1423684210526316,
+     "c": 27,
+     "m": 200,
+     "certificate": 0.13930348258706468,
+     "heldout_own_at_arrival": 1.0,
+     "heldout_own_at_end": 0.865,
+     "apriori_bound": 0.1423684210526316,
+     "top_wrong_task": "Long_Sequence/rte",
+     "top_wrong_share": 0.7597042513863216
+    },
+    "Long_Sequence/cb": {
+     "own_at_arrival": 0.8035714285714286,
+     "own_at_end": 0.7142857142857143,
+     "changed": 0.16071428571428573,
+     "c": 11,
+     "m": 100,
+     "certificate": 0.1188118811881188,
+     "heldout_own_at_arrival": 0.75,
+     "heldout_own_at_end": 0.71,
+     "apriori_bound": 0.4821428571428571,
+     "top_wrong_task": "Long_Sequence/mnli",
+     "top_wrong_share": 0.5
+    },
+    "Long_Sequence/copa": {
+     "own_at_arrival": 1.0,
+     "own_at_end": 1.0,
+     "changed": 0.0,
+     "c": 0,
+     "m": 160,
+     "certificate": 0.006211180124223602,
+     "heldout_own_at_arrival": 1.0,
+     "heldout_own_at_end": 1.0,
+     "apriori_bound": 0.0
+    },
+    "Long_Sequence/qqp": {
+     "own_at_arrival": 0.9942105263157894,
+     "own_at_end": 0.9931578947368421,
+     "changed": 0.0035526315789473684,
+     "c": 2,
+     "m": 200,
+     "certificate": 0.014925373134328358,
+     "heldout_own_at_arrival": 0.995,
+     "heldout_own_at_end": 0.995,
+     "apriori_bound": 0.012631578947368438,
+     "top_wrong_task": "Long_Sequence/mnli",
+     "top_wrong_share": 0.6730769230769231
+    },
+    "Long_Sequence/rte": {
+     "own_at_arrival": 0.8844765342960289,
+     "own_at_end": 0.8700361010830325,
+     "changed": 0.01444043321299639,
+     "c": 1,
+     "m": 200,
+     "certificate": 0.009950248756218905,
+     "heldout_own_at_arrival": 0.925,
+     "heldout_own_at_end": 0.93,
+     "apriori_bound": 0.24548736462093856,
+     "top_wrong_task": "Long_Sequence/mnli",
+     "top_wrong_share": 0.8333333333333334
+    },
+    "Long_Sequence/imdb": {
+     "own_at_arrival": 0.9997368421052631,
+     "own_at_end": 0.998421052631579,
+     "changed": 0.0014473684210526317,
+     "c": 0,
+     "m": 200,
+     "certificate": 0.004975124378109453,
+     "heldout_own_at_arrival": 1.0,
+     "heldout_own_at_end": 1.0,
+     "apriori_bound": 0.0018421052631578672,
+     "top_wrong_task": "Long_Sequence/sst2",
+     "top_wrong_share": 0.75
+    },
+    "Long_Sequence/sst2": {
+     "own_at_arrival": 0.9988532110091743,
+     "own_at_end": 0.9988532110091743,
+     "changed": 0.0,
+     "c": 0,
+     "m": 200,
+     "certificate": 0.004975124378109453,
+     "heldout_own_at_arrival": 1.0,
+     "heldout_own_at_end": 1.0,
+     "apriori_bound": 0.002293577981651307,
+     "top_wrong_task": "Long_Sequence/yelp",
+     "top_wrong_share": 1.0
+    },
+    "Long_Sequence/dbpedia": {
+     "own_at_arrival": 0.9921052631578947,
+     "own_at_end": 0.9892105263157894,
+     "changed": 0.008026315789473683,
+     "c": 5,
+     "m": 200,
+     "certificate": 0.029850746268656716,
+     "heldout_own_at_arrival": 0.985,
+     "heldout_own_at_end": 0.975,
+     "apriori_bound": 0.01868421052631586,
+     "top_wrong_task": "Long_Sequence/amazon",
+     "top_wrong_share": 0.5487804878048781
+    },
+    "Long_Sequence/agnews": {
+     "own_at_arrival": 0.9789473684210527,
+     "own_at_end": 0.9751315789473685,
+     "changed": 0.009210526315789473,
+     "c": 1,
+     "m": 200,
+     "certificate": 0.009950248756218905,
+     "heldout_own_at_arrival": 0.98,
+     "heldout_own_at_end": 0.98,
+     "apriori_bound": 0.04592105263157886,
+     "top_wrong_task": "Long_Sequence/amazon",
+     "top_wrong_share": 0.5026455026455027
+    },
+    "Long_Sequence/yahoo": {
+     "own_at_arrival": 0.9780263157894736,
+     "own_at_end": 0.9643421052631579,
+     "changed": 0.02368421052631579,
+     "c": 4,
+     "m": 200,
+     "certificate": 0.024875621890547265,
+     "heldout_own_at_arrival": 0.99,
+     "heldout_own_at_end": 0.98,
+     "apriori_bound": 0.05763157894736848,
+     "top_wrong_task": "Long_Sequence/multirc",
+     "top_wrong_share": 0.41697416974169743
+    },
+    "Long_Sequence/multirc": {
+     "own_at_arrival": 0.9991749174917491,
+     "own_at_end": 0.9882425742574258,
+     "changed": 0.010932343234323433,
+     "c": 0,
+     "m": 200,
+     "certificate": 0.004975124378109453,
+     "heldout_own_at_arrival": 1.0,
+     "heldout_own_at_end": 1.0,
+     "apriori_bound": 0.012582508250825075,
+     "top_wrong_task": "Long_Sequence/amazon",
+     "top_wrong_share": 0.7894736842105263
+    },
+    "Long_Sequence/boolq": {
+     "own_at_arrival": 0.9929663608562691,
+     "own_at_end": 0.9920489296636086,
+     "changed": 0.0009174311926605505,
+     "c": 0,
+     "m": 200,
+     "certificate": 0.004975124378109453,
+     "heldout_own_at_arrival": 0.99,
+     "heldout_own_at_end": 0.99,
+     "apriori_bound": 0.014984709480122316,
+     "top_wrong_task": "Long_Sequence/rte",
+     "top_wrong_share": 0.4230769230769231
+    },
+    "Long_Sequence/wic": {
+     "own_at_arrival": 1.0,
+     "own_at_end": 1.0,
+     "changed": 0.0,
+     "c": 0,
+     "m": 200,
+     "certificate": 0.004975124378109453,
+     "heldout_own_at_arrival": 0.995,
+     "heldout_own_at_end": 0.995,
+     "apriori_bound": 0.0
+    }
+   },
+   "mean": {
+    "own_at_arrival": 0.9748045845342749,
+    "own_at_end": 0.9535118037743164,
+    "changed": 0.02759854517098615,
+    "certificate": 0.027903693308053333,
+    "heldout_own_at_arrival": 0.974,
+    "heldout_own_at_end": 0.9593333333333334,
+    "apriori_bound": 0.07168361169140874
+   },
+   "se": {
+    "own_at_arrival": 0.014389341058693453,
+    "own_at_end": 0.020657550778723395,
+    "changed": 0.013221106938744915,
+    "certificate": 0.010894633830793202,
+    "heldout_own_at_arrival": 0.01674173570110681,
+    "heldout_own_at_end": 0.0200764412200841,
+    "apriori_bound": 0.034032744619854234
+   }
+  },
+  "superni_path": {
+   "2": {
+    "SuperNI/task1572_samsum_summary": {
+     "changed_test": 0.0,
+     "certificate": 0.015384615384615385
+    }
+   },
+   "3": {
+    "SuperNI/task1572_samsum_summary": {
+     "changed_test": 0.0,
+     "certificate": 0.015384615384615385
+    },
+    "SuperNI/task363_sst2_polarity_classification": {
+     "changed_test": 0.0,
+     "certificate": 0.004975124378109453
+    }
+   },
+   "4": {
+    "SuperNI/task1572_samsum_summary": {
+     "changed_test": 0.0,
+     "certificate": 0.015384615384615385
+    },
+    "SuperNI/task363_sst2_polarity_classification": {
+     "changed_test": 0.01,
+     "certificate": 0.004975124378109453
+    },
+    "SuperNI/task1290_xsum_summarization": {
+     "changed_test": 0.0,
+     "certificate": 0.004975124378109453
+    }
+   },
+   "5": {
+    "SuperNI/task1572_samsum_summary": {
+     "changed_test": 0.0,
+     "certificate": 0.03076923076923077
+    },
+    "SuperNI/task363_sst2_polarity_classification": {
+     "changed_test": 0.01,
+     "certificate": 0.004975124378109453
+    },
+    "SuperNI/task1290_xsum_summarization": {
+     "changed_test": 0.0,
+     "certificate": 0.009950248756218905
+    },
+    "SuperNI/task181_outcome_extraction": {
+     "changed_test": 0.0,
+     "certificate": 0.007352941176470588
+    }
+   },
+   "6": {
+    "SuperNI/task1572_samsum_summary": {
+     "changed_test": 0.0,
+     "certificate": 0.03076923076923077
+    },
+    "SuperNI/task363_sst2_polarity_classification": {
+     "changed_test": 0.01,
+     "certificate": 0.004975124378109453
+    },
+    "SuperNI/task1290_xsum_summarization": {
+     "changed_test": 0.0,
+     "certificate": 0.014925373134328358
+    },
+    "SuperNI/task181_outcome_extraction": {
+     "changed_test": 0.0,
+     "certificate": 0.007352941176470588
+    },
+    "SuperNI/task002_quoref_answer_generation": {
+     "changed_test": 0.0,
+     "certificate": 0.004975124378109453
+    }
+   },
+   "7": {
+    "SuperNI/task1572_samsum_summary": {
+     "changed_test": 0.0,
+     "certificate": 0.03076923076923077
+    },
+    "SuperNI/task363_sst2_polarity_classification": {
+     "changed_test": 0.01,
+     "certificate": 0.004975124378109453
+    },
+    "SuperNI/task1290_xsum_summarization": {
+     "changed_test": 0.0,
+     "certificate": 0.014925373134328358
+    },
+    "SuperNI/task181_outcome_extraction": {
+     "changed_test": 0.0,
+     "certificate": 0.007352941176470588
+    },
+    "SuperNI/task002_quoref_answer_generation": {
+     "changed_test": 0.0,
+     "certificate": 0.004975124378109453
+    },
+    "SuperNI/task1510_evalution_relation_extraction": {
+     "changed_test": 0.0,
+     "certificate": 0.004975124378109453
+    }
+   },
+   "8": {
+    "SuperNI/task1572_samsum_summary": {
+     "changed_test": 0.0,
+     "certificate": 0.03076923076923077
+    },
+    "SuperNI/task363_sst2_polarity_classification": {
+     "changed_test": 0.01,
+     "certificate": 0.004975124378109453
+    },
+    "SuperNI/task1290_xsum_summarization": {
+     "changed_test": 0.0,
+     "certificate": 0.014925373134328358
+    },
+    "SuperNI/task181_outcome_extraction": {
+     "changed_test": 0.0,
+     "certificate": 0.007352941176470588
+    },
+    "SuperNI/task002_quoref_answer_generation": {
+     "changed_test": 0.0,
+     "certificate": 0.004975124378109453
+    },
+    "SuperNI/task1510_evalution_relation_extraction": {
+     "changed_test": 0.0,
+     "certificate": 0.004975124378109453
+    },
+    "SuperNI/task639_multi_woz_user_utterance_generation": {
+     "changed_test": 0.0,
+     "certificate": 0.017543859649122806
+    }
+   },
+   "9": {
+    "SuperNI/task1572_samsum_summary": {
+     "changed_test": 0.0,
+     "certificate": 0.03076923076923077
+    },
+    "SuperNI/task363_sst2_polarity_classification": {
+     "changed_test": 0.01,
+     "certificate": 0.004975124378109453
+    },
+    "SuperNI/task1290_xsum_summarization": {
+     "changed_test": 0.0,
+     "certificate": 0.014925373134328358
+    },
+    "SuperNI/task181_outcome_extraction": {
+     "changed_test": 0.0,
+     "certificate": 0.014705882352941176
+    },
+    "SuperNI/task002_quoref_answer_generation": {
+     "changed_test": 0.0,
+     "certificate": 0.004975124378109453
+    },
+    "SuperNI/task1510_evalution_relation_extraction": {
+     "changed_test": 0.0,
+     "certificate": 0.004975124378109453
+    },
+    "SuperNI/task639_multi_woz_user_utterance_generation": {
+     "changed_test": 0.0,
+     "certificate": 0.017543859649122806
+    },
+    "SuperNI/task1729_personachat_generate_next": {
+     "changed_test": 0.0,
+     "certificate": 0.004975124378109453
+    }
+   },
+   "10": {
+    "SuperNI/task1572_samsum_summary": {
+     "changed_test": 0.0,
+     "certificate": 0.03076923076923077
+    },
+    "SuperNI/task363_sst2_polarity_classification": {
+     "changed_test": 0.01,
+     "certificate": 0.004975124378109453
+    },
+    "SuperNI/task1290_xsum_summarization": {
+     "changed_test": 0.0,
+     "certificate": 0.014925373134328358
+    },
+    "SuperNI/task181_outcome_extraction": {
+     "changed_test": 0.0,
+     "certificate": 0.014705882352941176
+    },
+    "SuperNI/task002_quoref_answer_generation": {
+     "changed_test": 0.0,
+     "certificate": 0.004975124378109453
+    },
+    "SuperNI/task1510_evalution_relation_extraction": {
+     "changed_test": 0.0,
+     "certificate": 0.004975124378109453
+    },
+    "SuperNI/task639_multi_woz_user_utterance_generation": {
+     "changed_test": 0.0,
+     "certificate": 0.017543859649122806
+    },
+    "SuperNI/task1729_personachat_generate_next": {
+     "changed_test": 0.0,
+     "certificate": 0.004975124378109453
+    },
+    "SuperNI/task073_commonsenseqa_answer_generation": {
+     "changed_test": 0.0,
+     "certificate": 0.004975124378109453
+    }
+   },
+   "11": {
+    "SuperNI/task1572_samsum_summary": {
+     "changed_test": 0.05,
+     "certificate": 0.03076923076923077
+    },
+    "SuperNI/task363_sst2_polarity_classification": {
+     "changed_test": 0.01,
+     "certificate": 0.004975124378109453
+    },
+    "SuperNI/task1290_xsum_summarization": {
+     "changed_test": 0.0,
+     "certificate": 0.014925373134328358
+    },
+    "SuperNI/task181_outcome_extraction": {
+     "changed_test": 0.0,
+     "certificate": 0.014705882352941176
+    },
+    "SuperNI/task002_quoref_answer_generation": {
+     "changed_test": 0.0,
+     "certificate": 0.004975124378109453
+    },
+    "SuperNI/task1510_evalution_relation_extraction": {
+     "changed_test": 0.0,
+     "certificate": 0.004975124378109453
+    },
+    "SuperNI/task639_multi_woz_user_utterance_generation": {
+     "changed_test": 0.0,
+     "certificate": 0.017543859649122806
+    },
+    "SuperNI/task1729_personachat_generate_next": {
+     "changed_test": 0.0,
+     "certificate": 0.004975124378109453
+    },
+    "SuperNI/task073_commonsenseqa_answer_generation": {
+     "changed_test": 0.0,
+     "certificate": 0.004975124378109453
+    },
+    "SuperNI/task1590_diplomacy_text_generation": {
+     "changed_test": 0.0,
+     "certificate": 0.0392156862745098
+    }
+   },
+   "12": {
+    "SuperNI/task1572_samsum_summary": {
+     "changed_test": 0.0,
+     "certificate": 0.015384615384615385
+    },
+    "SuperNI/task363_sst2_polarity_classification": {
+     "changed_test": 0.01,
+     "certificate": 0.004975124378109453
+    },
+    "SuperNI/task1290_xsum_summarization": {
+     "changed_test": 0.0,
+     "certificate": 0.014925373134328358
+    },
+    "SuperNI/task181_outcome_extraction": {
+     "changed_test": 0.0,
+     "certificate": 0.014705882352941176
+    },
+    "SuperNI/task002_quoref_answer_generation": {
+     "changed_test": 0.0,
+     "certificate": 0.004975124378109453
+    },
+    "SuperNI/task1510_evalution_relation_extraction": {
+     "changed_test": 0.0,
+     "certificate": 0.004975124378109453
+    },
+    "SuperNI/task639_multi_woz_user_utterance_generation": {
+     "changed_test": 0.0,
+     "certificate": 0.017543859649122806
+    },
+    "SuperNI/task1729_personachat_generate_next": {
+     "changed_test": 0.0,
+     "certificate": 0.004975124378109453
+    },
+    "SuperNI/task073_commonsenseqa_answer_generation": {
+     "changed_test": 0.0,
+     "certificate": 0.004975124378109453
+    },
+    "SuperNI/task1590_diplomacy_text_generation": {
+     "changed_test": 0.0,
+     "certificate": 0.0392156862745098
+    },
+    "SuperNI/task748_glucose_reverse_cause_event_detection": {
+     "changed_test": 0.0,
+     "certificate": 0.009950248756218905
+    }
+   },
+   "13": {
+    "SuperNI/task1572_samsum_summary": {
+     "changed_test": 0.0,
+     "certificate": 0.015384615384615385
+    },
+    "SuperNI/task363_sst2_polarity_classification": {
+     "changed_test": 0.01,
+     "certificate": 0.009950248756218905
+    },
+    "SuperNI/task1290_xsum_summarization": {
+     "changed_test": 0.0,
+     "certificate": 0.014925373134328358
+    },
+    "SuperNI/task181_outcome_extraction": {
+     "changed_test": 0.0,
+     "certificate": 0.014705882352941176
+    },
+    "SuperNI/task002_quoref_answer_generation": {
+     "changed_test": 0.0,
+     "certificate": 0.004975124378109453
+    },
+    "SuperNI/task1510_evalution_relation_extraction": {
+     "changed_test": 0.0,
+     "certificate": 0.004975124378109453
+    },
+    "SuperNI/task639_multi_woz_user_utterance_generation": {
+     "changed_test": 0.0,
+     "certificate": 0.07017543859649122
+    },
+    "SuperNI/task1729_personachat_generate_next": {
+     "changed_test": 0.0,
+     "certificate": 0.004975124378109453
+    },
+    "SuperNI/task073_commonsenseqa_answer_generation": {
+     "changed_test": 0.0,
+     "certificate": 0.004975124378109453
+    },
+    "SuperNI/task1590_diplomacy_text_generation": {
+     "changed_test": 0.0,
+     "certificate": 0.0392156862745098
+    },
+    "SuperNI/task748_glucose_reverse_cause_event_detection": {
+     "changed_test": 0.0,
+     "certificate": 0.009950248756218905
+    },
+    "SuperNI/task511_reddit_tifu_long_text_summarization": {
+     "changed_test": 0.0,
+     "certificate": 0.004975124378109453
+    }
+   },
+   "14": {
+    "SuperNI/task1572_samsum_summary": {
+     "changed_test": 0.0,
+     "certificate": 0.015384615384615385
+    },
+    "SuperNI/task363_sst2_polarity_classification": {
+     "changed_test": 0.06,
+     "certificate": 0.029850746268656716
+    },
+    "SuperNI/task1290_xsum_summarization": {
+     "changed_test": 0.0,
+     "certificate": 0.014925373134328358
+    },
+    "SuperNI/task181_outcome_extraction": {
+     "changed_test": 0.0,
+     "certificate": 0.014705882352941176
+    },
+    "SuperNI/task002_quoref_answer_generation": {
+     "changed_test": 0.0,
+     "certificate": 0.004975124378109453
+    },
+    "SuperNI/task1510_evalution_relation_extraction": {
+     "changed_test": 0.0,
+     "certificate": 0.004975124378109453
+    },
+    "SuperNI/task639_multi_woz_user_utterance_generation": {
+     "changed_test": 0.0,
+     "certificate": 0.07017543859649122
+    },
+    "SuperNI/task1729_personachat_generate_next": {
+     "changed_test": 0.0,
+     "certificate": 0.004975124378109453
+    },
+    "SuperNI/task073_commonsenseqa_answer_generation": {
+     "changed_test": 0.0,
+     "certificate": 0.004975124378109453
+    },
+    "SuperNI/task1590_diplomacy_text_generation": {
+     "changed_test": 0.0,
+     "certificate": 0.058823529411764705
+    },
+    "SuperNI/task748_glucose_reverse_cause_event_detection": {
+     "changed_test": 0.0,
+     "certificate": 0.009950248756218905
+    },
+    "SuperNI/task511_reddit_tifu_long_text_summarization": {
+     "changed_test": 0.0,
+     "certificate": 0.004975124378109453
+    },
+    "SuperNI/task591_sciq_answer_generation": {
+     "changed_test": 0.0,
+     "certificate": 0.004975124378109453
+    }
+   },
+   "15": {
+    "SuperNI/task1572_samsum_summary": {
+     "changed_test": 0.0,
+     "certificate": 0.015384615384615385
+    },
+    "SuperNI/task363_sst2_polarity_classification": {
+     "changed_test": 0.05,
+     "certificate": 0.024875621890547265
+    },
+    "SuperNI/task1290_xsum_summarization": {
+     "changed_test": 0.0,
+     "certificate": 0.014925373134328358
+    },
+    "SuperNI/task181_outcome_extraction": {
+     "changed_test": 0.0,
+     "certificate": 0.014705882352941176
+    },
+    "SuperNI/task002_quoref_answer_generation": {
+     "changed_test": 0.0,
+     "certificate": 0.004975124378109453
+    },
+    "SuperNI/task1510_evalution_relation_extraction": {
+     "changed_test": 0.0,
+     "certificate": 0.004975124378109453
+    },
+    "SuperNI/task639_multi_woz_user_utterance_generation": {
+     "changed_test": 0.0,
+     "certificate": 0.12280701754385964
+    },
+    "SuperNI/task1729_personachat_generate_next": {
+     "changed_test": 0.0,
+     "certificate": 0.004975124378109453
+    },
+    "SuperNI/task073_commonsenseqa_answer_generation": {
+     "changed_test": 0.0,
+     "certificate": 0.004975124378109453
+    },
+    "SuperNI/task1590_diplomacy_text_generation": {
+     "changed_test": 0.0,
+     "certificate": 0.058823529411764705
+    },
+    "SuperNI/task748_glucose_reverse_cause_event_detection": {
+     "changed_test": 0.0,
+     "certificate": 0.004975124378109453
+    },
+    "SuperNI/task511_reddit_tifu_long_text_summarization": {
+     "changed_test": 0.0,
+     "certificate": 0.004975124378109453
+    },
+    "SuperNI/task591_sciq_answer_generation": {
+     "changed_test": 0.0,
+     "certificate": 0.009950248756218905
+    },
+    "SuperNI/task1687_sentiment140_classification": {
+     "changed_test": 0.04,
+     "certificate": 0.03980099502487562
+    }
+   }
+  },
+  "long_path": {
+   "2": {
+    "Long_Sequence/yelp": {
+     "changed_test": 0.0,
+     "certificate": 0.004975124378109453
+    }
+   },
+   "3": {
+    "Long_Sequence/yelp": {
+     "changed_test": 0.0013157894736842105,
+     "certificate": 0.004975124378109453
+    },
+    "Long_Sequence/amazon": {
+     "changed_test": 0.0,
+     "certificate": 0.004975124378109453
+    }
+   },
+   "4": {
+    "Long_Sequence/yelp": {
+     "changed_test": 0.004078947368421053,
+     "certificate": 0.004975124378109453
+    },
+    "Long_Sequence/amazon": {
+     "changed_test": 0.0,
+     "certificate": 0.004975124378109453
+    },
+    "Long_Sequence/mnli": {
+     "changed_test": 0.02157894736842105,
+     "certificate": 0.03482587064676617
+    }
+   },
+   "5": {
+    "Long_Sequence/yelp": {
+     "changed_test": 0.0044736842105263155,
+     "certificate": 0.004975124378109453
+    },
+    "Long_Sequence/amazon": {
+     "changed_test": 0.0010526315789473684,
+     "certificate": 0.004975124378109453
+    },
+    "Long_Sequence/mnli": {
+     "changed_test": 0.02144736842105263,
+     "certificate": 0.04477611940298507
+    },
+    "Long_Sequence/cb": {
+     "changed_test": 0.0,
+     "certificate": 0.009900990099009901
+    }
+   },
+   "6": {
+    "Long_Sequence/yelp": {
+     "changed_test": 0.005,
+     "certificate": 0.004975124378109453
+    },
+    "Long_Sequence/amazon": {
+     "changed_test": 0.001973684210526316,
+     "certificate": 0.004975124378109453
+    },
+    "Long_Sequence/mnli": {
+     "changed_test": 0.03276315789473684,
+     "certificate": 0.03482587064676617
+    },
+    "Long_Sequence/cb": {
+     "changed_test": 0.08928571428571429,
+     "certificate": 0.039603960396039604
+    },
+    "Long_Sequence/copa": {
+     "changed_test": 0.0,
+     "certificate": 0.006211180124223602
+    }
+   },
+   "7": {
+    "Long_Sequence/yelp": {
+     "changed_test": 0.00631578947368421,
+     "certificate": 0.004975124378109453
+    },
+    "Long_Sequence/amazon": {
+     "changed_test": 0.0014473684210526317,
+     "certificate": 0.004975124378109453
+    },
+    "Long_Sequence/mnli": {
+     "changed_test": 0.14,
+     "certificate": 0.12935323383084577
+    },
+    "Long_Sequence/cb": {
+     "changed_test": 0.16071428571428573,
+     "certificate": 0.1188118811881188
+    },
+    "Long_Sequence/copa": {
+     "changed_test": 0.0,
+     "certificate": 0.006211180124223602
+    },
+    "Long_Sequence/qqp": {
+     "changed_test": 0.0022368421052631577,
+     "certificate": 0.014925373134328358
+    }
+   },
+   "8": {
+    "Long_Sequence/yelp": {
+     "changed_test": 0.00631578947368421,
+     "certificate": 0.004975124378109453
+    },
+    "Long_Sequence/amazon": {
+     "changed_test": 0.0014473684210526317,
+     "certificate": 0.004975124378109453
+    },
+    "Long_Sequence/mnli": {
+     "changed_test": 0.1401315789473684,
+     "certificate": 0.13432835820895522
+    },
+    "Long_Sequence/cb": {
+     "changed_test": 0.16071428571428573,
+     "certificate": 0.1188118811881188
+    },
+    "Long_Sequence/copa": {
+     "changed_test": 0.0,
+     "certificate": 0.006211180124223602
+    },
+    "Long_Sequence/qqp": {
+     "changed_test": 0.002105263157894737,
+     "certificate": 0.014925373134328358
+    },
+    "Long_Sequence/rte": {
+     "changed_test": 0.0,
+     "certificate": 0.004975124378109453
+    }
+   },
+   "9": {
+    "Long_Sequence/yelp": {
+     "changed_test": 0.006842105263157895,
+     "certificate": 0.004975124378109453
+    },
+    "Long_Sequence/amazon": {
+     "changed_test": 0.0014473684210526317,
+     "certificate": 0.004975124378109453
+    },
+    "Long_Sequence/mnli": {
+     "changed_test": 0.14026315789473684,
+     "certificate": 0.13930348258706468
+    },
+    "Long_Sequence/cb": {
+     "changed_test": 0.16071428571428573,
+     "certificate": 0.1188118811881188
+    },
+    "Long_Sequence/copa": {
+     "changed_test": 0.0,
+     "certificate": 0.006211180124223602
+    },
+    "Long_Sequence/qqp": {
+     "changed_test": 0.0022368421052631577,
+     "certificate": 0.014925373134328358
+    },
+    "Long_Sequence/rte": {
+     "changed_test": 0.0,
+     "certificate": 0.004975124378109453
+    },
+    "Long_Sequence/imdb": {
+     "changed_test": 0.0013157894736842105,
+     "certificate": 0.004975124378109453
+    }
+   },
+   "10": {
+    "Long_Sequence/yelp": {
+     "changed_test": 0.006973684210526316,
+     "certificate": 0.004975124378109453
+    },
+    "Long_Sequence/amazon": {
+     "changed_test": 0.011842105263157895,
+     "certificate": 0.01990049751243781
+    },
+    "Long_Sequence/mnli": {
+     "changed_test": 0.13973684210526316,
+     "certificate": 0.14427860696517414
+    },
+    "Long_Sequence/cb": {
+     "changed_test": 0.17857142857142858,
+     "certificate": 0.1188118811881188
+    },
+    "Long_Sequence/copa": {
+     "changed_test": 0.0,
+     "certificate": 0.006211180124223602
+    },
+    "Long_Sequence/qqp": {
+     "changed_test": 0.0022368421052631577,
+     "certificate": 0.014925373134328358
+    },
+    "Long_Sequence/rte": {
+     "changed_test": 0.0036101083032490976,
+     "certificate": 0.004975124378109453
+    },
+    "Long_Sequence/imdb": {
+     "changed_test": 0.0014473684210526317,
+     "certificate": 0.004975124378109453
+    },
+    "Long_Sequence/sst2": {
+     "changed_test": 0.0,
+     "certificate": 0.004975124378109453
+    }
+   },
+   "11": {
+    "Long_Sequence/yelp": {
+     "changed_test": 0.007236842105263158,
+     "certificate": 0.004975124378109453
+    },
+    "Long_Sequence/amazon": {
+     "changed_test": 0.01986842105263158,
+     "certificate": 0.024875621890547265
+    },
+    "Long_Sequence/mnli": {
+     "changed_test": 0.14078947368421052,
+     "certificate": 0.13432835820895522
+    },
+    "Long_Sequence/cb": {
+     "changed_test": 0.16071428571428573,
+     "certificate": 0.1188118811881188
+    },
+    "Long_Sequence/copa": {
+     "changed_test": 0.0,
+     "certificate": 0.006211180124223602
+    },
+    "Long_Sequence/qqp": {
+     "changed_test": 0.002105263157894737,
+     "certificate": 0.014925373134328358
+    },
+    "Long_Sequence/rte": {
+     "changed_test": 0.0036101083032490976,
+     "certificate": 0.004975124378109453
+    },
+    "Long_Sequence/imdb": {
+     "changed_test": 0.0014473684210526317,
+     "certificate": 0.004975124378109453
+    },
+    "Long_Sequence/sst2": {
+     "changed_test": 0.0011467889908256881,
+     "certificate": 0.004975124378109453
+    },
+    "Long_Sequence/dbpedia": {
+     "changed_test": 0.006973684210526316,
+     "certificate": 0.029850746268656716
+    }
+   },
+   "12": {
+    "Long_Sequence/yelp": {
+     "changed_test": 0.008684210526315789,
+     "certificate": 0.009950248756218905
+    },
+    "Long_Sequence/amazon": {
+     "changed_test": 0.02907894736842105,
+     "certificate": 0.024875621890547265
+    },
+    "Long_Sequence/mnli": {
+     "changed_test": 0.14105263157894737,
+     "certificate": 0.13930348258706468
+    },
+    "Long_Sequence/cb": {
+     "changed_test": 0.16071428571428573,
+     "certificate": 0.1188118811881188
+    },
+    "Long_Sequence/copa": {
+     "changed_test": 0.0,
+     "certificate": 0.006211180124223602
+    },
+    "Long_Sequence/qqp": {
+     "changed_test": 0.0022368421052631577,
+     "certificate": 0.014925373134328358
+    },
+    "Long_Sequence/rte": {
+     "changed_test": 0.0036101083032490976,
+     "certificate": 0.004975124378109453
+    },
+    "Long_Sequence/imdb": {
+     "changed_test": 0.0017105263157894738,
+     "certificate": 0.004975124378109453
+    },
+    "Long_Sequence/sst2": {
+     "changed_test": 0.0,
+     "certificate": 0.004975124378109453
+    },
+    "Long_Sequence/dbpedia": {
+     "changed_test": 0.008157894736842105,
+     "certificate": 0.029850746268656716
+    },
+    "Long_Sequence/agnews": {
+     "changed_test": 0.008947368421052631,
+     "certificate": 0.009950248756218905
+    }
+   },
+   "13": {
+    "Long_Sequence/yelp": {
+     "changed_test": 0.010263157894736842,
+     "certificate": 0.009950248756218905
+    },
+    "Long_Sequence/amazon": {
+     "changed_test": 0.030921052631578946,
+     "certificate": 0.029850746268656716
+    },
+    "Long_Sequence/mnli": {
+     "changed_test": 0.14157894736842105,
+     "certificate": 0.12935323383084577
+    },
+    "Long_Sequence/cb": {
+     "changed_test": 0.16071428571428573,
+     "certificate": 0.10891089108910891
+    },
+    "Long_Sequence/copa": {
+     "changed_test": 0.0,
+     "certificate": 0.006211180124223602
+    },
+    "Long_Sequence/qqp": {
+     "changed_test": 0.0028947368421052633,
+     "certificate": 0.014925373134328358
+    },
+    "Long_Sequence/rte": {
+     "changed_test": 0.0036101083032490976,
+     "certificate": 0.004975124378109453
+    },
+    "Long_Sequence/imdb": {
+     "changed_test": 0.0017105263157894738,
+     "certificate": 0.004975124378109453
+    },
+    "Long_Sequence/sst2": {
+     "changed_test": 0.0,
+     "certificate": 0.004975124378109453
+    },
+    "Long_Sequence/dbpedia": {
+     "changed_test": 0.008421052631578947,
+     "certificate": 0.024875621890547265
+    },
+    "Long_Sequence/agnews": {
+     "changed_test": 0.008684210526315789,
+     "certificate": 0.014925373134328358
+    },
+    "Long_Sequence/yahoo": {
+     "changed_test": 0.022105263157894735,
+     "certificate": 0.01990049751243781
+    }
+   },
+   "14": {
+    "Long_Sequence/yelp": {
+     "changed_test": 0.01013157894736842,
+     "certificate": 0.014925373134328358
+    },
+    "Long_Sequence/amazon": {
+     "changed_test": 0.030526315789473683,
+     "certificate": 0.029850746268656716
+    },
+    "Long_Sequence/mnli": {
+     "changed_test": 0.14210526315789473,
+     "certificate": 0.13432835820895522
+    },
+    "Long_Sequence/cb": {
+     "changed_test": 0.16071428571428573,
+     "certificate": 0.1188118811881188
+    },
+    "Long_Sequence/copa": {
+     "changed_test": 0.0,
+     "certificate": 0.006211180124223602
+    },
+    "Long_Sequence/qqp": {
+     "changed_test": 0.0034210526315789475,
+     "certificate": 0.014925373134328358
+    },
+    "Long_Sequence/rte": {
+     "changed_test": 0.010830324909747292,
+     "certificate": 0.009950248756218905
+    },
+    "Long_Sequence/imdb": {
+     "changed_test": 0.0014473684210526317,
+     "certificate": 0.004975124378109453
+    },
+    "Long_Sequence/sst2": {
+     "changed_test": 0.0,
+     "certificate": 0.004975124378109453
+    },
+    "Long_Sequence/dbpedia": {
+     "changed_test": 0.008289473684210527,
+     "certificate": 0.01990049751243781
+    },
+    "Long_Sequence/agnews": {
+     "changed_test": 0.008947368421052631,
+     "certificate": 0.009950248756218905
+    },
+    "Long_Sequence/yahoo": {
+     "changed_test": 0.021710526315789475,
+     "certificate": 0.01990049751243781
+    },
+    "Long_Sequence/multirc": {
+     "changed_test": 0.0024752475247524753,
+     "certificate": 0.004975124378109453
+    }
+   },
+   "15": {
+    "Long_Sequence/yelp": {
+     "changed_test": 0.008552631578947369,
+     "certificate": 0.009950248756218905
+    },
+    "Long_Sequence/amazon": {
+     "changed_test": 0.030131578947368422,
+     "certificate": 0.029850746268656716
+    },
+    "Long_Sequence/mnli": {
+     "changed_test": 0.1423684210526316,
+     "certificate": 0.13930348258706468
+    },
+    "Long_Sequence/cb": {
+     "changed_test": 0.16071428571428573,
+     "certificate": 0.1188118811881188
+    },
+    "Long_Sequence/copa": {
+     "changed_test": 0.0,
+     "certificate": 0.006211180124223602
+    },
+    "Long_Sequence/qqp": {
+     "changed_test": 0.0035526315789473684,
+     "certificate": 0.014925373134328358
+    },
+    "Long_Sequence/rte": {
+     "changed_test": 0.01444043321299639,
+     "certificate": 0.009950248756218905
+    },
+    "Long_Sequence/imdb": {
+     "changed_test": 0.0014473684210526317,
+     "certificate": 0.004975124378109453
+    },
+    "Long_Sequence/sst2": {
+     "changed_test": 0.0,
+     "certificate": 0.004975124378109453
+    },
+    "Long_Sequence/dbpedia": {
+     "changed_test": 0.008026315789473683,
+     "certificate": 0.029850746268656716
+    },
+    "Long_Sequence/agnews": {
+     "changed_test": 0.009210526315789473,
+     "certificate": 0.009950248756218905
+    },
+    "Long_Sequence/yahoo": {
+     "changed_test": 0.02368421052631579,
+     "certificate": 0.024875621890547265
+    },
+    "Long_Sequence/multirc": {
+     "changed_test": 0.010932343234323433,
+     "certificate": 0.004975124378109453
+    },
+    "Long_Sequence/boolq": {
+     "changed_test": 0.0009174311926605505,
+     "certificate": 0.004975124378109453
+    }
+   }
+  }
+ },
+ "verdict_fresh3": {
+  "use": "works",
+  "certificate": "met",
+  "mean_own_at_end": 0.9380000000000001,
+  "mean_own_at_arrival": 0.9641666666666667,
+  "mean_changed": 0.03016666666666667,
+  "se_changed": 0.01866905259792833,
+  "mean_certificate": 0.03764510779436154,
+  "certificate_limit": 0.0749832129902182
+ },
+ "fresh3": {
+  "tasks": [
+   "task075_squad1.1_answer_generation",
+   "task593_sciq_explanation_generation",
+   "task517_emo_classify_emotion_of_dialogue",
+   "task1286_openbookqa_question_answering",
+   "task317_crows-pairs_classification_stereotype_type",
+   "task245_check_presence_in_set_intersection",
+   "task400_paws_paraphrase_classification",
+   "task280_stereoset_classification_stereotype_type",
+   "task567_circa_text_generation",
+   "task1391_winogrande_easy_answer_generation",
+   "task1731_quartz_question_answering",
+   "task1660_super_glue_question_generation",
+   "task1344_glue_entailment_classification",
+   "task089_swap_words_verification",
+   "task565_circa_answer_generation",
+   "task391_causal_relationship",
+   "task574_air_dialogue_sentence_generation",
+   "task1615_sick_tclassify_b_relation_a",
+   "task335_hateeval_classification_aggresive_en",
+   "task095_conala_max_absolute_value",
+   "task339_record_answer_generation",
+   "task592_sciq_incorrect_answer_generation",
+   "task399_semeval_2018_task1_tweet_sadness_detection",
+   "task327_jigsaw_classification_toxic",
+   "task167_strategyqa_question_generation",
+   "task738_perspectrum_classification",
+   "task377_remove_words_of_given_length",
+   "task564_discofuse_classification",
+   "task462_qasper_classification",
+   "task850_synthetic_longest_palindrome"
+  ],
+  "pool_size": 4985,
+  "pool_removed": 180,
+  "pool_removed_tasks": [
+   "task075_squad1.1_answer_generation",
+   "task089_swap_words_verification",
+   "task095_conala_max_absolute_value",
+   "task1286_openbookqa_question_answering",
+   "task1344_glue_entailment_classification",
+   "task1391_winogrande_easy_answer_generation",
+   "task1615_sick_tclassify_b_relation_a",
+   "task1660_super_glue_question_generation",
+   "task167_strategyqa_question_generation",
+   "task1731_quartz_question_answering",
+   "task245_check_presence_in_set_intersection",
+   "task280_stereoset_classification_stereotype_type",
+   "task317_crows-pairs_classification_stereotype_type",
+   "task327_jigsaw_classification_toxic",
+   "task335_hateeval_classification_aggresive_en",
+   "task339_record_answer_generation",
+   "task377_remove_words_of_given_length",
+   "task391_causal_relationship",
+   "task399_semeval_2018_task1_tweet_sadness_detection",
+   "task400_paws_paraphrase_classification",
+   "task462_qasper_classification",
+   "task517_emo_classify_emotion_of_dialogue",
+   "task564_discofuse_classification",
+   "task565_circa_answer_generation",
+   "task567_circa_text_generation",
+   "task574_air_dialogue_sentence_generation",
+   "task592_sciq_incorrect_answer_generation",
+   "task593_sciq_explanation_generation",
+   "task738_perspectrum_classification",
+   "task850_synthetic_longest_palindrome"
+  ],
+  "chosen": {
+   "variant": "lr|minilm+shape|10",
+   "verdict": {
+    "use": "works",
+    "certificate": "met",
+    "mean_own_at_end": 0.9380000000000001,
+    "mean_own_at_arrival": 0.9641666666666667,
+    "mean_changed": 0.03016666666666667,
+    "se_changed": 0.01866905259792833,
+    "mean_certificate": 0.03764510779436154,
+    "certificate_limit": 0.0749832129902182
+   },
+   "weak_tasks": {
+    "task567_circa_text_generation": {
+     "own_at_end": 0.45,
+     "top_wrong_task": "task565_circa_answer_generation",
+     "top_wrong_share_of_wrongly_routed": 0.9818181818181818
+    },
+    "task565_circa_answer_generation": {
+     "own_at_end": 0.485,
+     "top_wrong_task": "task567_circa_text_generation",
+     "top_wrong_share_of_wrongly_routed": 1.0
+    }
+   },
+   "mean": {
+    "own_at_arrival": 0.9641666666666667,
+    "own_at_end": 0.9380000000000001,
+    "changed": 0.03016666666666667,
+    "certificate": 0.03764510779436154,
+    "heldout_own_at_arrival": 0.9701666666666665,
+    "heldout_own_at_end": 0.9403333333333334,
+    "apriori_bound": 0.09783333333333336
+   },
+   "se": {
+    "own_at_arrival": 0.01800556001825217,
+    "own_at_end": 0.024747692334075692,
+    "changed": 0.01866905259792833,
+    "certificate": 0.01993004516174044,
+    "heldout_own_at_arrival": 0.019024308909968736,
+    "heldout_own_at_end": 0.026591777025313387,
+    "apriori_bound": 0.03924919161136435
+   },
+   "per_task": {
+    "task075_squad1.1_answer_generation": {
+     "own_at_arrival": 1.0,
+     "own_at_end": 0.995,
+     "changed": 0.005,
+     "certificate": 0.029850746268656716,
+     "c": 5,
+     "m": 200
+    },
+    "task593_sciq_explanation_generation": {
+     "own_at_arrival": 1.0,
+     "own_at_end": 1.0,
+     "changed": 0.0,
+     "certificate": 0.004975124378109453,
+     "c": 0,
+     "m": 200
+    },
+    "task517_emo_classify_emotion_of_dialogue": {
+     "own_at_arrival": 1.0,
+     "own_at_end": 0.975,
+     "changed": 0.025,
+     "certificate": 0.01990049751243781,
+     "c": 3,
+     "m": 200
+    },
+    "task1286_openbookqa_question_answering": {
+     "own_at_arrival": 1.0,
+     "own_at_end": 1.0,
+     "changed": 0.0,
+     "certificate": 0.014925373134328358,
+     "c": 2,
+     "m": 200
+    },
+    "task317_crows-pairs_classification_stereotype_type": {
+     "own_at_arrival": 0.995,
+     "own_at_end": 0.87,
+     "changed": 0.135,
+     "certificate": 0.1890547263681592,
+     "c": 37,
+     "m": 200
+    },
+    "task245_check_presence_in_set_intersection": {
+     "own_at_arrival": 1.0,
+     "own_at_end": 1.0,
+     "changed": 0.0,
+     "certificate": 0.004975124378109453,
+     "c": 0,
+     "m": 200
+    },
+    "task400_paws_paraphrase_classification": {
+     "own_at_arrival": 1.0,
+     "own_at_end": 1.0,
+     "changed": 0.0,
+     "certificate": 0.009950248756218905,
+     "c": 1,
+     "m": 200
+    },
+    "task280_stereoset_classification_stereotype_type": {
+     "own_at_arrival": 0.85,
+     "own_at_end": 0.84,
+     "changed": 0.03,
+     "certificate": 0.01990049751243781,
+     "c": 3,
+     "m": 200
+    },
+    "task567_circa_text_generation": {
+     "own_at_arrival": 0.985,
+     "own_at_end": 0.45,
+     "changed": 0.55,
+     "certificate": 0.5870646766169154,
+     "c": 117,
+     "m": 200
+    },
+    "task1391_winogrande_easy_answer_generation": {
+     "own_at_arrival": 1.0,
+     "own_at_end": 0.995,
+     "changed": 0.005,
+     "certificate": 0.004975124378109453,
+     "c": 0,
+     "m": 200
+    },
+    "task1731_quartz_question_answering": {
+     "own_at_arrival": 1.0,
+     "own_at_end": 1.0,
+     "changed": 0.0,
+     "certificate": 0.004975124378109453,
+     "c": 0,
+     "m": 200
+    },
+    "task1660_super_glue_question_generation": {
+     "own_at_arrival": 0.97,
+     "own_at_end": 0.975,
+     "changed": 0.005,
+     "certificate": 0.01990049751243781,
+     "c": 3,
+     "m": 200
+    },
+    "task1344_glue_entailment_classification": {
+     "own_at_arrival": 0.985,
+     "own_at_end": 0.9,
+     "changed": 0.085,
+     "certificate": 0.04975124378109453,
+     "c": 9,
+     "m": 200
+    },
+    "task089_swap_words_verification": {
+     "own_at_arrival": 1.0,
+     "own_at_end": 1.0,
+     "changed": 0.0,
+     "certificate": 0.004975124378109453,
+     "c": 0,
+     "m": 200
+    },
+    "task565_circa_answer_generation": {
+     "own_at_arrival": 0.48,
+     "own_at_end": 0.485,
+     "changed": 0.005,
+     "certificate": 0.01990049751243781,
+     "c": 3,
+     "m": 200
+    },
+    "task391_causal_relationship": {
+     "own_at_arrival": 1.0,
+     "own_at_end": 1.0,
+     "changed": 0.0,
+     "certificate": 0.004975124378109453,
+     "c": 0,
+     "m": 200
+    },
+    "task574_air_dialogue_sentence_generation": {
+     "own_at_arrival": 1.0,
+     "own_at_end": 1.0,
+     "changed": 0.0,
+     "certificate": 0.004975124378109453,
+     "c": 0,
+     "m": 200
+    },
+    "task1615_sick_tclassify_b_relation_a": {
+     "own_at_arrival": 1.0,
+     "own_at_end": 1.0,
+     "changed": 0.0,
+     "certificate": 0.004975124378109453,
+     "c": 0,
+     "m": 200
+    },
+    "task335_hateeval_classification_aggresive_en": {
+     "own_at_arrival": 0.995,
+     "own_at_end": 0.985,
+     "changed": 0.01,
+     "certificate": 0.024875621890547265,
+     "c": 4,
+     "m": 200
+    },
+    "task095_conala_max_absolute_value": {
+     "own_at_arrival": 1.0,
+     "own_at_end": 1.0,
+     "changed": 0.0,
+     "certificate": 0.004975124378109453,
+     "c": 0,
+     "m": 200
+    },
+    "task339_record_answer_generation": {
+     "own_at_arrival": 1.0,
+     "own_at_end": 1.0,
+     "changed": 0.0,
+     "certificate": 0.004975124378109453,
+     "c": 0,
+     "m": 200
+    },
+    "task592_sciq_incorrect_answer_generation": {
+     "own_at_arrival": 0.995,
+     "own_at_end": 0.995,
+     "changed": 0.0,
+     "certificate": 0.004975124378109453,
+     "c": 0,
+     "m": 200
+    },
+    "task399_semeval_2018_task1_tweet_sadness_detection": {
+     "own_at_arrival": 0.925,
+     "own_at_end": 0.925,
+     "changed": 0.02,
+     "certificate": 0.024875621890547265,
+     "c": 4,
+     "m": 200
+    },
+    "task327_jigsaw_classification_toxic": {
+     "own_at_arrival": 0.925,
+     "own_at_end": 0.92,
+     "changed": 0.02,
+     "certificate": 0.024875621890547265,
+     "c": 4,
+     "m": 200
+    },
+    "task167_strategyqa_question_generation": {
+     "own_at_arrival": 1.0,
+     "own_at_end": 1.0,
+     "changed": 0.0,
+     "certificate": 0.004975124378109453,
+     "c": 0,
+     "m": 200
+    },
+    "task738_perspectrum_classification": {
+     "own_at_arrival": 0.95,
+     "own_at_end": 0.955,
+     "changed": 0.005,
+     "certificate": 0.009950248756218905,
+     "c": 1,
+     "m": 200
+    },
+    "task377_remove_words_of_given_length": {
+     "own_at_arrival": 1.0,
+     "own_at_end": 1.0,
+     "changed": 0.0,
+     "certificate": 0.004975124378109453,
+     "c": 0,
+     "m": 200
+    },
+    "task564_discofuse_classification": {
+     "own_at_arrival": 0.89,
+     "own_at_end": 0.89,
+     "changed": 0.0,
+     "certificate": 0.009950248756218905,
+     "c": 1,
+     "m": 200
+    },
+    "task462_qasper_classification": {
+     "own_at_arrival": 0.98,
+     "own_at_end": 0.985,
+     "changed": 0.005,
+     "certificate": 0.004975124378109453,
+     "c": 0,
+     "m": 200
+    },
+    "task850_synthetic_longest_palindrome": {
+     "own_at_arrival": 1.0,
+     "own_at_end": 1.0,
+     "changed": 0.0,
+     "certificate": 0.004975124378109453,
+     "c": 0,
+     "m": 200
+    }
+   },
+   "path": {
+    "2": {
+     "task075_squad1.1_answer_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     }
+    },
+    "3": {
+     "task075_squad1.1_answer_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task593_sciq_explanation_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     }
+    },
+    "4": {
+     "task075_squad1.1_answer_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task593_sciq_explanation_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task517_emo_classify_emotion_of_dialogue": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     }
+    },
+    "5": {
+     "task075_squad1.1_answer_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task593_sciq_explanation_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task517_emo_classify_emotion_of_dialogue": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task1286_openbookqa_question_answering": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     }
+    },
+    "6": {
+     "task075_squad1.1_answer_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task593_sciq_explanation_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task517_emo_classify_emotion_of_dialogue": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task1286_openbookqa_question_answering": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task317_crows-pairs_classification_stereotype_type": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     }
+    },
+    "7": {
+     "task075_squad1.1_answer_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task593_sciq_explanation_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task517_emo_classify_emotion_of_dialogue": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task1286_openbookqa_question_answering": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task317_crows-pairs_classification_stereotype_type": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task245_check_presence_in_set_intersection": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     }
+    },
+    "8": {
+     "task075_squad1.1_answer_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task593_sciq_explanation_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task517_emo_classify_emotion_of_dialogue": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task1286_openbookqa_question_answering": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task317_crows-pairs_classification_stereotype_type": {
+      "changed_test": 0.15,
+      "certificate": 0.1691542288557214
+     },
+     "task245_check_presence_in_set_intersection": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task400_paws_paraphrase_classification": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     }
+    },
+    "9": {
+     "task075_squad1.1_answer_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task593_sciq_explanation_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task517_emo_classify_emotion_of_dialogue": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task1286_openbookqa_question_answering": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task317_crows-pairs_classification_stereotype_type": {
+      "changed_test": 0.14,
+      "certificate": 0.17412935323383086
+     },
+     "task245_check_presence_in_set_intersection": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task400_paws_paraphrase_classification": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task280_stereoset_classification_stereotype_type": {
+      "changed_test": 0.015,
+      "certificate": 0.01990049751243781
+     }
+    },
+    "10": {
+     "task075_squad1.1_answer_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task593_sciq_explanation_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task517_emo_classify_emotion_of_dialogue": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task1286_openbookqa_question_answering": {
+      "changed_test": 0.0,
+      "certificate": 0.009950248756218905
+     },
+     "task317_crows-pairs_classification_stereotype_type": {
+      "changed_test": 0.125,
+      "certificate": 0.1791044776119403
+     },
+     "task245_check_presence_in_set_intersection": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task400_paws_paraphrase_classification": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task280_stereoset_classification_stereotype_type": {
+      "changed_test": 0.005,
+      "certificate": 0.029850746268656716
+     },
+     "task567_circa_text_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     }
+    },
+    "11": {
+     "task075_squad1.1_answer_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task593_sciq_explanation_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task517_emo_classify_emotion_of_dialogue": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task1286_openbookqa_question_answering": {
+      "changed_test": 0.0,
+      "certificate": 0.009950248756218905
+     },
+     "task317_crows-pairs_classification_stereotype_type": {
+      "changed_test": 0.125,
+      "certificate": 0.1791044776119403
+     },
+     "task245_check_presence_in_set_intersection": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task400_paws_paraphrase_classification": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task280_stereoset_classification_stereotype_type": {
+      "changed_test": 0.005,
+      "certificate": 0.024875621890547265
+     },
+     "task567_circa_text_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task1391_winogrande_easy_answer_generation": {
+      "changed_test": 0.005,
+      "certificate": 0.004975124378109453
+     }
+    },
+    "12": {
+     "task075_squad1.1_answer_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.014925373134328358
+     },
+     "task593_sciq_explanation_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task517_emo_classify_emotion_of_dialogue": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task1286_openbookqa_question_answering": {
+      "changed_test": 0.0,
+      "certificate": 0.009950248756218905
+     },
+     "task317_crows-pairs_classification_stereotype_type": {
+      "changed_test": 0.125,
+      "certificate": 0.1791044776119403
+     },
+     "task245_check_presence_in_set_intersection": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task400_paws_paraphrase_classification": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task280_stereoset_classification_stereotype_type": {
+      "changed_test": 0.015,
+      "certificate": 0.024875621890547265
+     },
+     "task567_circa_text_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.009950248756218905
+     },
+     "task1391_winogrande_easy_answer_generation": {
+      "changed_test": 0.005,
+      "certificate": 0.004975124378109453
+     },
+     "task1731_quartz_question_answering": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     }
+    },
+    "13": {
+     "task075_squad1.1_answer_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.014925373134328358
+     },
+     "task593_sciq_explanation_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task517_emo_classify_emotion_of_dialogue": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task1286_openbookqa_question_answering": {
+      "changed_test": 0.0,
+      "certificate": 0.009950248756218905
+     },
+     "task317_crows-pairs_classification_stereotype_type": {
+      "changed_test": 0.135,
+      "certificate": 0.17412935323383086
+     },
+     "task245_check_presence_in_set_intersection": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task400_paws_paraphrase_classification": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task280_stereoset_classification_stereotype_type": {
+      "changed_test": 0.005,
+      "certificate": 0.029850746268656716
+     },
+     "task567_circa_text_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task1391_winogrande_easy_answer_generation": {
+      "changed_test": 0.005,
+      "certificate": 0.004975124378109453
+     },
+     "task1731_quartz_question_answering": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task1660_super_glue_question_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     }
+    },
+    "14": {
+     "task075_squad1.1_answer_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.014925373134328358
+     },
+     "task593_sciq_explanation_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task517_emo_classify_emotion_of_dialogue": {
+      "changed_test": 0.01,
+      "certificate": 0.014925373134328358
+     },
+     "task1286_openbookqa_question_answering": {
+      "changed_test": 0.0,
+      "certificate": 0.009950248756218905
+     },
+     "task317_crows-pairs_classification_stereotype_type": {
+      "changed_test": 0.145,
+      "certificate": 0.1691542288557214
+     },
+     "task245_check_presence_in_set_intersection": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task400_paws_paraphrase_classification": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task280_stereoset_classification_stereotype_type": {
+      "changed_test": 0.005,
+      "certificate": 0.014925373134328358
+     },
+     "task567_circa_text_generation": {
+      "changed_test": 0.015,
+      "certificate": 0.014925373134328358
+     },
+     "task1391_winogrande_easy_answer_generation": {
+      "changed_test": 0.005,
+      "certificate": 0.004975124378109453
+     },
+     "task1731_quartz_question_answering": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task1660_super_glue_question_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task1344_glue_entailment_classification": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     }
+    },
+    "15": {
+     "task075_squad1.1_answer_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.014925373134328358
+     },
+     "task593_sciq_explanation_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task517_emo_classify_emotion_of_dialogue": {
+      "changed_test": 0.01,
+      "certificate": 0.009950248756218905
+     },
+     "task1286_openbookqa_question_answering": {
+      "changed_test": 0.0,
+      "certificate": 0.009950248756218905
+     },
+     "task317_crows-pairs_classification_stereotype_type": {
+      "changed_test": 0.13,
+      "certificate": 0.18407960199004975
+     },
+     "task245_check_presence_in_set_intersection": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task400_paws_paraphrase_classification": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task280_stereoset_classification_stereotype_type": {
+      "changed_test": 0.015,
+      "certificate": 0.029850746268656716
+     },
+     "task567_circa_text_generation": {
+      "changed_test": 0.56,
+      "certificate": 0.5771144278606966
+     },
+     "task1391_winogrande_easy_answer_generation": {
+      "changed_test": 0.005,
+      "certificate": 0.004975124378109453
+     },
+     "task1731_quartz_question_answering": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task1660_super_glue_question_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task1344_glue_entailment_classification": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task089_swap_words_verification": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     }
+    },
+    "16": {
+     "task075_squad1.1_answer_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.014925373134328358
+     },
+     "task593_sciq_explanation_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task517_emo_classify_emotion_of_dialogue": {
+      "changed_test": 0.01,
+      "certificate": 0.009950248756218905
+     },
+     "task1286_openbookqa_question_answering": {
+      "changed_test": 0.0,
+      "certificate": 0.009950248756218905
+     },
+     "task317_crows-pairs_classification_stereotype_type": {
+      "changed_test": 0.125,
+      "certificate": 0.1791044776119403
+     },
+     "task245_check_presence_in_set_intersection": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task400_paws_paraphrase_classification": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task280_stereoset_classification_stereotype_type": {
+      "changed_test": 0.025,
+      "certificate": 0.029850746268656716
+     },
+     "task567_circa_text_generation": {
+      "changed_test": 0.56,
+      "certificate": 0.582089552238806
+     },
+     "task1391_winogrande_easy_answer_generation": {
+      "changed_test": 0.005,
+      "certificate": 0.004975124378109453
+     },
+     "task1731_quartz_question_answering": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task1660_super_glue_question_generation": {
+      "changed_test": 0.005,
+      "certificate": 0.004975124378109453
+     },
+     "task1344_glue_entailment_classification": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task089_swap_words_verification": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task565_circa_answer_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.014925373134328358
+     }
+    },
+    "17": {
+     "task075_squad1.1_answer_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.014925373134328358
+     },
+     "task593_sciq_explanation_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task517_emo_classify_emotion_of_dialogue": {
+      "changed_test": 0.01,
+      "certificate": 0.009950248756218905
+     },
+     "task1286_openbookqa_question_answering": {
+      "changed_test": 0.0,
+      "certificate": 0.009950248756218905
+     },
+     "task317_crows-pairs_classification_stereotype_type": {
+      "changed_test": 0.135,
+      "certificate": 0.17412935323383086
+     },
+     "task245_check_presence_in_set_intersection": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task400_paws_paraphrase_classification": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task280_stereoset_classification_stereotype_type": {
+      "changed_test": 0.02,
+      "certificate": 0.01990049751243781
+     },
+     "task567_circa_text_generation": {
+      "changed_test": 0.55,
+      "certificate": 0.572139303482587
+     },
+     "task1391_winogrande_easy_answer_generation": {
+      "changed_test": 0.005,
+      "certificate": 0.004975124378109453
+     },
+     "task1731_quartz_question_answering": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task1660_super_glue_question_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task1344_glue_entailment_classification": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task089_swap_words_verification": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task565_circa_answer_generation": {
+      "changed_test": 0.005,
+      "certificate": 0.009950248756218905
+     },
+     "task391_causal_relationship": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     }
+    },
+    "18": {
+     "task075_squad1.1_answer_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.01990049751243781
+     },
+     "task593_sciq_explanation_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task517_emo_classify_emotion_of_dialogue": {
+      "changed_test": 0.01,
+      "certificate": 0.009950248756218905
+     },
+     "task1286_openbookqa_question_answering": {
+      "changed_test": 0.0,
+      "certificate": 0.009950248756218905
+     },
+     "task317_crows-pairs_classification_stereotype_type": {
+      "changed_test": 0.135,
+      "certificate": 0.18407960199004975
+     },
+     "task245_check_presence_in_set_intersection": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task400_paws_paraphrase_classification": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task280_stereoset_classification_stereotype_type": {
+      "changed_test": 0.02,
+      "certificate": 0.029850746268656716
+     },
+     "task567_circa_text_generation": {
+      "changed_test": 0.55,
+      "certificate": 0.5771144278606966
+     },
+     "task1391_winogrande_easy_answer_generation": {
+      "changed_test": 0.005,
+      "certificate": 0.004975124378109453
+     },
+     "task1731_quartz_question_answering": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task1660_super_glue_question_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task1344_glue_entailment_classification": {
+      "changed_test": 0.0,
+      "certificate": 0.009950248756218905
+     },
+     "task089_swap_words_verification": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task565_circa_answer_generation": {
+      "changed_test": 0.005,
+      "certificate": 0.014925373134328358
+     },
+     "task391_causal_relationship": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task574_air_dialogue_sentence_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     }
+    },
+    "19": {
+     "task075_squad1.1_answer_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.01990049751243781
+     },
+     "task593_sciq_explanation_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task517_emo_classify_emotion_of_dialogue": {
+      "changed_test": 0.01,
+      "certificate": 0.014925373134328358
+     },
+     "task1286_openbookqa_question_answering": {
+      "changed_test": 0.0,
+      "certificate": 0.009950248756218905
+     },
+     "task317_crows-pairs_classification_stereotype_type": {
+      "changed_test": 0.135,
+      "certificate": 0.1791044776119403
+     },
+     "task245_check_presence_in_set_intersection": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task400_paws_paraphrase_classification": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task280_stereoset_classification_stereotype_type": {
+      "changed_test": 0.02,
+      "certificate": 0.024875621890547265
+     },
+     "task567_circa_text_generation": {
+      "changed_test": 0.555,
+      "certificate": 0.5771144278606966
+     },
+     "task1391_winogrande_easy_answer_generation": {
+      "changed_test": 0.005,
+      "certificate": 0.004975124378109453
+     },
+     "task1731_quartz_question_answering": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task1660_super_glue_question_generation": {
+      "changed_test": 0.005,
+      "certificate": 0.009950248756218905
+     },
+     "task1344_glue_entailment_classification": {
+      "changed_test": 0.005,
+      "certificate": 0.009950248756218905
+     },
+     "task089_swap_words_verification": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task565_circa_answer_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.009950248756218905
+     },
+     "task391_causal_relationship": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task574_air_dialogue_sentence_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task1615_sick_tclassify_b_relation_a": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     }
+    },
+    "20": {
+     "task075_squad1.1_answer_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.01990049751243781
+     },
+     "task593_sciq_explanation_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task517_emo_classify_emotion_of_dialogue": {
+      "changed_test": 0.01,
+      "certificate": 0.014925373134328358
+     },
+     "task1286_openbookqa_question_answering": {
+      "changed_test": 0.0,
+      "certificate": 0.009950248756218905
+     },
+     "task317_crows-pairs_classification_stereotype_type": {
+      "changed_test": 0.14,
+      "certificate": 0.1791044776119403
+     },
+     "task245_check_presence_in_set_intersection": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task400_paws_paraphrase_classification": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task280_stereoset_classification_stereotype_type": {
+      "changed_test": 0.02,
+      "certificate": 0.024875621890547265
+     },
+     "task567_circa_text_generation": {
+      "changed_test": 0.55,
+      "certificate": 0.5771144278606966
+     },
+     "task1391_winogrande_easy_answer_generation": {
+      "changed_test": 0.005,
+      "certificate": 0.004975124378109453
+     },
+     "task1731_quartz_question_answering": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task1660_super_glue_question_generation": {
+      "changed_test": 0.005,
+      "certificate": 0.014925373134328358
+     },
+     "task1344_glue_entailment_classification": {
+      "changed_test": 0.005,
+      "certificate": 0.009950248756218905
+     },
+     "task089_swap_words_verification": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task565_circa_answer_generation": {
+      "changed_test": 0.005,
+      "certificate": 0.009950248756218905
+     },
+     "task391_causal_relationship": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task574_air_dialogue_sentence_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task1615_sick_tclassify_b_relation_a": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task335_hateeval_classification_aggresive_en": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     }
+    },
+    "21": {
+     "task075_squad1.1_answer_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.024875621890547265
+     },
+     "task593_sciq_explanation_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task517_emo_classify_emotion_of_dialogue": {
+      "changed_test": 0.01,
+      "certificate": 0.014925373134328358
+     },
+     "task1286_openbookqa_question_answering": {
+      "changed_test": 0.0,
+      "certificate": 0.009950248756218905
+     },
+     "task317_crows-pairs_classification_stereotype_type": {
+      "changed_test": 0.14,
+      "certificate": 0.1791044776119403
+     },
+     "task245_check_presence_in_set_intersection": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task400_paws_paraphrase_classification": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task280_stereoset_classification_stereotype_type": {
+      "changed_test": 0.02,
+      "certificate": 0.01990049751243781
+     },
+     "task567_circa_text_generation": {
+      "changed_test": 0.55,
+      "certificate": 0.582089552238806
+     },
+     "task1391_winogrande_easy_answer_generation": {
+      "changed_test": 0.005,
+      "certificate": 0.004975124378109453
+     },
+     "task1731_quartz_question_answering": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task1660_super_glue_question_generation": {
+      "changed_test": 0.005,
+      "certificate": 0.014925373134328358
+     },
+     "task1344_glue_entailment_classification": {
+      "changed_test": 0.0,
+      "certificate": 0.009950248756218905
+     },
+     "task089_swap_words_verification": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task565_circa_answer_generation": {
+      "changed_test": 0.01,
+      "certificate": 0.009950248756218905
+     },
+     "task391_causal_relationship": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task574_air_dialogue_sentence_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task1615_sick_tclassify_b_relation_a": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task335_hateeval_classification_aggresive_en": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task095_conala_max_absolute_value": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     }
+    },
+    "22": {
+     "task075_squad1.1_answer_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.024875621890547265
+     },
+     "task593_sciq_explanation_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task517_emo_classify_emotion_of_dialogue": {
+      "changed_test": 0.01,
+      "certificate": 0.009950248756218905
+     },
+     "task1286_openbookqa_question_answering": {
+      "changed_test": 0.0,
+      "certificate": 0.009950248756218905
+     },
+     "task317_crows-pairs_classification_stereotype_type": {
+      "changed_test": 0.14,
+      "certificate": 0.18407960199004975
+     },
+     "task245_check_presence_in_set_intersection": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task400_paws_paraphrase_classification": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task280_stereoset_classification_stereotype_type": {
+      "changed_test": 0.015,
+      "certificate": 0.024875621890547265
+     },
+     "task567_circa_text_generation": {
+      "changed_test": 0.545,
+      "certificate": 0.582089552238806
+     },
+     "task1391_winogrande_easy_answer_generation": {
+      "changed_test": 0.005,
+      "certificate": 0.004975124378109453
+     },
+     "task1731_quartz_question_answering": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task1660_super_glue_question_generation": {
+      "changed_test": 0.005,
+      "certificate": 0.014925373134328358
+     },
+     "task1344_glue_entailment_classification": {
+      "changed_test": 0.0,
+      "certificate": 0.009950248756218905
+     },
+     "task089_swap_words_verification": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task565_circa_answer_generation": {
+      "changed_test": 0.01,
+      "certificate": 0.009950248756218905
+     },
+     "task391_causal_relationship": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task574_air_dialogue_sentence_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task1615_sick_tclassify_b_relation_a": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task335_hateeval_classification_aggresive_en": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task095_conala_max_absolute_value": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task339_record_answer_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     }
+    },
+    "23": {
+     "task075_squad1.1_answer_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.024875621890547265
+     },
+     "task593_sciq_explanation_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task517_emo_classify_emotion_of_dialogue": {
+      "changed_test": 0.025,
+      "certificate": 0.014925373134328358
+     },
+     "task1286_openbookqa_question_answering": {
+      "changed_test": 0.0,
+      "certificate": 0.009950248756218905
+     },
+     "task317_crows-pairs_classification_stereotype_type": {
+      "changed_test": 0.135,
+      "certificate": 0.1791044776119403
+     },
+     "task245_check_presence_in_set_intersection": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task400_paws_paraphrase_classification": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task280_stereoset_classification_stereotype_type": {
+      "changed_test": 0.015,
+      "certificate": 0.029850746268656716
+     },
+     "task567_circa_text_generation": {
+      "changed_test": 0.55,
+      "certificate": 0.582089552238806
+     },
+     "task1391_winogrande_easy_answer_generation": {
+      "changed_test": 0.005,
+      "certificate": 0.004975124378109453
+     },
+     "task1731_quartz_question_answering": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task1660_super_glue_question_generation": {
+      "changed_test": 0.005,
+      "certificate": 0.014925373134328358
+     },
+     "task1344_glue_entailment_classification": {
+      "changed_test": 0.0,
+      "certificate": 0.009950248756218905
+     },
+     "task089_swap_words_verification": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task565_circa_answer_generation": {
+      "changed_test": 0.005,
+      "certificate": 0.014925373134328358
+     },
+     "task391_causal_relationship": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task574_air_dialogue_sentence_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task1615_sick_tclassify_b_relation_a": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task335_hateeval_classification_aggresive_en": {
+      "changed_test": 0.0,
+      "certificate": 0.009950248756218905
+     },
+     "task095_conala_max_absolute_value": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task339_record_answer_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task592_sciq_incorrect_answer_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     }
+    },
+    "24": {
+     "task075_squad1.1_answer_generation": {
+      "changed_test": 0.005,
+      "certificate": 0.03482587064676617
+     },
+     "task593_sciq_explanation_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task517_emo_classify_emotion_of_dialogue": {
+      "changed_test": 0.025,
+      "certificate": 0.014925373134328358
+     },
+     "task1286_openbookqa_question_answering": {
+      "changed_test": 0.0,
+      "certificate": 0.009950248756218905
+     },
+     "task317_crows-pairs_classification_stereotype_type": {
+      "changed_test": 0.135,
+      "certificate": 0.1890547263681592
+     },
+     "task245_check_presence_in_set_intersection": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task400_paws_paraphrase_classification": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task280_stereoset_classification_stereotype_type": {
+      "changed_test": 0.035,
+      "certificate": 0.024875621890547265
+     },
+     "task567_circa_text_generation": {
+      "changed_test": 0.545,
+      "certificate": 0.572139303482587
+     },
+     "task1391_winogrande_easy_answer_generation": {
+      "changed_test": 0.005,
+      "certificate": 0.004975124378109453
+     },
+     "task1731_quartz_question_answering": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task1660_super_glue_question_generation": {
+      "changed_test": 0.005,
+      "certificate": 0.01990049751243781
+     },
+     "task1344_glue_entailment_classification": {
+      "changed_test": 0.01,
+      "certificate": 0.014925373134328358
+     },
+     "task089_swap_words_verification": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task565_circa_answer_generation": {
+      "changed_test": 0.015,
+      "certificate": 0.009950248756218905
+     },
+     "task391_causal_relationship": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task574_air_dialogue_sentence_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task1615_sick_tclassify_b_relation_a": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task335_hateeval_classification_aggresive_en": {
+      "changed_test": 0.005,
+      "certificate": 0.029850746268656716
+     },
+     "task095_conala_max_absolute_value": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task339_record_answer_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task592_sciq_incorrect_answer_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task399_semeval_2018_task1_tweet_sadness_detection": {
+      "changed_test": 0.025,
+      "certificate": 0.014925373134328358
+     }
+    },
+    "25": {
+     "task075_squad1.1_answer_generation": {
+      "changed_test": 0.005,
+      "certificate": 0.03482587064676617
+     },
+     "task593_sciq_explanation_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task517_emo_classify_emotion_of_dialogue": {
+      "changed_test": 0.025,
+      "certificate": 0.01990049751243781
+     },
+     "task1286_openbookqa_question_answering": {
+      "changed_test": 0.0,
+      "certificate": 0.009950248756218905
+     },
+     "task317_crows-pairs_classification_stereotype_type": {
+      "changed_test": 0.135,
+      "certificate": 0.18407960199004975
+     },
+     "task245_check_presence_in_set_intersection": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task400_paws_paraphrase_classification": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task280_stereoset_classification_stereotype_type": {
+      "changed_test": 0.04,
+      "certificate": 0.029850746268656716
+     },
+     "task567_circa_text_generation": {
+      "changed_test": 0.55,
+      "certificate": 0.5771144278606966
+     },
+     "task1391_winogrande_easy_answer_generation": {
+      "changed_test": 0.005,
+      "certificate": 0.004975124378109453
+     },
+     "task1731_quartz_question_answering": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task1660_super_glue_question_generation": {
+      "changed_test": 0.005,
+      "certificate": 0.01990049751243781
+     },
+     "task1344_glue_entailment_classification": {
+      "changed_test": 0.01,
+      "certificate": 0.014925373134328358
+     },
+     "task089_swap_words_verification": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task565_circa_answer_generation": {
+      "changed_test": 0.005,
+      "certificate": 0.009950248756218905
+     },
+     "task391_causal_relationship": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task574_air_dialogue_sentence_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task1615_sick_tclassify_b_relation_a": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task335_hateeval_classification_aggresive_en": {
+      "changed_test": 0.005,
+      "certificate": 0.01990049751243781
+     },
+     "task095_conala_max_absolute_value": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task339_record_answer_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task592_sciq_incorrect_answer_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task399_semeval_2018_task1_tweet_sadness_detection": {
+      "changed_test": 0.025,
+      "certificate": 0.014925373134328358
+     },
+     "task327_jigsaw_classification_toxic": {
+      "changed_test": 0.01,
+      "certificate": 0.004975124378109453
+     }
+    },
+    "26": {
+     "task075_squad1.1_answer_generation": {
+      "changed_test": 0.005,
+      "certificate": 0.03482587064676617
+     },
+     "task593_sciq_explanation_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task517_emo_classify_emotion_of_dialogue": {
+      "changed_test": 0.025,
+      "certificate": 0.014925373134328358
+     },
+     "task1286_openbookqa_question_answering": {
+      "changed_test": 0.0,
+      "certificate": 0.009950248756218905
+     },
+     "task317_crows-pairs_classification_stereotype_type": {
+      "changed_test": 0.135,
+      "certificate": 0.1890547263681592
+     },
+     "task245_check_presence_in_set_intersection": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task400_paws_paraphrase_classification": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task280_stereoset_classification_stereotype_type": {
+      "changed_test": 0.035,
+      "certificate": 0.01990049751243781
+     },
+     "task567_circa_text_generation": {
+      "changed_test": 0.545,
+      "certificate": 0.572139303482587
+     },
+     "task1391_winogrande_easy_answer_generation": {
+      "changed_test": 0.005,
+      "certificate": 0.004975124378109453
+     },
+     "task1731_quartz_question_answering": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task1660_super_glue_question_generation": {
+      "changed_test": 0.005,
+      "certificate": 0.01990049751243781
+     },
+     "task1344_glue_entailment_classification": {
+      "changed_test": 0.005,
+      "certificate": 0.014925373134328358
+     },
+     "task089_swap_words_verification": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task565_circa_answer_generation": {
+      "changed_test": 0.01,
+      "certificate": 0.009950248756218905
+     },
+     "task391_causal_relationship": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task574_air_dialogue_sentence_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task1615_sick_tclassify_b_relation_a": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task335_hateeval_classification_aggresive_en": {
+      "changed_test": 0.005,
+      "certificate": 0.024875621890547265
+     },
+     "task095_conala_max_absolute_value": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task339_record_answer_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task592_sciq_incorrect_answer_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.009950248756218905
+     },
+     "task399_semeval_2018_task1_tweet_sadness_detection": {
+      "changed_test": 0.015,
+      "certificate": 0.014925373134328358
+     },
+     "task327_jigsaw_classification_toxic": {
+      "changed_test": 0.02,
+      "certificate": 0.014925373134328358
+     },
+     "task167_strategyqa_question_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     }
+    },
+    "27": {
+     "task075_squad1.1_answer_generation": {
+      "changed_test": 0.005,
+      "certificate": 0.029850746268656716
+     },
+     "task593_sciq_explanation_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task517_emo_classify_emotion_of_dialogue": {
+      "changed_test": 0.025,
+      "certificate": 0.01990049751243781
+     },
+     "task1286_openbookqa_question_answering": {
+      "changed_test": 0.0,
+      "certificate": 0.014925373134328358
+     },
+     "task317_crows-pairs_classification_stereotype_type": {
+      "changed_test": 0.13,
+      "certificate": 0.17412935323383086
+     },
+     "task245_check_presence_in_set_intersection": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task400_paws_paraphrase_classification": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task280_stereoset_classification_stereotype_type": {
+      "changed_test": 0.035,
+      "certificate": 0.01990049751243781
+     },
+     "task567_circa_text_generation": {
+      "changed_test": 0.545,
+      "certificate": 0.5771144278606966
+     },
+     "task1391_winogrande_easy_answer_generation": {
+      "changed_test": 0.005,
+      "certificate": 0.004975124378109453
+     },
+     "task1731_quartz_question_answering": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task1660_super_glue_question_generation": {
+      "changed_test": 0.005,
+      "certificate": 0.01990049751243781
+     },
+     "task1344_glue_entailment_classification": {
+      "changed_test": 0.005,
+      "certificate": 0.014925373134328358
+     },
+     "task089_swap_words_verification": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task565_circa_answer_generation": {
+      "changed_test": 0.015,
+      "certificate": 0.014925373134328358
+     },
+     "task391_causal_relationship": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task574_air_dialogue_sentence_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task1615_sick_tclassify_b_relation_a": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task335_hateeval_classification_aggresive_en": {
+      "changed_test": 0.005,
+      "certificate": 0.024875621890547265
+     },
+     "task095_conala_max_absolute_value": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task339_record_answer_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task592_sciq_incorrect_answer_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task399_semeval_2018_task1_tweet_sadness_detection": {
+      "changed_test": 0.025,
+      "certificate": 0.014925373134328358
+     },
+     "task327_jigsaw_classification_toxic": {
+      "changed_test": 0.015,
+      "certificate": 0.014925373134328358
+     },
+     "task167_strategyqa_question_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task738_perspectrum_classification": {
+      "changed_test": 0.015,
+      "certificate": 0.009950248756218905
+     }
+    },
+    "28": {
+     "task075_squad1.1_answer_generation": {
+      "changed_test": 0.005,
+      "certificate": 0.024875621890547265
+     },
+     "task593_sciq_explanation_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task517_emo_classify_emotion_of_dialogue": {
+      "changed_test": 0.025,
+      "certificate": 0.014925373134328358
+     },
+     "task1286_openbookqa_question_answering": {
+      "changed_test": 0.0,
+      "certificate": 0.014925373134328358
+     },
+     "task317_crows-pairs_classification_stereotype_type": {
+      "changed_test": 0.145,
+      "certificate": 0.17412935323383086
+     },
+     "task245_check_presence_in_set_intersection": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task400_paws_paraphrase_classification": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task280_stereoset_classification_stereotype_type": {
+      "changed_test": 0.035,
+      "certificate": 0.01990049751243781
+     },
+     "task567_circa_text_generation": {
+      "changed_test": 0.55,
+      "certificate": 0.582089552238806
+     },
+     "task1391_winogrande_easy_answer_generation": {
+      "changed_test": 0.005,
+      "certificate": 0.004975124378109453
+     },
+     "task1731_quartz_question_answering": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task1660_super_glue_question_generation": {
+      "changed_test": 0.005,
+      "certificate": 0.01990049751243781
+     },
+     "task1344_glue_entailment_classification": {
+      "changed_test": 0.08,
+      "certificate": 0.04975124378109453
+     },
+     "task089_swap_words_verification": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task565_circa_answer_generation": {
+      "changed_test": 0.005,
+      "certificate": 0.014925373134328358
+     },
+     "task391_causal_relationship": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task574_air_dialogue_sentence_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task1615_sick_tclassify_b_relation_a": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task335_hateeval_classification_aggresive_en": {
+      "changed_test": 0.005,
+      "certificate": 0.024875621890547265
+     },
+     "task095_conala_max_absolute_value": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task339_record_answer_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task592_sciq_incorrect_answer_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task399_semeval_2018_task1_tweet_sadness_detection": {
+      "changed_test": 0.025,
+      "certificate": 0.014925373134328358
+     },
+     "task327_jigsaw_classification_toxic": {
+      "changed_test": 0.025,
+      "certificate": 0.014925373134328358
+     },
+     "task167_strategyqa_question_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.009950248756218905
+     },
+     "task738_perspectrum_classification": {
+      "changed_test": 0.01,
+      "certificate": 0.009950248756218905
+     },
+     "task377_remove_words_of_given_length": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     }
+    },
+    "29": {
+     "task075_squad1.1_answer_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.029850746268656716
+     },
+     "task593_sciq_explanation_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task517_emo_classify_emotion_of_dialogue": {
+      "changed_test": 0.025,
+      "certificate": 0.014925373134328358
+     },
+     "task1286_openbookqa_question_answering": {
+      "changed_test": 0.0,
+      "certificate": 0.014925373134328358
+     },
+     "task317_crows-pairs_classification_stereotype_type": {
+      "changed_test": 0.135,
+      "certificate": 0.18407960199004975
+     },
+     "task245_check_presence_in_set_intersection": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task400_paws_paraphrase_classification": {
+      "changed_test": 0.0,
+      "certificate": 0.009950248756218905
+     },
+     "task280_stereoset_classification_stereotype_type": {
+      "changed_test": 0.035,
+      "certificate": 0.01990049751243781
+     },
+     "task567_circa_text_generation": {
+      "changed_test": 0.545,
+      "certificate": 0.5771144278606966
+     },
+     "task1391_winogrande_easy_answer_generation": {
+      "changed_test": 0.005,
+      "certificate": 0.004975124378109453
+     },
+     "task1731_quartz_question_answering": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task1660_super_glue_question_generation": {
+      "changed_test": 0.005,
+      "certificate": 0.01990049751243781
+     },
+     "task1344_glue_entailment_classification": {
+      "changed_test": 0.08,
+      "certificate": 0.04975124378109453
+     },
+     "task089_swap_words_verification": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task565_circa_answer_generation": {
+      "changed_test": 0.01,
+      "certificate": 0.014925373134328358
+     },
+     "task391_causal_relationship": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task574_air_dialogue_sentence_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task1615_sick_tclassify_b_relation_a": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task335_hateeval_classification_aggresive_en": {
+      "changed_test": 0.01,
+      "certificate": 0.01990049751243781
+     },
+     "task095_conala_max_absolute_value": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task339_record_answer_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task592_sciq_incorrect_answer_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.009950248756218905
+     },
+     "task399_semeval_2018_task1_tweet_sadness_detection": {
+      "changed_test": 0.01,
+      "certificate": 0.014925373134328358
+     },
+     "task327_jigsaw_classification_toxic": {
+      "changed_test": 0.02,
+      "certificate": 0.024875621890547265
+     },
+     "task167_strategyqa_question_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task738_perspectrum_classification": {
+      "changed_test": 0.005,
+      "certificate": 0.009950248756218905
+     },
+     "task377_remove_words_of_given_length": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task564_discofuse_classification": {
+      "changed_test": 0.005,
+      "certificate": 0.004975124378109453
+     }
+    },
+    "30": {
+     "task075_squad1.1_answer_generation": {
+      "changed_test": 0.005,
+      "certificate": 0.029850746268656716
+     },
+     "task593_sciq_explanation_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task517_emo_classify_emotion_of_dialogue": {
+      "changed_test": 0.025,
+      "certificate": 0.01990049751243781
+     },
+     "task1286_openbookqa_question_answering": {
+      "changed_test": 0.0,
+      "certificate": 0.014925373134328358
+     },
+     "task317_crows-pairs_classification_stereotype_type": {
+      "changed_test": 0.135,
+      "certificate": 0.1890547263681592
+     },
+     "task245_check_presence_in_set_intersection": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task400_paws_paraphrase_classification": {
+      "changed_test": 0.0,
+      "certificate": 0.009950248756218905
+     },
+     "task280_stereoset_classification_stereotype_type": {
+      "changed_test": 0.03,
+      "certificate": 0.01990049751243781
+     },
+     "task567_circa_text_generation": {
+      "changed_test": 0.55,
+      "certificate": 0.5870646766169154
+     },
+     "task1391_winogrande_easy_answer_generation": {
+      "changed_test": 0.005,
+      "certificate": 0.004975124378109453
+     },
+     "task1731_quartz_question_answering": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task1660_super_glue_question_generation": {
+      "changed_test": 0.005,
+      "certificate": 0.01990049751243781
+     },
+     "task1344_glue_entailment_classification": {
+      "changed_test": 0.085,
+      "certificate": 0.04975124378109453
+     },
+     "task089_swap_words_verification": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task565_circa_answer_generation": {
+      "changed_test": 0.005,
+      "certificate": 0.01990049751243781
+     },
+     "task391_causal_relationship": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task574_air_dialogue_sentence_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task1615_sick_tclassify_b_relation_a": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task335_hateeval_classification_aggresive_en": {
+      "changed_test": 0.01,
+      "certificate": 0.024875621890547265
+     },
+     "task095_conala_max_absolute_value": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task339_record_answer_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task592_sciq_incorrect_answer_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task399_semeval_2018_task1_tweet_sadness_detection": {
+      "changed_test": 0.02,
+      "certificate": 0.024875621890547265
+     },
+     "task327_jigsaw_classification_toxic": {
+      "changed_test": 0.02,
+      "certificate": 0.024875621890547265
+     },
+     "task167_strategyqa_question_generation": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task738_perspectrum_classification": {
+      "changed_test": 0.005,
+      "certificate": 0.009950248756218905
+     },
+     "task377_remove_words_of_given_length": {
+      "changed_test": 0.0,
+      "certificate": 0.004975124378109453
+     },
+     "task564_discofuse_classification": {
+      "changed_test": 0.0,
+      "certificate": 0.009950248756218905
+     },
+     "task462_qasper_classification": {
+      "changed_test": 0.005,
+      "certificate": 0.004975124378109453
+     }
+    }
+   }
+  },
+  "comparison_lr_C1_minilm": {
+   "variant": "lr|minilm|1",
+   "verdict": {
+    "use": "works",
+    "certificate": "met",
+    "mean_own_at_end": 0.8953333333333332,
+    "mean_own_at_arrival": 0.936,
+    "mean_changed": 0.051166666666666666,
+    "se_changed": 0.020301864663430803,
+    "mean_certificate": 0.057213930348258724,
+    "certificate_limit": 0.09781765967512032
+   },
+   "weak_tasks": {
+    "task567_circa_text_generation": {
+     "own_at_end": 0.42,
+     "top_wrong_task": "task565_circa_answer_generation",
+     "top_wrong_share_of_wrongly_routed": 0.9396551724137931
+    },
+    "task565_circa_answer_generation": {
+     "own_at_end": 0.46,
+     "top_wrong_task": "task567_circa_text_generation",
+     "top_wrong_share_of_wrongly_routed": 0.9351851851851852
+    }
+   },
+   "mean": {
+    "own_at_arrival": 0.936,
+    "own_at_end": 0.8953333333333332,
+    "changed": 0.051166666666666666,
+    "certificate": 0.057213930348258724,
+    "heldout_own_at_arrival": 0.9445,
+    "heldout_own_at_end": 0.9008333333333333,
+    "apriori_bound": 0.1686666666666667
+   },
+   "se": {
+    "own_at_arrival": 0.020263210534104046,
+    "own_at_end": 0.02636386997098004,
+    "changed": 0.020301864663430803,
+    "certificate": 0.01987582103623556,
+    "heldout_own_at_arrival": 0.020459309209583137,
+    "heldout_own_at_end": 0.026613542630416487,
+    "apriori_bound": 0.042748215888921304
+   },
+   "per_task": {
+    "task075_squad1.1_answer_generation": {
+     "own_at_arrival": 1.0,
+     "own_at_end": 0.815,
+     "changed": 0.185,
+     "certificate": 0.26865671641791045,
+     "c": 53,
+     "m": 200
+    },
+    "task593_sciq_explanation_generation": {
+     "own_at_arrival": 0.99,
+     "own_at_end": 0.95,
+     "changed": 0.06,
+     "certificate": 0.04975124378109453,
+     "c": 9,
+     "m": 200
+    },
+    "task517_emo_classify_emotion_of_dialogue": {
+     "own_at_arrival": 0.99,
+     "own_at_end": 0.92,
+     "changed": 0.08,
+     "certificate": 0.0945273631840796,
+     "c": 18,
+     "m": 200
+    },
+    "task1286_openbookqa_question_answering": {
+     "own_at_arrival": 0.97,
+     "own_at_end": 0.95,
+     "changed": 0.035,
+     "certificate": 0.03980099502487562,
+     "c": 7,
+     "m": 200
+    },
+    "task317_crows-pairs_classification_stereotype_type": {
+     "own_at_arrival": 1.0,
+     "own_at_end": 0.91,
+     "changed": 0.09,
+     "certificate": 0.16417910447761194,
+     "c": 32,
+     "m": 200
+    },
+    "task245_check_presence_in_set_intersection": {
+     "own_at_arrival": 1.0,
+     "own_at_end": 1.0,
+     "changed": 0.0,
+     "certificate": 0.004975124378109453,
+     "c": 0,
+     "m": 200
+    },
+    "task400_paws_paraphrase_classification": {
+     "own_at_arrival": 0.9,
+     "own_at_end": 0.815,
+     "changed": 0.14,
+     "certificate": 0.12437810945273632,
+     "c": 24,
+     "m": 200
+    },
+    "task280_stereoset_classification_stereotype_type": {
+     "own_at_arrival": 0.81,
+     "own_at_end": 0.79,
+     "changed": 0.03,
+     "certificate": 0.01990049751243781,
+     "c": 3,
+     "m": 200
+    },
+    "task567_circa_text_generation": {
+     "own_at_arrival": 0.985,
+     "own_at_end": 0.42,
+     "changed": 0.585,
+     "certificate": 0.5422885572139303,
+     "c": 108,
+     "m": 200
+    },
+    "task1391_winogrande_easy_answer_generation": {
+     "own_at_arrival": 0.985,
+     "own_at_end": 0.98,
+     "changed": 0.005,
+     "certificate": 0.014925373134328358,
+     "c": 2,
+     "m": 200
+    },
+    "task1731_quartz_question_answering": {
+     "own_at_arrival": 1.0,
+     "own_at_end": 1.0,
+     "changed": 0.0,
+     "certificate": 0.004975124378109453,
+     "c": 0,
+     "m": 200
+    },
+    "task1660_super_glue_question_generation": {
+     "own_at_arrival": 0.795,
+     "own_at_end": 0.765,
+     "changed": 0.105,
+     "certificate": 0.1044776119402985,
+     "c": 20,
+     "m": 200
+    },
+    "task1344_glue_entailment_classification": {
+     "own_at_arrival": 0.985,
+     "own_at_end": 0.91,
+     "changed": 0.075,
+     "certificate": 0.06467661691542288,
+     "c": 12,
+     "m": 200
+    },
+    "task089_swap_words_verification": {
+     "own_at_arrival": 0.975,
+     "own_at_end": 0.975,
+     "changed": 0.005,
+     "certificate": 0.004975124378109453,
+     "c": 0,
+     "m": 200
+    },
+    "task565_circa_answer_generation": {
+     "own_at_arrival": 0.46,
+     "own_at_end": 0.46,
+     "changed": 0.025,
+     "certificate": 0.024875621890547265,
+     "c": 4,
+     "m": 200
+    },
+    "task391_causal_relationship": {
+     "own_at_arrival": 0.95,
+     "own_at_end": 0.95,
+     "changed": 0.035,
+     "certificate": 0.014925373134328358,
+     "c": 2,
+     "m": 200
+    },
+    "task574_air_dialogue_sentence_generation": {
+     "own_at_arrival": 1.0,
+     "own_at_end": 1.0,
+     "changed": 0.0,
+     "certificate": 0.004975124378109453,
+     "c": 0,
+     "m": 200
+    },
+    "task1615_sick_tclassify_b_relation_a": {
+     "own_at_arrival": 1.0,
+     "own_at_end": 1.0,
+     "changed": 0.0,
+     "certificate": 0.004975124378109453,
+     "c": 0,
+     "m": 200
+    },
+    "task335_hateeval_classification_aggresive_en": {
+     "own_at_arrival": 0.995,
+     "own_at_end": 0.99,
+     "changed": 0.005,
+     "certificate": 0.024875621890547265,
+     "c": 4,
+     "m": 200
+    },
+    "task095_conala_max_absolute_value": {
+     "own_at_arrival": 1.0,
+     "own_at_end": 1.0,
+     "changed": 0.0,
+     "certificate": 0.004975124378109453,
+     "c": 0,
+     "m": 200
+    },
+    "task339_record_answer_generation": {
+     "own_at_arrival": 0.93,
+     "own_at_end": 0.93,
+     "changed": 0.01,
+     "certificate": 0.029850746268656716,
+     "c": 5,
+     "m": 200
+    },
+    "task592_sciq_incorrect_answer_generation": {
+     "own_at_arrival": 0.95,
+     "own_at_end": 0.95,
+     "changed": 0.005,
+     "certificate": 0.014925373134328358,
+     "c": 2,
+     "m": 200
+    },
+    "task399_semeval_2018_task1_tweet_sadness_detection": {
+     "own_at_arrival": 0.845,
+     "own_at_end": 0.815,
+     "changed": 0.045,
+     "certificate": 0.03482587064676617,
+     "c": 6,
+     "m": 200
+    },
+    "task327_jigsaw_classification_toxic": {
+     "own_at_arrival": 0.865,
+     "own_at_end": 0.86,
+     "changed": 0.01,
+     "certificate": 0.014925373134328358,
+     "c": 2,
+     "m": 200
+    },
+    "task167_strategyqa_question_generation": {
+     "own_at_arrival": 1.0,
+     "own_at_end": 1.0,
+     "changed": 0.0,
+     "certificate": 0.004975124378109453,
+     "c": 0,
+     "m": 200
+    },
+    "task738_perspectrum_classification": {
+     "own_at_arrival": 0.93,
+     "own_at_end": 0.935,
+     "changed": 0.005,
+     "certificate": 0.004975124378109453,
+     "c": 0,
+     "m": 200
+    },
+    "task377_remove_words_of_given_length": {
+     "own_at_arrival": 1.0,
+     "own_at_end": 1.0,
+     "changed": 0.0,
+     "certificate": 0.004975124378109453,
+     "c": 0,
+     "m": 200
+    },
+    "task564_discofuse_classification": {
+     "own_at_arrival": 0.8,
+     "own_at_end": 0.8,
+     "changed": 0.0,
+     "certificate": 0.014925373134328358,
+     "c": 2,
+     "m": 200
+    },
+    "task462_qasper_classification": {
+     "own_at_arrival": 0.97,
+     "own_at_end": 0.97,
+     "changed": 0.0,
+     "certificate": 0.004975124378109453,
+     "c": 0,
+     "m": 200
+    },
+    "task850_synthetic_longest_palindrome": {
+     "own_at_arrival": 1.0,
+     "own_at_end": 1.0,
+     "changed": 0.0,
+     "certificate": 0.004975124378109453,
+     "c": 0,
+     "m": 200
+    }
+   }
+  }
+ }
+}

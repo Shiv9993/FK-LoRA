@@ -1,0 +1,38 @@
+\begin{table}[h]
+  \caption{Fifteen tasks: scores written by the official script, which compares each answer with one
+  randomly picked reference answer. The forgetting of \FifteenCertOffFT{} of the certified switch is
+  evaluation noise: no answer changed (Table~\ref{tab:fifteenmain}).}
+  \label{tab:fifteenofficial}
+  \centering
+  \small
+  \input{tables/fifteen_official}
+\end{table}
+
+\begin{table}[h]
+  \caption{Fifteen tasks: score right after learning (Learned) and forgetting (FT) for each wording.
+  For the three rewordings the numbers are those of the five tasks that have rewordings.}
+  \label{tab:fifteenmore}
+  \centering
+  \small
+  \input{tables/fifteen_wordings_more}
+\end{table}
+
+\begin{table}[h]
+  \caption{Fifteen tasks, original wording: score of each task right after it was learned $\to$ after
+  the last task (tasks in the order of the sequence).}
+  \label{tab:fifteenpertask}
+  \centering
+  \small
+  \input{tables/fifteen_pertask}
+\end{table}
+
+\begin{table}[h]
+  \caption{Routes on the 15-task sequence: how many test inputs are certified, how many are given to
+  their own task, and how many answers change, for the certified switch and for the nearest-centre
+  rule. The rewordings are those of the five tasks that have them. Routes do not depend on the seed.}
+  \label{tab:fifteenroutes}
+  \centering
+  \small
+  \setlength{\tabcolsep}{3.5pt}
+  \input{tables/fifteen_routes}
+\end{table}

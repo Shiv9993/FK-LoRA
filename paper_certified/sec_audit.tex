@@ -1,0 +1,209 @@
+% =====================================================================================
+\subsection{Without instructions: a recogniser, an audit, and a handicap}
+\label{sec:audit}
+
+The rule of this subsection reads no instruction. One classifier over all tasks decides the route
+from a frozen feature of the whole input, so no task can be blocked and nothing has to be known
+about how a task is worded. Its guarantees are of two kinds: (a) an \emph{audit}, an estimate and a
+confidence bound, from held-out inputs, of the share of a task's answers that have changed, valid
+for any recogniser that is fitted without those inputs; and (b) a \emph{handicap}, a limit, known
+in advance, on what a single later task can take from an older one. The audit is ordinary held-out
+estimation, and the handicap is a conformal rank argument with a union bound. What is new is only
+this: by Lemma~\ref{lem:route}, both become statements about answers. We first state what no method without instructions can avoid.
+
+\paragraph{The price of having no instruction.} Let two tasks $j < k$ have inputs with
+probabilities $p_j(x)$ and $p_k(x)$ (inputs are texts, so there are countably many), and let
+$\omega_i(x, y) \in [0, M]$ be the expected score of the answer $y$ to the input $x$ under task
+$i \in \{j, k\}$, the expectation being over the reference answers of that task for $x$. Write
+$\omega_i^*(x) = \sup_y \omega_i(x, y)$, and for a system that answers $y_T(x)$ at time $T$ let
+$\ell_i(T) = \mathbb{E}_{X \sim p_i}\bigl[\omega_i^*(X) - \omega_i(X, y_T(X))\bigr]$ be what it loses on task
+$i$ against the best possible answers.
+
+\begin{proposition}[The price of having no instruction]
+\label{prop:noinstructionprice}
+For every system whose answer at time $T \ge k$, or the distribution of its answer if it answers at
+random, depends on the input alone,
+\[
+  \ell_j(T) + \ell_k(T) \;\ge\; \Omega_{jk} \;:=\; \sum_x \min\bigl(p_j(x), p_k(x)\bigr)\, \gamma_{jk}(x),
+\]
+where
+\[
+  \gamma_{jk}(x) \;=\; \inf_y \Bigl[ \bigl(\omega_j^*(x) - \omega_j(x, y)\bigr) + \bigl(\omega_k^*(x) - \omega_k(x, y)\bigr) \Bigr] .
+\]
+\end{proposition}
+
+\begin{proof}
+Fix $x$, let $y = y_T(x)$, $a = \omega_j^*(x) - \omega_j(x, y) \ge 0$ and $b = \omega_k^*(x) - \omega_k(x, y) \ge 0$.
+Then $p_j(x)\, a + p_k(x)\, b \ge \min(p_j(x), p_k(x))\,(a + b) \ge \min(p_j(x), p_k(x))\, \gamma_{jk}(x)$.
+Sum over $x$. For a system that answers at random, $a$ and $b$ are averages over its answers, each
+answer satisfies $a + b \ge \gamma_{jk}(x)$, and the same lines hold.
+\end{proof}
+
+Three things follow. (i) If no input belongs to both tasks, $\Omega_{jk} = 0$ and nothing is
+forced. This is the case when every input begins with the instruction of its task and no
+instruction is the beginning of another: it is the exact sense in which the instruction gives the
+task away. (ii) If the score is $M$ for the right answer and $0$ otherwise, and every input that
+belongs to both tasks has a right answer under each of them and the two differ, then
+$\gamma_{jk} = M$ on those inputs and $\Omega_{jk}/M$ is the overlap of the two input
+distributions, one minus their total-variation distance. (iii) The forgetting of task $j$ between
+its arrival and time $T$ is $\ell_j(T) - \ell_j(j)$, so
+\[
+  \bigl(\ell_j(T) - \ell_j(j)\bigr) \;+\; \ell_k(T) \;\ge\; \Omega_{jk} - \ell_j(j) :
+\]
+what is forgotten of the older task plus what is not learned of the newer one is at least the
+conflict $\Omega_{jk}$, minus what the older task never had. A switch with one frozen set of
+adapters per task can choose how this sum is split. A rule under which the oldest claim wins
+(the zones of Sections~\ref{sec:switch} and~\ref{sec:bound}, below) puts it on the newer task,
+except for a share of inputs that is chosen in advance. The recogniser and its variant \handicap{}
+put a measured, or a limited, part of it on the older task. Every other method, with shared weights or not, is bound by the same inequality, but
+does not say how the sum is split. The proposition is elementary, and that the recognition of the
+task limits learning without task labels is known \citep{kim2022theoretical}; we state it because
+it gives the recogniser and its variant below their place, and because $\Omega_{jk}$ can be counted from below on a
+benchmark (inputs that occur word for word in two tasks; Section~\ref{sec:nodefpublished}).
+
+\paragraph{A joint recogniser.} Let $u(x) \in \mathbb{R}^d$ be a frozen feature of the whole
+input (in our experiments the mean of the last-layer states of the frozen encoder of the base
+model, without any adapter, standardised with the mean and standard deviation of a fixed pool of
+instances of other tasks, Section~\ref{sec:protocol}), and
+$\bar u(x) = (u(x), 1)$. When task $k$ arrives, its
+training inputs are split at random into fit inputs $D_k^{\mathrm{f}}$ and $m$ held-out inputs
+$c_1, \dots, c_m$. The fit inputs add one vector to what is stored and one matrix to a sum kept for
+all tasks,
+\[
+  G_k \;=\; \frac{1}{|D_k^{\mathrm{f}}|} \sum_{x \in D_k^{\mathrm{f}}} \bar u(x)\, \bar u(x)^{\!\top}, \qquad
+  v_k \;=\; \frac{1}{|D_k^{\mathrm{f}}|} \sum_{x \in D_k^{\mathrm{f}}} \bar u(x),
+\]
+so that every task has the same weight, and the recogniser after $T$ tasks is
+\begin{equation}
+  V_T \;=\; \Bigl(\, \sum_{k \le T} G_k + \varepsilon\, I \Bigr)^{-1} \bigl[\, v_1, \dots, v_T \,\bigr]
+  \label{eq:recogniser}
+\end{equation}
+with a fixed $\varepsilon > 0$. After $T$ tasks the route
+of an input is the task with the largest score, the older task in a tie,
+\begin{equation}
+  \rho_T(x) \;=\; \arg\max_{k \le T}\ \bigl(\bar u(x)^{\!\top} V_T\bigr)_k ,
+  \label{eq:jointroute}
+\end{equation}
+and the answer is given as before by Eq.~\eqref{eq:answer}, with the adapters that existed when
+task $\rho_T(x)$ was learned. $V_T$ is the ridge regression of the task labels on the features of
+all tasks seen so far. Because the sums are only added, it is the same for every order of
+arrival, no input has to be kept, and every task has a column of its own: no task is blocked. The
+adapter of a task may be trained on all of its inputs, the held-out ones included; the recogniser
+never sees those. A recogniser of this kind is known from class-incremental learning on frozen
+features \citep{mcdonnell2023ranpac,zhuang2022acil}; what we add is what is said about its routes.
+
+By Lemma~\ref{lem:route} an answer can change only if its route changes, for this rule as for
+any other.
+
+\begin{proposition}[An audit of forgetting from held-out inputs]
+\label{prop:audit}
+Fix a task $j$ and two times $T' > T \ge j$. Let the fit inputs of all tasks and the choice of the
+later tasks be independent of the held-out inputs $c_1, \dots, c_m$ of task $j$ and of a further
+input $X$ of task $j$, let the route at every time be fitted without them (as in
+Eqs.~\eqref{eq:recogniser}--\eqref{eq:jointroute}), and let $c_1, \dots, c_m, X$ be exchangeable
+given everything else. Let $H$ be the number of held-out inputs with
+$\rho_{T'}(c_i) \ne \rho_T(c_i)$. Then
+\[
+  \Pr\bigl[\, y_{T'}(X) \ne y_T(X) \,\bigr] \;\le\; \Pr\bigl[\, \rho_{T'}(X) \ne \rho_T(X) \,\bigr]
+  \;=\; \mathbb{E}\Bigl[\frac{H}{m}\Bigr] .
+\]
+If the inputs are independent draws, then with probability at least $1 - \delta$ over the held-out
+inputs, the share of the inputs of task $j$ whose route differs between $T$ and $T'$ is at most
+the one-sided Clopper--Pearson upper bound for $H$ successes in $m$ trials at confidence
+$1 - \delta$. Both statements also hold when ``differs between $T$ and $T'$'' is replaced by ``is
+not the same at all times from $T$ to $T'$'', with $H$ counted in the same way.
+\end{proposition}
+
+\begin{proof}
+The first inequality holds input by input, as shown above. Let
+$I(x) = \mathbf{1}[\rho_{T'}(x) \ne \rho_T(x)]$. Given everything but $c_1, \dots, c_m, X$ the two
+routes are fixed functions, so the $m + 1$ numbers $I(c_1), \dots, I(c_m), I(X)$ are exchangeable
+and $\Pr[I(X) = 1] = \mathbb{E}[I(c_i)] = \mathbb{E}[H]/m$. For independent draws, $H$ is, given
+the routes, binomial with $m$ trials and success probability equal to the share in question, and
+the second statement is the definition of the Clopper--Pearson bound. The last sentence follows
+with $I(x)$ the indicator that the route of $x$ is not constant from $T$ to $T'$.
+\end{proof}
+
+So $H/m$ is an unbiased estimate of the share of changed routes, and the confidence bound is the
+guarantee. The condition on independence is not empty: the later tasks may not be chosen by
+looking at the held-out inputs, nor at anything computed from them, for example the answers of the
+adapters of task $j$, which may have been trained on them. The bound is a statement for one task
+and one pair of times. Read at every arrival and for all tasks, the bounds do not hold all at
+once at the same confidence; for that the level has to be divided by the number of readings (the
+``at all times'' form covers every time in between for one task with a single reading). The audit
+needs no pass through the language model: only the features of the held-out inputs are kept. It
+can be read before the adapter of a new task is trained, because the recogniser needs only
+features: a system knows which older tasks a newcomer disturbs, and by how much, before it learns
+the newcomer. The audit says nothing in advance, and it is no longer valid for held-out inputs
+that were used to make a decision about the routes. The variant below uses them in exactly this way,
+and comes with a bound in advance instead.
+
+\paragraph{A handicap for the newcomer.} When task $k \ge 2$ arrives, compute $V_k$ by
+Eq.~\eqref{eq:recogniser} and, for any input, the margin of the newcomer over the best older task,
+$\xi_k(x) = (\bar u(x)^{\!\top} V_k)_k - \max_{i < k} (\bar u(x)^{\!\top} V_k)_i$. Fix an integer
+$\nu \ge 0$. For each older task $j < k$, take the $(\nu+1)$-th largest value of $\xi_k$ among the
+held-out inputs of task $j$ ($-\infty$ if task $j$ has at most $\nu$ of them). Let $\eta_k$ be the
+largest of these values, or zero if that is larger. The newcomer \emph{takes} an input if
+$\xi_k(x) > \eta_k$. The route is the newest task that took the input:
+\begin{equation}
+  \rho_T(x) \;=\; \max\bigl\{\, k \le T : \ k = 1 \ \text{ or } \ \xi_k(x) > \eta_k \,\bigr\} .
+  \label{eq:handicap}
+\end{equation}
+The matrices $V_k$ and the thresholds $\eta_k$ are stored when task $k$ arrives and never changed.
+So a newcomer takes an input only if the joint recogniser prefers it to every older task, and it
+takes at most $\nu$ of the held-out inputs of each older task.
+
+\begin{theorem}[A bound in advance without zones]
+\label{thm:handicap}
+Let the route be set by Eq.~\eqref{eq:handicap}, under the conditions of
+Lemma~\ref{lem:route}. Let $X$ be an input of task $j$ that is exchangeable
+with the $m$ held-out inputs $c_1, \dots, c_m$ of task $j$ given everything else, and let the
+later tasks and their fit inputs be independent of $(c_1, \dots, c_m, X)$, for example fixed in
+advance. If the sequence ends with task $T_{\mathrm{end}}$, then
+the probability that the answer to $X$ changes at any time after task $j$ has arrived is at most
+the probability that its route does, and
+\[
+  \Pr\bigl[\ \text{there are } j \le T < T' \le T_{\mathrm{end}} \text{ with } \rho_{T'}(X) \ne \rho_T(X) \ \bigr]
+  \;\le\; \frac{(T_{\mathrm{end}} - j)\,(\nu+1)}{m+1} .
+\]
+\end{theorem}
+
+\begin{proof}
+By Eq.~\eqref{eq:handicap} the route of an input changes at the arrival of task $k$ only if the
+newcomer takes it, that is, only if $\xi_k(X) > \eta_k$, and it changes at no other time, because
+the margins and thresholds of the earlier tasks are frozen. The function $\xi_k$ is fitted on fit
+inputs only, so given everything else the $m + 1$ numbers
+$\xi_k(c_1), \dots, \xi_k(c_m), \xi_k(X)$ are exchangeable. The threshold $\eta_k$ depends on the
+held-out inputs, but all that is used is that it is at least the $(\nu+1)$-th largest of the
+first $m$ of these numbers. Among $m + 1$ exchangeable numbers, the last one is strictly larger
+than the $(\nu+1)$-th largest of the others with probability at most $(\nu+1)/(m+1)$, ties
+included. A union bound over the $T_{\mathrm{end}} - j$ later tasks gives the claim.
+\end{proof}
+
+\begin{remark}[What these statements do not say]
+\label{rem:auditlimits}
+\emph{(i) They bound change, not quality:} an input that the
+recogniser gives to the wrong task from the start does not change, and is answered by the wrong
+adapters. How many inputs go to their own task is measured, not guaranteed.
+\emph{(ii) The price of the handicap is paid by the newcomer} and is seen when it arrives: the
+share of its own held-out inputs that it does not take. With $\nu = 0$ one held-out input of an
+older task that looks like the newcomer can be enough to keep most of the newcomer out.
+\emph{(iii) The bound in advance grows with the number of later tasks and falls with the number of
+held-out inputs.} For $m = 200$, $\nu = 2$ and $14$ later tasks it is $21\%$; what we measured on
+test inputs was far smaller (Section~\ref{sec:recogniser}), because most later tasks take nothing
+from most older ones, which the bound cannot know. A tighter bound in advance needs more held-out
+inputs. They are not lost for training: the adapter may learn from them. Under the handicap the
+audit of Proposition~\ref{prop:audit} is not valid for the same held-out inputs, because they set
+the thresholds; a second held-out set would be needed for both.
+\emph{(iv) All statements need test inputs that are like the training inputs of the task}
+(exchangeability), and later tasks that were not chosen by looking at the held-out inputs or at
+anything computed from them. The probabilities are over the held-out inputs and the test input
+together; for one given split the share can be larger (compare
+Remark~\ref{rem:boundlimits}(ii)).
+\emph{(v) Nothing here reads an instruction.} When inputs do carry one, the feature can be computed
+from the example alone while the adapters read the whole input. For a fixed input the answer then
+still depends on the route only, and the route does not depend on how the instruction is worded.
+So the audit and the bound hold for every wording of the instruction, and also when there is no instruction; the
+exchangeability is then a statement about the examples. A system that receives one string has to
+find where the example begins; the benchmarks give the two parts separately. A first test with trained answers is in Section~\ref{sec:exampleroutes}.
+\end{remark}

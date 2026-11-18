@@ -1,0 +1,89 @@
+% =====================================================================================
+\section{Related work}
+\label{sec:related}
+
+\paragraph{Continual learning and the role of task identity.} Catastrophic forgetting has been
+addressed by penalising changes to important weights \citep{kirkpatrick2017ewc}, by distilling the
+old model on new data \citep{li2016lwf}, by replaying stored or generated examples
+\citep{shin2017dgr}, and by projecting updates away from directions used by old tasks
+\citep{saha2021gpm}. \citet{vandeven2019three} distinguish scenarios by whether the task identity is
+given at test time. When it is given, methods that keep separate parameters per task forget
+nothing: progressive networks \citep{rusu2016progressive}, PackNet \citep{mallya2018packnet}, hard
+attention to the task \citep{serra2018hat} and, for language models, progressive prompts
+\citep{razdaibiedina2023progressive}. The difficulty of the setting without task identity is
+exactly that these parameters have to be selected from the input.
+
+\paragraph{Inferring the task from the input.} \citet{kim2022theoretical} show that continual
+learning without task identity decomposes into prediction within a task and prediction of the
+task, and that the second is tied to out-of-distribution detection; CLOM \citep{kim2022clom} trains
+each task as an out-of-distribution detector and protects its parameters with masks. Detectors
+based on distances to class means in feature space include the Mahalanobis detector of \citet{lee2018mahalanobis}. In
+prompt-based continual learning, L2P \citep{wang2022l2p} selects prompts by matching a query to
+learned keys, and S-Prompts \citep{wang2022sprompts} identifies the domain of an input by clustering
+frozen features. These methods choose the best-matching task among all known tasks, so the choice
+for an old input can change when a task is added. \recog{} is itself such a rule: what we add for
+it is an audit of that change and, with \handicap{}, a bound on it. The zones of our second rule differ in the order of
+precedence: a zone, once created, is never revised, and an older zone wins over a newer one. That is what turns
+an empirical observation (routes rarely change) into a guarantee (certified routes cannot change).
+Recognisers on frozen features with accumulated statistics are known from class-incremental learning
+\citep{mcdonnell2023ranpac,zhuang2022acil}, and we use one (Section~\ref{sec:audit}). What is added
+here is the link from its routes to answers through frozen sets of adapters, an audit of the share of
+changed routes from held-out inputs, and a bound in advance, the handicap.
+
+\paragraph{Selecting a frozen expert from the input.} Keeping one frozen expert per task and
+choosing among the experts from the input is an old idea. Expert Gate
+\citep{aljundi2017expertgate} trains one autoencoder per task and sends an input to the expert whose
+autoencoder reconstructs it best. SupSup \citep{wortsman2020supsup} keeps one mask per task over a
+fixed network and infers the task by minimising the entropy of the output. AdapterCL
+\citep{madotto2021adaptercl} keeps one adapter per dialogue domain and selects the adapter under
+which the input has the lowest perplexity, at the cost of one pass per adapter. HiDe-Prompt
+\citep{wang2023hide} treats the inference of the task identity as an explicit sub-problem of
+prompt-based continual learning, and for vision-language models \citet{yu2024moeadapters} add a
+selector that sends inputs outside the learned distributions back to the original model. Outside
+continual learning, LoraRetriever \citep{zhao2024loraretriever} retrieves adapters for an input from
+a growing pool. All of these select by best match among the experts known at test time. Our
+\nearest{} baseline is the corresponding rule in our feature space, and Section~\ref{sec:stress}
+shows, in a constructed case, what frozen zones and the precedence of older tasks add to it; at scale they added no measured stability over it (Section~\ref{sec:paraphrase}).
+
+\paragraph{Certificates.} A model that returns, with each prediction, a flag saying whether a
+guarantee applies is the setting of selective classification \citep{geifman2017selective}, where the
+guarantee concerns the risk on the accepted inputs. Our certificate concerns something else: the
+stability of an answer under future learning. It says nothing about whether the answer is correct.
+The bound of Proposition~\ref{prop:edits} is a certified radius in the sense used for adversarial
+robustness \citep{cohen2019smoothing}, a region around an input within which a decision provably
+cannot change; here the decision is the route, and the bound is deterministic and elementary
+because the feature is a weighted average. Conformal prediction has been used in continual learning for uncertainty \citep{gao2025conformalcl}, and bounds on forgetting exist under assumptions on the tasks \citep{friedman2024forgettingbounds}; the bound of Theorem~\ref{thm:bound} uses split-conformal calibration of a zone on held-out inputs of a task and assumes nothing about the later tasks. The audit of Section~\ref{sec:audit} is ordinary held-out estimation, and the handicap is a conformal rank argument applied to each later task, with a union bound over them.
+
+\paragraph{Continual learning with adapters in language models.} O-LoRA \citep{wang2023olora} keeps
+new adapters orthogonal to old ones and adds all adapters at inference. InfLoRA
+\citep{liang2024inflora} designs the adapter so that the update is confined to a subspace chosen to
+limit interference. GainLoRA \citep{liang2025gainlora} adds a gate to each branch and constrains it,
+with stored subspace bases, to remain near zero on inputs of old tasks. SPACE-LoRA
+\citep{spacelora2026} projects the adapter so that it has zero response on a protected activation
+subspace. SAPT \citep{zhao2024sapt} learns a shared attention over adapters. Closest to our
+instruction zones, Latent-LoRA \citep{latentlora2026} fits a mixture model to pooled token embeddings
+of the frozen embedding layer and uses it, without gradient-based training, to weight stored
+adapters at test time; it reports near-zero forgetting. We share with it the observation that
+frozen word-vectors separate tasks. We differ in three respects: routes are hard and not blended,
+so an answer is a function of the input and a set of adapters only; our zones are frozen and ordered by
+age, which yields the proof; and each answer inside a zone carries a certificate; \recog{} uses
+states of the model rather than word-vectors and has an audit instead. In our re-implementation of it (Appendix~\ref{app:latent}) the
+router gave every input to its own task in all wordings and no answer changed; it has no guarantee.
+Related work on composing
+adapters outside the continual setting routes inputs to adapters \citep{lorauter2026,logo2025} or
+grows a bank of adapters in which new skills read from but do not write to old ones
+\citep{read2026}.
+
+\paragraph{Averaged word-vectors.} Representing a text by a weighted average of its word-vectors,
+with weights that discount frequent words, is the baseline of \citet{arora2017simple} for sentence
+embeddings; we use their weighting unchanged. We do not remove a principal component; instead the
+features are rescaled with the covariance of unrelated inputs, as is common for distance-based
+detectors \citep{lee2018mahalanobis}.
+
+\paragraph{Keeping a new adapter silent.} A different route to the same goal is to train each new
+adapter to change nothing on inputs that are not its task, using stand-in inputs. We tested this
+before the present work and found that it protects for one further task and then fades
+(Appendix~\ref{app:silence}). Regularising an adapter towards the base model on its own training
+text has been proposed for single adapters \citep{maskthetarget2026}, and distilling from an earlier
+version of a model has been proposed to restore behaviour lost in later training
+\citep{lu2025onpolicy}.

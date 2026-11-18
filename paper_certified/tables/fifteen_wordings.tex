@@ -1,0 +1,16 @@
+\begin{tabular}{lcccccccc}
+    \toprule
+    & \multicolumn{4}{c}{Final score $\uparrow$} & \multicolumn{4}{c}{Answers changed $\downarrow$} \\
+    \cmidrule(lr){2-5} \cmidrule(lr){6-9}
+    Method & original & light & medium & heavy & original & light & medium & heavy \\
+    \midrule
+    \cert{} (ours) & 42.8 & 80.7 & 80.2 & 76.0 & 0 & 0 & 0 & 0 \\
+    \nearest{} & 42.8 & 80.7 & 80.2 & 76.0 & 0 & 0 & 0 & 0 \\
+    \centre{} & 42.6 & 80.7 & 72.0 & 57.5 & 2 & 0 & 29 & 100 \\
+    \keyswitch{} & 42.8 & 39.6 & 40.4 & 36.1 & 0 & 316 & 313 & 310 \\
+    \plain{} & 14.9 & 39.6 & 40.4 & 36.1 & 973 & 316 & 313 & 310 \\
+    \midrule
+    InfLoRA & 26.1 & 51.6 & 44.7 & 32.6 & 661 & 257 & 272 & 270 \\
+    GainLoRA & 28.6 & 51.1 & 47.1 & 37.0 & 215 & 69 & 85 & 109 \\
+    \bottomrule
+\end{tabular}

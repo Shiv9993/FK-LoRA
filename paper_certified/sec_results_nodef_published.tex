@@ -1,0 +1,46 @@
+\subsection{The published methods without their instructions}
+\label{sec:nodefpublished}
+
+This subsection starts the results with inputs that carry no instruction. It asks what the two published methods that we ran lose when the instruction of every task is taken away, and it counts the inputs that occur in two tasks, which set a limit to any method without instructions (Proposition~\ref{prop:noinstructionprice}). The rows of our own method in Table~\ref{tab:noinstpublished} use the recogniser \recog{} of Section~\ref{sec:audit}; it is tested in Section~\ref{sec:recogniser}, and the rows are explained in Section~\ref{sec:nodeftrained}.
+Every test was written down in the plan of the repository before it was run, with the line by which it would be read (Section~\ref{sec:protocol}); the lines are repeated below, and so are the guesses that were wrong.
+
+\paragraph{The published methods without their instructions.} We repeated the five-task run of Section~\ref{sec:five} for the two published methods that we ran, InfLoRA and GainLoRA (official code): the same five tasks, seed 42, model (T5-base) and 10 epochs per task, with one change.
+The definition of every task was replaced by the empty string in every data file, for training and for testing, so that every input is the same fixed text followed by the instance.
+Line fixed before the run, for each method against its own run with definitions: (1) if the score right after learning is below 60\% of the score with definitions, the method ``could not learn these tasks''; (2) if it learned, it ``holds its answers less well'' when forgetting rises by at least 5 points, or when the number of changed answers is at least twice as large and at least 60 of 400 higher.
+Table~\ref{tab:noinstpublished} has the numbers.
+
+\begin{table}[t]
+  \caption{The five tasks of Section~\ref{sec:five}, T5-base, 10 epochs, seed 42, re-test (every reference answer is used). ``Definitions'': with the definition of every task in its inputs, or none (the empty string, in training and testing). Score right after learning: average score (Rouge-L) right after each task was learned. Final score: average final score. Forgetting: average forgetting. Answers changed: of the \AudPubCompared{} test inputs of the first four tasks, the answers that differ at the end from the answer right after their task was learned. Learned and AP are averages over the five tasks; FT and Changed are over the first four (the last task cannot be forgotten). The three rows of ours use plain adapters that are never blocked, with the routes of Section~\ref{sec:audit}; they were run without definitions only. The last row sends every input to its own task: the best that any route can give.}
+  \label{tab:noinstpublished}
+  \centering
+  \input{tables/noinst_published}
+\end{table}
+
+Both methods learned (the score right after learning without definitions is \AudPubInfloraNoDefLearned{} for InfLoRA and \AudPubGainloraNoDefLearned{} for GainLoRA, against \AudPubInfloraDefLearned{} and \AudPubGainloraDefLearned{} with definitions in this seed; the line was 60\%).
+Both hold their answers less well, by the line fixed before: forgetting is \AudPubInfloraNoDefFT{} for InfLoRA (\AudPubInfloraDefFT{} with definitions) and \AudPubGainloraNoDefFT{} for GainLoRA (\AudPubGainloraDefFT{}); the final score falls from \AudPubInfloraDefAP{} to \AudPubInfloraNoDefAP{} and from \AudPubGainloraDefAP{} to \AudPubGainloraNoDefAP{}; and the changed answers rise from \AudPubInfloraDefChanged{} to \AudPubInfloraNoDefChanged{} and from \AudPubGainloraDefChanged{} to \AudPubGainloraNoDefChanged{} of \AudPubCompared{}.
+(The line was set against the three-seed runs with definitions of Section~\ref{sec:five}; the table gives the same seed.)
+Our guess for GainLoRA was 60 to 150 changed answers: \AudPubGainloraNoDefChanged{}.
+
+Table~\ref{tab:conflictcount} counts what Proposition~\ref{prop:noinstructionprice} needs on the data used here: inputs that occur word for word in two tasks.
+On both standard benchmarks, no input occurs in two tasks (\AudConfOneShared{} of \AudConfOneInputs{} inputs for the 15 SuperNI tasks, \AudConfTwoShared{} of \AudConfTwoInputs{} for the 15 Long Sequence tasks).
+The count is a lower limit of the conflict: tasks can overlap without sharing a text word for word.
+So the count alone shows only that no loss is forced by shared texts. That the loss of the two methods was not forced is shown by the recogniser of Section~\ref{sec:recogniser}, which gives all but \AudRouteFiveRidgeNotOwn{} of the \AudRouteFiveRidgeN{} test inputs of these five tasks to their own task without reading an instruction.
+
+\begin{table}[t]
+  \caption{Inputs that occur word for word in the data of two or more tasks. Rows are collections of tasks (training and test inputs of the benchmark tasks; the instances read from the task files for the fresh batches of the paragraph on fresh tasks in Section~\ref{sec:recogniser}). ``Also elsewhere'': inputs that occur in another task of the same collection; \%: their share of all inputs of the collection. A count, not a test.}
+  \label{tab:conflictcount}
+  \centering
+  \input{tables/conflict_count}
+\end{table}
+
+Caveats, written before the run: one seed, five tasks, a small model, a tenth of the published number of epochs. Only these two methods were run: this is a first look at two methods in a reduced setting, and says nothing about other methods. Two more seeds were run afterwards (Table~\ref{tab:noinstseeds} in Section~\ref{sec:nodeftrained}). Over the three seeds InfLoRA changes \AudSeedsInfloraChanged{} and GainLoRA \AudSeedsGainloraChanged{} of \AudSeedsCompared{} answers without definitions, against \FiveInfChanged{} and \FiveGainChanged{} with them (Section~\ref{sec:five}), and their forgetting is \AudSeedsInfloraFT{} and \AudSeedsGainloraFT{} points against \FiveInfFT{} and \FiveGainFT{}: the reading is the same in every seed. With their published number of epochs the two methods learn the five tasks and then lose far more (Section~\ref{sec:nodeftrained}, Table~\ref{tab:noinstfull}).
+
+\medskip
+\noindent The per-task scores of this run follow.
+
+\begin{table}[t]
+  \caption{Per-task scores of the five-task run of Table~\ref{tab:noinstpublished} (re-test): score right after the task was learned $\to$ score at the end, Rouge-L. Columns: the two published methods with the definitions in the inputs and with none, and our \recog{} with none (plain adapters). Rows: the five tasks in their order. The last task cannot be forgotten.}
+  \label{tab:noinstpertask}
+  \centering
+  \input{tables/noinst_published_pertask}
+\end{table}

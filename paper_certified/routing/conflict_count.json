@@ -1,0 +1,51 @@
+{
+ "note": "Texts that occur word for word in the inputs of two tasks (a description, not a test): the part of the 'price of having no instruction'\nthat can be counted directly. For every collection: for each ordered pair (A, B), the share of the inputs of A that also occur among the\ninputs of B (after stripping leading and trailing white space). The fourth fresh batch is not opened.",
+ "superni_15": {
+  "tasks": 15,
+  "inputs": 10588,
+  "inputs_that_also_occur_in_another_task": 0,
+  "share": 0.0,
+  "pairs_with_at_least_1_percent": []
+ },
+ "long_sequence_15": {
+  "tasks": 15,
+  "inputs": 115381,
+  "inputs_that_also_occur_in_another_task": 0,
+  "share": 0.0,
+  "pairs_with_at_least_1_percent": []
+ },
+ "fresh_batch_1": {
+  "tasks": 30,
+  "inputs": 30000,
+  "inputs_that_also_occur_in_another_task": 0,
+  "share": 0.0,
+  "pairs_with_at_least_1_percent": []
+ },
+ "fresh_batch_2": {
+  "tasks": 30,
+  "inputs": 30000,
+  "inputs_that_also_occur_in_another_task": 0,
+  "share": 0.0,
+  "pairs_with_at_least_1_percent": []
+ },
+ "fresh_batch_3": {
+  "tasks": 30,
+  "inputs": 30000,
+  "inputs_that_also_occur_in_another_task": 586,
+  "share": 0.01953,
+  "pairs_with_at_least_1_percent": [
+   {
+    "task": "task567_circa_text_generation",
+    "also_in": "task565_circa_answer_generation",
+    "share_of_inputs": 0.293,
+    "inputs": 1000
+   },
+   {
+    "task": "task565_circa_answer_generation",
+    "also_in": "task567_circa_text_generation",
+    "share_of_inputs": 0.293,
+    "inputs": 1000
+   }
+  ]
+ }
+}

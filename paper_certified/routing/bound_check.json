@@ -1,0 +1,9 @@
+{
+ "inputs": 2250,
+ "diameter": 509.59630162021386,
+ "held": true,
+ "largest_share_of_the_bound": 0.40842851377081146,
+ "median_share_of_the_bound": 0.14649415755286482,
+ "inside": 1324,
+ "guaranteed": 164
+}

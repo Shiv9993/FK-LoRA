@@ -1,0 +1,96 @@
+% Paragraphs of the Discussion; shared by sec_discussion.tex and short_app_discussion.tex.
+\paragraph{Without instructions: what the results show.} Every method without instructions loses at least the conflict of the inputs of two tasks (Proposition~\ref{prop:noinstructionprice}); that part is forced, and it is zero when no input occurs in two tasks. The rest is not forced. Without their instructions the two published methods that we ran changed \AudSeedsGainloraChanged{} and \AudSeedsInfloraChanged{} of \AudSeedsCompared{} answers. A recogniser on the frozen model's own states avoids most of this. It blocks no task and does not depend on the order of arrival. An audit estimates, from held-out inputs, the share of answers that change, and its variant \handicap{} bounds in advance what later tasks can take. On the 15 benchmark tasks, development data, the recogniser gives \AudDevLLamOneEnd{}\% of the test inputs to their own task; on 30 fresh tasks it gives \AudFreshFourthLEnd{}\% and passed the line fixed for it, as did two related rules on other fresh tasks; two tasks built on the same texts split their inputs under it (\AudScalePairOlderLEnd{}\% and \AudScalePairNewerLEnd{}\% reach their own task); \AudConfPairShare{}\% of their inputs occur word for word in both, and on those no method without instructions can do better than split them. On five tasks with trained answers (three seeds of one sequence, taken from the 15 development tasks), plain adapters behind the recogniser beat the two published methods without their definitions by a line fixed before the run, but there most of the gap is learning: they had a tenth of their published epochs. With their published number of epochs (one seed) they learn the five tasks as well as plain adapters do (\AudFullInfloraLearned{} and \AudFullGainloraLearned{} right after learning, against \AudOursRidgeLearned{}) and then forget \AudFullInfloraFT{} and \AudFullGainloraFT{} points, so there the gap is forgetting; forgetting grew with what had been learned. With the same 100 epochs plain adapters behind the recogniser end at \AudFullOursRidgeAP{} with \AudFullOursRidgeChanged{} of \AudFullCompared{} changed answers, the same routes and the same number of changed answers as with 10 epochs. The same run with their definitions gives \AudFullDefOriginalInfloraFT{} and \AudFullDefOriginalGainloraFT{} points of forgetting: in this setting the instruction is what held their answers, and our rules do not need it. It covers two methods on one sequence. The handicap is loose (\AudDevHPrimeTTwoBound{}\% against \AudDevHPrimeTTwoChanged{}\% measured). On fifteen tasks without definitions (one seed, our rules only) plain adapters behind the recogniser end \AudFifteenNoDefRidgeBelowOwn{} points below the ceiling with \AudFifteenNoDefRidgeChanged{} of \AudFifteenNoDefCompared{} changed answers. What remains: the published setting, the published methods without instructions on more than five tasks, a tight bound in advance, rewordings written by people, and tasks that share inputs.
+
+\paragraph{Two rules, two kinds of statement.} The zones give an exact statement for the inputs inside them and none outside, and they read the instruction. The recogniser gives a measured statement for all inputs of a task (the audit), and its variant \handicap{} a loose one in advance; both read only the example. With instructions, on five tasks and three seeds, the two behaved as these statements say: the zones changed no answer and lost \AudUThreeHeavyCertBelowOwn{} points on average under the heavy rewording through misrouted inputs, and the recogniser changed at most \AudUThreeMaxChangedPerSeed{} of \AudUCompared{} answers per seed at every wording and stayed within \AudUThreeRidgeBelowOwnHigh{} points of the ceiling (Section~\ref{sec:exampleroutes}). Using the zone where an input is certified and the recogniser elsewhere gave the better of the two at the original, light and heavy wordings and not at the medium one (seed 42; Table~\ref{tab:instanceroutes}). Which rule a system should use depends on what it needs: a proof for unedited instructions, or routes that do not depend on the wording.
+
+\paragraph{The third rule: zones from the inputs of a task.} Theorem~\ref{thm:bound} gives a guarantee that needs no instruction either: when each zone is calibrated on held-out inputs of its task, each input of a task changes its answer with probability at most a chosen level, for any model and any later tasks. The first tests (Section~\ref{sec:noinstruction}: routes on benchmark files without definitions, and a small trained model) met the bound and showed its price: with frozen word-vector features, most tasks are blocked at admission, because the zones of earlier tasks hold most of their inputs, and those tasks are then not learned. The bound moves the difficulty to one thing that is measured when a task arrives, the share of a task's inputs inside older zones. Without an instruction, telling tasks apart was what remained, and the recogniser (Sections~\ref{sec:audit} and~\ref{sec:recogniser}) takes it up.
+
+\paragraph{What the comparison with the published methods shows, with instructions.} With the
+instructions in the inputs, in our reduced setting the
+certified switch ends far above InfLoRA and GainLoRA, and it would be easy to read this as ``they
+forget and we do not''. That reading is wrong on five tasks. There both published methods have forgetting scores near zero (though \FiveInfChanged{} and \FiveGainChanged{} of \FiveInfCompared{} answers change). They had
+learned less: right after learning they are at the level of guessing on the two tasks with two
+labels. On fifteen tasks InfLoRA forgets \FifteenInfFT{} points and GainLoRA \FifteenGainFT{}, and
+both had again learned less right after each task (\FifteenInfLearned{} and \FifteenGainLearned{}
+against \FifteenCertLearned{}), so there the gap has a part from learning and a part from
+forgetting. We did not find out why. Restricting an adapter to a subspace, or training only one of its
+two matrices, may slow learning; ten epochs may simply be too few; and our set-up replaced one step
+of their code by a substitute. Plain adapters learn these tasks well and then lose them; the switch
+removes the loss without touching the learning. What our experiments support is therefore narrow:
+switching protects without changing how an adapter is trained, and its price is paid where a new task collides with an old zone and, at scale, in routing: its fallback gave fewer machine-paraphrased inputs to their own task than a plain nearest-signature rule. They do not support a statement about how well the published
+methods retain what they learn, because in the five-task runs there was little to retain, the
+15-task run has one seed, and these methods were run with their definitions at their full
+number of epochs for one seed only (Section~\ref{sec:nodeftrained}), and not with a larger model. Without their definitions the same two methods did hold their answers less well (Section~\ref{sec:nodefpublished}), with the same limits.
+
+\paragraph{What the zones add to a nearest-task rule, and what they cost.} On the benchmark
+sequences \nearest{} and \cert{} give the same routes and the same scores. This is expected: the
+tasks of a benchmark are different from each other, and no later task tries to take an earlier
+task's inputs. The two rules separate in two situations, and in opposite directions. When a later
+task resembles an old one and inputs of the old task arrive in other words, the best-match rule
+can hand them to the newcomer without notice, and the zones keep those that lie inside a zone (Section~\ref{sec:stress}, a constructed case). When
+a later task resembles an old one and all instructions are unedited, the best-match rule serves
+both tasks, and the zones refuse the newcomer (Section~\ref{sec:many}); in a collection of
+\ManyTasks{} real tasks this happened to \ManyCollidingPct{}\% of the tasks. On the machine paraphrases of \WidenTasksEval{} real tasks this case was rare and the two rules gave the same routes (Section~\ref{sec:paraphrase}); there the zones added the proof for the inputs inside them, not better or more stable routing, and a plain nearest-signature rule gave more paraphrased inputs to their own task. We therefore cannot say that a system that expects reworded instructions is better served by the zones, only that it gets a proof for part of them. A system that expects
+families of sibling tasks with fixed instructions is better served by the best match, or by zones
+with a smaller radius, or by the variant of Section~\ref{sec:exactfirst}, which serves a sibling
+and gives up the guarantee only for inputs that carry the sibling's instruction word for word. What
+the zones offer in both situations, and a best-match rule does not, is that a conflict is known at
+the moment the new task arrives, as the count of blocked training inputs, and that a certified
+answer is final.
+
+\paragraph{Exactness cuts both ways.} A certified answer never gets worse and never gets better.
+InfLoRA and GainLoRA show small negative forgetting on some tasks: an old sentiment task improves
+when a second sentiment task is learned. The switch cannot profit from this. One can still learn an
+improved version of an old task as a new task, but under the same instruction its inputs carry the
+old opening, so the old adapter keeps answering them under every zone rule of this paper; under
+\recog{} the two versions would split such inputs (Proposition~\ref{prop:noinstructionprice}).
+Replacing a
+claim, with an explicit decision to give up the guarantee for one zone, is easy to add and is the
+natural way to correct a task; we have not studied it.
+
+\paragraph{Why averaged word-vectors are enough here, and when they are not.} The zone of a task is
+built from its instruction. Two instructions that share few content words are far apart even after
+frequent words are discounted, and an edit that keeps most content words stays close. That is why
+light rewordings are certified. A heavy rewording can leave only a few content words, and then two
+tasks about the same subject become hard to tell apart: in our runs the only inputs that the zones route wrongly
+are tweets under a one-sentence instruction about positive and negative mood, which are given to
+the other sentiment task. We tried features that read meaning rather than words: hidden states of a language model, a
+frozen sentence encoder and a frozen inference model that judges whether two instructions ask for
+the same thing (Section~\ref{sec:paraphrase}, Appendix~\ref{app:widen}). They raise the share of correct certificates, but none of them brings the wrong certificates under the 5\% we had asked for:
+the lowest value, \WidenEncRulerTwentyFrM{}\% with \WidenEncRulerTwentyFrP{}\% correct certificates (\WidenRefTfiveFrM{}\% and \WidenRefTfiveFrP{}\% for \cert{}),
+belongs to a setting singled out after the runs, and its advantage was smaller than the margin we fixed on held-out paraphrases. In the collisions we
+inspected, sibling tasks that differ in one decisive word are put together as well. The theorem does not depend on the feature, only on the zones
+being fixed when the task arrives and on membership being computed reproducibly by frozen parts (Remark~\ref{rem:otherzones}).
+
+\paragraph{What the mechanical edits add to this picture.} The edit test (Section~\ref{sec:edits})
+sharpens three points. First, robustness is a matter of length: an instruction of a hundred tokens
+keeps its route under sixteen typos, an instruction of ten words loses it under eight. A system
+built on this switch should give its tasks instructions of a few sentences. Second, the switch reads a bag of words. Shuffled
+sentences are certified, and a sentence removed from the end matters only if it carried the words
+that set the task apart. Third, typos are worse than missing words, because a misspelt word is
+split into rare word pieces that the weighting of Eq.~\eqref{eq:weights} takes for content. A
+spelling-tolerant feature might repair exactly this case, and by the argument above it could be
+swapped in without touching the guarantee; we did not test one on typos.
+
+\paragraph{What to do with an uncertified input.} The certificate separates two kinds of answers,
+and a system can treat them differently. For a certified input the answer is final. For an
+uncertified one the system knows that it is guessing the task, and it knows how good the guess is
+likely to be, since $\min_k \delta_k(x)$ is the distance to the nearest zone in units of its radius (we did not test how well this distance predicts a correct route).
+It can then answer anyway, as in our experiments, or ask for the instruction in its registered
+form, or refuse. We did not study such policies; the edit test suggests that they matter for badly
+damaged instructions, where the route is wrong for more than half of the inputs, all of which are
+flagged.
+
+\paragraph{The benchmark hands every method the task.} Every input of SuperNI begins with its task
+definition, so the identity of the task can be read off the input by string matching. Methods that
+are described as needing no task identity at test time therefore receive it as part of the text.
+The exact key makes this explicit and reaches the full learning of plain adapters with no
+forgetting, and it collapses to plain adapters when a single word of the instruction changes.
+Evaluations of continual instruction tuning should include reworded instructions; otherwise a
+lookup table of instructions is a perfect method. These benchmarks, with unedited instructions, cannot tell retention from recognition: a test of retention has to reword the instruction or take it away (Sections~\ref{sec:paraphrase} and~\ref{sec:nodefpublished}).
+
+\paragraph{Evaluation noise.} The official loader scores an input against one reference answer
+picked at random on every load. Identical answers then receive different scores in different
+runs, about one point on a task with several references. On the 15 tasks it gave the certified switch a forgetting of \FifteenCertOffFT{} although none of
+\FifteenCertCompared{} answers changed (Section~\ref{sec:fifteen}). When the claim is that nothing changed,
+the answers should be compared, not the scores.

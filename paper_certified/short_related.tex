@@ -1,0 +1,30 @@
+\section{Related work}
+\label{sec:related}
+
+\paragraph{Task identity.} \citet{vandeven2019three} distinguish scenarios by whether the task identity
+is given at test time; when it is, separate parameters per task forget nothing
+\citep{rusu2016progressive,mallya2018packnet,serra2018hat,razdaibiedina2023progressive}. Other methods
+use penalties \citep{kirkpatrick2017ewc}, distillation \citep{li2016lwf}, replay \citep{shin2017dgr} or
+projection \citep{saha2021gpm}. Without the task identity the parameters must be selected from the
+input, which \citet{kim2022theoretical} tie to out-of-distribution detection (CLOM,
+\citealp{kim2022clom}; \citealp{lee2018mahalanobis}). L2P \citep{wang2022l2p} matches a query to learned
+prompt keys, S-Prompts \citep{wang2022sprompts} clusters frozen features, and Expert Gate
+\citep{aljundi2017expertgate}, SupSup \citep{wortsman2020supsup} and AdapterCL
+\citep{madotto2021adaptercl} pick the expert by reconstruction, entropy or perplexity (see also
+\citealp{wang2023hide,yu2024moeadapters,zhao2024loraretriever}). All choose the best match among the
+experts known at test time, so the choice for an old input can change when a task is added.
+\recog{} is such a rule; we add an audit and a bound on that change. The zones differ: a zone is
+never revised, and an older zone wins. Selective classification
+\citep{geifman2017selective} flags inputs with a risk guarantee; our certificate concerns the
+stability of an answer, not its correctness, and Proposition~\ref{prop:edits} is a certified radius
+\citep{cohen2019smoothing} for the route.
+
+\paragraph{Adapters in language models.} O-LoRA \citep{wang2023olora} keeps new adapters orthogonal to
+old ones, InfLoRA \citep{liang2024inflora} confines the update to a subspace, GainLoRA
+\citep{liang2025gainlora} adds a constrained gate per branch, SPACE-LoRA \citep{spacelora2026} projects
+the adapter to zero response on a protected subspace, and SAPT \citep{zhao2024sapt} learns a shared
+attention over adapters. Closest to our recognition step, Latent-LoRA \citep{latentlora2026} fits a
+mixture model to pooled frozen token embeddings to weight stored adapters, and reports near-zero
+forgetting (see Appendix~\ref{app:latent}). We differ in two respects: routes are hard, and they come with an audit, a bound in
+advance and, for zones, a proof. Other work routes inputs to adapters
+\citep{lorauter2026,logo2025} or grows a bank of adapters \citep{read2026}. Conformal prediction and bounds on forgetting exist in continual learning \citep{gao2025conformalcl,friedman2024forgettingbounds}.
