@@ -1,0 +1,35 @@
+{
+ "note": "Reworded task definitions (light, medium, heavy), written by machine for the tests. Answer formats are unchanged.",
+ "levels": [
+  "light",
+  "medium",
+  "heavy"
+ ],
+ "tasks": {
+  "task1510": [
+   "Given a phrase that describes the relationship between two words, extract the two words and the lexical relation between them. The relation must be one of the types 'MemberOf', 'MadeOf', 'Synonym', 'Entails', 'HasA', 'HasProperty', 'PartOf', 'Antonym' or 'IsA'. The output should be in the format: word1 relation word2.",
+   "You will see a short phrase that tells how two words are related. Find the two words and name the lexical relation that links them. Allowed relations are 'MemberOf', 'MadeOf', 'Synonym', 'Entails', 'HasA', 'HasProperty', 'PartOf', 'Antonym' and 'IsA'. Write your answer as: word1 relation word2.",
+   "Read the phrase, pick out the pair of words it talks about, and say which link holds between them ('MemberOf', 'MadeOf', 'Synonym', 'Entails', 'HasA', 'HasProperty', 'PartOf', 'Antonym', 'IsA'). Answer format: word1 relation word2."
+  ],
+  "task363": [
+   "In this task, you are given a sentence from a movie review. Your task is to classify the sentence as \"POS\" if its sentiment is positive or as \"NEG\" if its sentiment is negative.",
+   "You will read a sentence taken from a film review. Decide whether it expresses a positive or a negative opinion. Answer \"POS\" for positive and \"NEG\" for negative.",
+   "Here is one line from a review of a movie. Label it \"POS\" when the writer liked what they saw and \"NEG\" when they did not."
+  ],
+  "task748": [
+   "In this task, you are given a short story, and one sentence from the story is selected. Consider the events that happen after that sentence. Is any of them directly caused by it or made possible by it? Write your answer in the form \" A >causes/enables> B\". Try to use phrases and sentences from the story in your answer when possible. Do not change the selected sentence in your answer.",
+   "You will read a short story in which one sentence has been picked out. Think about what happens later in the story and find an event that the picked sentence directly causes or makes possible. Give the answer as \" A >causes/enables> B\", reusing wording from the story where you can and keeping the picked sentence unchanged.",
+   "A brief story follows, with one of its sentences marked. Name a later event that happens because of the marked sentence, or that it allows to happen. Use the format \" A >causes/enables> B\", copy text from the story when possible, and leave the marked sentence as it is."
+  ],
+  "task1687": [
+   "In this task, you are given the text of a tweet. Your task is to classify the given tweet text into one of two categories, 1) positive or 2) negative, based on its content.",
+   "You will read the text of a tweet. Decide from what it says whether the tweet is positive or negative, and answer with one of these two categories.",
+   "Below is a post from Twitter. Say whether its mood is positive or negative."
+  ],
+  "task875": [
+   "In this task, you are given a sentence that contains a particular emotion. You must classify the sentence into one of these emotions: 'joy', 'love', 'anger', 'fear', or 'surprise'.",
+   "You will read a sentence that expresses a feeling. Choose which emotion it shows from this list: 'joy', 'love', 'anger', 'fear', 'surprise'.",
+   "Which feeling does the writer of this sentence have? Pick one of 'joy', 'love', 'anger', 'fear', 'surprise'."
+  ]
+ }
+}
