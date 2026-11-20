@@ -5,8 +5,11 @@ Code, results and paper for
 **Never Forget What You Learn: FK-LoRA for Continual Learning Without Forgetting**
 Shivkumar Bammidi and Abhishek Jangid, EnLab.
 
-The paper is in `paper_certified/`: `main_compact.pdf` (the full paper, 69 pages with appendix),
-`main.pdf` (the same content at full length) and `short.pdf` (a 9-page version with appendix).
+**The paper: [`FK-LoRA.pdf`](FK-LoRA.pdf)** (70 pages with appendix).
+
+Its LaTeX sources and other versions are in `paper_certified/`: `main_compact.pdf` (built from the
+LaTeX sources), `main.pdf` (the same content at full length) and `short.pdf` (a 9-page version with
+appendix).
 
 ## The idea
 
