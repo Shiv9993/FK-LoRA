@@ -3795,3 +3795,8 @@ verifies all 1,599 numbers).
 - The Word copy of the shortened version now has the 6.5-inch text width of its PDF (71 pages
   instead of 77), and the Word converter no longer splits words inside narrow table columns.
 - In the 9-page version four figures appeared twice in the appendix; one copy is kept.
+
+### 2026-11-20 (11:56 UTC) — the first author's name
+
+The first author's name is written "Shivkumar Bammidi" from now on, in the three versions of the
+paper, the Word copies, the separate statement and the README of the release repository.

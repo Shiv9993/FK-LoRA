@@ -3,7 +3,7 @@
 Code, results and paper for
 
 **Never Forget What You Learn: FK-LoRA for Continual Learning Without Forgetting**
-Bammidi Shivkumar and Abhishek Jangid, EnLab.
+Shivkumar Bammidi and Abhishek Jangid, EnLab.
 
 The paper is in `paper_certified/`: `main_compact.pdf` (the full paper, 69 pages with appendix),
 `main.pdf` (the same content at full length) and `short.pdf` (a 9-page version with appendix).
@@ -95,7 +95,7 @@ installation for the PDF.
 ```bibtex
 @misc{fklora2026,
   title  = {Never Forget What You Learn: {FK-LoRA} for Continual Learning Without Forgetting},
-  author = {{Bammidi Shivkumar} and {Abhishek Jangid}},
+  author = {{Shivkumar Bammidi} and {Abhishek Jangid}},
   year   = {2026},
   note   = {EnLab. \url{https://github.com/Shiv9993/FK-LoRA}}
 }
