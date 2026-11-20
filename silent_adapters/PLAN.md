@@ -3800,3 +3800,9 @@ verifies all 1,599 numbers).
 
 The first author's name is written "Shivkumar Bammidi" from now on, in the three versions of the
 paper, the Word copies, the separate statement and the README of the release repository.
+
+### 2026-11-20 (13:32 UTC) — published on Zenodo
+
+The paper is published on Zenodo: Bammidi, S., & Jangid, A. (2026), Version v1,
+https://doi.org/10.5281/zenodo.24396122. The README of the release repository gives the DOI and
+the citation.

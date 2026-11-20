@@ -5,7 +5,10 @@ Code, results and paper for
 **Never Forget What You Learn: FK-LoRA for Continual Learning Without Forgetting**
 Shivkumar Bammidi and Abhishek Jangid, EnLab.
 
-**The paper: [`FK-LoRA.pdf`](FK-LoRA.pdf)** (70 pages with appendix).
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24396122.svg)](https://doi.org/10.5281/zenodo.24396122)
+
+**The paper: [`FK-LoRA.pdf`](FK-LoRA.pdf)** (70 pages with appendix), published on Zenodo:
+<https://doi.org/10.5281/zenodo.24396122>.
 
 Its LaTeX sources and other versions are in `paper_certified/`: `main_compact.pdf` (built from the
 LaTeX sources), `main.pdf` (the same content at full length) and `short.pdf` (a 9-page version with
@@ -95,11 +98,17 @@ installation for the PDF.
 
 ## Cite
 
+Bammidi, S., & Jangid, A. (2026). *Never Forget What You Learn: FK-LoRA for Continual Learning
+Without Forgetting* (Version v1). Zenodo. https://doi.org/10.5281/zenodo.24396122
+
 ```bibtex
-@misc{fklora2026,
-  title  = {Never Forget What You Learn: {FK-LoRA} for Continual Learning Without Forgetting},
-  author = {{Shivkumar Bammidi} and {Abhishek Jangid}},
-  year   = {2026},
-  note   = {EnLab. \url{https://github.com/Shiv9993/FK-LoRA}}
+@misc{bammidi2026fklora,
+  title     = {Never Forget What You Learn: {FK-LoRA} for Continual Learning Without Forgetting},
+  author    = {Bammidi, Shivkumar and Jangid, Abhishek},
+  year      = {2026},
+  version   = {v1},
+  publisher = {Zenodo},
+  doi       = {10.5281/zenodo.24396122},
+  url       = {https://doi.org/10.5281/zenodo.24396122}
 }
 ```
