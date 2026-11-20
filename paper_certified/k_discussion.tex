@@ -6,10 +6,10 @@
 states avoids most of the loss, blocks no task and does not depend on the order of arrival; on fresh tasks it passed the line fixed for it, as did two related rules on other fresh tasks. Two tasks
 built on the same texts split their inputs under it, and \AudConfPairShare{}\% of their inputs occur
 word for word in both, where no method without instructions can do better. With the published number
-of epochs the two methods learn the five tasks as well as plain adapters do (\AudFullInfloraLearned{}
-and \AudFullGainloraLearned{} right after learning, against \AudOursRidgeLearned{}) and then forget; the
+of epochs the two methods learn the five tasks nearly as well as plain adapters with the same number of epochs (\AudFullInfloraLearned{}
+and \AudFullGainloraLearned{} right after learning, against \AudFullOursRidgeLearned{}) and then forget; the
 forgetting grew with what had been learned. Plain adapters behind the recogniser keep the same routes
-and the same \AudFullOursRidgeChanged{} of \AudFullCompared{} changed answers at 10 and at 100 epochs. With their definitions the same run gives \AudFullDefOriginalInfloraFT{} (InfLoRA) and \AudFullDefOriginalGainloraFT{} (GainLoRA) points of forgetting: in this setting the instruction is what held their answers, and our rules do not need it.
+and the same \AudFullOursRidgeChanged{} of \AudFullCompared{} changed answers at 10 and at 100 epochs. With their definitions the same run gives \AudFullDefOriginalInfloraFT{} (InfLoRA) and \AudFullDefOriginalGainloraFT{} (GainLoRA) points of forgetting, with \AudFullDefOriginalInfloraChanged{} and \AudFullDefOriginalGainloraChanged{} of \AudFullDefCompared{} answers changed: in this setting the instruction is what held most of their answers (nearly all for GainLoRA, fewer for InfLoRA), and our rules do not need it.
 On fifteen tasks without definitions (one seed, our rules only) they end
 \AudFifteenNoDefRidgeBelowOwn{} points below the ceiling with \AudFifteenNoDefRidgeChanged{} of
 \AudFifteenNoDefCompared{} changed answers.
@@ -151,7 +151,7 @@ changed, answers should be compared, not scores.
   scaled by each task's distance to unrelated text and tested at the end on routes only, is right on the
   benchmark (\RerouteBgHeavyFive{}\% under heavy rewording) and at scale (\RerouteBgItOwn{}\% without
   zones and \RerouteCertFourItOwn{}\% with zones in front, through a fourth language), but the best rule
-  without zones still gives about five points more right routes. The two fallbacks trade places between
+  without zones still gives \RerouteZonesCost{} to \RerouteZonesCostEs{} points more right routes, depending on the pivot language. The two fallbacks trade places between
   tests, and the variant has not been run with trained answers (Section~\ref{sec:paraphrase}).
   \item \textbf{The zones are narrow at scale.} Under machine paraphrases \cert{} certifies \WidenRefTfivePLow{}\% to \WidenRefTfivePHigh{}\% of the
   inputs for their own task and \WidenRefTfiveMLow{}\% to \WidenRefTfiveMHigh{}\% for another, depending

@@ -32,6 +32,13 @@ Table~\ref{tab:notation} lists the symbols used in the paper.
     $\delta_k(x)$, $Z_k$ & relative distance of $x$ from task $k$; protected zone of task $k$, Eq.~\eqref{eq:zone} \\
     $c_T(x)$, $\rho_T(x)$ & certificate and route of $x$ after $T$ tasks, Eqs.~\eqref{eq:certificate}--\eqref{eq:route} \\
     $y_T(x)$ & answer to $x$ after $T$ tasks, Eq.~\eqref{eq:answer} \\
+    $u(x)$, $\bar u(x)$ & frozen feature of the whole input used by \recog{} and \handicap{}; the same with a constant 1 appended \\
+    $D_k^{\mathrm{f}}$; $c_1, \dots, c_m$, $m$ & fit inputs of task $k$; its held-out inputs and their number (not the certificate $c_T$) \\
+    $G_k$, $v_k$ & mean of $\bar u\,\bar u^{\top}$ and mean of $\bar u$ over the fit inputs of task $k$ \\
+    $V_T$, $\varepsilon$ & ridge recogniser after $T$ tasks, Eq.~\eqref{eq:recogniser}; its ridge constant \\
+    $H$ & number of held-out inputs of a task whose route changed, Proposition~\ref{prop:audit} \\
+    $\xi_k(x)$, $\eta_k$, $\nu$ & margin of the newcomer $k$ over the best older task; its threshold; the number of held-out inputs of each older task a newcomer may take, Eq.~\eqref{eq:handicap} \\
+    $T_{\mathrm{end}}$ & the last task of the sequence, Theorem~\ref{thm:handicap} \\
         $D_t$, $b_t$ & training inputs of task $t$; number of them inside an older zone (blocked) \\
     $X_T(x)$, $\rho^{\mathrm{x}}_T(x)$ & tasks whose opening $x$ carries token for token; route of \exactfirst{}, Eq.~\eqref{eq:exactfirst} \\
     $\mathcal{X}$ & a set of certified inputs (Corollary~\ref{cor:zero}) \\
@@ -48,17 +55,17 @@ Table~\ref{tab:notation} lists the symbols used in the paper.
 \section{Reworded task definitions}
 \label{app:rewordings}
 
-The three rewordings of each task definition used in the tests. They were written by machine during the development of the method, not by people; the answer format of each task is unchanged. The original
+The three rewordings of each task definition used in the tests. They were written by machine during development, not by people; the answer format of each task is unchanged. The original
 definitions are those of SuperNI.
 
 \input{tables/rewordings}
 
 
 \FloatBarrier
-\section{How the method reached its final form}
+\section{How \cert{} reached its final form}
 \label{app:history}
 
-The certified switch was developed in one day of experiments. Two choices were made after looking at where test inputs were routed, and no answer of the model was used to make a choice; this decides how much weight the results with reworded instructions can carry. The rule was frozen before the runs of Section~\ref{sec:results}.
+\cert{} reached its final form through a short series of route experiments. Two choices were made after looking at where test inputs were routed, and no answer of the model was used to make a choice; this decides how much weight the results with reworded instructions can carry. The rule was frozen before the runs of Section~\ref{sec:results}.
 
 \paragraph{Shape of the zone.} Zones around the average of the whole input worked on the five short tasks but failed on the 15-task sequence, because tasks with long inputs get large regions that swallow other tasks. Between 2\% and 21\% of the test inputs reached their own task with a ball around the whole-input average (depending on the radius), 5\% to 20\% with an ellipsoid from the task's own covariance, and 28\% to 36\% with a ball around the average of the first 64 tokens; in all three cases older tasks claimed the inputs of newer ones. The shape that works is a ball around the opening with a radius tied to the nearest other task (Eq.~\ref{eq:radius}); no input of the 15 tasks then lies in a foreign zone.
 
@@ -101,9 +108,9 @@ The embedding table is checked to be frozen, and its checksum is compared when e
 
 \paragraph{Cost.} The switch needs one weight per token, one mean vector and one $d \times d$ matrix, computed once (about 0.6 million numbers for T5-base; our code stores twice as much, because it also keeps the statistics of \centre{}), and $d + 2$ numbers per task (770 for T5-base). One rank-4 adapter on the query and value projections of the 36 attention modules of T5-base has $72 \cdot 4 \cdot (768 + 768) = 442{,}368$ numbers. Routing one input among fifteen tasks took 3.3\,ms on one CPU thread (unoptimised; each distinct opening length is handled separately).
 
-\paragraph{A radius of zero.} The stand-alone code follows the convention of Definition~1 (since 2026-11-18, with a test): a zone of radius zero holds only inputs at distance zero, $0/0$ counts as inside, ties go to the older task. The experiment code (\texttt{silent\_run.py}) treats $0/0$ as ``not certified''. No run reached this case; the analysis of the \ManyTasks{} tasks (\texttt{many\_tasks\_analysis.py}), which does, follows the convention.
+\paragraph{A radius of zero.} The stand-alone code follows the convention of Definition~1 (checked by a test): a zone of radius zero holds only inputs at distance zero, $0/0$ counts as inside, ties go to the older task. The experiment code (\texttt{silent\_run.py}) treats $0/0$ as ``not certified''. No run reached this case; the analysis of the \ManyTasks{} tasks (\texttt{many\_tasks\_analysis.py}), which does, follows the convention.
 
-\paragraph{Stand-alone implementation.} \texttt{certified\_switch.py} implements the method for any Hugging Face model without code of another paper: a class for the zones; a wrapper that adds one low-rank adapter per task to the attention projections (linear layers, or the transposed kind of GPT-2) and switches them per input; a class that learns tasks in turn and answers inputs. The opening is estimated as the longest common prefix of the task's training inputs, so no template is needed; if all training inputs share more than the instruction, the estimate is too long and later inputs lacking the extra part are treated like edited inputs. Decoder-only models are trained with the loss on the answer tokens only and answer by greedy continuation of the prompt.
+\paragraph{Stand-alone implementation.} \texttt{certified\_switch.py} implements \cert{} for any Hugging Face model without code of another paper: a class for the zones; a wrapper that adds one low-rank adapter per task to the attention projections (linear layers, or the transposed kind of GPT-2) and switches them per input; a class that learns tasks in turn and answers inputs. The opening is estimated as the longest common prefix of the task's training inputs, so no template is needed; if all training inputs share more than the instruction, the estimate is too long and later inputs lacking the extra part are treated like edited inputs. Decoder-only models are trained with the loss on the answer tokens only and answer by greedy continuation of the prompt.
 
 \clearpage
 \section{Additional results}
@@ -258,7 +265,7 @@ Verdict: both conditions held; the first two expectations were met, the first na
 \end{table}
 
 \begin{table}[h]
-  \caption{Other radius factors on the \ManyTasks{} tasks (main order). Added after the run; the method uses $\kappa = 0.5$.}
+  \caption{Other radius factors on the \ManyTasks{} tasks (main order). Added after the run; \cert{} uses $\kappa = 0.5$.}
   \label{tab:manykappa}
   \centering
   \small

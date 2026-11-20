@@ -469,6 +469,7 @@ put("RerouteStressOld", str(rr["stress"]["light"]["certified4"]["n_old_inputs_pe
 put("RerouteStressTaken", str(rr["stress"]["light"]["certified4"]["changed_per_wording"]["medium"] + rr["stress"]["light"]["certified4"]["changed_per_wording"]["heavy"]))
 put("RerouteZonesCost", "%.1f" % (round(100 * rr["rules"]["background"]["Italian"]["own_at_end"], 1) - round(100 * rr["rules"]["certified4"]["Italian"]["own_at_end"], 1)))
 put("RerouteZonesCostFG", "%.1f" % (round(100 * rr["rules"]["background"]["French+German"]["own_at_end"], 1) - round(100 * rr["rules"]["certified4"]["French+German"]["own_at_end"], 1)))
+put("RerouteZonesCostEs", "%.1f" % (round(100 * rr["rules"]["background"]["Spanish"]["own_at_end"], 1) - round(100 * rr["rules"]["certified4"]["Spanish"]["own_at_end"], 1)))
 put("RerouteItGainCert", "%.1f" % (100 * (rr["rules"]["certified4"]["Italian"]["own_at_end"] - rr["rules"]["certified"]["Italian"]["own_at_end"])))
 pit = json.load(open(os.path.join(R, "paraphrases_it.json")))["stats"]["it"]
 put("RerouteItKept", "%.0f" % (100 * pit["mean_share_original_words_kept"]))

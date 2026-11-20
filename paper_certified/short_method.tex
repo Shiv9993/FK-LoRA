@@ -55,7 +55,7 @@ with its task's instruction and no instruction begins another
 
 \paragraph{The recogniser.} Let $u(x)$ be a frozen feature of the whole input (the mean of the
 last-layer states of the frozen encoder of the base model, without any adapter, standardised with
-the statistics of unrelated inputs) and $\bar u(x) = (u(x), 1)$. When task $k$ arrives, its training
+the statistics of 2{,}000 instances of other SuperNI tasks, not $\mathcal{B}$) and $\bar u(x) = (u(x), 1)$. When task $k$ arrives, its training
 inputs are split at random into fit inputs $D_k^{\mathrm{f}}$ and $m$ held-out inputs. The fit inputs
 add one matrix and one vector to the store:
 $G_k = \operatorname{mean}_{x \in D_k^{\mathrm{f}}} \bar u(x)\bar u(x)^{\!\top}$ and

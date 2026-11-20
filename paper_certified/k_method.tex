@@ -557,7 +557,7 @@ failure was written into the plan of the repository before the run, usually with
 outcome. The results call a result ``works'', ``does not'' or ``beats'' only as the verdict of such a
 line, and say which guesses were wrong and which choices were made after numbers had been seen.
 
-\paragraph{Checks without a GPU.} Where an input is routed depends only on the tokenizer and the
-embedding table, so the routes of all test inputs can be computed on a CPU in minutes, for any model.
+\paragraph{Checks without a GPU.} Under \cert{} the route of an input depends only on the tokenizer and the
+embedding table, so the routes of all test inputs can be computed on a CPU in minutes, for any model. Under \recog{} and \handicap{} it depends on the frozen encoder without adapters, so the routes can be computed before any adapter is trained.
 We use this for the 15-task sequence and several other models (Section~\ref{sec:models}), and report
 where such checks were used to make design choices (Appendix~\ref{app:history}).

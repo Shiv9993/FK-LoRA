@@ -373,8 +373,8 @@ generated once, and all rules are evaluated from these answers, so differences b
 come from training noise. The re-test with the original wording reproduces the answers of the
 official test (Section~\ref{sec:results}).
 
-\paragraph{Checks without a GPU.} Where an input is routed depends only on the tokenizer and the
+\paragraph{Checks without a GPU.} Under \cert{} the route of an input depends only on the tokenizer and the
 embedding table, so the routes of all test inputs can be computed on a CPU in a few minutes, for
-any model. We use this to check the 15-task sequence and several other models
+any model. Under \recog{} and \handicap{} it depends on the frozen encoder without adapters, so the routes can be computed before any adapter is trained. We use this to check the 15-task sequence and several other models
 (Section~\ref{sec:models}), and we report openly where such checks were used to make design choices
 (Appendix~\ref{app:history}).

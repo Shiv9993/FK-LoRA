@@ -133,7 +133,7 @@ Under heavy rewording \cert{} sends some inputs to another task (Section~\ref{se
 reads the instruction (Remark~\ref{rem:auditlimits}(v)). The five tasks were trained once more
 with their definitions (plain adapters, nothing blocked); \recog{} and
 \handicap{} route from the example alone, with the route table of the runs without
-instructions (Section~\ref{sec:nodeftrained}). The scores of \cert{} equal those of the earlier run of the same seed.
+instructions (Section~\ref{sec:nodeftrained}). The scores of \cert{} equal those of the single-seed run of seed 42 with definitions, not those of the three-seed run of Table~\ref{tab:fivewordings} (seed 42 was trained twice; Section~\ref{sec:five}).
 
 \begin{table}[t]
   \caption{The five tasks with their definitions, seed 42, plain adapters; the
@@ -162,10 +162,11 @@ inputs. The mixed rule is best at the original, light and heavy wording and belo
 Line fixed before these runs, for the means over the three seeds: the result ``stands for three seeds'' if the heavy score of \recog{} is at least 2 points above that of \cert{}, the original score is within 2 points of \cert{}, and in every seed at most 8 of \AudUCompared{} answers change at every wording.
 Verdict: it stands. At the heavy wording \recog{} ends at \AudUThreeHeavyRidgeAP{}, a gain of \AudUThreeHeavyRidgeAboveCert{} points over \cert{}; at the original wording it is \AudUThreeOriginalRidgeBelowCert{} points below \cert{}; in no seed and at no wording do more than \AudUThreeMaxChangedPerSeed{} answers change under \recog{}. Over the four wordings \recog{} stays \AudUThreeRidgeBelowOwnLow{} to \AudUThreeRidgeBelowOwnHigh{} points below the ceiling and \handicap{} \AudUThreeHandicapBelowOwnLow{} to \AudUThreeHandicapBelowOwnHigh{}; \cert{} loses \AudUThreeHeavyCertBelowOwn{} points at the heavy wording.
 We had expected a smaller gain, 2 to 2.5 points: in seeds 43 and 44 the adapters lose less under heavy rewording than in seed 42.
+These three seeds are not the training runs of Table~\ref{tab:fivewordings}: seed 42 is the single-seed run, and seeds 43 and 44 were trained again. So \cert{} ends at \AudUThreeOriginalCertAPOne{} (original) and \AudUThreeHeavyCertAPOne{} (heavy) here, and at \FiveCertAP{} and \FiveCertAPHeavy{} in Table~\ref{tab:fivewordings}; the difference is of the size seen between two runs of the same seed.
 It remains five tasks, with three development rewordings per task, not rewordings by people; Remark~\ref{rem:auditlimits}(v) says what this assumes about the input.
 
 \begin{table}[t]
-  \caption{As Table~\ref{tab:instanceroutes}, means over \AudUThreeSeeds{} seeds (42, 43, 44); changed answers are summed over the seeds.}
+  \caption{As Table~\ref{tab:instanceroutes}, means over \AudUThreeSeeds{} seeds (42, 43, 44); changed answers are summed over the seeds. Training runs: seed 42 as in Table~\ref{tab:instanceroutes}, seeds 43 and 44 trained for this table; they are not the runs of Table~\ref{tab:fivewordings}, so the rows of \cert{} differ from it by a few tenths of a point.}
   \label{tab:instanceroutesseeds}
   \centering
   \input{tables/instance_routes_seeds}
@@ -208,7 +209,7 @@ answers. With all adapters on the average falls to \FifteenPlainAP{} (forgetting
 \paragraph{The published methods learned less, and on fifteen tasks they also forget.} InfLoRA and
 GainLoRA end at \FifteenInfAP{} and \FifteenGainAP{}. On five tasks
 neither forgot; here InfLoRA forgets \FifteenInfFT{} points and GainLoRA \FifteenGainFT{}, and
-many of \FifteenInfCompared{} and \FifteenGainCompared{} answers differ at the end (Table~\ref{tab:fifteenmain}). The forgetting of InfLoRA is not
+\FifteenInfChanged{} (InfLoRA) and \FifteenGainChanged{} (GainLoRA) of \FifteenInfCompared{} answers differ at the end (Table~\ref{tab:fifteenmain}). The forgetting of InfLoRA is not
 spread evenly (relation extraction, SST-2, SAMSum and Glucose fall most; Table~\ref{tab:instdetail}). Both
 methods also learned less right after each task, \FifteenInfLearned{} and \FifteenGainLearned{}, against
 \FifteenPlainLearned{} for plain adapters, so the gap to the

@@ -20,7 +20,7 @@
   of their published epochs. Plain adapters behind \recog{} or \handicap{} beat them by a line fixed
   before the run, but there most of the gap in the final score is learning, not retention. With their
   published number of epochs the two methods learned the tasks and then forgot \AudFullGainloraFTInt{}
-  and \AudFullInfloraFTInt{} points (Section~\ref{sec:nodeftrained}); at the same number of epochs our rules end at \AudFullOursRidgeAPOne{} and \AudFullOursHandicapAPOne{}. With their definitions and the same number of epochs they forget \AudFullDefOriginalGainloraFTOne{} and \AudFullDefOriginalInfloraFTOne{} points, so in this setting the loss is due to the missing instruction. All of this is one seed. The rules were chosen on the 15 benchmark
+  and \AudFullInfloraFTInt{} points (Section~\ref{sec:nodeftrained}); at the same number of epochs our rules end at \AudFullOursRidgeAPOne{} and \AudFullOursHandicapAPOne{}. With their definitions and the same number of epochs they forget \AudFullDefOriginalGainloraFTOne{} and \AudFullDefOriginalInfloraFTOne{} points, with \AudFullDefOriginalGainloraChanged{} and \AudFullDefOriginalInfloraChanged{} of \AudFullDefCompared{} answers changed, so in this setting the instruction is what held most of their answers (nearly all for GainLoRA, fewer for InfLoRA). All of this is one seed. The rules were chosen on the 15 benchmark
   tasks, so their numbers there are development numbers (\AudDevLLamOneEnd{}\% of the test inputs at
   their own task after 15 tasks); the five GPU tasks are among them. The numbers on fresh tasks
   (\AudFreshFourthLEnd{}\% on 30 unseen tasks, \AudScaleLongThreeEnd{}\% on the second benchmark,
@@ -61,7 +61,7 @@
   \item \textbf{At scale the switch adds the proof, not better routing.} On machine paraphrases of \WidenTasksEval{} real tasks the nearest-zone rule changed \RerouteNearNChanged{} of \RerouteInputs{} routes after the tasks arrived
   and the certified switch the same \RerouteCertNChanged{}, against the \RerouteExpectNearLow{}\% to \RerouteExpectNearHigh{}\% we had expected. With the fallback used in all GPU runs the switch routed worse at scale than a plain nearest-signature rule
   (\RerouteCertOwnEnd{}\% against \RerouteSigOwnEnd{}\% of the inputs to their own task). A variant of the fallback, scaled by each task's distance to unrelated text and tested at the end on routes only, is right on the benchmark (\RerouteBgHeavyFive{}\% under heavy rewording) and at scale
-  (\RerouteBgItOwn{}\% without zones and \RerouteCertFourItOwn{}\% with the zones in front, on paraphrases through a fourth language); even then the best rule without zones gives about five points more right routes, so the zones add the proof and not better routing. The two fallbacks trade places between the tests, and the variant has not been run with trained answers (Section~\ref{sec:paraphrase}).
+  (\RerouteBgItOwn{}\% without zones and \RerouteCertFourItOwn{}\% with the zones in front, on paraphrases through a fourth language); even then the best rule without zones gives \RerouteZonesCost{} to \RerouteZonesCostEs{} points more right routes, so the zones add the proof and not better routing. The two fallbacks trade places between the tests, and the variant has not been run with trained answers (Section~\ref{sec:paraphrase}).
   \item \textbf{The zones from the inputs of a task block later tasks.}
   The bound of Theorem~\ref{thm:bound} holds for test inputs that are like the training inputs of their task and was met in every run (\BoundAllChangedLow{}\% to \BoundAllChangedHigh{}\% of the routes changed against the \BoundAlpha{}\% allowed), but with frozen word-vector features most later tasks were blocked when they arrived (Section~\ref{sec:noinstruction}).
   \item \textbf{The zones are narrow at scale.} On machine paraphrases of \WidenTasksEval{} real tasks \cert{} certifies \WidenRefTfivePLow{}\% to \WidenRefTfivePHigh{}\% of the inputs for their own task and \WidenRefTfiveMLow{}\% to \WidenRefTfiveMHigh{}\% for another task,
@@ -147,7 +147,7 @@ under the zones (routes only). On machine paraphrases of real tasks, however, a 
 changed the same \RerouteNearNChanged{} of \RerouteInputs{} routes. A plain nearest-signature rule
 gave more of them to their own task (\RerouteSigOwnEnd{}\% against \RerouteCertOwnEnd{}\%) but did
 much worse on the benchmark rewordings. A variant of the fallback, fixed at the end, does well in
-both places on route tests, yet the best rule without zones still routes about five points better. The limits of the zones are equally
+both places on route tests, yet the best rule without zones still routes \RerouteZonesCost{} to \RerouteZonesCostEs{} points better, depending on the pivot language. The limits of the zones are equally
 plain: the guarantee ends at the border of the zones, the zones are built from words and not from
 meaning (on machine paraphrases of real tasks they certify \WidenRefTfivePLow{}\% to \WidenRefTfivePHigh{}\% of the inputs for their own task, and none of five attempts to widen
 them met the bar set for it in advance), a mechanical test showed that the route of an input outside the zones is lost when its

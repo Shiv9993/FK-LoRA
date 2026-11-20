@@ -1094,7 +1094,7 @@ def build(S):
     group("(d) audit_study.json dev[superni|long][<recogniser>|<feature>|<best parameter>].mean (best parameter by SuperNI own_at_end)")
     chosen_variant = A["chosen"]["variant"]
     head_b = [r"{\footnotesize\setlength{\tabcolsep}{1.8pt}\begin{tabular}{lrrrrrr}", r"    \toprule",
-              r"    & \multicolumn{2}{c}{\shortstack{Sent to own task\\at the end, \% $\uparrow$}} & \multicolumn{2}{c}{\shortstack{Route changed,\\\% $\downarrow$}} & \multicolumn{2}{c}{\shortstack{Audit\\$(c{+}1)/(m{+}1)$, \%}} \\",
+              r"    & \multicolumn{2}{c}{\shortstack{Sent to own task\\at the end, \% $\uparrow$}} & \multicolumn{2}{c}{\shortstack{Route changed,\\\% $\downarrow$}} & \multicolumn{2}{c}{\shortstack{Audit\\$(H{+}1)/(m{+}1)$, \%}} \\",
               r"    \cmidrule(lr){2-3}\cmidrule(lr){4-5}\cmidrule(l){6-7}",
               r"    Recogniser, feature & SuperNI & Long & SuperNI & Long & SuperNI & Long \\", r"    \midrule"]
     rows_b = []
@@ -1209,7 +1209,7 @@ def build(S):
                     ("hidden", "dev_other_orders", "random%d" % r_, "H_prime_t2", "mean")))
     L = [r"{\footnotesize\setlength{\tabcolsep}{3pt}\begin{tabular}{lrrrrrrr}", r"    \toprule",
          r"    & \multicolumn{5}{c}{\recog{}} & \multicolumn{2}{c}{\handicap{}, $\nu = 2$} \\", r"    \cmidrule(lr){2-6}\cmidrule(l){7-8}",
-         r"    Order & " + HARR + " & " + HEND + " & " + HCHG + r" & \shortstack[r]{$(c{+}1)/$\\$(m{+}1)$, \%} & " + HBND + " & " + HEND + " & " + HCHG + r" \\", r"    \midrule"]
+         r"    Order & " + HARR + " & " + HEND + " & " + HCHG + r" & \shortstack[r]{$(H{+}1)/$\\$(m{+}1)$, \%} & " + HBND + " & " + HEND + " & " + HCHG + r" \\", r"    \midrule"]
     for nm, lab, lp, hp in ORD:
         c = [put("AudOrd%sL%s" % (nm, n_), G(*lp, f), "pct1", S) for f, n_ in (("own_at_arrival", "Arrive"), ("own_at_end", "End"), ("changed", "Changed"), ("certificate", "AuditLine"), ("upper95", "AuditBound"))]
         c += [put("AudOrd%sH%s" % (nm, n_), G(*hp, f), "pct1", S) for f, n_ in (("own_at_end", "End"), ("changed", "Changed"))]

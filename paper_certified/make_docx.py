@@ -40,7 +40,8 @@ BUILD = os.path.join(HERE, "_docx_build")
 NAME = "main"
 OUT = os.path.join(HERE, "main.docx")
 
-TEXT_W = 7920          # 5.5 in, in twentieths of a point
+TEXT_W = 7920          # 5.5 in, in twentieths of a point (6.5 in for main_compact, set in main())
+TEXT_IN = 5.5          # the same width in inches
 LINK_COLOR = "000073"  # blue!45!black, as in the PDF
 SERIF = "Times New Roman"
 MONO = "Courier New"
@@ -691,8 +692,22 @@ def text_width(text, pt, mono=False, bold=False):
     return font.getlength(text) / 200.0 * pt * 20
 
 
-def cell_width(tc, pt):
-    """Natural width of the widest paragraph in a cell."""
+def cell_width(tc, pt, words=False):
+    """Natural width of the widest paragraph in a cell (with words=True: of its widest word)."""
+    if words:
+        best = 0
+        for p in tc.iter(qn("w:p")):
+            for node in p.iter(qn("w:r")):
+                rpr = node.find(qn("w:rPr"))
+                caps = rpr is not None and rpr.find(qn("w:smallCaps")) is not None
+                bold = rpr is not None and rpr.find(qn("w:b")) is not None
+                for word in "".join(t.text or "" for t in node.findall(qn("w:t"))).split():
+                    if caps:
+                        w = sum(text_width(ch.upper(), pt * 0.8 if ch.islower() else pt, bold=bold) for ch in word)
+                    else:
+                        w = text_width(word, pt, bold=bold)
+                    best = max(best, w)
+        return best
     best = 0
     for p in tc.iter(qn("w:p")):
         w = 0
@@ -740,8 +755,8 @@ def restyle(info):
     # ---- page ----
     sec = doc.sections[0]
     sec.page_width, sec.page_height = Inches(8.5), Inches(11)
-    sec.left_margin = sec.right_margin = Inches(1.5)
-    sec.top_margin, sec.bottom_margin = Inches(1.0), Inches(1.0)
+    sec.left_margin = sec.right_margin = Inches((8.5 - TEXT_IN) / 2)
+    sec.top_margin, sec.bottom_margin = (Inches(1.0), Inches(1.0)) if TEXT_IN == 5.5 else (Inches(0.9), Inches(0.85))
     sec.footer_distance = Inches(0.55)
     sec.header_distance = Inches(0.5)
     sec.gutter = Inches(0)
@@ -904,8 +919,22 @@ def restyle(info):
         if ti["algorithm"]:
             widths = [widths[0], TEXT_W - widths[0]]
         if sum(widths) > TEXT_W:
-            scale = TEXT_W / float(sum(widths))
-            widths = [int(w * scale) for w in widths]
+            # shrink only the room above the widest word of each column, so that no word is split
+            least = [0] * ncol
+            for r, ss in zip(rows, spans):
+                j = 0
+                for tc, s_ in zip(r.findall(qn("w:tc")), ss):
+                    if s_ == 1:
+                        least[j] = max(least[j], int(cell_width(tc, pt, words=True) * 1.06) + 2 * pad)
+                    j += s_
+            least = [min(l, w) for l, w in zip(least, widths)]
+            room = sum(widths) - sum(least)
+            if sum(least) < TEXT_W and room > 0:
+                scale = (TEXT_W - sum(least)) / float(room)
+                widths = [int(l + (w - l) * scale) for l, w in zip(least, widths)]
+            else:
+                scale = TEXT_W / float(sum(widths))
+                widths = [int(w * scale) for w in widths]
         pr = tbl.find(qn("w:tblPr"))
         for c in list(pr):
             pr.remove(c)
@@ -996,7 +1025,7 @@ def restyle(info):
         for ext in p.iter("{http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing}extent",
                           "{http://schemas.openxmlformats.org/drawingml/2006/main}ext"):
             cx, cy = int(ext.get("cx")), int(ext.get("cy"))
-            new_cx = int(Inches(5.5) * share)
+            new_cx = int(Inches(TEXT_IN) * share)
             ext.set("cx", str(new_cx))
             ext.set("cy", str(int(cy * new_cx / float(cx))))
         set_ppr(p, style="CaptionedFigure", align="center", before=8, after=4, keep_next=True)
@@ -1132,11 +1161,13 @@ def restyle(info):
 
 
 def main():
-    global NAME, OUT
+    global NAME, OUT, TEXT_W, TEXT_IN
     args = [a for a in sys.argv[1:] if not a.startswith("--")]
     if args:
         NAME = args[0]
         OUT = os.path.join(HERE, NAME + ".docx")
+    if NAME == "main_compact":          # the PDF of this version has a 6.5 in text block
+        TEXT_W, TEXT_IN = 9360, 6.5
     shutil.rmtree(BUILD, ignore_errors=True)
     os.makedirs(BUILD)
     info = prepare_tex()

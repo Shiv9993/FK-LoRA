@@ -198,7 +198,7 @@ reads the instruction (Remark~\ref{rem:auditlimits}(v)). So the five tasks were 
 with their definitions (seed 42, plain adapters, nothing blocked), and the routes of \recog{} and
 \handicap{} were computed from the example alone. It is the same route table as in the runs without
 instructions (Section~\ref{sec:nodeftrained}), because these routes do not depend on the definition.
-The scores of \cert{} in this run equal those of the earlier run of this seed at every wording.
+The scores of \cert{} equal those of the single-seed run of seed 42 with definitions, not those of the three-seed run of Table~\ref{tab:fivewordings} (seed 42 was trained twice; Section~\ref{sec:five}).
 Line fixed before the run: \recog{} ``repairs the weak spot'' if its final score at the heavy
 wording is at least 2 points above that of \cert{}, its score at the original wording is within
 2 points of \cert{}, and at most 8 of the \AudUCompared{} compared answers change at every wording;
@@ -255,10 +255,11 @@ At the original wording \recog{} ends at \AudUThreeOriginalRidgeAP{}, \AudUThree
 In no seed and at no wording do more than \AudUThreeMaxChangedPerSeed{} of \AudUCompared{} answers change under \recog{}.
 Over the four wordings \recog{} stays \AudUThreeRidgeBelowOwnLow{} to \AudUThreeRidgeBelowOwnHigh{} points below the ceiling and \handicap{} \AudUThreeHandicapBelowOwnLow{} to \AudUThreeHandicapBelowOwnHigh{}; \cert{} loses \AudUThreeHeavyCertBelowOwn{} points at the heavy wording through misrouted inputs.
 We had expected a smaller gain, 2 to 2.5 points: in seeds 43 and 44 the adapters themselves lose less under the heavy rewording than in seed 42.
+These three seeds are not the training runs of Table~\ref{tab:fivewordings}: seed 42 is the single-seed run, and seeds 43 and 44 were trained again. So \cert{} ends at \AudUThreeOriginalCertAPOne{} (original) and \AudUThreeHeavyCertAPOne{} (heavy) here, and at \FiveCertAP{} and \FiveCertAPHeavy{} in Table~\ref{tab:fivewordings}; the difference is of the size seen between two runs of the same seed.
 It remains five tasks, with machine-written rewordings that were looked at during development.
 
 \begin{table}[t]
-  \caption{As Table~\ref{tab:instanceroutes}, means over \AudUThreeSeeds{} seeds (42, 43, 44); changed answers are summed over the seeds.}
+  \caption{As Table~\ref{tab:instanceroutes}, means over \AudUThreeSeeds{} seeds (42, 43, 44); changed answers are summed over the seeds. Training runs: seed 42 as in Table~\ref{tab:instanceroutes}, seeds 43 and 44 trained for this table; they are not the runs of Table~\ref{tab:fivewordings}, so the rows of \cert{} differ from it by a few tenths of a point.}
   \label{tab:instanceroutesseeds}
   \centering
   \input{tables/instance_routes_seeds}

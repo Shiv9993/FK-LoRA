@@ -32,6 +32,13 @@ Table~\ref{tab:notation} lists the symbols used in the paper.
     $\delta_k(x)$, $Z_k$ & relative distance of $x$ from task $k$; protected zone of task $k$, Eq.~\eqref{eq:zone} \\
     $c_T(x)$, $\rho_T(x)$ & certificate and route of $x$ after $T$ tasks, Eqs.~\eqref{eq:certificate}--\eqref{eq:route} \\
     $y_T(x)$ & answer to $x$ after $T$ tasks, Eq.~\eqref{eq:answer} \\
+    $u(x)$, $\bar u(x)$ & frozen feature of the whole input used by \recog{} and \handicap{}; the same with a constant 1 appended \\
+    $D_k^{\mathrm{f}}$; $c_1, \dots, c_m$, $m$ & fit inputs of task $k$; its held-out inputs and their number (not the certificate $c_T$) \\
+    $G_k$, $v_k$ & mean of $\bar u\,\bar u^{\top}$ and mean of $\bar u$ over the fit inputs of task $k$ \\
+    $V_T$, $\varepsilon$ & ridge recogniser after $T$ tasks, Eq.~\eqref{eq:recogniser}; its ridge constant \\
+    $H$ & number of held-out inputs of a task whose route changed, Proposition~\ref{prop:audit} \\
+    $\xi_k(x)$, $\eta_k$, $\nu$ & margin of the newcomer $k$ over the best older task; its threshold; the number of held-out inputs of each older task a newcomer may take, Eq.~\eqref{eq:handicap} \\
+    $T_{\mathrm{end}}$ & the last task of the sequence, Theorem~\ref{thm:handicap} \\
         $D_t$, $b_t$ & training inputs of task $t$; number of them inside an older zone (blocked) \\
     $X_T(x)$, $\rho^{\mathrm{x}}_T(x)$ & tasks whose opening $x$ carries token for token; route of \exactfirst{}, Eq.~\eqref{eq:exactfirst} \\
     $\mathcal{X}$ & a set of certified inputs (Corollary~\ref{cor:zero}) \\
@@ -48,16 +55,16 @@ Table~\ref{tab:notation} lists the symbols used in the paper.
 \section{Reworded task definitions}
 \label{app:rewordings}
 
-The three rewordings of each task definition used in the tests. They were written by machine during the development of the method, not by people; the answer format of each task is unchanged. The original
+The three rewordings of each task definition used in the tests. They were written by machine during development, not by people; the answer format of each task is unchanged. The original
 definitions are those of SuperNI.
 
 \input{tables/rewordings}
 
 \FloatBarrier
-\section{How the method reached its final form}
+\section{How \cert{} reached its final form}
 \label{app:history}
 
-The certified switch was developed in one day of experiments, and two choices were made after
+\cert{} reached its final form through a short series of route experiments, and two choices were made after
 looking at where test inputs were routed. We report the steps in order, because they decide how
 much weight the results with reworded instructions can carry. At no point was an answer of the
 model used to make a choice. The rule was frozen before the runs reported in
@@ -117,7 +124,7 @@ nearest-centre rule is kept in all tables as \centre{} (with the token weights o
 none of them led to a change of the rule. The test on \ManyTasks{} real tasks showed a cost that the
 benchmark sequences could not show. The variant \exactfirst{} of Section~\ref{sec:exactfirst} was
 designed in response to it. It is reported as a variant, with its own weaker guarantee, and not as
-a revision of the method: on the benchmark sequences it gives the same routes, and on the
+a revision of \cert{}: on the benchmark sequences it gives the same routes, and on the
 collection that motivated it its numbers are not an independent test.
 
 \paragraph{What this means.} The original wording is not affected by any of these choices: every
@@ -171,9 +178,9 @@ projections of the 36 attention modules of T5-base has $72 \cdot 4 \cdot (768 + 
 numbers. Computing the route of one input among fifteen tasks took 3.3\,ms on a single CPU thread
 in our unoptimised implementation, which handles each distinct opening length separately.
 
-\paragraph{A radius of zero.} The stand-alone code implements the convention of Definition~1 for a radius of zero (since 2026-11-18, with a test): a zone of radius zero holds only inputs at distance zero, the ratio $0/0$ counts as inside, and ties go to the older task. The experiment code (\texttt{silent\_run.py}) does not: it treats $0/0$ as ``not certified''. No run reached this case; the analysis of the \ManyTasks{} tasks (\texttt{many\_tasks\_analysis.py}), which does reach it, implements the convention.
+\paragraph{A radius of zero.} The stand-alone code implements the convention of Definition~1 for a radius of zero (checked by a test): a zone of radius zero holds only inputs at distance zero, the ratio $0/0$ counts as inside, and ties go to the older task. The experiment code (\texttt{silent\_run.py}) does not: it treats $0/0$ as ``not certified''. No run reached this case; the analysis of the \ManyTasks{} tasks (\texttt{many\_tasks\_analysis.py}), which does reach it, implements the convention.
 
-\paragraph{Stand-alone implementation.} \texttt{certified\_switch.py} implements the method without
+\paragraph{Stand-alone implementation.} \texttt{certified\_switch.py} implements \cert{} without
 any code of another paper, for any Hugging Face model: a class for the zones, a wrapper that adds
 one low-rank adapter per task to the attention projections of a model (linear layers, or the
 transposed kind used by GPT-2) and switches them per input, and a class that learns tasks one after

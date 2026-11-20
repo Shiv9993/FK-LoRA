@@ -3757,3 +3757,41 @@ history of its own, so the dates of the plan entries cannot be checked there fro
 
 **Also.** The CPU study scripts no longer hold a path of one machine: their scratch folder is the
 setting `FK_LORA_SCRATCH`.
+
+### 2026-11-20 (08:01 UTC) — corrections after an outside reading of the paper
+
+An outside reading of the shortened version found sentences that did not match our own results.
+All were corrected in the three versions; no number, table or result changed (the audit still
+verifies all 1,599 numbers).
+
+- The run with definitions at 100 epochs exists (Table "fulldefinitions"); a sentence still called
+  it missing.
+- At 100 epochs the published methods learn the tasks nearly as well as plain adapters with the
+  same epochs (78.37 and 76.29 against 80.78); the text had compared with the 10-epoch value 77.70.
+- "With their definitions they hold their answers" is true for GainLoRA (9 of 400 changed), much
+  less for InfLoRA (103 of 400); the text now gives both numbers and says the instruction held most
+  of their answers.
+- The ClaimLoRA numbers of the three-seed wording table and of the three-seed table of routes from
+  the example come from different training runs (seed 42 was trained twice; seeds 43 and 44 again
+  for run U2): 79.7 and 74.1 against 79.8 and 74.3. The text and the caption now say so.
+- The Italian pivot: the second fallback rule was written while the first test was running, before
+  any Italian number had been read, and the Italian numbers of both rules were read together. The
+  text had said "used once" and named "the person who wrote the rule".
+- Smaller points: the recogniser's features are standardised with 2,000 instances of other SuperNI
+  tasks, not with the unrelated inputs; routes depend only on the tokenizer and embedding table
+  for ClaimLoRA, on the frozen encoder for FinderLoRA and KeeperLoRA; Lemma 1 gives "at most as
+  many answers as routes", the equality was observed; the opening sentence of the results said
+  all of them carry no instruction; a broken sentence on fifteen tasks (now 661 and 215 of 1,097);
+  "77.5 at 10 epochs" is seed 42; the language setting is that of the GainLoRA paper (InfLoRA's
+  own paper is on images); "c" in the audit column is H of the audit proposition; the cost of the
+  zones on the Spanish pivot is 8.7 points (the text said 4.6 to 5.8).
+- Style: dates, code names of rules, "developed in one day of experiments", and "the method" for
+  ClaimLoRA in the appendix are gone; the notation table has the symbols of FinderLoRA and
+  KeeperLoRA.
+- Checked and found correct: the German-pivot coverage at alpha 0.2 (80.4% against 80% promised;
+  the text says the ruler misses on German only at alpha 0.1); the two values 48.71 in the
+  Latent-LoRA tables (48.714 and 48.709, a coincidence); every 2025 and 2026 reference (arXiv
+  identifiers, titles, authors, the ACL Anthology page and the ICML page).
+- The Word copy of the shortened version now has the 6.5-inch text width of its PDF (71 pages
+  instead of 77), and the Word converter no longer splits words inside narrow table columns.
+- In the 9-page version four figures appeared twice in the appendix; one copy is kept.

@@ -20,10 +20,10 @@ sequence of five of these tasks (three seeds), plain adapters behind the recogni
 \AudSeedsRidgeChanged{} of \AudSeedsCompared{} answers and end at \AudSeedsRidgeAPOne{} Rouge-L,
 against \AudSeedsGainloraAPOne{} and \AudSeedsInfloraAPOne{} for the published methods. In that
 comparison, with a tenth of their training epochs, most of the gap is learning. With their
-published number of epochs (one seed) the two methods learn the tasks as well as plain adapters
-and then lose them: they forget \AudFullGainloraFTInt{} and \AudFullInfloraFTInt{} points and end
+published number of epochs (one seed) the two methods learn the tasks nearly as well as plain adapters
+with the same epochs and then lose them: they forget \AudFullGainloraFTInt{} and \AudFullInfloraFTInt{} points and end
 at \AudFullGainloraAPOne{} and \AudFullInfloraAPOne{}, where plain adapters behind the recogniser
-end at \AudFullOursRidgeAPOne{} with the same number of epochs (\AudOursRidgeAPOne{} with a tenth of them); with their instructions left in, the same two methods forget \AudFullDefOriginalGainloraFTOne{} and \AudFullDefOriginalInfloraFTOne{} points. When inputs do carry an instruction, a second rule gives an exact statement: each task
+end at \AudFullOursRidgeAPOne{} with the same number of epochs (\AudOursRidgeAPOne{} with a tenth of them, same seed); with their instructions left in, the same two methods forget \AudFullDefOriginalGainloraFTOne{} and \AudFullDefOriginalInfloraFTOne{} points. When inputs do carry an instruction, a second rule gives an exact statement: each task
 claims a zone around the frozen word-vectors of its instruction, and we prove that the answer to an
 input inside a zone never changes. On SuperNI with T5-base no answer to an earlier task changed
 (\FiveCertChanged{} of \FiveCertCompared{} on five tasks, three seeds; \FifteenCertChanged{} of

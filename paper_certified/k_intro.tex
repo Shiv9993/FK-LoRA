@@ -44,8 +44,9 @@ Section~\ref{sec:recogniser}). With trained answers, plain adapters behind it ch
 setting by a line fixed before the run (Section~\ref{sec:nodeftrained}). The caveats belong to the
 result: with a tenth of their epochs most of the gap in the final score is learning, and the five tasks are among the 15 development tasks on which the recogniser was chosen; with the
 published number of epochs (one seed) the two methods learn the tasks and then lose them, and the gap
-is forgetting. With their definitions left in, they hold their answers: in this setting the
-instruction is what held them.
+is forgetting. With their definitions left in, they forget far less: GainLoRA \AudFullDefOriginalGainloraFTOne{} points, with
+\AudFullDefOriginalGainloraChanged{} of \AudFullDefCompared{} answers changed, and InfLoRA \AudFullDefOriginalInfloraFTOne{} points, with \AudFullDefOriginalInfloraChanged{}. In this setting the
+instruction is what held most of their answers.
 
 \paragraph{With instructions: \cert{}.} Each task claims a protected zone of input space when it is
 learned, computed from the frozen word-vectors of its instruction; nothing is trained for it and it is
@@ -98,8 +99,9 @@ but in our first tests frozen word-vector features made it block most later task
 rule without training recognises the task of every benchmark test input and of \ManyNearRightPct{}\% of
 the inputs of \ManyTasks{} real tasks, so ``no forgetting'' follows from recognising the instruction.
 A test of retention has to take the instruction away or reword it; we do the first for two published
-methods in a reduced setting (a smaller model than in their papers, three seeds at a tenth of their
-epochs and one at the published number, without the matching run with instructions at that number)
+methods in a reduced setting (T5-base instead of the T5-large of the GainLoRA paper, whose language
+setting we use; the InfLoRA paper itself reports image tasks; three seeds at a tenth of the published
+epochs, and one seed at the published number, without and with instructions)
 and the second at scale by machine. The first is a first look; it cannot show what other methods do, and we do not claim that
 published methods in general only look good because of the instruction; rewordings written by people remain the open experiment. We do not claim that forgetting
 is solved for every input: an input outside all zones has no guarantee, and under \recog{} the share
@@ -109,7 +111,7 @@ the rule that a claim cannot be taken away, its proof and the certificate. We do
 certified switch routes reworded inputs better than simpler rules: at scale a plain nearest-signature
 rule gave more of them to the right task, because the fallback of our rule was chosen on the
 benchmark; a variant found at the end closes most of the gap, with the same benchmark routes and so the same GPU scores, but the best rule without zones is still
-about five points better. We do not claim that the guarantee is free: in a large collection it refuses tasks that resemble older ones. The rewordings of the five tasks
+\RerouteZonesCost{} to \RerouteZonesCostEs{} points better, depending on the pivot language. We do not claim that the guarantee is free: in a large collection it refuses tasks that resemble older ones. The rewordings of the five tasks
 were written by machine and looked at during development; the paraphrases at scale (back-translation
 through German, French, Spanish and Italian of \WidenTasksEval{} real tasks, routes only) are not
 rewordings by people. The closest published method, Latent-LoRA, has no public code, and our

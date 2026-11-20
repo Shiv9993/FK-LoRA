@@ -87,13 +87,13 @@ Section~\ref{sec:nodeftrained}) \recog{} ends \AudFifteenNoDefRidgeBelowOwn{} po
 \AudFifteenNoDefRidgeChanged{} of \AudFifteenNoDefCompared{} changed answers.
 
 \paragraph{The published methods with their published epochs.} With \AudFullEpochs{} epochs per
-task (seed 42; lines fixed before the run) the two methods learn the five tasks without definitions:
+task (seed 42; lines fixed before the run) the two methods learn the five tasks without definitions nearly as well as plain adapters with the same epochs:
 \AudFullInfloraLearnedOne{} and \AudFullGainloraLearnedOne{} right after learning, against
-\AudOursRidgeLearnedOne{} for ours with 10. Then they lose them: they forget \AudFullInfloraFTInt{}
+\AudFullOursRidgeLearnedOne{} for ours (\AudOursRidgeLearnedOne{} with 10 epochs, same seed). Then they lose them: they forget \AudFullInfloraFTInt{}
 and \AudFullGainloraFTInt{} points and end at \AudFullInfloraAPOne{} and \AudFullGainloraAPOne{}, against
 \AudFullOursRidgeAPOne{} for \recog{} with the same \AudFullEpochs{} epochs (Table~\ref{tab:noinstseedsshort}; Figures~\ref{fig:answergrid}--\ref{fig:learnkeep}, Appendix~\ref{app:pictures}). By a line fixed before, \recog{} beats them at equal epochs.
 Here the gap is forgetting. With their definitions left in, the same methods at \AudFullEpochs{} epochs forget \AudFullDefOriginalInfloraFTOne{} and
-\AudFullDefOriginalGainloraFTOne{} points and change \AudFullDefOriginalInfloraChanged{} and \AudFullDefOriginalGainloraChanged{} answers: the instruction was what held their answers.
+\AudFullDefOriginalGainloraFTOne{} points and change \AudFullDefOriginalInfloraChanged{} and \AudFullDefOriginalGainloraChanged{} answers: the instruction was what held most of their answers (nearly all for GainLoRA, fewer for InfLoRA).
 
 \subsection{With instructions: the certified switch}
 \label{sec:withinstr}
@@ -143,7 +143,7 @@ for \cert{}, and \AudUThreeOriginalRidgeChanged{} and \AudUThreeOriginalHandicap
 answers change (\recog{} and \handicap{}) where the zones change none. With heavy rewording \recog{} ends
 at \AudUThreeHeavyRidgeAPOne{} and \handicap{} at \AudUThreeHeavyHandicapAPOne{}, against \AudUThreeHeavyCertAPOne{} for
 \cert{}, with a ceiling of \AudUThreeHeavyOwnAPOne{}. By lines fixed before the runs it repairs the weak
-spot of the zones. Three seeds, machine-written rewordings, and the benchmark gives the example
+spot of the zones. These are other training runs than the five-task numbers above (\cert{} differs by a few tenths). Three seeds, machine-written rewordings, and the benchmark gives the example
 apart from the instruction (Appendix~\ref{sec:exampleroutes}).
 
 \begin{table}[t]
